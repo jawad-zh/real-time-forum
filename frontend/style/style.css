@@ -1,0 +1,79 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    /* background-color:#222831; */
+    background:
+  /* linear-gradient(45deg, red, yellow), */
+  linear-gradient(300deg, blue, rgb(49, 145, 235));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logContainer{
+    height: 60%;
+    width: 40%;
+    background-color: rgb(223, 221, 221);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     opacity: 0;
+  transition: opacity 2s ease;
+}
+#loginTitle{
+    color:#DFD0B8 ;
+    font-size: 40px;
+    font-weight: bolder;
+    margin-bottom: 100px;
+}
+.text{
+    color:#DFD0B8 ;
+    font-size: larger;
+}
+.input{
+    background-color: #948979;
+    height: 40px;
+    width: 400px;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 20px;
+    color:#DFD0B8;
+    font-size: larger;
+}
+.input::placeholder{
+    color:#DFD0B8
+}
+.button{
+    height: 100px;
+    width: 600px;
+    color:white;
+    background-color:  rgb(49, 145, 235);
+    border-radius: 20px;
+    cursor: pointer;
+    margin : 20px;
+    font-size: 30px;
+    font-weight: bolder;
+    border:none
+}
+#startCountainer{
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 40%;
+    background-color: linear-gradient(300deg, blue, rgb(49, 145, 235));
+    justify-content: center;
+    align-items: center;
+    transition: background-color 2s ease;
+}
+#startedImage{
+    height: 65%;
+    width: 60%;
+}
