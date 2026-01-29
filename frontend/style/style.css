@@ -14,9 +14,10 @@ body{
     justify-content: center;
 }
 #logContainer{
-    height: 60%;
+    height: 70%;
     width: 40%;
-    background-color: rgb(223, 221, 221);
+    background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
     border-radius: 20px;
     padding: 10px;
     margin: 10px;
@@ -27,41 +28,45 @@ body{
   transition: opacity 2s ease;
 }
 #loginTitle{
-    color:#DFD0B8 ;
+    color:white ;
     font-size: 40px;
     font-weight: bolder;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 .text{
-    color:#DFD0B8 ;
+    color:rgb(233,233, 233) ;
     font-size: larger;
 }
 .input{
-    background-color: #948979;
-    height: 40px;
-    width: 400px;
-    margin-bottom: 40px;
+    background-color: rgb(233, 233, 233);
+    height: 2%;
+    width: 40%;
+    margin-bottom: 15px;
     margin-top: 10px;
     border: none;
     border-radius: 10px;
-    padding: 5px 20px;
-    color:#DFD0B8;
+    padding: 15px 20px;
+    color:white;
     font-size: larger;
 }
 .input::placeholder{
-    color:#DFD0B8
+    color:white
 }
 .button{
-    height: 100px;
-    width: 600px;
+    height: 50px;
+    width: 150px;
     color:white;
     background-color:  rgb(49, 145, 235);
     border-radius: 20px;
     cursor: pointer;
-    margin : 20px;
-    font-size: 30px;
+    margin : 15px;
+    font-size: 15px;
     font-weight: bolder;
-    border:none
+    border:none;
+    padding:20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #startCountainer{
     display: flex;
@@ -76,4 +81,35 @@ body{
 #startedImage{
     height: 65%;
     width: 60%;
+}
+.logRegButton{
+     height: 20px;
+    width: 100px;
+    color:white;
+    background-color:  rgb(49, 145, 235);
+    border-radius: 20px;
+    cursor: pointer;
+    margin : 15px;
+    font-size: 15px;
+    font-weight: bolder;
+    border:none;
+    padding:20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#registerCountainer{
+     height: 90%;
+    width: 40%;
+    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+     /* opacity: 0; */
+  transition: opacity 2s ease;
 }
