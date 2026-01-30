@@ -1,6 +1,7 @@
 import { started, setLoginHtml, setRegister } from "../views/start.js";
 import { registerCheck} from "../services/registerCheck.js"
 import { loginCheck} from "../services/loginCheck.js"
+import { setHomePage} from "../views/home.js"
 function router() {
         started()
     document.addEventListener('click' , (e)=>{
@@ -11,10 +12,16 @@ function router() {
             setRegister()
         } 
         if (e.target.id === 'registerButton'){
-            registerCheck(e)
+          let register = registerCheck(e)
+          if (register){
+            setHomePage()
+          }
         } 
         if (e.target.id === 'loginButton'){
-            loginCheck(e)
+           let login = loginCheck(e)
+           if(login){
+
+           }
         }
     })
 }

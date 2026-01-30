@@ -1,8 +1,9 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
-body{
+
+body {
     height: 100vh;
     width: 100%;
     background: linear-gradient(156deg, #002F59, #004DFF);
@@ -10,13 +11,15 @@ body{
     align-items: center;
     justify-content: center;
 }
-#startCountainer{
+
+#startCountainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.startbutton{
+
+.startbutton {
     color: #1A58CB;
     font-weight: 600;
     width: 50%;
@@ -27,14 +30,16 @@ body{
     border: none;
     cursor: pointer;
 }
-#loginPageCountainer{
+
+#loginPageCountainer {
     height: 100%;
     width: 100%;
     display: flex;
     opacity: 0;
     transition: opacity 2s ease;
 }
-#imagePart{
+
+#imagePart {
     background-color: white;
     width: 50%;
     display: flex;
@@ -42,7 +47,7 @@ body{
     justify-content: center;
 }
 
-#loginCountainer{
+#loginCountainer {
     height: 40%;
     background-color: white;
     width: 50%;
@@ -55,31 +60,36 @@ body{
     /* justify-content: center; */
 
 }
-#loginPart{
+
+#loginPart {
     height: 100%;
     width: 50%;
     background:
-    linear-gradient(#0066FF,#003D99);
+        linear-gradient(#0066FF, #003D99);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 20px;
 }
-#welcomMessage{
+
+#welcomMessage {
     font-weight: 700;
     margin-bottom: 40px;
 }
-.loginInput{
+
+.loginInput {
     height: 35px;
     width: 70%;
     padding: 3px 10px;
     border: 1px solid black;
     border-radius: 10px;
 }
-#loginButton{
+
+#loginButton {
     background-color: #0066FF;
     border: none;
-    color:white;
+    color: white;
     height: 40px;
     width: 110px;
     border-radius: 10px;
@@ -87,7 +97,8 @@ body{
     margin-top: 30px;
     margin-bottom: 10px;
 }
-#registerPageCountainer{
+
+#registerPageCountainer {
     height: 100%;
     width: 100%;
     display: flex;
@@ -96,11 +107,13 @@ body{
     opacity: 0;
     transition: opacity 2s ease;
 }
-#imagePart{
+
+#imagePart {
     height: 100%;
     width: 50%;
 }
-#registerBlue{
+
+#registerBlue {
     height: 100%;
     width: 50%;
     display: flex;
@@ -109,7 +122,8 @@ body{
     justify-content: center;
     border-radius: 20px;
 }
-#registerPart{
+
+#registerPart {
     background-color: white;
     height: 80%;
     width: 80%;
@@ -119,52 +133,58 @@ body{
     align-items: center;
     border-radius: 20px;
 }
-#registerTitle{
+
+#registerTitle {
     font-size: 25px;
     font-weight: 700;
     margin-bottom: 60px;
     margin-top: 15px;
 }
-.registerInput{
+
+.registerInput {
     height: 35px;
     width: 45%;
     margin: 10px;
     padding: 2px 10px;
-    border : solid black 1px;
+    border: solid black 1px;
     border-radius: 10px;
 }
-#registerButton{
+
+#registerButton {
     background-color: #0066FF;
     color: white;
     border: none;
     border-radius: 10px;
     height: 40px;
-    min-width:20%;
+    min-width: 20%;
     margin: 20px;
     cursor: pointer;
 }
+
 .alert {
-     height: 40px;
+    height: 40px;
     width: 300px;
     background-color: red;
     margin-bottom: 20px;
+    padding: 10px;
     border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: large;
-  font-weight: 500;
-  opacity: 0;
-  transform: translateY(10px);
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
-  pointer-events: none;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: large;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+    pointer-events: none;
+    ;
 }
 
 .alert.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
