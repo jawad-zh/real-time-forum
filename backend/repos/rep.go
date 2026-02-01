@@ -1,1 +1,5 @@
 package repos
+
+func creatTable(){
+	
+}
