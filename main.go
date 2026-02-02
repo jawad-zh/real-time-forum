@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"net/http"
 
+	"golang/backend/db"
 	"golang/backend/handlers"
 )
 
 func main() {
-	
+	dataBase:=db.DbConnection()
+	db.CreatTables(dataBase)
 	// server part 
 	mux := http.NewServeMux()
 	//
