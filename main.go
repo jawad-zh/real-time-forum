@@ -16,8 +16,12 @@ func main() {
 	db.CreatTables(dataBase)
 	// server part 
 	mux := http.NewServeMux()
+
+	fs := http.FileServer(http.Dir("./frontend"))
+	mux.Handle("/frontend/", http.StripPrefix("/frontend/", fs))
+
 	//
-	mux.HandleFunc("/home", handlers.HomeHandler)
+	mux.HandleFunc("/", handlers.HomeHandler)
 	mux.HandleFunc("/login", handlers.LoginHandler)
 	mux.HandleFunc("/register", handlers.RegisterHandler)
 	mux.HandleFunc("/creatPost", handlers.CreatPostHandler)

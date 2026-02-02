@@ -1,7 +1,7 @@
-import { started, setLoginHtml, setRegister } from "../views/start.js";
-import { registerCheck} from "../services/registerCheck.js"
-import { loginCheck} from "../services/loginCheck.js"
-import { setHomePage} from "../views/home.js"
+import { started, setLoginHtml, setRegister } from "/frontend/views/start.js";
+import { registerCheck} from "/frontend/services/registerCheck.js"
+import { loginCheck} from "/frontend/services/loginCheck.js"
+import { setHomePage} from "/frontend/views/home.js"
 function router() {
         started()
     document.addEventListener('click' , (e)=>{

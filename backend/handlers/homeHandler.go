@@ -8,8 +8,7 @@ import (
 )
 
 func HomeHandler(w http.ResponseWriter , r *http.Request){
-	fmt.Println("--")
-	if r.URL.Path != "/"{
+	if r.URL.Path != "/" && r.URL.Path != "/favicon.ico"{
 		fmt.Println("page not found")
 	}
 	temp,err := template.ParseFiles("frontend/index.html")

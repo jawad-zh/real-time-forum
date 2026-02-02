@@ -2,7 +2,7 @@ export function started() {
     let startCounainer = document.createElement('div')
     startCounainer.setAttribute('id', 'startCountainer')
     let startImage = document.createElement('img')
-    startImage.src = './state/images/2.gif'
+    startImage.src = '/frontend/state/images/2.gif'
     startImage.setAttribute('id', 'startedImage')
     let loginButton = document.createElement('button')
     loginButton.innerHTML = 'you have account'
@@ -18,8 +18,10 @@ export function started() {
 
 export function setLoginHtml() {
     const bodyChildren = document.body.children
-    if (bodyChildren) {
-        for (let i = 0; i < bodyChildren.length; i++) {
+    if (bodyChildren) {        
+        for (let i = bodyChildren.length-1; i >= 0; i--) {
+            console.log(bodyChildren[i]);
+            
             bodyChildren[i].remove()
         }
     }
@@ -30,7 +32,7 @@ export function setLoginHtml() {
     let imagePart = document.createElement('div')
     imagePart.setAttribute('id', 'imagePart')
     let image = document.createElement('img')
-    image.src = './state/images/4.gif'
+    image.src = '/frontend/state/images/4.gif'
     // append image in it's countainer
     imagePart.append(image)
     let loginPart = document.createElement('div')
@@ -77,7 +79,7 @@ export function setLoginHtml() {
 export function setRegister() {
     const bodyChildren = document.body.children
     if (bodyChildren) {
-        for (let i = 0; i < bodyChildren.length; i++) {
+        for (let i = bodyChildren.length-1; i >= 0; i--) {
             bodyChildren[i].remove()
         }
     }
@@ -138,7 +140,7 @@ export function setRegister() {
     let imagePart = document.createElement('div')
     imagePart.setAttribute('id', 'imagePart')
     let image = document.createElement('img')
-    image.src = './state/images/8.gif'
+    image.src = '/frontend/state/images/8.gif'
     imagePart.append(image)
     let registerPageCountainer = document.createElement('div')
     registerPageCountainer.setAttribute('id', 'registerPageCountainer')

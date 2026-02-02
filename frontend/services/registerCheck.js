@@ -1,9 +1,7 @@
 import { checkRegisterResponse } from "../views/checkFrontResponse.js"
 
 export  function registerCheck(e) {
-    e.preventDefault()
-    console.log('si');
-    
+    e.preventDefault()    
     const nickname = (document.getElementById('nicknameInput').value).trim()
     const ageInput = document.getElementById('ageInput').value.trim()
     const genderInput = document.getElementById('genderInput').value.trim()
@@ -96,7 +94,7 @@ export  function registerCheck(e) {
     //backend
     const Users = {
      Nickname : nickname,
-     Age : ageInput,
+     Age : Number(ageInput),
      Gender: genderInput,
      FirstName : firstNameInput,
      LastName : lastNameInput,
