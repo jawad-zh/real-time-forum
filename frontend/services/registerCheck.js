@@ -1,7 +1,9 @@
 import { checkRegisterResponse } from "../views/checkFrontResponse.js"
 
-export function registerCheck(e) {
+export  function registerCheck(e) {
     e.preventDefault()
+    console.log('si');
+    
     const nickname = (document.getElementById('nicknameInput').value).trim()
     const ageInput = document.getElementById('ageInput').value.trim()
     const genderInput = document.getElementById('genderInput').value.trim()
@@ -91,6 +93,31 @@ export function registerCheck(e) {
         checkRegisterResponse('Password is required', 'red')
         return false
     }
-     checkRegisterResponse('register success','green')
-     return true
+    //backend
+    const Users = {
+     Nickname : nickname,
+     Age : ageInput,
+     Gender: genderInput,
+     FirstName : firstNameInput,
+     LastName : lastNameInput,
+     Email : email,
+     Password : password
+    }
+    console.log('send');
+    
+     fetch("http://localhost:8080/register",{
+     method : "POST",
+     headers:{
+          "Content-Type": "application/json"
+     },
+     body : JSON.stringify(Users)
+    })
+
+
+
+
+
+
+     // checkRegisterResponse('register success','green')
+     // return true
 }

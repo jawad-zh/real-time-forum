@@ -1,7 +1,8 @@
 package handlers
 
-import "net/http"
+import (
+	"net/http"
+)
 
-func RegisterHandler(w http.ResponseWriter , r *http.Request){
-
+func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 }
