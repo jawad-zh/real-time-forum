@@ -5,16 +5,17 @@ import (
 	"log"
 	"net/http"
 
-	"golang/backend/db"
+	 "golang/backend/db"
 	"golang/backend/handlers"
 )
 
-
-
 func main() {
-	dataBase:=db.DbConnection()
-	db.CreatTables(dataBase)
-	// server part 
+	err := db.DbConnection()
+	if err != nil {
+		fmt.Print("DataBaseErr", err)
+	}
+	db.CreatTables(db.DataBase)
+	// server part
 	mux := http.NewServeMux()
 
 	fs := http.FileServer(http.Dir("./frontend"))
@@ -28,7 +29,7 @@ func main() {
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//
-	err := http.ListenAndServe(":8080", mux)
+	err = http.ListenAndServe(":8080", mux)
 	if err != nil {
 		log.Fatal("sever Error :", err)
 	}

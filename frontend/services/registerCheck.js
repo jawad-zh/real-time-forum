@@ -12,7 +12,7 @@ export  function registerCheck(e) {
     const password = document.getElementById('passwordInput').value.trim()
 
     const nicknameSpeacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
-    const SpeacialCharacterRegex = 
+    const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]/
     const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
     if (nickname.length <= 2) {
          checkRegisterResponse('nickname need to be more than two character', 'red')

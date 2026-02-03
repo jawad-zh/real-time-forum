@@ -6,6 +6,7 @@ import (
 )
 
 func CreatTables(db *sql.DB) {
+	
 	_, err := db.Exec(
 		`CREATE TABLE IF NOT EXISTS Users (
     UserID INTEGER PRIMARY KEY AUTOINCREMENT,

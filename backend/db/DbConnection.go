@@ -2,18 +2,24 @@ package db
 
 import (
 	"database/sql"
-	"log"
+	"fmt"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func DbConnection()(*sql.DB){
-	db,err:=sql.Open("sqlite3","dataBase.db")
+var DataBase *sql.DB
+
+func DbConnection() error {
+	var err error
+	DataBase, err = sql.Open("sqlite3", "dataBase.db")
 	if err != nil {
-		log.Fatal("Data Base Connection Error:",err)
+		fmt.Println("Data Base Connection Error:", err)
+		return err
 	}
-	err=db.Ping()
-	if err != nil{
-		log.Fatal("Data Base Error")
+	err = DataBase.Ping()
+	if err != nil {
+		fmt.Println("Data Base Error")
+		return err
 	}
-	return db
+	return nil
 }
