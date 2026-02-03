@@ -2,9 +2,9 @@ import { started, setLoginHtml, setRegister } from "/frontend/views/start.js";
 import { registerCheck} from "/frontend/services/registerCheck.js"
 import { loginCheck} from "/frontend/services/loginCheck.js"
 import { setHomePage} from "/frontend/views/home.js"
-function router() {
+   function  router() {
         started()
-    document.addEventListener('click' , (e)=>{
+    document.addEventListener('click' , async (e)=>{
         if (e.target.id === 'startedLoginButton'){
             setLoginHtml()
         } 
@@ -12,9 +12,11 @@ function router() {
             setRegister()
         } 
         if (e.target.id === 'registerButton'){
-          let register = registerCheck(e)
-          if (register){
-            setHomePage()
+          let data = await registerCheck(e)
+          if (data.status === 'success'){
+            setTimeout(()=>{
+                setLoginHtml()
+            },1500)
           }
         } 
         if (e.target.id === 'loginButton'){

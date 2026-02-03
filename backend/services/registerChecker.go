@@ -7,7 +7,6 @@ import (
 )
 
 func RegisterChecker(user *models.Users) (bool, string) {
-	fmt.Println("entred from register checker")
 	nicknameRegex := regexp.MustCompile(`[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]`)
 	speacialCharacterRegex := regexp.MustCompile(`[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]`)
 	emailRegex := regexp.MustCompile(`.+@[a-zA-z]+\.[a-zA-Z]+`)

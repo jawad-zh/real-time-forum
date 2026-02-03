@@ -53,3 +53,7 @@ type PrivateMessage struct {
 	CreatAt    string
 	IsREad     bool
 }
+type Login struct{
+	EmailOrNickname string `json:"nicknameOrEmail"`
+	Password string `json:"Password"`
+}

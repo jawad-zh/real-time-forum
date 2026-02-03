@@ -1,12 +1,10 @@
 export function sendRegisterData(user){
      
-    console.log('send');
+//    var response = {}
     
-     fetch("http://localhost:8080/register",{
-     method : "POST",
-     headers:{
-          "Content-Type": "application/json"
-     },
-     body : JSON.stringify(user)
-    }).then(res => res.json()).then(data => console.log(data))
+     
+//    console.log(response);
+//    console.log("response.message",response.message);
+//    console.log("response.status",response.status);
+   
 }

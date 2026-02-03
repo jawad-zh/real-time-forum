@@ -15,7 +15,6 @@ type registerResponsFormat struct {
 }
 
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("entred from register handler")
 	var user models.Users
 	var registerRespons registerResponsFormat
 	json.NewDecoder(r.Body).Decode(&user)
@@ -27,10 +26,15 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(registerRespons)
 		return
 	}
-	repos.CreatAccount(&user)
-	registerRespons.Message = "register successful"
-	registerRespons.Status = "success"
+	ok,creatMessage :=repos.CreatAccount(&user)
+	if ok{
+		registerRespons.Message = "register successful"
+		registerRespons.Status = "success"
+	}else{
+		registerRespons.Message = creatMessage
+		registerRespons.Status = "failed"
+	}
 	w.Header().Set("Content-Type","application/json")
 		json.NewEncoder(w).Encode(registerRespons)
-	fmt.Println(user)
+	fmt.Println(user,creatMessage)
 }

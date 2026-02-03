@@ -1,7 +1,7 @@
 import { checkRegisterResponse } from "../views/checkFrontResponse.js"
 import {sendRegisterData} from "../websocket/sendRegisterData.js"
 
-export  function registerCheck(e) {
+export async function registerCheck(e) {
     e.preventDefault()    
     const nickname = (document.getElementById('nicknameInput').value).trim()
     const ageInput = document.getElementById('ageInput').value.trim()
@@ -103,12 +103,20 @@ export  function registerCheck(e) {
      Email : email,
      Password : password
     }
+   
 
-    sendRegisterData(Users)
-
-
-
-
-     // checkRegisterResponse('register success','green')
-     // return true
+   var res = await  fetch("http://localhost:8080/register",{
+     method : "POST",
+     headers:{
+          "Content-Type": "application/json"
+     },
+     body : JSON.stringify(Users)
+    })
+    var data = await res.json()    
+    if (data.status === 'success'){
+      checkRegisterResponse(data.message,'green')
+    }else{
+     checkRegisterResponse(data.message,'red')
+    }    
+    return data
 }
