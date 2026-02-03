@@ -1,4 +1,5 @@
 import { checkRegisterResponse } from "../views/checkFrontResponse.js"
+import {sendRegisterData} from "../websocket/sendRegisterData.js"
 
 export  function registerCheck(e) {
     e.preventDefault()    
@@ -10,12 +11,13 @@ export  function registerCheck(e) {
     const email = document.getElementById('emailInput').value.trim()
     const password = document.getElementById('passwordInput').value.trim()
 
-    const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
+    const nicknameSpeacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
+    const SpeacialCharacterRegex = 
     const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
     if (nickname.length <= 2) {
          checkRegisterResponse('nickname need to be more than two character', 'red')
          return false
-    } else if (nickname.match(speacialCharacterRegex)) {
+    } else if (nickname.match(nicknameSpeacialCharacterRegex)) {
         checkRegisterResponse('nickname speacial character allowed is - _ and .', 'red')
         return false
     }
@@ -101,17 +103,8 @@ export  function registerCheck(e) {
      Email : email,
      Password : password
     }
-    console.log('send');
-    
-     fetch("http://localhost:8080/register",{
-     method : "POST",
-     headers:{
-          "Content-Type": "application/json"
-     },
-     body : JSON.stringify(Users)
-    })
 
-
+    sendRegisterData(Users)
 
 
 
