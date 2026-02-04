@@ -22,11 +22,11 @@ export function setHomePage() {
             <div id="postSide">
                 <div class="post" >
                     <div class="profileCountainer" >
-                        <img src="state/images/icones/profile.jpeg" alt="">
+                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
                         <p>jawad zahraoui</p>
                     </div>
                     <div class="imagePost">
-                        <img src="state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
+                        <img src="/frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
                     </div>
                     <div class="icons" >
                         <div class="likeComment" >

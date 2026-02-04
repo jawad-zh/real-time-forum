@@ -62,4 +62,15 @@ export async function loginCheck(e) {
      },
      body : JSON.stringify(Users)
     })
+    var data = await res.json()
+    if (data.status === 'success'){
+          checkLoginResponse(data.message,'green')
+        }else{
+         checkLoginResponse(data.message,'red')
+        } 
+        console.log(data);
+         
+    return data
+    
+    
 }

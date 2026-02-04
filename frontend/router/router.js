@@ -20,9 +20,17 @@ import { setHomePage} from "/frontend/views/home.js"
           }
         } 
         if (e.target.id === 'loginButton'){
-           let login = loginCheck(e)
-           if(login){
-
+            console.log('siiiiiiiiiiiii');
+            
+           let data = await loginCheck(e)
+           console.log("addddddddddattta",data);
+           
+           if(data.status === 'success'){
+            console.log('siii');
+            
+            setTimeout(()=>{
+                setHomePage()
+            },1500)
            }
         }
     })
