@@ -9,7 +9,7 @@ import (
 func RegisterChecker(user *models.Users) (bool, string) {
 	nicknameRegex := regexp.MustCompile(`[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]`)
 	speacialCharacterRegex := regexp.MustCompile(`[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]`)
-	emailRegex := regexp.MustCompile(`.+@[a-zA-z]+\.[a-zA-Z]+`)
+	// emailRegex := regexp.MustCompile(`.+@[a-zA-z]+\.[a-zA-Z]+`)
 	// notNumbersRegex := regexp.MustCompile(`\D`)
 	NumbersRegex  := regexp.MustCompile(`\d`)
 	lowerCaseRegex := regexp.MustCompile(`[a-z]`)
@@ -50,9 +50,9 @@ func RegisterChecker(user *models.Users) (bool, string) {
 	} else if !NumbersRegex.MatchString(user.Password) {
 		return false, "Password Should Countain Number (backend) "
 	}
-	if !emailRegex.MatchString(user.Email) {
-		return false, "Incorrect Email Format (backend) "
-	}
+	// if !emailRegex.MatchString(user.Email) {
+	// 	return false, "Incorrect Email Format (backend) "
+	// }
 	// empty input checker
 
 	if len(user.Nickname) == 0 {
@@ -70,5 +70,6 @@ func RegisterChecker(user *models.Users) (bool, string) {
 	} else if len(user.Password) == 0 {
 		return false, "Password is required (backend) "
 	}
+	fmt.Print("salka")
 	return true, ""
 }

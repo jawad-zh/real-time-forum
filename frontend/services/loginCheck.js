@@ -6,7 +6,7 @@ export async function loginCheck(e) {
     const password = (document.getElementById('passwordInput').value).trim()
     let emailOrNickname = emailOrNicknameInput.match(/@/)? 'email' : 'nickname'
     const nicknameSpeacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
-    const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
+    // const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
     const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]/
     if (emailOrNickname === '') {
         checkLoginResponse('email or nickname is required', 'red')
@@ -16,10 +16,11 @@ export async function loginCheck(e) {
         return
     }
     if (emailOrNicknameInput.match(/@/)){
-        if (!emailOrNickname.match(emailRegex)){
-            checkLoginResponse('invalid email format !')
-            return
-        }
+        // need to handl
+        // if (!emailOrNickname.match(emailRegex)){
+        //     checkLoginResponse('invalid email format !')
+        //     return
+        // }
     }else{
         if (emailOrNicknameInput.length <= 2){
             checkLoginResponse('nickname should be more than two charachter')
@@ -50,7 +51,8 @@ export async function loginCheck(e) {
     
         }
         const Users = {
-            nicknameOrEmail : emailOrNicknameInput,
+            NicknameOrEmailInput : emailOrNicknameInput,
+            EmailOrNickname : emailOrNickname,
             Password : password
         }
         var res = await  fetch("http://localhost:8080/login",{

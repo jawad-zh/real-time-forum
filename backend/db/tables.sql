@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS Users (
     FirstName TEXT NOT NULL,
     LastName TEXT NOT NULL,
     Email TEXT NOT NULL UNIQUE,
-    PasswordHash TEXT NOT NULL,
+    Password TEXT NOT NULL,
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

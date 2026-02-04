@@ -18,7 +18,7 @@ func CreatAccount(user *models.Users) (bool, string) {
 	}
 	user.Password = string(passwordBcrypt)
 	_, err = db.DataBase.Exec(`
-	INSERT INTO Users (Nickname,Age,Gender,FirstName,LastName,Email,PasswordHash)
+	INSERT INTO Users (Nickname,Age,Gender,FirstName,LastName,Email,Password)
 	VALUES(?,?,?,?,?,?,?)
 	`, user.Nickname, user.Age, user.Gender, user.FirstName, user.LastName, user.Email, user.Password)
 	fmt.Println(err)

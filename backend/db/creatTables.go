@@ -16,7 +16,7 @@ func CreatTables(db *sql.DB) {
     FirstName TEXT NOT NULL,
     LastName TEXT NOT NULL,
     Email TEXT NOT NULL UNIQUE,
-    PasswordHash TEXT NOT NULL,
+    Password TEXT NOT NULL,
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );`)
 	if err != nil {
@@ -24,10 +24,10 @@ func CreatTables(db *sql.DB) {
 	}
 	_, err = db.Exec(
 		`
-		CREATE TABLE IF NOT EXISTS Tokens (
+		CREATE TABLE IF NOT EXISTS Session (
     UserID INTEGER PRIMARY KEY AUTOINCREMENT,
     token TEXT UNIQUE,
-    CreatedAt DATETIME,
+    ExpiresAt DATETIME,
     FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
 );`)
 	if err != nil {

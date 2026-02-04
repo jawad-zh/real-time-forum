@@ -13,7 +13,7 @@ export async function registerCheck(e) {
 
     const nicknameSpeacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
     const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]/
-    const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
+//     const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
     if (nickname.length <= 2) {
          checkRegisterResponse('nickname need to be more than two character', 'red')
          return false
@@ -66,10 +66,10 @@ export async function registerCheck(e) {
          return false
 
     }
-    if (!email.match(emailRegex)){
-         checkRegisterResponse('incorrect email format','red')
-         return false
-    }
+//     if (!email.match(emailRegex)){
+//          checkRegisterResponse('incorrect email format','red')
+//          return false
+//     }
 
     //check empty
     if (nickname === '') {

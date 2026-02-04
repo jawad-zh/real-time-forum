@@ -1,6 +1,9 @@
 package models
 
+import "time"
+
 type Users struct {
+	UserID    int
 	Nickname  string `json:"Nickname"`
 	Age       int    `json:"Age"`
 	Gender    string `json:"Gender"`
@@ -8,12 +11,12 @@ type Users struct {
 	LastName  string `json:"LastName"`
 	Email     string `json:"Email"`
 	Password  string `json:"Password"`
-	CreatedAt string `json:"CreatedAt"`
+	CreatedAt time.Time `json:"CreatedAt"`
 }
-type Tokens struct {
+type Session struct {
 	UserID    int
 	Token     string
-	CreatedAt string
+	ExpiresAt time.Time
 }
 
 // need to add image
@@ -53,7 +56,8 @@ type PrivateMessage struct {
 	CreatAt    string
 	IsREad     bool
 }
-type Login struct{
-	EmailOrNickname string `json:"nicknameOrEmail"`
-	Password string `json:"Password"`
+type Login struct {
+	NicknameOrEmailInput string `json:"NicknameOrEmailInput"`
+	EmailOrNickname      string `json:"EmailOrNickname"`
+	Password             string `json:"Password"`
 }
