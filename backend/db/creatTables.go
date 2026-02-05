@@ -25,7 +25,7 @@ func CreatTables(db *sql.DB) {
 	_, err = db.Exec(
 		`
 		CREATE TABLE IF NOT EXISTS Session (
-    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+    UserID INTEGER ,
     token TEXT UNIQUE,
     ExpiresAt DATETIME,
     FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE

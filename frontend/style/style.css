@@ -188,128 +188,348 @@ body {
     transform: translateY(0);
     pointer-events: auto;
 }
-
-.HomePageCountainer{
-    height: 100%;
+#homePageCountainer{
+    height: 100vh;
     width: 100%;
-}
-.navBar{
-    height: 60px;
-    width: 100%;
-    padding: 5px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 7px 4px rgba(0, 0, 0, 0.3) ;
-    position: sticky;
-    z-index: 1000;
-    top: 0;
     background-color: white;
-}
-#iconesCountainer{
-    height: 100%;
     display: flex;
-    gap: 10px;
-    padding: 20px;
-    margin: 20px;
-    margin-right: 60px;
+    
 }
-#iconesCountainer i{
-    height: 30px;
-    cursor: pointer;
-    width: 30px;
-    padding:10px 15px;
-    font-size: 30px;
-    /* width: 100%; */
+#filterSide{
+    height: 98%;
+    width: 20%;
+    background-color: rgba(215, 233, 250, 0.541);
+    margin-top: 10px;
+    border-radius: 20px 0px 0px 20px;
+    margin-left: 10px;
 }
-.logoCountainer{
-    height: 90%;
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-#scrollingPageCountainer{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+#MessageSide{
+    height: 98%;
+    width: 20%;
+    background-color: rgba(215, 233, 250, 0.541);
+    margin-top: 10px;
+    border-radius: 0px 20px 20px 0px;
+    margin-right: 10px;
 }
 #postSide{
+     height: 98%;
+    width: calc(60% - 20px);
+    background-color: rgba(240, 240, 240, 0.616);
+    margin-top: 10px;
+}
+#postCountainer{
     height: 100%;
-    width: 65%;
-    display: flex;
-    justify-content: center;
-}
-.post{
-    width: 60%;
-    height: 60%;
-    margin-top: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.089);
-}
-.profileCountainer{
-    height: 60px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    /* margin-top: 10px; */
+}
+#navBar{
+    flex-shrink: 0;
+    height: 70px;
+    width: 50%;
+    background-color: rgba(215, 233, 250, 0.541);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0px 0px 20px 20px;
+    margin-bottom: 20px;
+
+}
+#navBar #add,#heart,#user,#save {
+    height: 40px;
+    width: 40px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 11px;
+    color: rgb(100, 100, 100);
 }
-.profileCountainer img{
-    height: 100%;
-}
-.imagePost{
-    height: 420px;
-    width: 100%;
-}
-.imagePost img{
-    height: 100%;
-    width: 100%;
-}
-.icons{
+#home{
+    background-color: rgb(0, 0, 172);
+     height: 40px;
+    width: 40px;
     display: flex;
-    padding: 0px 15px;
-    height: 60px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 11px;
+    color:rgba(215, 233, 250, 0.541);
+;
 }
-.likeComment{
+#post{
+    cursor: pointer;
+    height:45%;
+    width: 70%;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+#image{
     height: 100%;
-    width: 80%;
+    width: 50%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+#image img{
+    height: 90%;
+    width: 100%;
+    border-radius: 20px;
+
+}
+#postContent{
+    height: 80%;
+    width: 90%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#title{
+    height: 25%;
+    width: 90%;
+    /* background-color: green; */
+    display: flex;
+    gap: 10px;
+    
+}
+#date{
+    height: 100%;
+    width: 60px;
+    background-color: rgba(215, 233, 250, 0.541);
+    border-radius: 10px;
+    color: rgb(0, 0, 172) ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#date #day{
+    /* background-color: blueviolet; */
+    height: 50%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 800;
+}
+#date #month{
+    /* background-color: chartreuse; */
+    width: 70%;
+    font-size: 15px;
+    font-weight: 50;
+}
+
+#postTitleInfo #postTitle{
+    /* background-color: blue; */
+    height: 70%;
+    font-weight: 600;
+    font-size: 18px;
+}
+#postTitleInfo #info{
+    color: gray;
+    font-size: 13px;
+}
+#content{
+    /* background-color: chocolate; */
+    width: 90%;
+    margin-top: 20px;
+}
+#profile{
+    /* background-color: aqua; */
+    height:10%;
+    width: 90%;
+    margin-top: 20px;
+    display: flex;
+    /* align-items: center; */
+    gap: 10px;
+}
+#imageDiv{
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+#imageDiv img{
+    height: 100%;
+}
+#reactions{
+    /* background-color: blue; */
+    width: 90%;
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+
+}
+#like{
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 20px;
+}
+#comment{
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 20px;
+}
+/* width of scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* background of scrollbar */
+::-webkit-scrollbar-track {
+  background: rgba(215, 233, 250, 0.541)
+}
+
+/* the moving bar */
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 204);
+  border-radius: 10px;
+}
+
+/* when hover on it */
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+#filterSide #logSearch{
+    /* background-color: red; */
+    display: flex;
+    height: 10%;
+    align-items: center;
+    /* justify-content: center; */
+    gap:10px;
+    justify-content: center;
+}
+#logSearch img{
+    height: 60px;
+    width: 60px;
+    /* background-color: gray; */
+
+}
+#logSearch #search{
+    width: 50%;
+    height: 50%;
+    background-color: rgba(148, 161, 173, 0.541);
+    border: none;
+    border-radius: 10px;
+    padding: 0px 10px;
+}
+#filter{
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+}
+#filter #filterTitle {
+    /* background-color: gray; */
+    height: 60px;
+    padding: 0px 0px 0px 20px;
+}
+#likedByMe{
+    /* background-color: green; */
     display: flex;
     align-items: center;
     gap: 10px;
-}
-.likeComment i{
-    height: 100%;
-    width: 30px;
-    font-size: 30px;
     cursor: pointer;
-    margin-top: 20px;
-    color: rgba(0, 0, 0, 0.781);
+    height: 60px;
+        padding: 0px 0px 0px 40px;
 
 }
-.save{
-    height: 100%;
-    width: 20%;
+#SavedByMe{
+     /* background-color: green; */
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-.save i{
-    height: 30px;
-    width: 30px;
+    gap: 10px;
     cursor: pointer;
-    font-size: 30px;
-    color: rgba(0, 0, 0, 0.781);
+    height: 60px;
+    padding: 0px 0px 0px 40px;
+
 }
-.filterMessageSide{
+#messages{
+    /* background-color: red; */
+    width: 100%;
     height: 100%;
-    width: 30%;
 }
-.filterMessageCountainer{
+#messagesTitle{
+    height: 60px;
+    padding: 0px 0px 0px 20px;
+    margin-top: 15px;
+}
+#message{
+    /* background-color: green; */
+    display: flex;
+    height: 50px;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+#profileImage{
+    height: 50px;
+    width: 50px;
+    border-radius: 30px;
+    overflow: hidden;
+} 
+#online{
+    height: 12px;
+    width: 12px;
+    background-color: green;
+    position: absolute;
+    transform: translate(30px,20px);
+    border-radius: 20px;
+}
+#profileImage img{
     height: 100%;
     width: 100%;
-    box-shadow: 0px 7px 4px rgba(0, 0, 0, 0.3) ;
 }
+#timeAndNotf{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* background-color: aqua; */
+    width: 40%;
+}
+#timeAndNotf p{
+  flex-shrink: 0;
+}
+#notf{
+    background-color: rgb(0, 0, 204);
+    border-radius: 20px;
+    padding: 2px;
+    color: white;
+    font-weight: 500;
+    display: none;
+}
+.test #timeAndNotf #time  {
+    display: none;
+}
+.test #timeAndNotf #notf  {
+    display: flex;
+    height: 10px;
+    width: 10px;
+    border-radius: 20px;
+}
+
+/*creat Post*/
 #creatPostPage{
     height: 100%;
     width: 100%;
