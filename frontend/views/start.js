@@ -74,7 +74,7 @@ export function setLoginHtml() {
     requestAnimationFrame(() => {
         loginPageCountainer.style.opacity = '1'
     })
-    document.body.style.backgroundColor = 'white'
+    // document.body.style.backgroundColor = 'white'
 }
 export function setRegister() {
     const bodyChildren = document.body.children
