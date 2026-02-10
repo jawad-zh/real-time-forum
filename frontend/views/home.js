@@ -5,264 +5,24 @@ export function setHomePage() {
             bodyChildren[i].remove()
         }
     }
-    // document.body.style.background = 'white'
-//     document.body.innerHTML = `
-//    <div id="homePageCountainer">
-//     <div id="filterSide">
-//         <div id="logSearch">
-//             <img src="frontend/state/images/logo.png" alt="">
-//             <input type="text" name="" id="search" placeholder="search">
-//         </div>
-//         <div id="filter">
-//             <p id="filterTitle" >FILTER POSTS</p>
-//             <div id="likedByMe">
-//                 <i id="heart" class="fa-regular fa-heart"></i>
-//                 <p>liked by me</p>
-
-//             </div>
-//             <div id="SavedByMe">
-//                 <i id="save" class="fa-regular fa-bookmark"></i>
-//                 <p>saved by me</p>
-
-//             </div>
-//         </div>
-//         <div id="messages">
-//             <div id="messagesTitle" >
-//                 FRIENDS
-//             </div>
-//             <div id="message" >
-//                 <div id="online" ></div>
-//                 <div id="profileImage" >
-//                     <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                 </div>
-//                 <div id="name" >
-//                     jawad zahraoui
-//                 </div>
-//                 <div id="timeAndNotf" >
-//                     <p id="time" >11min</p>
-//                     <div id="notf" >
-//                     </div>
-//                 </div>
-//             </div>
-//              <div class="test" id="message" >
-//                 <div id="online" ></div>
-//                 <div id="profileImage" >
-//                     <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                 </div>
-//                 <div id="name" >
-//                     jawad zahraoui
-//                 </div>
-//                 <div id="timeAndNotf" >
-//                     <p id="time" >11min</p>
-//                     <div id="notf" >
-//                     </div>
-//                 </div>
-//             </div> <div id="message" >
-//                 <div id="online" ></div>
-//                 <div id="profileImage" >
-//                     <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                 </div>
-//                 <div id="name" >
-//                     jawad zahraoui
-//                 </div>
-//                 <div id="timeAndNotf" >
-//                     <p id="time" >11min</p>
-//                     <div id="notf" >
-//                     </div>
-//                 </div>
-//             </div> <div class="test" id="message" >
-//                 <div id="online" ></div>
-//                 <div id="profileImage" >
-//                     <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                 </div>
-//                 <div id="name" >
-//                     jawad zahraoui
-//                 </div>
-//                 <div id="timeAndNotf" >
-//                     <p id="time" >11min</p>
-//                     <div id="notf" >
-//                     </div>
-//                 </div>
-//             </div> <div class="test"id="message" >
-//                 <div id="online" ></div>
-//                 <div id="profileImage" >
-//                     <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                 </div>
-//                 <div id="name" >
-//                     jawad zahraoui
-//                 </div>
-//                 <div id="timeAndNotf" >
-//                     <p id="time" >11min</p>
-//                     <div id="notf" >
-//                     </div>
-//                 </div>
-//             </div> <div id="message" >
-//                 <div id="online" ></div>
-//                 <div id="profileImage" >
-//                     <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                 </div>
-//                 <div id="name" >
-//                     jawad zahraoui
-//                 </div>
-//                 <div id="timeAndNotf" >
-//                     <p id="time" >11min</p>
-//                     <div id="notf" >
-                      
-//                     </div>
-//                 </div>
-//             </div> <div class="test" id="message" >
-//                 <div id="online" ></div>
-//                 <div id="profileImage" >
-//                     <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                 </div>
-//                 <div id="name" >
-//                     jawad zahraoui
-//                 </div>
-//                 <div id="timeAndNotf" >
-//                     <p id="time" >11min</p>
-//                     <div id="notf" >
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     </div>
-//     <div id="postSide">
-//         <div id="postCountainer">
-//             <div id="navBar">
-//                 <i id="home" class="fa-regular fa-house"></i>
-//                 <i id="add" class="fa-regular fa-square-plus"></i>
-//                 <i id="user" class="fa-regular fa-user"></i>
-//                 <i id="heart" class="fa-regular fa-heart"></i>
-//                 <i id="save" class="fa-regular fa-bookmark"></i>
-//             </div>
-//             <div id="post">
-//                 <div id="image">
-//                     <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
-//                 </div>
-//                 <div id="postContent">
-//                     <div id="title">
-//                         <div id="date">
-//                             <p id="month">MAY</p>
-//                             <p id="day">08</p>
-//                         </div>
-//                         <div id="postTitleInfo">
-//                             <div id="postTitle">hello I'm gonna telling you about </div>
-//                             <div id="info">thu 10.00 * zoome metting</div>
-//                         </div>
-//                     </div>
-//                     <div id="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo iste fugiat magni
-//                         sint dicta eaque reprehenderit illum consequuntur distinctio. Modi.</div>
-//                     <div id="profile">
-//                         <div id="imageDiv">
-//                             <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                         </div>
-//                         <div id="ProfileName">jawad zahraoui</div>
-//                     </div>
-//                     <div id="reactions">
-//                         <div id="like">
-//                             <i id="reactionHeart" class="fa-regular fa-heart"></i>
-//                             <p id="likeNumbers">11</p>
-//                         </div>
-//                         <div id="comment">
-//                             <i class="fa-regular fa-comment"></i>
-//                             <p id="commentNumbers">11</p>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//             <div id="post">
-//                 <div id="image">
-//                     <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
-//                 </div>
-//                 <div id="postContent">
-//                     <div id="title">
-//                         <div id="date">
-//                             <p id="month">MAY</p>
-//                             <p id="day">08</p>
-//                         </div>
-//                         <div id="postTitleInfo">
-//                             <div id="postTitle">hello I'm gonna telling you about </div>
-//                             <div id="info">thu 10.00 * zoome metting</div>
-//                         </div>
-//                     </div>
-//                     <div id="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo iste fugiat magni
-//                         sint dicta eaque reprehenderit illum consequuntur distinctio. Modi.</div>
-//                     <div id="profile">
-//                         <div id="imageDiv">
-//                             <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                         </div>
-//                         <div id="ProfileName">jawad zahraoui</div>
-//                     </div>
-//                     <div id="reactions">
-//                         <div id="like">
-//                             <i id="reactionHeart" class="fa-regular fa-heart"></i>
-//                             <p id="likeNumbers">11</p>
-//                         </div>
-//                         <div id="comment">
-//                             <i class="fa-regular fa-comment"></i>
-//                             <p id="commentNumbers">11</p>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//             <div id="post">
-//                 <div id="image">
-//                     <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
-//                 </div>
-//                 <div id="postContent">
-//                     <div id="title">
-//                         <div id="date">
-//                             <p id="month">MAY</p>
-//                             <p id="day">08</p>
-//                         </div>
-//                         <div id="postTitleInfo">
-//                             <div id="postTitle">hello I'm gonna telling you about </div>
-//                             <div id="info">thu 10.00 * zoome metting</div>
-//                         </div>
-//                     </div>
-//                     <div id="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo iste fugiat magni
-//                         sint dicta eaque reprehenderit illum consequuntur distinctio. Modi.</div>
-//                     <div id="profile">
-//                         <div id="imageDiv">
-//                             <img src="frontend/state/images/icones/profile.jpeg" alt="">
-//                         </div>
-//                         <div id="ProfileName">jawad zahraoui</div>
-//                     </div>
-//                     <div id="reactions">
-//                         <div id="like">
-//                             <i id="reactionHeart" class="fa-regular fa-heart"></i>
-//                             <p id="likeNumbers">11</p>
-//                         </div>
-//                         <div id="comment">
-//                             <i class="fa-regular fa-comment"></i>
-//                             <p id="commentNumbers">11</p>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-
-//     </div>
-//     <div id="MessageSide"></div>
-// </div>
-//     `
     document.body.innerHTML = `
     <div id="appCountainer">
         <div id="navBar">
             <div id="logo">
-                <img src="/logo/1.png" alt="">
+                <img src="frontend/state/images/logo.png" alt="">
             </div>
             <div id="icones">
                 <i class="fa-solid fa-house"></i>
-                <i class="fa-regular fa-comment-dots"></i>
-                <i class="fa-regular fa-bell"></i>
+                <i  id="creatPostIcone" class="fa-regular fa-square-plus"></i>
+                <i class="fa-regular fa-bookmark"></i>
                 <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-sun"></i>
             </div>
             <div id="profile">
                 <div id="navBarImage">
-                    <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                    <img src="frontend/state/images/icones/profile.jpeg" alt="">
                 </div>
-                <p>jawad zahraoui</p>
+                 <i id="logoutIcone" class="fa-solid fa-right-from-bracket"></i>
             </div>
         </div>
         <div id="homePageCountainer">
@@ -271,7 +31,7 @@ export function setHomePage() {
             <div id="letSide">
                 <div id="leftProfile">
                     <div id="backgroundLeft" >
-                        <!-- <img src="/frontend/state/images/darckbackg.png" alt="jssssssp"> -->
+                        <!-- <img src="frontend/state/images/darckbackg.png" alt="jssssssp"> -->
                     </div>
                     <div id="profilneAndIformations" >
                         <div id="howMuchLike" ><p id="likes">likes</p>
@@ -279,7 +39,7 @@ export function setHomePage() {
                         </div>
                         <div id="informationImage" >
 
-                            <img  id="ProfilInforamtionImage" src="/frontend/state/images/icones/profile.jpeg" alt="">
+                            <img  id="ProfilInforamtionImage" src="frontend/state/images/icones/profile.jpeg" alt="">
                         </div>
                          <div id="howMuchSaves" ><p id="saves">saves</p>
                         <p id="savesNumber" >100</p>
@@ -315,7 +75,7 @@ export function setHomePage() {
                 <!-- <div id="creatPostCountainer">
                     <div id="inputSectionAndProfile">
                         <div id="creatPostProfile">
-                            <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
                         </div>
                         <div id="creatPostInput">
                             <input placeholder="entred title of your throught" id="creatPostTitle" type="text">
@@ -336,7 +96,7 @@ export function setHomePage() {
                 <div id="PostCountainer">
                     <div id="profilePost">
                         <div id="profileImage">
-                            <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
                         </div>
                         <div id="NameTitlePost">
                             <p id="name">jawad zahraoui</p>
@@ -352,7 +112,7 @@ export function setHomePage() {
                         suscipit animi blanditiis eaque?</div>
                         <div id="postImageCountainer" >
                             <div id="postImage">
-                        <img src="/frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
+                        <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
                     </div>
                         </div>
                     
@@ -372,7 +132,7 @@ export function setHomePage() {
                       <div id="PostCountainer">
                     <div id="profilePost">
                         <div id="profileImage">
-                            <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
                         </div>
                         <div id="NameTitlePost">
                             <p id="name">jawad zahraoui</p>
@@ -388,7 +148,7 @@ export function setHomePage() {
                         suscipit animi blanditiis eaque?</div>
                         <div id="postImageCountainer" >
                             <div id="postImage">
-                        <img src="/frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
+                        <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
                     </div>
                         </div>
                     
@@ -409,7 +169,7 @@ export function setHomePage() {
                 </div>   <div id="PostCountainer">
                     <div id="profilePost">
                         <div id="profileImage">
-                            <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
                         </div>
                         <div id="NameTitlePost">
                             <p id="name">jawad zahraoui</p>
@@ -425,7 +185,7 @@ export function setHomePage() {
                         suscipit animi blanditiis eaque?</div>
                         <div id="postImageCountainer" >
                             <div id="postImage">
-                        <img src="/frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
+                        <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
                     </div>
                         </div>
                     
@@ -448,7 +208,7 @@ export function setHomePage() {
                 <p id="messagesTitle" >Recent messages</p>
                 <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -462,7 +222,7 @@ export function setHomePage() {
                 <!-- ---------------------------------- -->
                         <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -474,7 +234,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -486,7 +246,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -498,7 +258,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -510,7 +270,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -522,7 +282,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -534,7 +294,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -546,7 +306,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -558,7 +318,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -570,7 +330,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -582,7 +342,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -594,7 +354,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -606,7 +366,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -618,7 +378,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -630,7 +390,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -642,7 +402,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -654,7 +414,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -666,7 +426,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -678,7 +438,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -690,7 +450,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -702,7 +462,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -714,7 +474,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -726,7 +486,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -738,7 +498,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -750,7 +510,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -762,7 +522,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -774,7 +534,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -786,7 +546,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -798,7 +558,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -810,7 +570,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -822,7 +582,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -834,7 +594,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -846,7 +606,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -858,7 +618,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -870,7 +630,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -882,7 +642,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -894,7 +654,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -906,7 +666,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -918,7 +678,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -930,7 +690,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -942,7 +702,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -954,7 +714,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -966,7 +726,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -978,7 +738,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -990,7 +750,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1002,7 +762,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1014,7 +774,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1026,7 +786,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1038,7 +798,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1050,7 +810,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1062,7 +822,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1074,7 +834,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1086,7 +846,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1098,7 +858,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui
@@ -1110,7 +870,7 @@ export function setHomePage() {
 
                 </div>       <div id="messageCountainer" >
                     <div id="messageProfile" >
-                        <img src="/frontend/state/images/icones/profile.jpeg" alt="">
+                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
                     </div>
                     <div id="messageName" >
                         jawad zahraoui

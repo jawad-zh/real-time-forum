@@ -24,6 +24,7 @@ func main() {
 	//
 	mux.HandleFunc("/", handlers.HomeHandler)
 	mux.HandleFunc("/login", handlers.LoginHandler)
+	mux.HandleFunc("/logout", handlers.LogoutHandler)
 	mux.HandleFunc("/register", handlers.RegisterHandler)
 	mux.HandleFunc("/creatPost", handlers.CreatPostHandler)
 	//

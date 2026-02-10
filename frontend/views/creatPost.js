@@ -1,30 +1,27 @@
 export function setCreatPost(){
     document.body.innerHTML = `
-    <div id="creatPostPage">
-        <div id="creatPostCountainer">
-            <p id="creatPostTitle">creat post</p>
-            <input class="creatPostIput" type="text" placeholder="title">
-            <input class="creatPostIput" type="text" placeholder="content">
-            <div class="uploadImage">
-                <i class="fa-solid fa-upload"></i> 
-                <input type="file" id="fileInput" accept="image/*" />
-                <span id="fileName">No file chosen</span>
+     <div id="creatPostCountainer">
+        <div id="creatPost">
+            <div id="inputs">
+                <input id="creatPostTitle" type="text">
+                <input id="creatPostContent" type="text">
             </div>
-            <div>
-                <input type="checkbox" name="CategorySelected" id="1" value="General" />
-                <label for="1" class="category">General</label>
-
-                </select>
+            <div id="creatPostIcones" > 
+                <i class="fa-regular fa-image"><p> IMAGES</p></i>
+                <i class="fa-solid fa-list"> <p>CATEGORIES</p> </i>
             </div>
-            <button id="creatPostButton" >creat Post</button>
+            <div id="categories" >
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+            </div>
+            <button id="creatPostButton" >creat your post</button>
         </div>
         <div id="cancelCreatPost">
-            <i class="fas fa-times"></i>
+            <i id="cancelPostIcone" class="fa-solid fa-xmark"></i>
         </div>
-
-
-
     </div>
-
-    </div>`
+    `
 }

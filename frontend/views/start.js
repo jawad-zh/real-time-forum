@@ -1,4 +1,12 @@
 export function started() {
+    var childrens = document.body.children
+    for (let i = childrens.length ; i >=0 ; i--){
+        if (childrens[i]){
+
+            childrens[i].remove()
+        }
+    }
+
     let startCounainer = document.createElement('div')
     startCounainer.setAttribute('id', 'startCountainer')
     let startImage = document.createElement('img')
