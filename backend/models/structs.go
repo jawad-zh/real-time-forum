@@ -61,3 +61,8 @@ type Login struct {
 	EmailOrNickname      string `json:"EmailOrNickname"`
 	Password             string `json:"Password"`
 }
+type PostInformation struct {
+	Title      string   `json:"Title"`
+	Content    string   `json:"Content"`
+	Categories []string `json:"Categories"`
+}

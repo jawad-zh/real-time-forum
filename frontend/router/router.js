@@ -4,6 +4,7 @@ import { loginCheck } from "/frontend/services/loginCheck.js"
 import { setHomePage } from "/frontend/views/home.js"
 import { setCreatPost } from "/frontend/views/creatPost.js"
 import { logout } from "/frontend/services/logout.js"
+import {creatPost} from "/frontend/services/creatPost.js"
 async function router() {    
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -46,7 +47,7 @@ async function router() {
                 started()
             }
         }else if (e.target.id === 'creatPostButton'){
-            
+            creatPost(e)
         }
 
 

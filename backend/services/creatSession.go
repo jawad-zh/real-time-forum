@@ -9,18 +9,18 @@ import (
 	"golang/backend/repos"
 )
 
-func CreatSession(user *models.Users) (error,string){
+func CreatSession(user *models.Users) (error, string) {
 	sessionID := GenereatSessionId()
 	session := models.Session{
-		UserID: user.UserID,
-		Token: sessionID,
-		ExpiresAt: time.Now().Add(24 *time.Hour),
+		UserID:    user.UserID,
+		Token:     sessionID,
+		ExpiresAt: time.Now().Add(24 * time.Hour),
 	}
-	err:=repos.SetSession(&session,user)
-	if err != nil{
-		return err , ""
+	err := repos.SetSession(&session, user)
+	if err != nil {
+		return err, ""
 	}
-	return nil ,session.Token
+	return nil, session.Token
 }
 
 func GenereatSessionId() string {
