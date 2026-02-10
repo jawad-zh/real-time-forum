@@ -13,5 +13,6 @@ func DeletSession(sessonID string)bool{
 		fmt.Println("DeletSessionError",err)
 		return false
 	}
+	
 	return true
 }

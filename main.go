@@ -27,6 +27,7 @@ func main() {
 	mux.HandleFunc("/logout", handlers.LogoutHandler)
 	mux.HandleFunc("/register", handlers.RegisterHandler)
 	mux.HandleFunc("/creatPost", handlers.CreatPostHandler)
+	mux.HandleFunc("/sessionCheck", handlers.SessionHandler)
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//

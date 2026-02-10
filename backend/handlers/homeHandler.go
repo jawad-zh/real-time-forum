@@ -7,6 +7,8 @@ import (
 	"text/template"
 )
 
+
+
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" && r.URL.Path != "/favicon.ico" {
 		fmt.Println("page not found")
