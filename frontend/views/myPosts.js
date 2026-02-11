@@ -1,5 +1,3 @@
-import { headerButtons } from "../core/Listeners.js";
-
 const myPostsPage = `
 <header>
 <h2>Forum</h2>
@@ -37,5 +35,4 @@ const myPostsPage = `
 
 export function myPosts() {
     document.body.innerHTML = myPostsPage
-    headerButtons()
 }

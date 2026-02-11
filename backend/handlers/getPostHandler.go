@@ -3,8 +3,6 @@ package handlers
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
-	"log"
 	"net/http"
 )
 
@@ -30,7 +28,6 @@ func GetPostsHandler(db *sql.DB) http.HandlerFunc {
 		`)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
-			log.Println("Error querying posts:", err)
 			return
 		}
 		defer rows.Close()
@@ -40,12 +37,10 @@ func GetPostsHandler(db *sql.DB) http.HandlerFunc {
 			var post Post
 			if err := rows.Scan(&post.Title, &post.Content, &post.Likes, &post.Dislikes, &post.Comments); err != nil {
 				w.WriteHeader(http.StatusInternalServerError)
-				log.Println("Error scanning post:", err)
 				return
 			}
 			posts = append(posts, post)
 		}
-		fmt.Println(posts)
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(posts)
 

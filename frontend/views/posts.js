@@ -1,6 +1,3 @@
-
-import { headerButtons } from "../core/Listeners.js"
-import { router } from "../core/Router.js"
 const createPostPage = `<header>
 <h2>Forum</h2>
 <div id = "header-buttons">
@@ -56,18 +53,8 @@ const createPostPage = `<header>
 </div>`
 export function createPost() {
   document.body.innerHTML = createPostPage
-  headerButtons()
-  handleCreatePost()
-  createPostCategoriesListener()
 }
-function createPostCategoriesListener() {
-  document.getElementById("CreatePostCategories").addEventListener("click", (e) => {
-    if (e.target.dataset.id) {
-      e.target.classList.toggle("active")
-    }
 
-  })
-}
 function handleCreatePost() {
   document.getElementById("submitpost").addEventListener("click", async () => {
     
@@ -98,15 +85,5 @@ function handleCreatePost() {
         },
         body: JSON.stringify(postData),
       })
-  console.log(response.statusText);
-
-      if (response.ok) {
-        
-        router("/")
-      } else {
-        const errorData = await response.json()
-        alert(`Error: ${errorData.message}`)
-      }
-    
   })
 }
