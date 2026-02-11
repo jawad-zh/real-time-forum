@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS Posts (
 
 CREATE TABLE IF NOT EXISTS PostCategories (
     PostID INTEGER NOT NULL,
-    Category VARCHAR(255) NOT NULL,
+    Category INTEGER NOT NULL,
     PRIMARY KEY (PostID, Category),
     FOREIGN KEY (PostID) REFERENCES Posts(PostID)
 );

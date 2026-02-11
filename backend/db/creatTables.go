@@ -2,11 +2,11 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 )
 
 func CreatTables(db *sql.DB) {
-	
 	_, err := db.Exec(
 		`CREATE TABLE IF NOT EXISTS Users (
     UserID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,7 +48,7 @@ func CreatTables(db *sql.DB) {
 	_, err = db.Exec(
 		`CREATE TABLE IF NOT EXISTS PostCategories (
     PostID INTEGER NOT NULL,
-    Category VARCHAR(255) NOT NULL,
+    Category INTEGER NOT NULL,
     PRIMARY KEY (PostID, Category),
     FOREIGN KEY (PostID) REFERENCES Posts(PostID)
 );`)
@@ -106,5 +106,28 @@ func CreatTables(db *sql.DB) {
 );`)
 	if err != nil {
 		log.Fatal("PrivateMessage table creation Error", err)
+	}
+	_, err = db.Exec(`
+CREATE TABLE IF NOT EXISTS Categories (
+    CategoryID INTEGER PRIMARY KEY AUTOINCREMENT,
+    CategoryName TEXT NOT NULL UNIQUE
+);
+`)
+	// PRIMARY KEY (PostID, Category),FOREIGN KEY (PostID) REFERENCES Posts(PostID)
+	if err != nil {
+		log.Fatal("PostCategoies table creation Error", err)
+	}
+
+	// set categories
+	categories := []string{"music", "footballe", "art", "sport", "technology", "recentyl", "test"}
+	for i := 0; i < len(categories); i++ {
+		_, err = db.Exec(`
+      INSERT INTO Categories (CategoryName)
+      VALUES (?)
+      `, categories[i])
+		if err != nil {
+			fmt.Println("InsertCategory Error:", err)
+			return
+		}
 	}
 }
