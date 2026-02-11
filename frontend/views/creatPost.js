@@ -16,29 +16,33 @@ export function setCreatPost(){
             <div id="creatPostCategories" >
                <label class="cat">
     <input type="checkbox" value="1">
-    <span>Technology</span>
+    <span>music</span>
   </label>
 
   <label class="cat">
     <input type="checkbox" value="2">
-    <span>Sports</span>
+    <span>footballe</span>
   </label>
 
   <label class="cat">
     <input type="checkbox" value="3">
-    <span>Movies</span>
+    <span>art</span>
   </label>
 
   <label class="cat">
     <input type="checkbox" value="4">
-    <span>Music</span>
+    <span>sport</span>
   </label>
   <label class="cat">
-    <input type="checkbox" value="4">
-    <span>Music</span>
+    <input type="checkbox" value="5">
+    <span>technology</span>
   </label><label class="cat">
-    <input type="checkbox" value="4">
-    <span>Music</span>
+    <input type="checkbox" value="6">
+    <span>recentyl</span>
+  </label>
+  </label><label class="cat">
+    <input type="checkbox" value="7">
+    <span>test</span>
   </label>
             </div>
             <button id="creatPostButton" >creat your post</button>

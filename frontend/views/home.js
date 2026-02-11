@@ -1,4 +1,6 @@
-export function setHomePage() {
+import {getPost} from "/frontend/services/getPost.js"
+
+export async function setHomePage() {
     let bodyChildren = document.body.children
     if (bodyChildren) {
         for (let i = 0; i < bodyChildren.length; i++) {
@@ -93,114 +95,7 @@ export function setHomePage() {
                     </div>
                 </div> -->
                 <!-- --------------- -->
-                <div id="PostCountainer">
-                    <div id="profilePost">
-                        <div id="profileImage">
-                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
-                        </div>
-                        <div id="NameTitlePost">
-                            <p id="name">jawad zahraoui</p>
-                            <div id="titleTime">
-                                <p id="PostTitle">title of my post</p>
-                                <p id="time">1h</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div id="contentPost">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati vitae est
-                        suscipit animi blanditiis eaque?</div>
-                        <div id="postImageCountainer" >
-                            <div id="postImage">
-                        <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
-                    </div>
-                        </div>
-                    
-                    <div id="iconesAndCategories">
-                        <div id="postIncones">
-                            <i class="fa-regular fa-heart"></i>
-                            <i class="fa-regular fa-comment-dots"></i>
-                        </div>
-                        <div id="Postcategories">
-                            <div class="Postcategorie">
-                                music
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ------------------------------------------ -->
-                      <div id="PostCountainer">
-                    <div id="profilePost">
-                        <div id="profileImage">
-                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
-                        </div>
-                        <div id="NameTitlePost">
-                            <p id="name">jawad zahraoui</p>
-                            <div id="titleTime">
-                                <p id="PostTitle">title of my post</p>
-                                <p id="time">1h</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div id="contentPost">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati vitae est
-                        suscipit animi blanditiis eaque?</div>
-                        <div id="postImageCountainer" >
-                            <div id="postImage">
-                        <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
-                    </div>
-                        </div>
-                    
-                    <div id="iconesAndCategories">
-                        <div id="postIncones">
-                            <i class="fa-regular fa-heart"></i>
-                            <i class="fa-regular fa-comment-dots"></i>
-                        </div>
-                        <div id="Postcategories">
-                            <div class="Postcategorie">
-                                music
-                            </div>
-                            <div class="Postcategorie">
-                                art
-                            </div>
-                        </div>
-                    </div>
-                </div>   <div id="PostCountainer">
-                    <div id="profilePost">
-                        <div id="profileImage">
-                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
-                        </div>
-                        <div id="NameTitlePost">
-                            <p id="name">jawad zahraoui</p>
-                            <div id="titleTime">
-                                <p id="PostTitle">title of my post</p>
-                                <p id="time">1h</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div id="contentPost">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati vitae est
-                        suscipit animi blanditiis eaque?</div>
-                        <div id="postImageCountainer" >
-                            <div id="postImage">
-                        <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
-                    </div>
-                        </div>
-                    
-                    <div id="iconesAndCategories">
-                        <div id="postIncones">
-                            <i class="fa-regular fa-heart"></i>
-                            <i class="fa-regular fa-comment-dots"></i>
-                        </div>
-                        <div id="Postcategories">
-                            <div class="Postcategorie">
-                                art
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
                 <!-- ------------------------------------------ -->
             </div>
              
@@ -882,8 +777,59 @@ export function setHomePage() {
 
                 </div>
             </div>
-        </div>
-    </div>
-    `
+            </div>
+            </div>
+            `
+            // get Posts 
+            var data = await getPost()            
+            var middle = document.getElementById('middle')
+    for (let i =0 ; i < data.length ; i++){        
+        var post = document.createElement('div')
+            post.setAttribute('id','PostCountainer')
+        post.innerHTML = `
+    <div id="profilePost">
+                        <div id="profileImage">
+                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
+                        </div>
+                        <div id="NameTitlePost">
+                            <p id="name">${data[i].Nickname}</p>
+                            <div id="titleTime">
+                                <p id="PostTitle">${data[i].Title}</p>
+                                <p id="time">1h</p>
+                            </div>
 
+                        </div>
+
+                    </div>
+                    <div id="contentPost">${data[i].Content}</div>
+                        <div id="postImageCountainer" >
+                            <div id="postImage">
+                        <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
+                    </div>
+                        </div>
+                    
+                    <div id="iconesAndCategories">
+                        <div id="postIncones">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-comment-dots"></i>
+                        </div>
+                        <div id="Postcategories">
+                        </div>
+                    </div>
+    `
+    middle.append(post)
+    // console.log('data[i]dd',data[i].Categories);
+    
+    for (let j =0 ; j < data[i].Categories.length; j++){
+        var PostCategorie = document.getElementById('Postcategories')
+        // console.log('haaaaa');
+        
+        // console.log('data[j].Categories[j]',data[i].Categories[j]);
+        
+        var category = document.createElement('div')
+        category.classList.add('Postcategorie')
+        category.innerHTML = `${data[i].Categories[j]}`
+        PostCategorie.append(category)
+    }
+    }        
 }

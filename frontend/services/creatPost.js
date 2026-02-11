@@ -1,3 +1,4 @@
+import {setHomePage} from "/frontend/views/home.js"
 
 export async function creatPost(e){
     e.preventDefault()
@@ -28,6 +29,6 @@ export async function creatPost(e){
     },
     body: JSON.stringify(postInformation)
    })
-   
+   setHomePage()
    
 }

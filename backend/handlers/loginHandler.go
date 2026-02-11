@@ -15,6 +15,9 @@ type loginResponseFormat struct {
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method==http.MethodGet{
+		http.ServeFile(w,r,"frontend/index.html")
+	}
 	var loginUser *models.Login
 	var loginResponse loginResponseFormat
 	json.NewDecoder(r.Body).Decode(&loginUser)

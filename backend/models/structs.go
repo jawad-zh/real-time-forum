@@ -14,47 +14,49 @@ type Users struct {
 	CreatedAt time.Time `json:"CreatedAt"`
 }
 type Session struct {
-	UserID    int
-	Token     string
-	ExpiresAt time.Time
+	UserID    int `json:"UserID"`
+	Token     string `json:"Token"`
+	ExpiresAt time.Time `json:"ExpiresAt"`
 }
 
 // need to add image
 type Posts struct {
-	PostID    int
-	UserID    int
-	Title     string
-	Content   string
-	CreatedAt string
+	PostID    int `json:"PostID"`
+	UserID    int `json:"UserID"`
+	Title     string `json:"Title"`
+	Content   string `json:"Content"`
+	CreatedAt string `json:"CreatedAt"`
+	Nickname string `json:"Nickname"`
+	Categories []string `json:"Categories"`
 }
 type PostCategoies struct {
-	PostID   int
-	Category int
+	PostID   int `json:"PostID"`
+	Category int `json:"Category"`
 }
 type PostInteractions struct {
-	UsersID     int
-	PostID      int
-	Interaction int
+	UsersID     int `json:"UserID"`
+	PostID      int `json:"PostID"`
+	Interaction int `json:"Interaction"`
 }
 type Comments struct {
-	CommentID int
-	PostID    int
-	UserID    int
-	Content   string
-	CreatedAt string
+	CommentID int `json:"CommentID"`
+	PostID    int `json:"PostID"`
+	UserID   int `json:"UserID"`
+	Content   string `json:"Content"`
+	CreatedAt string `json:"CreatedAt"`
 }
 type CommentInteractions struct {
-	UserId      int
-	CommentID   int
-	Interaction int
+	UserId     int `json:"UserId"`
+	CommentID   int `json:"CommentID"`
+	Interaction int `json:"Interaction"`
 }
 type PrivateMessage struct {
-	MessageID  int
-	SenderID   int
-	ReceiverID int
-	Content    string
-	CreatAt    string
-	IsREad     bool
+	MessageID  int `json:"MessageID"`
+	SenderID   int  `json:"SenderID"`
+	ReceiverID int `json:"ReceiverID"`
+	Content    string `json:"Content"`
+	CreatAt    string `json:"CreatAt"`
+	IsREad     bool `json:"IsREad"`
 }
 type Login struct {
 	NicknameOrEmailInput string `json:"NicknameOrEmailInput"`
