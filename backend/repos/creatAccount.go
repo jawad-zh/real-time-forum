@@ -21,7 +21,6 @@ func CreatAccount(user *models.Users) (bool, string) {
 	INSERT INTO Users (Nickname,Age,Gender,FirstName,LastName,Email,Password)
 	VALUES(?,?,?,?,?,?,?)
 	`, user.Nickname, user.Age, user.Gender, user.FirstName, user.LastName, user.Email, user.Password)
-	fmt.Println(err)
 	if err != nil {
 		if strings.Contains(err.Error(), "UNIQUE constraint failed: Users.Email") {
 			return false ,"email already used"

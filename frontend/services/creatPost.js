@@ -6,16 +6,9 @@ export async function creatPost(e){
     const content = document.getElementById('creatPostContent').value.trim()
     var categories = []
    var categoriesChecked =document.querySelectorAll("#creatPostCategories input:checked")
-   console.log('title',title);
-   console.log('content',content);
-   
    for (let i =0 ; i < categoriesChecked.length ; i++){
-    console.log(categoriesChecked[i].value);
-    
     categories.push(categoriesChecked[i].value)
    }
-   console.log('categoooooooooories',categories);
-   
    var postInformation = {
     'Title':title,
     'Content':content,

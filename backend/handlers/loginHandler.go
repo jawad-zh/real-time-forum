@@ -25,7 +25,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if ok {
 		err,sessionID := services.CreatSession(data)
 		if err != nil {
-			fmt.Println("hh")
+			fmt.Println("Error",err)
+			return
 		}
 		http.SetCookie(w, &http.Cookie{
 			Name:     "session_id",

@@ -781,7 +781,9 @@ export async function setHomePage() {
             </div>
             `
             // get Posts 
-            var data = await getPost()            
+            var data = await getPost() 
+            console.log("from home:",data);
+                       
             var middle = document.getElementById('middle')
     for (let i =0 ; i < data.length ; i++){        
         var post = document.createElement('div')

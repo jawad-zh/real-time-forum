@@ -25,7 +25,7 @@ func GetPosts() (*[]models.Posts, error) {
    	 ON Posts.PostID = PostCategories.PostID
 	INNER JOIN Categories
     	ON PostCategories.Category = Categories.CategoryID
-	ORDER BY Posts.CreatedAt DESC
+	ORDER BY Posts.PostID 
 	LIMIT 10;
 
 		`)
@@ -34,6 +34,7 @@ func GetPosts() (*[]models.Posts, error) {
 		return nil, nil
 	}
 	postsMap := make(map[int]*models.Posts)
+	var order []int
 
 	for rows.Next() {
 		var postID int
@@ -53,13 +54,16 @@ func GetPosts() (*[]models.Posts, error) {
 				Nickname:   nickname,
 				Categories: []string{},
 			}
+			order = append(order, postID)
 		}
+
 		postsMap[postID].Categories = append(postsMap[postID].Categories, category)
 	}
+
 	var posts []models.Posts
-	for _, post := range postsMap {
-		posts = append(posts, *post)
+	for _, id := range order {
+		posts = append(posts, *postsMap[id])
 	}
-	fmt.Println(posts)
+
 	return &posts, nil
 }
