@@ -4,8 +4,8 @@ import { loginCheck } from "/frontend/services/loginCheck.js"
 import { setHomePage } from "/frontend/views/home.js"
 import { setCreatPost } from "/frontend/views/creatPost.js"
 import { logout } from "/frontend/services/logout.js"
-import {creatPost} from "/frontend/services/creatPost.js"
-async function router() {    
+import { creatPost } from "/frontend/services/creatPost.js"
+async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
         headers: {
@@ -14,7 +14,7 @@ async function router() {
     })
     var data = await res.json()
     if (data.status === 'success') {
-        setHomePage()
+        setHomePage('all')
     } else {
         started()
     }
@@ -34,20 +34,36 @@ async function router() {
             let data = await loginCheck(e)
             if (data.status === 'success') {
                 setTimeout(() => {
-                    setHomePage()
+                    setHomePage('all')
                 }, 1500)
             }
         } else if (e.target.id === 'creatPostIcone') {
             setCreatPost()
         } else if (e.target.id === 'cancelCreatPost') {
-            setHomePage()
+            setHomePage('all')
         } else if (e.target.id === 'logoutIcone') {
             var ok = logout()
             if (ok) {
                 started()
             }
-        }else if (e.target.id === 'creatPostButton'){
+        } else if (e.target.id === 'creatPostButton') {
             creatPost(e)
+        } else if (e.target.id === 'homePageIcone') {
+            setHomePage('all')
+        } else if (e.target.id === 'musicCategory') {
+            setHomePage('music')
+        } else if (e.target.id === 'footballeCategory') {
+            setHomePage('footballe')
+        } else if (e.target.id === 'artCategory') {
+            setHomePage('art')
+        } else if (e.target.id === 'sportCategory') {
+            setHomePage('sport')
+        } else if (e.target.id === 'technologyCategory') {
+            setHomePage('technology')
+        } else if (e.target.id === 'recentCategory') {
+            setHomePage('recentyl')
+        } else if (e.target.id === 'testCategory') {
+            setHomePage('test')
         }
 
 

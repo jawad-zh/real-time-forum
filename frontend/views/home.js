@@ -1,6 +1,6 @@
 import {getPost} from "/frontend/services/getPost.js"
 
-export async function setHomePage() {
+export async function setHomePage(Category) {
     let bodyChildren = document.body.children
     if (bodyChildren) {
         for (let i = 0; i < bodyChildren.length; i++) {
@@ -14,7 +14,7 @@ export async function setHomePage() {
                 <img src="frontend/state/images/logo.png" alt="">
             </div>
             <div id="icones">
-                <i class="fa-solid fa-house"></i>
+                <i id="homePageIcone"  class="fa-solid fa-house"></i>
                 <i  id="creatPostIcone" class="fa-regular fa-square-plus"></i>
                 <i class="fa-regular fa-bookmark"></i>
                 <i class="fa-regular fa-heart"></i>
@@ -58,17 +58,17 @@ export async function setHomePage() {
                     </div>
                       <div id="categorieCountainer" >
                            <div id="first" >
-                             <p>music</p>
-                            <p>footballe</p>
-                            <p>art</p>
+                             <p id="musicCategory" >music</p>
+                            <p id="footballeCategory" >footballe</p>
+                            <p id="artCategory" >art</p>
                            </div>
                             <div id="second" >
-                                <p>sport</p>
-                                <p>technology</p>
-                                <p>recent</p>
+                                <p id="sportCategory" >sport</p>
+                                <p id="technologyCategory" >technology</p>
+                                <p id="recentCategory" >recent</p>
                             </div>
                             <div id="third">
-                                <p>test</p>
+                                <p id="testCategory" >test</p>
                             </div>
                         </div>
                         </div>
@@ -781,7 +781,7 @@ export async function setHomePage() {
             </div>
             `
             // get Posts 
-            var data = await getPost() 
+            var data = await getPost(Category) 
             console.log("from home:",data);
                        
             var middle = document.getElementById('middle')

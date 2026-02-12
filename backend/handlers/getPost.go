@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"golang/backend/repos"
@@ -12,7 +13,9 @@ func GetPostsHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
 	}
-	posts, err := repos.GetPosts()
+	category := r.URL.Query().Get("category")
+	fmt.Println(category)
+	posts, err := repos.GetPosts(category)
 	// fmt.Println("posts from posthandler",posts)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

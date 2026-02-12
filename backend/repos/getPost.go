@@ -1,6 +1,7 @@
 package repos
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 
@@ -8,9 +9,11 @@ import (
 	"golang/backend/models"
 )
 
-func GetPosts() (*[]models.Posts, error) {
+func GetPosts(category string) (*[]models.Posts, error) {
 	// var err error
-	rows, err := db.DataBase.Query(`
+	var rows *sql.Rows
+	if category == "all" {
+		Rows, err := db.DataBase.Query(`
 		SELECT
     Posts.PostID,
     Posts.Title,
@@ -25,14 +28,41 @@ func GetPosts() (*[]models.Posts, error) {
    	 ON Posts.PostID = PostCategories.PostID
 	INNER JOIN Categories
     	ON PostCategories.Category = Categories.CategoryID
-	ORDER BY Posts.PostID 
+	ORDER BY Posts.PostID DESC
 	;
 
 		`)
-	if err != nil {
-		fmt.Println("select Error:", err)
-		return nil, nil
+		if err != nil {
+			fmt.Println("select Error:", err)
+			return nil, nil
+		}
+		rows = Rows
+	} else {
+		Rows, err := db.DataBase.Query(`
+		SELECT
+    Posts.PostID,
+    Posts.Title,
+    Posts.Content,
+    Posts.CreatedAt,
+    Users.Nickname,
+    Categories.CategoryName AS CategoryName
+FROM Posts
+INNER JOIN Users
+    ON Posts.UserID = Users.UserID
+INNER JOIN PostCategories
+    ON Posts.PostID = PostCategories.PostID
+INNER JOIN Categories
+    ON PostCategories.Category = Categories.CategoryID
+WHERE Categories.CategoryName = ?
+ORDER BY Posts.PostID DESC;
+`, category)
+		if err != nil {
+			fmt.Println("select Error:", err)
+			return nil, nil
+		}
+		rows = Rows
 	}
+
 	postsMap := make(map[int]*models.Posts)
 	var order []int
 

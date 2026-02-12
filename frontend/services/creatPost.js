@@ -22,6 +22,6 @@ export async function creatPost(e){
     },
     body: JSON.stringify(postInformation)
    })
-   setHomePage()
+   setHomePage('all')
    
 }

@@ -1,16 +1,11 @@
-export async function getPost(){
-    var res = await fetch("http://localhost:8080/getPosts",{
+export async function getPost(Category){
+    var res = await fetch(`http://localhost:8080/getPosts?category=${Category}`,{
         method : "GET",
         headers:{
             "Content-Type" : "application/json"
-        }
+        },
     })
-    var data = await res.json()    
-    console.log('from getPosts',data);
-    
-    if (data){
-        return data.reverse()
-    }
+    var data = await res.json()     
     return data
     
 }
