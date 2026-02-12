@@ -4,12 +4,13 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"net/http"
 
 	"golang/backend/db"
 	"golang/backend/models"
 )
 
-func GetPosts(category string) (*[]models.Posts, error) {
+func GetPosts(category string,r *http.Request) (*[]models.Posts, error) {
 	// var err error
 	var rows *sql.Rows
 	if category == "all" {
@@ -37,6 +38,24 @@ func GetPosts(category string) (*[]models.Posts, error) {
 			return nil, nil
 		}
 		rows = Rows
+	}else if (category == "like" || category == "save"){
+		_,session:= CheckSession(r)
+		var postsId []int
+		var postId int
+		if category == "like"{
+			Rows,err:= db.DataBase.Query(`
+			SELECT PostID FROM PostLike WHERE UserID = ?
+			`,session.UserID)
+			if err != nil {
+				fmt.Println("Select liked post error",err)
+				return nil,err
+			}
+			for Rows.Next(){
+				Rows.Scan(&postId)
+				postsId = append(postsId, postId)
+			}
+			fmt.Println(postsId)
+		}
 	} else {
 		Rows, err := db.DataBase.Query(`
 		SELECT

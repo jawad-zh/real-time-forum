@@ -1,4 +1,4 @@
-import {getPost} from "/frontend/services/getPost.js"
+import { getPost } from "/frontend/services/getPost.js"
 
 export async function setHomePage(Category) {
     let bodyChildren = document.body.children
@@ -16,8 +16,8 @@ export async function setHomePage(Category) {
             <div id="icones">
                 <i id="homePageIcone"  class="fa-solid fa-house"></i>
                 <i  id="creatPostIcone" class="fa-regular fa-square-plus"></i>
-                <i class="fa-regular fa-bookmark"></i>
-                <i class="fa-regular fa-heart"></i>
+                <i  id="saveIconeFilter" class="fa-regular fa-bookmark"></i>
+                <i  id="likeIconeFilter" class="fa-regular fa-heart"></i>
                 <i class="fa-regular fa-sun"></i>
             </div>
             <div id="profile">
@@ -778,16 +778,18 @@ export async function setHomePage(Category) {
                 </div>
             </div>
             </div>
-            </div>
+
             `
-            // get Posts 
-            var data = await getPost(Category) 
-            console.log("from home:",data);
-                       
-            var middle = document.getElementById('middle')
-    for (let i =0 ; i < data.length ; i++){        
+    // get Posts 
+    var data = await getPost(Category)
+    console.log("data.postID", data[0].PostID);
+    console.log("data", data);
+
+    var middle = document.getElementById('middle')
+    for (let i = 0; i < data.length; i++) {
         var post = document.createElement('div')
-            post.setAttribute('id','PostCountainer')
+        post.classList.add('PostsCountainer')
+        post.dataset.PostID = data[i].PostID
         post.innerHTML = `
     <div id="profilePost">
                         <div id="profileImage">
@@ -812,24 +814,25 @@ export async function setHomePage(Category) {
                     
                     <div id="iconesAndCategories">
                         <div id="postIncones">
-                            <i class="fa-regular fa-heart"></i>
-                            <i class="fa-regular fa-comment-dots"></i>
+                            <i id="likeIcone" class="fa-regular fa-heart"></i>
+                            <i  id="commentIcone" class="fa-regular fa-comment-dots"></i>
+                            <i  id= "saveIcone" class="fa-regular fa-bookmark"></i>
                         </div>
                         <div class="Postcategories">
                         </div>
                     </div>
     `
-    middle.append(post)
-    // console.log('data[i]dd',data[i].Categories);
- for (let j = 0; j < data[i].Categories.length; j++) {
-    var PostCategorie = post.querySelector('.Postcategories')
+        middle.append(post)
+        // console.log('data[i]dd',data[i].Categories);
+        for (let j = 0; j < data[i].Categories.length; j++) {
+            var PostCategorie = post.querySelector('.Postcategories')
 
-    var category = document.createElement('div')
-    category.classList.add('Postcategorie')
-    category.innerHTML = data[i].Categories[j]
+            var category = document.createElement('div')
+            category.classList.add('Postcategorie')
+            category.innerHTML = data[i].Categories[j]
 
-    PostCategorie.append(category)
-}
+            PostCategorie.append(category)
+        }
 
-    }        
+    }
 }

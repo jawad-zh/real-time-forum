@@ -212,10 +212,14 @@ body {
     pointer-events: auto;
 }
  #appCountainer{
+    position: absolute;
+    z-index: 1000;
     height: 90%;
     width: 90%;
     background-color:#141517 ;
+    display: none;
 }
+
 #navBar{
     height: 100px;
     width: 97%;
@@ -356,7 +360,24 @@ body {
     display: flex;
     /* align-items: center; */
     justify-content: center;
+     position: fixed;   /* or absolute */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0,0,0,0.6);
+    z-index: -1;       /* hidden behind */
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
 }
+#creatPostCountainer.active{
+    z-index: 9999;     /* on top of everything */
+    opacity: 1;
+    pointer-events: auto;
+}
+
 #inputSectionAndProfile{
     height: 100%;
     width: 70%;
@@ -424,7 +445,7 @@ body {
 #categorieIcone{
     color: orange;
 }
-#PostCountainer{
+.PostsCountainer{
     width: 75%;
     background-color: #222428;
     margin-top:5px ;

@@ -12,6 +12,7 @@ import (
 type CreatPostResponseFormat struct{
 	Message string `json:"message"`
 	Status string `json:"status"`
+	PostID int64 `json:"PostID"`
 }
 
 func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
@@ -26,5 +27,11 @@ func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(&post)
 		return
 	}
-	repos.CreatPost(&post,session)
+	postId:=repos.CreatPost(&post,session)
+	if postId != 0 {
+		CreatPostResponse.Message = ""
+		CreatPostResponse.Status = "success"
+		CreatPostResponse.PostID = postId
+		json.NewEncoder(w).Encode(&CreatPostResponse)
+	}
 }

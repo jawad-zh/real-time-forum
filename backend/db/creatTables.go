@@ -113,6 +113,18 @@ CREATE TABLE IF NOT EXISTS Categories (
     CategoryName TEXT NOT NULL UNIQUE
 );
 `)
+	_, err = db.Exec(`
+CREATE TABLE IF NOT EXISTS PostLike (
+    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+    PostID TEXT NOT NULL UNIQUE
+);
+`)
+	_, err = db.Exec(`
+CREATE TABLE IF NOT EXISTS PostSave (
+    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+    PostID TEXT NOT NULL UNIQUE
+);
+`)
 	// PRIMARY KEY (PostID, Category),FOREIGN KEY (PostID) REFERENCES Posts(PostID)
 	if err != nil {
 		log.Fatal("PostCategoies table creation Error", err)
