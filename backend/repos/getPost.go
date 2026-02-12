@@ -26,7 +26,7 @@ func GetPosts() (*[]models.Posts, error) {
 	INNER JOIN Categories
     	ON PostCategories.Category = Categories.CategoryID
 	ORDER BY Posts.PostID 
-	LIMIT 10;
+	;
 
 		`)
 	if err != nil {
@@ -64,6 +64,6 @@ func GetPosts() (*[]models.Posts, error) {
 	for _, id := range order {
 		posts = append(posts, *postsMap[id])
 	}
-
+	// fmt.Println("postsfrom get Posts",posts)
 	return &posts, nil
 }

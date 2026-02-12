@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"golang/backend/repos"
@@ -14,7 +13,7 @@ func GetPostsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	posts, err := repos.GetPosts()
-	fmt.Println("posts from posthandler",posts)
+	// fmt.Println("posts from posthandler",posts)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

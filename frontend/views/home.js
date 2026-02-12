@@ -815,23 +815,21 @@ export async function setHomePage() {
                             <i class="fa-regular fa-heart"></i>
                             <i class="fa-regular fa-comment-dots"></i>
                         </div>
-                        <div id="Postcategories">
+                        <div class="Postcategories">
                         </div>
                     </div>
     `
     middle.append(post)
     // console.log('data[i]dd',data[i].Categories);
-    
-    for (let j =0 ; j < data[i].Categories.length; j++){
-        var PostCategorie = document.getElementById('Postcategories')
-        // console.log('haaaaa');
-        
-        // console.log('data[j].Categories[j]',data[i].Categories[j]);
-        
-        var category = document.createElement('div')
-        category.classList.add('Postcategorie')
-        category.innerHTML = `${data[i].Categories[j]}`
-        PostCategorie.append(category)
-    }
+ for (let j = 0; j < data[i].Categories.length; j++) {
+    var PostCategorie = post.querySelector('.Postcategories')
+
+    var category = document.createElement('div')
+    category.classList.add('Postcategorie')
+    category.innerHTML = data[i].Categories[j]
+
+    PostCategorie.append(category)
+}
+
     }        
 }

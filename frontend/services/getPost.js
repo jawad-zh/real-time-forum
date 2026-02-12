@@ -6,6 +6,11 @@ export async function getPost(){
         }
     })
     var data = await res.json()    
-    return data.reverse()
+    console.log('from getPosts',data);
+    
+    if (data){
+        return data.reverse()
+    }
+    return data
     
 }
