@@ -7,6 +7,8 @@ import { logout } from "/frontend/services/logout.js"
 import { creatPost } from "/frontend/services/creatPost.js"
 import {LikeFrontend}from "/frontend/views/like.js"
 import{LikeBackend} from "/frontend/services/likePost.js"
+import { savePostsBackend } from "../services/savePostBackend.js";
+import { savePostFront } from "../views/save.js";
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -79,6 +81,13 @@ async function router() {
            if (data.statue === 'success'){
             LikeFrontend(data,icone)
            }
+        }else if (e.target.id === 'saveIcone'){
+            var post = await e.target.closest(".PostsCountainer")  
+            var icone = e.target
+            var data = await savePostsBackend(post.dataset.PostID)
+            if (data.statue === 'success'){
+                savePostFront(data,icone)
+            }
         }
 
     })

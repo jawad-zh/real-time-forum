@@ -786,9 +786,15 @@ export async function setHomePage(Category) {
     var middle = document.getElementById('middle')
     for (let i = 0; i < data.length; i++) {
         var liked = ''
-         if ( data[i].Isliked ===1 ){
-        liked = 'liked'
-    }
+        var saved = ''
+        if (data[i].Isliked === 1) {
+            liked = 'liked'
+        }
+
+        if (data[i].IsSaved === 1) {
+            saved = 'saved'
+        }
+
         var post = document.createElement('div')
         post.classList.add('PostsCountainer')
         post.dataset.PostID = data[i].PostID
@@ -817,15 +823,15 @@ export async function setHomePage(Category) {
                     <div id="iconesAndCategories">
                         <div id="postIncones">
                             <i id="likeIcone" class="fa-regular fa-heart ${liked}" data-postid=${data[i].PostID} ></i>
-                            <i  id="commentIcone" class="fa-regular fa-comment-dots"></i>
-                            <i  id= "saveIcone" class="fa-regular fa-bookmark"></i>
+                            <i  id="commentIcone" class="fa-regular fa-comment-dots " ></i>
+                            <i  id= "saveIcone" class="fa-regular fa-bookmark ${saved} " data-postid=${data[i].PostID}></i>
                         </div>
                         <div class="Postcategories">
                         </div>
                     </div>
     `
-   
-    
+
+
         middle.append(post)
         // console.log('data[i]dd',data[i].Categories);
         for (let j = 0; j < data[i].Categories.length; j++) {

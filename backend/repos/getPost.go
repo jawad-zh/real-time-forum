@@ -23,24 +23,40 @@ func GetPosts(category string,r *http.Request) (*[]models.Posts, error) {
     Posts.CreatedAt,
     Users.Nickname,
     Categories.CategoryName AS CategoryName,
+
     CASE 
         WHEN PostLike.UserID IS NOT NULL THEN 1
         ELSE 0
-    END AS IsLiked
+    END AS IsLiked,
+
+    CASE 
+        WHEN PostSave.UserID IS NOT NULL THEN 1
+        ELSE 0
+    END AS IsSaved
+
 FROM Posts
+
 INNER JOIN Users
     ON Posts.UserID = Users.UserID
+
 INNER JOIN PostCategories
     ON Posts.PostID = PostCategories.PostID
+
 INNER JOIN Categories
     ON PostCategories.Category = Categories.CategoryID
+
 LEFT JOIN PostLike
     ON PostLike.PostID = Posts.PostID
-    AND PostLike.UserID = ?   
+    AND PostLike.UserID = ?
+
+LEFT JOIN PostSave
+    ON PostSave.PostID = Posts.PostID
+    AND PostSave.UserID = ?
+
 ORDER BY Posts.PostID DESC;
-`,session.UserID)
+`,session.UserID,session.UserID)
 		if err != nil {
-			fmt.Println("select Error:", err)
+			fmt.Println("select all post Error:", err)
 			return nil, nil
 		}
 		rows = Rows
@@ -69,25 +85,52 @@ ORDER BY Posts.PostID DESC;
     Posts.Content,
     Posts.CreatedAt,
     Users.Nickname,
-    Categories.CategoryName AS CategoryName,
+
+    GROUP_CONCAT(DISTINCT Categories.CategoryName) AS Categories,
+
     CASE 
         WHEN PostLike.UserID IS NOT NULL THEN 1
         ELSE 0
-    END AS IsLiked
+    END AS IsLiked,
+
+    CASE 
+        WHEN PostSave.UserID IS NOT NULL THEN 1
+        ELSE 0
+    END AS IsSaved
+
 FROM Posts
+
 INNER JOIN Users
     ON Posts.UserID = Users.UserID
+
 INNER JOIN PostCategories
     ON Posts.PostID = PostCategories.PostID
+
 INNER JOIN Categories
     ON PostCategories.Category = Categories.CategoryID
+
 LEFT JOIN PostLike
     ON PostLike.PostID = Posts.PostID
     AND PostLike.UserID = ?
-WHERE Categories.CategoryName = ?
-ORDER BY Posts.PostID DESC
 
-`, session.UserID,category)
+LEFT JOIN PostSave
+    ON PostSave.PostID = Posts.PostID
+    AND PostSave.UserID = ?
+
+WHERE Posts.PostID IN (
+    SELECT PC.PostID
+    FROM PostCategories PC
+    INNER JOIN Categories C
+        ON PC.Category = C.CategoryID
+    WHERE C.CategoryName = ?
+)
+
+GROUP BY Posts.PostID
+
+ORDER BY Posts.PostID DESC;
+
+
+`, session.UserID,session.UserID,category)
 		if err != nil {
 			fmt.Println("select Error:", err)
 			return nil, nil
@@ -99,10 +142,10 @@ ORDER BY Posts.PostID DESC
 	var order []int
 
 	for rows.Next() {
-		var postID ,Isliked int
+		var postID ,Isliked , IsSaved int
 		var title, content, createdAt, nickname, category string
 
-		err := rows.Scan(&postID, &title, &content, &createdAt, &nickname, &category,&Isliked)
+		err := rows.Scan(&postID, &title, &content, &createdAt, &nickname, &category,&Isliked,&IsSaved)
 		if err != nil {
 			log.Println(err)
 			continue
@@ -116,6 +159,7 @@ ORDER BY Posts.PostID DESC
 				Nickname:   nickname,
 				Categories: []string{},
 				Isliked: Isliked,
+				IsSaved: IsSaved,
 			}
 			order = append(order, postID)
 		}
@@ -127,6 +171,6 @@ ORDER BY Posts.PostID DESC
 	for _, id := range order {
 		posts = append(posts, *postsMap[id])
 	}
-	fmt.Println("postsfrom get Posts",posts)
+	// fmt.Println("postsfrom get Posts",posts)
 	return &posts, nil
 }

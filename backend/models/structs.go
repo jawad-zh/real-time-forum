@@ -29,6 +29,7 @@ type Posts struct {
 	Nickname string `json:"Nickname"`
 	Categories []string `json:"Categories"`
 	Isliked int `json:"Isliked"`
+	IsSaved int `json:"IsSaved"`
 }
 type PostCategoies struct {
 	PostID   int `json:"PostID"`

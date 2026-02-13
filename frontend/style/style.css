@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -851,4 +852,7 @@ body {
    color: red;
    font-weight: 600;
     
+}
+#saveIcone.saved{
+   font-weight: 600;
 }

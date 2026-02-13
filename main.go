@@ -30,6 +30,7 @@ func main() {
 	mux.HandleFunc("/sessionCheck", handlers.SessionHandler)
 	mux.HandleFunc("/getPosts", handlers.GetPostsHandler)
 	mux.HandleFunc("/like", handlers.LikeHandler)
+	mux.HandleFunc("/save",handlers.SavePostHandler)
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//
