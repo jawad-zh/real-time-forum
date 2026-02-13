@@ -845,4 +845,22 @@ export async function setHomePage(Category) {
         }
 
     }
+    console.log('siiiiiiiiiiiiiiiiiiiiiii');
+    console.log('category',category);
+    
+    if (Category == 'like'){
+        var hearts = document.querySelectorAll('.fa-heart')
+         for (let heart of hearts){
+            heart.classList.add('liked')
+        }
+    }else if (Category == 'save'){
+        console.log('siiiiiiiiiiii');
+        
+        var saves = document.querySelectorAll('.fa-bookmark')
+        console.log(saves);
+        
+        for (let save of saves){
+            save.classList.add('saved')
+        }
+    }
 }
