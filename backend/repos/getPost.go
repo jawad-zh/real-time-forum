@@ -63,13 +63,17 @@ ORDER BY Posts.PostID DESC;
 		}
 	} else {
 		Rows, err := db.DataBase.Query(`
-		SELECT
+	SELECT
     Posts.PostID,
     Posts.Title,
     Posts.Content,
     Posts.CreatedAt,
     Users.Nickname,
-    Categories.CategoryName AS CategoryName
+    Categories.CategoryName AS CategoryName,
+    CASE 
+        WHEN PostLike.UserID IS NOT NULL THEN 1
+        ELSE 0
+    END AS IsLiked
 FROM Posts
 INNER JOIN Users
     ON Posts.UserID = Users.UserID
@@ -77,9 +81,13 @@ INNER JOIN PostCategories
     ON Posts.PostID = PostCategories.PostID
 INNER JOIN Categories
     ON PostCategories.Category = Categories.CategoryID
+LEFT JOIN PostLike
+    ON PostLike.PostID = Posts.PostID
+    AND PostLike.UserID = ?
 WHERE Categories.CategoryName = ?
-ORDER BY Posts.PostID DESC;
-`, category)
+ORDER BY Posts.PostID DESC
+
+`, session.UserID,category)
 		if err != nil {
 			fmt.Println("select Error:", err)
 			return nil, nil
