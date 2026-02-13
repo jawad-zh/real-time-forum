@@ -9,6 +9,7 @@ import (
 )
 
 func GetPostsHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("kaaaaaaaaaaaaynaaaaaaaaa")
 	if r.Method != http.MethodGet {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return

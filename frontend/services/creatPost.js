@@ -66,8 +66,5 @@ export async function creatPost(e){
         document.getElementById("creatPostCountainer").classList.remove("active")
         
    }
-//    console.log("data.PostID",data.PostID);
-   
-//    setHomePage('all',data.PostID)
    
 }

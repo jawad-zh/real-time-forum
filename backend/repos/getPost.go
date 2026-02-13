@@ -13,33 +13,38 @@ import (
 func GetPosts(category string,r *http.Request) (*[]models.Posts, error) {
 	// var err error
 	var rows *sql.Rows
+	_,session:= CheckSession(r)
 	if category == "all" {
 		Rows, err := db.DataBase.Query(`
-		SELECT
+	SELECT
     Posts.PostID,
     Posts.Title,
     Posts.Content,
     Posts.CreatedAt,
     Users.Nickname,
-    Categories.CategoryName AS CategoryName
-		FROM Posts
-		INNER JOIN Users
-    	ON Posts.UserID = Users.UserID
-	INNER JOIN PostCategories
-   	 ON Posts.PostID = PostCategories.PostID
-	INNER JOIN Categories
-    	ON PostCategories.Category = Categories.CategoryID
-	ORDER BY Posts.PostID DESC
-	;
-
-		`)
+    Categories.CategoryName AS CategoryName,
+    CASE 
+        WHEN PostLike.UserID IS NOT NULL THEN 1
+        ELSE 0
+    END AS IsLiked
+FROM Posts
+INNER JOIN Users
+    ON Posts.UserID = Users.UserID
+INNER JOIN PostCategories
+    ON Posts.PostID = PostCategories.PostID
+INNER JOIN Categories
+    ON PostCategories.Category = Categories.CategoryID
+LEFT JOIN PostLike
+    ON PostLike.PostID = Posts.PostID
+    AND PostLike.UserID = ?   
+ORDER BY Posts.PostID DESC;
+`,session.UserID)
 		if err != nil {
 			fmt.Println("select Error:", err)
 			return nil, nil
 		}
 		rows = Rows
-	}else if (category == "like" || category == "save"){
-		_,session:= CheckSession(r)
+		}else if (category == "like" || category == "save"){
 		var postsId []int
 		var postId int
 		if category == "like"{
@@ -86,10 +91,10 @@ ORDER BY Posts.PostID DESC;
 	var order []int
 
 	for rows.Next() {
-		var postID int
+		var postID ,Isliked int
 		var title, content, createdAt, nickname, category string
 
-		err := rows.Scan(&postID, &title, &content, &createdAt, &nickname, &category)
+		err := rows.Scan(&postID, &title, &content, &createdAt, &nickname, &category,&Isliked)
 		if err != nil {
 			log.Println(err)
 			continue
@@ -102,6 +107,7 @@ ORDER BY Posts.PostID DESC;
 				Content:    content,
 				Nickname:   nickname,
 				Categories: []string{},
+				Isliked: Isliked,
 			}
 			order = append(order, postID)
 		}
@@ -113,6 +119,6 @@ ORDER BY Posts.PostID DESC;
 	for _, id := range order {
 		posts = append(posts, *postsMap[id])
 	}
-	// fmt.Println("postsfrom get Posts",posts)
+	fmt.Println("postsfrom get Posts",posts)
 	return &posts, nil
 }

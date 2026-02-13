@@ -847,3 +847,8 @@ body {
     color: white;
     box-shadow: 0 4px 12px rgba(239, 255, 91, 0.4);
 }
+#likeIcone.liked{
+   color: red;
+   font-weight: 600;
+    
+}
