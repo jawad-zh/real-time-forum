@@ -14,11 +14,16 @@ export async function showComment(postID){
         if (addcomment){
             addcomment.remove()
         }
-    }else{
-        console.log('siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-        
+    }else{        
        var allData = await getComments(postID)
        if (allData){
+        var oldComments = document.querySelector('.CommentCountainer')
+        if (oldComments){
+            for (let oldComment of oldComments){
+
+                oldComment.remove()
+            }
+        }
           for (let data of allData){
               var comment =`
                         <div class="commentCountainer" >
