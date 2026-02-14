@@ -9,6 +9,8 @@ import {LikeFrontend}from "/frontend/views/like.js"
 import{LikeBackend} from "/frontend/services/likePost.js"
 import { savePostsBackend } from "../services/savePostBackend.js";
 import { savePostFront } from "../views/save.js";
+import { showComment } from "../views/showComment.js";
+import {commentBackend } from "/frontend/services/commentBackend.js"
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -73,8 +75,7 @@ async function router() {
             setHomePage('like')
         }else if(e.target.id === 'saveIconeFilter'){
             setHomePage('save')
-        }
-        else if (e.target.id === 'likeIcone'){  
+        }else if (e.target.id === 'likeIcone'){  
             var post = await e.target.closest(".PostsCountainer")  
             var icone = e.target
            var data = await LikeBackend(post.dataset.PostID)           
@@ -88,6 +89,13 @@ async function router() {
             if (data.statue === 'success'){
                 savePostFront(data,icone)
             }
+        }else if (e.target.id === 'commentIcone'){
+            var post = await e.target.closest(".PostsCountainer")  
+            var icone = e.target
+            showComment(post.dataset.PostID)
+        }else if (e.target.id === 'IconePostComment'){
+            var post = await e.target.closest(".PostsCountainer")  
+            commentBackend(post.dataset.PostID)
         }
 
     })

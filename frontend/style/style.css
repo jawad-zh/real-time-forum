@@ -449,15 +449,12 @@ body {
 .PostsCountainer{
     width: 75%;
     background-color: #222428;
-    margin-top:5px ;
+    margin-top:5px;
     padding: 15px;
     border-radius: 15px;
     margin-bottom: 15px;
 }
 #profilePost{
-    height:15%;
-    width: 80%;
-    /* background-color: blue; */
     display: flex;
     gap: 15px;
 }
@@ -491,7 +488,7 @@ body {
 }
 #postImageCountainer{
     /* background-color: rebeccapurple; */
-    height: 60%;
+    height: 300px;
     width: 100%;
     margin-top: 10px;
     border-radius: 15px;
@@ -503,7 +500,6 @@ body {
 #postImage{
     height: 100%;
     width: 100%;
-    background-color: blue;
     border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
@@ -514,12 +510,12 @@ body {
     width: 100%;
 }
 #iconesAndCategories{
-    height: 50px;
     width: 100%;
     margin-top: 10px;
-    /* background-color: rebeccapurple; */
     display: flex;
+    padding: 5px 15px;
     justify-content: space-between;
+    align-items: center;
 }
 #postIncones{
     height: 40px;
@@ -537,25 +533,19 @@ body {
     font-size: 20px;
 }
 .Postcategories{
-    height: 50px;
-    width: 80%;
     display: flex;
-    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;  
     justify-content: flex-end;
-    /* margin */
 }
 .Postcategorie{
-    height: 80%;
-    width: 15%;
+    padding: 6px 14px;   /* instead of height/width */
     background-color: #FFD500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0px 7px;
     border-radius: 15px;
     font-size: 13px;
-    font-weight: 400;
+    white-space: nowrap;
 }
+
 #messagesTitle{
     color:#E6E6E6 ;
     margin-bottom: 20px;
@@ -855,4 +845,81 @@ body {
 }
 #saveIcone.saved{
    font-weight: 600;
+}
+.CommentsCountainer{
+    /* background-color: red; */
+    width: 100%;
+    position: relative;
+    height: auto;
+    /* min-height: 300px; */
+    overflow: visible;
+    /* display: none; */
+    /* height: 500px; */
+}
+.commentCountainer{
+    
+    /* background-color: blue; */
+    height: auto;
+    padding: 15px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.commentProfile{
+    background-color: purple;
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.CommentContent{
+    background-color: #2A2D32;
+    height: 100%;
+    padding: 8px;
+    width: calc(100% - 40px);
+    border: none;
+    border-radius: 10px 10px 10px 0px;
+    color: #b0b7c9;
+}
+.addYourComment{
+     height: auto;
+    padding: 15px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* background-color: #003D99; */
+}
+.yourCommentProfile{
+    background-color: purple;
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.yourCommentContent{
+    background-color: #141517;
+    height: 100%;
+    padding: 8px;
+    width: calc(100% - 40px);
+    border: none;
+    border-radius: 10px 10px 10px 0px;
+    color: #b0b7c9;
+}
+.yourCommentContent input{
+     background-color: #141517;
+    height: 100%;
+    padding: 8px;
+    width: calc(100% - 40px);
+    border: none;
+    border-radius: 10px 10px 10px 0px;
+    color: #b0b7c9;
+}
+.yourCommentContent input:focus{
+    border: none;
+    outline: none;
+}
+#IconePostComment{
+    color:#FFD500 ;
 }

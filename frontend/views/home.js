@@ -823,7 +823,7 @@ export async function setHomePage(Category) {
                     <div id="iconesAndCategories">
                         <div id="postIncones">
                             <i id="likeIcone" class="fa-regular fa-heart ${liked}" data-postid=${data[i].PostID} ></i>
-                            <i  id="commentIcone" class="fa-regular fa-comment-dots " ></i>
+                            <i  id="commentIcone" class="fa-regular fa-comment-dots " data-postid=${data[i].PostID}></i>
                             <i  id= "saveIcone" class="fa-regular fa-bookmark ${saved} " data-postid=${data[i].PostID}></i>
                         </div>
                         <div class="Postcategories">
