@@ -22,7 +22,9 @@ func main() {
 	mux.Handle("/frontend/", http.StripPrefix("/frontend/", fs))
 
 	//
-	mux.HandleFunc("/", handlers.HomeHandler)
+	mux.HandleFunc("/",func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w,r,"./frontend/index.html")
+	})
 	mux.HandleFunc("/login", handlers.LoginHandler)
 	mux.HandleFunc("/logout", handlers.LogoutHandler)
 	mux.HandleFunc("/register", handlers.RegisterHandler)
