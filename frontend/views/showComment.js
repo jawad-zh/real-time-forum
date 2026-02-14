@@ -1,25 +1,49 @@
-export function showComment(postID){
-      var comment =`
+import {getComments} from "/frontend/services/getComments.js"
+
+export async function showComment(postID){
+    var post = document.querySelector(`.PostsCountainer[data--post-i-d="${postID}"]`)
+    post.classList.toggle('active')
+    if (!post.classList.contains('active')){
+        var comments = post.querySelectorAll('.CommentsCountainer')
+        var addcomment = post.querySelector('.addYourComment')
+        if (comments){
+            for (let comment of comments){
+                comment.remove()
+            }
+        }
+        if (addcomment){
+            addcomment.remove()
+        }
+    }else{
+        console.log('siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+        
+       var allData = await getComments(postID)
+       if (allData){
+          for (let data of allData){
+              var comment =`
                         <div class="commentCountainer" >
                             <div class="commentProfile">
                                 <img src=" frontend/state/images/icones/profile.jpeg" alt="">
                             </div>
                             <div class="CommentContent" >
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum quia minima earum quasi placeat repellendus dolor eius architecto aspernatur, facilis officia voluptatibus minus exercitationem quam fugiat at quod totam nemo!
-                                </p>
-                            </div>
-                        </div>
-                         <div class="commentCountainer" >
-                            <div class="commentProfile">
-                                <img src=" frontend/state/images/icones/profile.jpeg" alt="">
-                            </div>
-                            <div class="CommentContent" >
-                                <p>Lorem ipsum dolor sit amet consectetur.
+                                <p>${data.Content}
                                 </p>
                             </div>
                         </div>
     `
-    var yourComment = `
+   
+    var CommentsCountainer = document.createElement('div')
+    CommentsCountainer.classList.add('CommentsCountainer','active')
+    CommentsCountainer.innerHTML = comment
+    post.append(CommentsCountainer)
+        }
+       }
+      
+       
+         
+
+    //----------------------------
+     var yourComment = `
                          <div class="yourCommentProfile">
                               <img src=" frontend/state/images/icones/profile.jpeg" alt="">
                             </div>
@@ -28,22 +52,6 @@ export function showComment(postID){
                                 <i id="IconePostComment" class="fa-solid fa-paper-plane"></i>
                            </div>
                         `
-    var post = document.querySelector(`.PostsCountainer[data--post-i-d="${postID}"]`)
-    post.classList.toggle('active')
-    if (!post.classList.contains('active')){
-        var comment = post.querySelector('.CommentsCountainer')
-        var addcomment = post.querySelector('.addYourComment')
-        if (comment){
-            comment.remove()
-        }
-        if (addcomment){
-            addcomment.remove()
-        }
-    }else{
-    var CommentsCountainer = document.createElement('div')
-    CommentsCountainer.classList.add('CommentsCountainer','active')
-    CommentsCountainer.innerHTML = comment
-    post.append(CommentsCountainer)
     var addYourComment = document.createElement('div')
     addYourComment.classList.add('addYourComment')
     addYourComment.innerHTML = yourComment

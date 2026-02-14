@@ -32,7 +32,8 @@ func main() {
 	mux.HandleFunc("/like", handlers.LikeHandler)
 	mux.HandleFunc("/save",handlers.SavePostHandler)
 	mux.HandleFunc("/creatComment",handlers.CreatCommentHandler)
-	//creatComment
+	mux.HandleFunc("/getComment",handlers.GetCommentHandler)
+	//
 	fmt.Println("server started on http://localhost:8080")
 	//
 	err = http.ListenAndServe(":8080", mux)

@@ -11,6 +11,7 @@ import { savePostsBackend } from "../services/savePostBackend.js";
 import { savePostFront } from "../views/save.js";
 import { showComment } from "../views/showComment.js";
 import {commentBackend } from "/frontend/services/commentBackend.js"
+import { creatComment } from "/frontend/views/creatComment.js"
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -91,11 +92,13 @@ async function router() {
             }
         }else if (e.target.id === 'commentIcone'){
             var post = await e.target.closest(".PostsCountainer")  
-            var icone = e.target
             showComment(post.dataset.PostID)
         }else if (e.target.id === 'IconePostComment'){
             var post = await e.target.closest(".PostsCountainer")  
-            commentBackend(post.dataset.PostID)
+           var res = await commentBackend(post.dataset.PostID)
+           if (res.statue === 'success'){
+            creatComment(post.dataset.PostID , res)
+           }
         }
 
     })

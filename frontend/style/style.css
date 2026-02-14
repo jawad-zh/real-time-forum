@@ -865,6 +865,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    word-break: break-word;
 }
 .commentProfile{
     background-color: purple;
