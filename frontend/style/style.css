@@ -367,7 +367,7 @@ body {
     width: 100vw;
     height: 100vh;
 
-    background: rgba(0,0,0,0.6);
+    /* background: rgba(0, 0, 0, 0); */
     z-index: -1;       /* hidden behind */
     opacity: 0;
     pointer-events: none;
@@ -377,6 +377,7 @@ body {
     z-index: 9999;     /* on top of everything */
     opacity: 1;
     pointer-events: auto;
+   background-color: rgba(0, 0, 0, 0.863);
 }
 
 #inputSectionAndProfile{
@@ -725,7 +726,7 @@ body {
 }
 /* creatPostcss */
 #creatPostCountainer{
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.301);
     height: 100%;
     width: 100%;
     display: flex;
@@ -881,12 +882,17 @@ body {
 }
 .CommentContent{
     background-color: #2A2D32;
-    height: 100%;
-    padding: 8px;
-    width: calc(100% - 40px);
+    height: auto;
+    padding: 15px 8px;
+    width: calc(80% - 40px);
     border: none;
     border-radius: 10px 10px 10px 0px;
     color: #b0b7c9;
+
+}
+img{
+    height: 100%;
+    width: 100%;
 }
 .addYourComment{
      height: auto;

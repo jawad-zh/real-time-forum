@@ -12,6 +12,7 @@ import { savePostFront } from "../views/save.js";
 import { showComment } from "../views/showComment.js";
 import {commentBackend } from "/frontend/services/commentBackend.js"
 import { creatComment } from "/frontend/views/creatComment.js"
+import { checkCreatPost} from "/frontend/services/checkCreatPost.js"
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -54,6 +55,7 @@ async function router() {
                 started()
             }
         } else if (e.target.id === 'creatPostButton') {
+            checkCreatPost(e)
             creatPost(e)
         } else if (e.target.id === 'homePageIcone') {
             setHomePage('all')
