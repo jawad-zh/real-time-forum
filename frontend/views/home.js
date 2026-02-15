@@ -788,7 +788,8 @@ export async function setHomePage(Category) {
             `
     // get Posts 
     var data = await getPost(Category)
-    var middle = document.getElementById('middle')
+    if (data){
+         var middle = document.getElementById('middle')
     for (let i = 0; i < data.length; i++) {
         var liked = ''
         var saved = ''
@@ -868,4 +869,6 @@ export async function setHomePage(Category) {
             save.classList.add('saved')
         }
     }
+    }
+   
 }

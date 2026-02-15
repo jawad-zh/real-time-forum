@@ -36,7 +36,6 @@ func LikeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	err,message:=repos.LikePost(postID.ID,session.UserID)
-	fmt.Println(message)
 	if err != nil{
 		likeHandlerResponse.Message = message
 		likeHandlerResponse.Statue = "failed"

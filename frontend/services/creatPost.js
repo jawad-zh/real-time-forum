@@ -1,54 +1,55 @@
-import {setHomePage} from "/frontend/views/home.js"
-
-export async function creatPost(e){
+export async function creatPost(e) {
     e.preventDefault()
 
     const title = document.getElementById('creatPostTitle').value.trim()
     const content = document.getElementById('creatPostContent').value.trim()
-
-     const inputCategories ={
-        'music':'1',
-        'footballe':'2',
-        'art':'3',
-        'sport':'4',
-        'technology':'5',
-        'recentyl':'6',
-        'test':'7',
-    } 
-    const outputCategories ={
-        '1' : 'music',
-         '2': 'footballe',
-         '3': 'art',
-         '4': 'sport',
-         '5': 'technology',
-         '6': 'recentyl',
-         '7': 'test',
-    } 
+    const imageFile = document.getElementById('fileInput').files[0]
+    console.log('imageFile',imageFile);
+    
+    const inputCategories = {
+        'music': '1',
+        'footballe': '2',
+        'art': '3',
+        'sport': '4',
+        'technology': '5',
+        'recentyl': '6',
+        'test': '7',
+    }
+    const outputCategories = {
+        '1': 'music',
+        '2': 'footballe',
+        '3': 'art',
+        '4': 'sport',
+        '5': 'technology',
+        '6': 'recentyl',
+        '7': 'test',
+    }
     var categories = []
-   var categoriesChecked =document.querySelectorAll("#creatPostCategories input:checked")
-   for (let i =0 ; i < categoriesChecked.length ; i++){
-    categories.push(inputCategories[categoriesChecked[i].value])
-    categoriesChecked[i].click()
-   }
-   var postInformation = {
-    'Title':title,
-    'Content':content,
-    'Categories':categories
-   }
+    var categoriesChecked = document.querySelectorAll("#creatPostCategories input:checked")
+    for (let i = 0; i < categoriesChecked.length; i++) {
+        categories.push(inputCategories[categoriesChecked[i].value])
+        categoriesChecked[i].click()
+    }
+    const postInformation = new FormData()
+    postInformation.append('title', title)
+    postInformation.append('content', content)
+    for (let cate of categories) {
+        postInformation.append('categories[]', cate)
+    }
+    postInformation.append('image', imageFile)
 
-   var res = await fetch("http://localhost:8080/creatPost",{
-    method : "POST",
-    headers:{
-        "Content-Type":"application/json"
-    },
-    body: JSON.stringify(postInformation)
-   })
-   var data = await res.json()   
-   console.log('categories',categories);
-   
-   if (data.status  === 'success'){
-    var middle = document.getElementById('middle')    
-    var post = document.createElement('div')
+    const res = await fetch("http://localhost:8080/creatPost", {
+        method: "POST",
+        body: postInformation
+    })
+
+
+    var data = await res.json()
+    console.log('data*------------------------- ', data);
+      const tempURL = URL.createObjectURL(imageFile);
+    if (data.status === 'success') {
+        var middle = document.getElementById('middle')
+        var post = document.createElement('div')
         post.classList.add('PostsCountainer')
         post.dataset.PostID = data.PostID
         post.innerHTML = `
@@ -69,7 +70,7 @@ export async function creatPost(e){
                     <div id="contentPost">${content}</div>
                         <div id="postImageCountainer" >
                             <div id="postImage">
-                        <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
+                        <img src="${tempURL}" alt="">
                     </div>
                         </div>
                     
@@ -85,18 +86,18 @@ export async function creatPost(e){
     `
         var addCategories = post.querySelector('.Postcategories')
 
-       for (let categorie of categories) {
+        for (let categorie of categories) {
 
-    var cat = document.createElement('div');
-    cat.classList.add('Postcategorie');
-    cat.textContent = outputCategories[categorie];
-    addCategories.append(cat);
-}
+            var cat = document.createElement('div');
+            cat.classList.add('Postcategorie');
+            cat.textContent = outputCategories[categorie];
+            addCategories.append(cat);
+        }
 
         middle.prepend(post)
         document.getElementById("creatPostCountainer").classList.remove("active")
-        
-   }
-   document.getElementById('creatPostTitle').value = ''
-   document.getElementById('creatPostContent').value=''
+
+    }
+    document.getElementById('creatPostTitle').value = ''
+    document.getElementById('creatPostContent').value = ''
 }

@@ -29,6 +29,5 @@ WHERE UserID = ?;
 		fmt.Println("Selct UserInfo error:",err)
 		return err,nil
 	}
-	fmt.Println(user)
 	return nil, &user
 }

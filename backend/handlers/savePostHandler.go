@@ -36,7 +36,6 @@ func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	err, message := repos.SavePost(postID.ID, session.UserID)
-	fmt.Println(message)
 	if err != nil {
 		saveHandlerResponse.Message = message
 		saveHandlerResponse.Statue = "failed"

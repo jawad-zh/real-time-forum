@@ -39,6 +39,7 @@ func CreatTables(db *sql.DB) {
     UserID INTEGER NOT NULL,
     Title TEXT NOT NULL,
     Content TEXT NOT NULL,
+    ImageURL TEXT ,
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );`)

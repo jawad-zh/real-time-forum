@@ -34,6 +34,5 @@ func GetUserInfoHandler(w http.ResponseWriter, r *http.Request) {
 	getUserInfoResponse.Likes = data.Likes
 	getUserInfoResponse.Saves = data.Saves
 	w.Header().Set("Content-Type","application/json")
-	fmt.Println(getUserInfoResponse)
 	json.NewEncoder(w).Encode(getUserInfoResponse)
 }

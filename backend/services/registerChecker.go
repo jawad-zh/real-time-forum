@@ -23,11 +23,11 @@ func RegisterChecker(user *models.Users) (bool, string) {
 	// if (notNumbersRegex.MatchString(string(user.Age))) {
 	// 	return false, "Age Accepte Numbers only (backend)"
 	// }
-	if speacialCharacterRegex.MatchString(user.FirstName) {
-		fmt.Println("here")
-	}else if (NumbersRegex.MatchString(user.FirstName)){
-		fmt.Println("in Numbeeeeeeeer")
-	}
+	// if speacialCharacterRegex.MatchString(user.FirstName) {
+	// 	fmt.Println("here")
+	// }else if (NumbersRegex.MatchString(user.FirstName)){
+	// 	fmt.Println("in Numbeeeeeeeer")
+	// }
 	if user.Gender != "male" && user.Gender != "female" {
 		return false, "Invalid Gender (backend) "
 	}

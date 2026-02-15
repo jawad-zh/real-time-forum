@@ -14,6 +14,7 @@ import {commentBackend } from "/frontend/services/commentBackend.js"
 import { creatComment } from "/frontend/views/creatComment.js"
 import { checkCreatPost} from "/frontend/services/checkCreatPost.js"
 import { checkCreatPostRespons } from "../views/checkFrontResponse.js";
+import { checkComment } from "../services/checkComment.js";
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -58,6 +59,8 @@ async function router() {
         } else if (e.target.id === 'creatPostButton') {
            var message =  checkCreatPost()
            if (message === 'success'){
+            console.log('si');
+            
             //    checkCreatPostRespons('your post is created','red')
                creatPost(e)
            }else{
@@ -103,10 +106,16 @@ async function router() {
             showComment(post.dataset.PostID)
         }else if (e.target.id === 'IconePostComment'){
             var post = await e.target.closest(".PostsCountainer")  
-           var res = await commentBackend(post.dataset.PostID)
+            var res = checkComment(post.dataset.PostID)
+            if (res  === 'success' ){
+                var res = await commentBackend(post.dataset.PostID)
            if (res.statue === 'success'){
             creatComment(post.dataset.PostID , res)
            }
+            }else{
+                // make action
+            }
+           
         }
 
     })

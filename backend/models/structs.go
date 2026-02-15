@@ -72,6 +72,7 @@ type PostInformation struct {
 	Title      string   `json:"Title"`
 	Content    string   `json:"Content"`
 	Categories []string `json:"Categories"`
+	ImageURL string `json:"ImageURL"`
 }
 type PostLike struct{
 	UserID int `json:"UserID"`

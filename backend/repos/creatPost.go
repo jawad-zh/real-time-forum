@@ -8,10 +8,11 @@ import (
 )
 
 func CreatPost(postInfo *models.PostInformation, session *models.Session) (int64,string){
+	fmt.Println("hello from creatpost service")
 	result, err := db.DataBase.Exec(`
-	INSERT INTO Posts (UserID,Title,Content)
-	VALUES(?,?,?)
-	`, session.UserID, postInfo.Title, postInfo.Content)
+	INSERT INTO Posts (UserID,Title,Content,ImageURL)
+	VALUES(?,?,?,?)
+	`, session.UserID, postInfo.Title, postInfo.Content,postInfo.ImageURL)
 	if err != nil {
 		fmt.Println("insert Post Error", err)
 		return 0,""
