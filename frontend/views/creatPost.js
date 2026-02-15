@@ -1,8 +1,11 @@
 export function setCreatPost(){
+  var alert = document.createElement('div')
+  alert.setAttribute('id','creatPostAlert')
+  document.body.append(alert)
     var creatPostCountainer = document.createElement('div')
     creatPostCountainer.setAttribute('id','creatPostCountainer')
     creatPostCountainer.innerHTML =`
-        
+          
             <div id="creatPost">
                 <div id="inputs">
                     <input id="creatPostTitle" type="text">
@@ -17,33 +20,33 @@ export function setCreatPost(){
                 </div>
                 <div id="creatPostCategories" >
                    <label class="cat">
-        <input type="checkbox" value="1">
+        <input type="checkbox" value="music">
         <span>music</span>
       </label>
     
       <label class="cat">
-        <input type="checkbox" value="2">
+        <input type="checkbox" value="footballe">
         <span>footballe</span>
       </label>
     
       <label class="cat">
-        <input type="checkbox" value="3">
+        <input type="checkbox" value="art">
         <span>art</span>
       </label>
     
       <label class="cat">
-        <input type="checkbox" value="4">
+        <input type="checkbox" value="sport">
         <span>sport</span>
       </label>
       <label class="cat">
-        <input type="checkbox" value="5">
+        <input type="checkbox" value="technology">
         <span>technology</span>
       </label><label class="cat">
-        <input type="checkbox" value="6">
+        <input type="checkbox" value="recentyl">
         <span>recentyl</span>
       </label>
       </label><label class="cat">
-        <input type="checkbox" value="7">
+        <input type="checkbox" value="test">
         <span>test</span>
       </label>
                 </div>

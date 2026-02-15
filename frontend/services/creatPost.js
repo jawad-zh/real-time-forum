@@ -2,12 +2,33 @@ import {setHomePage} from "/frontend/views/home.js"
 
 export async function creatPost(e){
     e.preventDefault()
+
     const title = document.getElementById('creatPostTitle').value.trim()
     const content = document.getElementById('creatPostContent').value.trim()
+
+     const inputCategories ={
+        'music':'1',
+        'footballe':'2',
+        'art':'3',
+        'sport':'4',
+        'technology':'5',
+        'recentyl':'6',
+        'test':'7',
+    } 
+    const outputCategories ={
+        '1' : 'music',
+         '2': 'footballe',
+         '3': 'art',
+         '4': 'sport',
+         '5': 'technology',
+         '6': 'recentyl',
+         '7': 'test',
+    } 
     var categories = []
    var categoriesChecked =document.querySelectorAll("#creatPostCategories input:checked")
    for (let i =0 ; i < categoriesChecked.length ; i++){
-    categories.push(categoriesChecked[i].value)
+    categories.push(inputCategories[categoriesChecked[i].value])
+    categoriesChecked[i].click()
    }
    var postInformation = {
     'Title':title,
@@ -22,8 +43,8 @@ export async function creatPost(e){
     },
     body: JSON.stringify(postInformation)
    })
-   var data = await res.json()
-   console.log(data);
+   var data = await res.json()   
+   console.log('categories',categories);
    
    if (data.status  === 'success'){
     var middle = document.getElementById('middle')    
@@ -36,7 +57,7 @@ export async function creatPost(e){
                             <img src="frontend/state/images/icones/profile.jpeg" alt="">
                         </div>
                         <div id="NameTitlePost">
-                            <p id="name">teeeeeest</p>
+                            <p id="name">${data.Nickname}</p>
                             <div id="titleTime">
                                 <p id="PostTitle">${title}</p>
                                 <p id="time">1h</p>
@@ -62,9 +83,20 @@ export async function creatPost(e){
                         </div>
                     </div>
     `
+        var addCategories = post.querySelector('.Postcategories')
+
+       for (let categorie of categories) {
+
+    var cat = document.createElement('div');
+    cat.classList.add('Postcategorie');
+    cat.textContent = outputCategories[categorie];
+    addCategories.append(cat);
+}
+
         middle.prepend(post)
         document.getElementById("creatPostCountainer").classList.remove("active")
         
    }
-   
+   document.getElementById('creatPostTitle').value = ''
+   document.getElementById('creatPostContent').value=''
 }

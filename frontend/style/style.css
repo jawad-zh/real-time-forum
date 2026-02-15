@@ -361,25 +361,38 @@ body {
     display: flex;
     /* align-items: center; */
     justify-content: center;
-     position: fixed;   /* or absolute */
+     position: fixed;   
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
 
     /* background: rgba(0, 0, 0, 0); */
-    z-index: -1;       /* hidden behind */
+    z-index: -1;      
     opacity: 0;
     pointer-events: none;
     transition: .3s;
 }
 #creatPostCountainer.active{
-    z-index: 9999;     /* on top of everything */
+    z-index: 9999;    
     opacity: 1;
     pointer-events: auto;
    background-color: rgba(0, 0, 0, 0.863);
 }
-
+#creatPostAlert{
+    background-color: red;
+    height: 50px;
+    width: 300px;
+    z-index: 10000000000000000000;
+    transform: translate(0px,-300px);
+    border-radius: 10px;
+    color: white;
+    transition: opasity 2s ease;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
 #inputSectionAndProfile{
     height: 100%;
     width: 70%;
@@ -489,7 +502,7 @@ body {
 }
 #postImageCountainer{
     /* background-color: rebeccapurple; */
-    height: 300px;
+    height: 400px;
     width: 100%;
     margin-top: 10px;
     border-radius: 15px;
@@ -500,7 +513,7 @@ body {
 }
 #postImage{
     height: 100%;
-    width: 100%;
+    width: 95%;
     border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
