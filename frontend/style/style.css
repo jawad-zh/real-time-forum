@@ -628,9 +628,14 @@ body {
     height: 50px;
     width: 100px;
     color: white;
-    /* background-color: aqua; */
+    /* background-color: red; */
     display: flex;
     align-items: center;
+    flex-direction: column;
+}
+#profileNickname{
+    margin-bottom: 7px;
+    color:#5C5F66;
 }
 #howMuchLike{
     color: #E6E6E6;

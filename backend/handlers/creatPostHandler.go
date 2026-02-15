@@ -19,8 +19,8 @@ func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 	var post models.PostInformation
 	var CreatPostResponse CreatPostResponseFormat
 	json.NewDecoder(r.Body).Decode(&post)
-	ok,session:=repos.CheckSession(r)
-	if !ok{
+	err,session:=repos.CheckSession(r)
+	if err != nil{
 		CreatPostResponse.Message = "no session found"
 		CreatPostResponse.Status = "failed"
 		w.Header().Set("Type-Content","application/json")

@@ -19,12 +19,12 @@ type CreatCommentHandlerResponsFormat struct {
 func CreatCommentHandler(w http.ResponseWriter, r *http.Request) {
 	var commentInfo commentInfoFormat
 	var CreatCommentHandlerRespons CreatCommentHandlerResponsFormat
-	ok, session := repos.CheckSession(r)
-	if !ok {
+	err, session := repos.CheckSession(r)
+	if err != nil {
 		fmt.Println("nos session")
 		return
 	}
-	err := json.NewDecoder(r.Body).Decode(&commentInfo)
+	err = json.NewDecoder(r.Body).Decode(&commentInfo)
 	if err != nil {
 		fmt.Println("creat comment handler err", err)
 		return

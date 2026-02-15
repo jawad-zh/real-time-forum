@@ -9,22 +9,22 @@ import (
 	"time"
 )
 
-func CheckSession(r *http.Request)(bool,*models.Session) {
+func CheckSession(r *http.Request)(error,*models.Session) {
 	var session models.Session
 	coockie, err := r.Cookie("session_id")
 	if err != nil {
 		fmt.Println("Error", err)
-		return false ,nil
+		return err ,nil
 	}
 	row:= db.DataBase.QueryRow(`
 	SELECT UserID , ExpiresAt FROM Session WHERE token = ?
 	`,coockie.Value)
 	err = row.Scan(&session.UserID,&session.ExpiresAt)
 	if err == sql.ErrNoRows{
-		return false ,nil
+		return err ,nil
 	}
 	if time.Now().After(session.ExpiresAt){
-		return false ,nil
+		return err ,nil
 	}
-	return true ,&session
+	return nil ,&session
 }

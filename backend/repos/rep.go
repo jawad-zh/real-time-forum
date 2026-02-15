@@ -1,5 +1,0 @@
-package repos
-
-func creatTable(){
-	
-}

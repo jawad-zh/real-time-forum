@@ -19,15 +19,15 @@ type SaveHandlerResponseFormat struct {
 func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 	var postID SaveJsonFormat
 	var saveHandlerResponse SaveHandlerResponseFormat
-	ok, session := repos.CheckSession(r)
-	if !ok {
+	err, session := repos.CheckSession(r)
+	if err != nil {
 		fmt.Println("no session")
 		saveHandlerResponse.Message = "no session"
 		saveHandlerResponse.Statue = "failed"
 		json.NewEncoder(w).Encode(&saveHandlerResponse)
 		return
 	}
-	err := json.NewDecoder(r.Body).Decode(&postID)
+	err = json.NewDecoder(r.Body).Decode(&postID)
 	if err != nil {
 		fmt.Println("Error:", err)
 		saveHandlerResponse.Message = "sever error"

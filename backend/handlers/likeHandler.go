@@ -19,15 +19,15 @@ type likeHandlerResponseFormat struct{
 func LikeHandler(w http.ResponseWriter, r *http.Request) {
 	var postID likeJsonFormat
 	var likeHandlerResponse likeHandlerResponseFormat
-	ok, session := repos.CheckSession(r)
-	if !ok {
+	err, session := repos.CheckSession(r)
+	if err!= nil {
 		fmt.Println("no session")
 		likeHandlerResponse.Message = "no session"
 		likeHandlerResponse.Statue = "failed"
 		json.NewEncoder(w).Encode(&likeHandlerResponse)
 		return
 	}
-	err:=json.NewDecoder(r.Body).Decode(&postID)
+	err=json.NewDecoder(r.Body).Decode(&postID)
 	if err != nil{ 
 		fmt.Println("Error:",err)
 		likeHandlerResponse.Message = "sever error"

@@ -1,3 +1,4 @@
+import { getUserInfo } from "/frontend/services/getUserInfo.js"
 import { getPost } from "/frontend/services/getPost.js"
 
 export async function setHomePage(Category) {
@@ -7,6 +8,10 @@ export async function setHomePage(Category) {
             bodyChildren[i].remove()
         }
     }
+    // need to check
+    var UserInfo = await getUserInfo()
+    console.log(UserInfo);
+    
     document.body.innerHTML = `
     <div id="appCountainer">
         <div id="navBar">
@@ -37,18 +42,19 @@ export async function setHomePage(Category) {
                     </div>
                     <div id="profilneAndIformations" >
                         <div id="howMuchLike" ><p id="likes">likes</p>
-                        <p id="likesNumber" >100</p>
+                        <p id="likesNumber" >${UserInfo.likes}</p>
                         </div>
                         <div id="informationImage" >
 
                             <img  id="ProfilInforamtionImage" src="frontend/state/images/icones/profile.jpeg" alt="">
                         </div>
                          <div id="howMuchSaves" ><p id="saves">saves</p>
-                        <p id="savesNumber" >100</p>
+                        <p id="savesNumber" >${UserInfo.saves}</p>
                         </div>
                     </div>
-                    <div id="informationName" >
-                        jawad zahraoui
+                          <div id="informationName" >
+                        <p id="profileNickname" >${UserInfo.Nickname}</p>
+                        <p id="profileName" >${UserInfo.FirstName} ${UserInfo.LastName}</p>
                     </div>
                 </div>
                 <div id="categories">
@@ -782,7 +788,6 @@ export async function setHomePage(Category) {
             `
     // get Posts 
     var data = await getPost(Category)
-    console.log(data);
     var middle = document.getElementById('middle')
     for (let i = 0; i < data.length; i++) {
         var liked = ''

@@ -13,8 +13,8 @@ type sessionCheckResponseFormat struct {
 
 func SessionHandler(w http.ResponseWriter, r *http.Request) {
 	var sessionCheckResponse sessionCheckResponseFormat
-	ok,_ := repos.CheckSession(r)
-	if !ok {
+	err,_ := repos.CheckSession(r)
+	if err != nil {
 		sessionCheckResponse.Status = "unsuccess"
 		w.Header().Set("Type-Content", "application/json")
 		json.NewEncoder(w).Encode(sessionCheckResponse)

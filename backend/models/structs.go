@@ -12,6 +12,9 @@ type Users struct {
 	Email     string `json:"Email"`
 	Password  string `json:"Password"`
 	CreatedAt time.Time `json:"CreatedAt"`
+	Likes int `json:"Likes"`
+	Saves int `json:"Saves"`
+
 }
 type Session struct {
 	UserID    int `json:"UserID"`

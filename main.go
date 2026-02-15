@@ -35,6 +35,7 @@ func main() {
 	mux.HandleFunc("/save",handlers.SavePostHandler)
 	mux.HandleFunc("/creatComment",handlers.CreatCommentHandler)
 	mux.HandleFunc("/getComment",handlers.GetCommentHandler)
+	mux.HandleFunc("/getUserInfo",handlers.GetUserInfoHandler)
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//
