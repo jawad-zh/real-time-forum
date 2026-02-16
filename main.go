@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	 "golang/backend/db"
+	"golang/backend/db"
 	"golang/backend/handlers"
 )
 
@@ -22,8 +22,8 @@ func main() {
 	mux.Handle("/frontend/", http.StripPrefix("/frontend/", fs))
 
 	//
-	mux.HandleFunc("/",func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w,r,"./frontend/index.html")
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./frontend/index.html")
 	})
 	mux.HandleFunc("/login", handlers.LoginHandler)
 	mux.HandleFunc("/logout", handlers.LogoutHandler)
@@ -32,10 +32,10 @@ func main() {
 	mux.HandleFunc("/sessionCheck", handlers.SessionHandler)
 	mux.HandleFunc("/getPosts", handlers.GetPostsHandler)
 	mux.HandleFunc("/like", handlers.LikeHandler)
-	mux.HandleFunc("/save",handlers.SavePostHandler)
-	mux.HandleFunc("/creatComment",handlers.CreatCommentHandler)
-	mux.HandleFunc("/getComment",handlers.GetCommentHandler)
-	mux.HandleFunc("/getUserInfo",handlers.GetUserInfoHandler)
+	mux.HandleFunc("/save", handlers.SavePostHandler)
+	mux.HandleFunc("/creatComment", handlers.CreatCommentHandler)
+	mux.HandleFunc("/getComment", handlers.GetCommentHandler)
+	mux.HandleFunc("/getUserInfo", handlers.GetUserInfoHandler)
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//

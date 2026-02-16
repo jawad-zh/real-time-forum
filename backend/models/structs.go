@@ -28,6 +28,7 @@ type Posts struct {
 	UserID    int `json:"UserID"`
 	Title     string `json:"Title"`
 	Content   string `json:"Content"`
+	ImageURL string `json:"ImageURL"`
 	CreatedAt string `json:"CreatedAt"`
 	Nickname string `json:"Nickname"`
 	Categories []string `json:"Categories"`

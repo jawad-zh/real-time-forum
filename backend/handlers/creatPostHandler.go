@@ -40,7 +40,7 @@ func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(&post)
 		return
 	}
-	err = os.MkdirAll("uploads", os.ModePerm)
+	err = os.MkdirAll("frontend/uploads", os.ModePerm)
 	if err != nil {
 		fmt.Println("failed to create uploads folder: %v", err)
 		return
@@ -56,7 +56,7 @@ func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 		defer file.Close()
 
 		filename := fmt.Sprintf("%d%s", time.Now().UnixNano(), filepath.Ext(handler.Filename))
-		imagePath = "uploads/" + filename
+		imagePath = "frontend/uploads/" + filename
 
 		dst, err := os.Create(imagePath)
 		if err != nil {

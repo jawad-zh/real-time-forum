@@ -788,6 +788,8 @@ export async function setHomePage(Category) {
             `
     // get Posts 
     var data = await getPost(Category)
+    console.log('data',data);
+    
     if (data){
          var middle = document.getElementById('middle')
     for (let i = 0; i < data.length; i++) {
@@ -822,7 +824,7 @@ export async function setHomePage(Category) {
                     <div id="contentPost">${data[i].Content}</div>
                         <div id="postImageCountainer" >
                             <div id="postImage">
-                        <img src="frontend/state/images/icones/istockphoto-814423752-612x612.jpg" alt="">
+                        <img src="${data[i].ImageURL}" alt="">
                     </div>
                         </div>
                     

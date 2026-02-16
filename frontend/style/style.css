@@ -355,19 +355,14 @@ body {
     height: 25%;
     width: 100%;
     border-radius: 15px;
-    /* background-color: red; */
     overflow: hidden;
-    /* background-color: yellow; */
     display: flex;
-    /* align-items: center; */
     justify-content: center;
      position: fixed;   
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-
-    /* background: rgba(0, 0, 0, 0); */
     z-index: -1;      
     opacity: 0;
     pointer-events: none;

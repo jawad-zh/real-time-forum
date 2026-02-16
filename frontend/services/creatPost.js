@@ -43,10 +43,13 @@ export async function creatPost(e) {
         body: postInformation
     })
 
-
+    
     var data = await res.json()
     console.log('data*------------------------- ', data);
-      const tempURL = URL.createObjectURL(imageFile);
+    var tempURL =''
+    if (imageFile){
+         tempURL = URL.createObjectURL(imageFile);
+    }
     if (data.status === 'success') {
         var middle = document.getElementById('middle')
         var post = document.createElement('div')
@@ -70,7 +73,7 @@ export async function creatPost(e) {
                     <div id="contentPost">${content}</div>
                         <div id="postImageCountainer" >
                             <div id="postImage">
-                        <img src="${tempURL}" alt="">
+                        <img src="${tempURL}" alt="image place">
                     </div>
                         </div>
                     

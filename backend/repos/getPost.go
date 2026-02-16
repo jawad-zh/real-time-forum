@@ -24,6 +24,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Posts.Title,
 				Posts.Content,
 				Posts.CreatedAt,
+				Posts.ImageURL,
 				Users.Nickname,
 				Categories.CategoryName,
 				CASE WHEN PostLike.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsLiked,
@@ -44,6 +45,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Posts.Title,
 				Posts.Content,
 				Posts.CreatedAt,
+				Posts.ImageURL,
 				Users.Nickname,
 				Categories.CategoryName
 			FROM Posts
@@ -63,6 +65,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Posts.Title,
 				Posts.Content,
 				Posts.CreatedAt,
+				Posts.ImageURL,
 				Users.Nickname,
 				Categories.CategoryName
 			FROM Posts
@@ -82,6 +85,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Posts.Title,
 				Posts.Content,
 				Posts.CreatedAt,
+				Posts.ImageURL,
 				Users.Nickname,
 				Categories.CategoryName,
 				CASE WHEN PostLike.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsLiked,
@@ -116,18 +120,18 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 
 	for rows.Next() {
 		var postID int
-		var title, content, createdAt, nickname, categoryName string
+		var title, content, createdAt, nickname, categoryName ,imageURL string
 		var isLiked, isSaved int
 
 		switch category {
 		case "like", "save":
-			if err := rows.Scan(&postID, &title, &content, &createdAt, &nickname, &categoryName); err != nil {
+			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname, &categoryName); err != nil {
 				log.Println("Scan error:", err)
 				continue
 			}
 			isLiked, isSaved = 0, 0
 		default:
-			if err := rows.Scan(&postID, &title, &content, &createdAt, &nickname, &categoryName, &isLiked, &isSaved); err != nil {
+			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname, &categoryName, &isLiked, &isSaved); err != nil {
 				log.Println("Scan error:", err)
 				continue
 			}
@@ -138,6 +142,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				PostID:     postID,
 				Title:      title,
 				Content:    content,
+				ImageURL: imageURL,
 				Nickname:   nickname,
 				Categories: []string{},
 				Isliked:    isLiked,
