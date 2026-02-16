@@ -148,6 +148,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Title:      title,
 				Content:    content,
 				ImageURL: imageURL,
+				CreatedAt: createdAt,
 				Nickname:   nickname,
 				ProfileURL: ProfileURL,
 				Categories: []string{},
@@ -168,6 +169,6 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 	for _, id := range order {
 		posts = append(posts, *postsMap[id])
 	}
-
+	fmt.Println("----------------",posts[0])
 	return &posts, nil
 }

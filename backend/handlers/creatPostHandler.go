@@ -19,6 +19,7 @@ type CreatPostResponseFormat struct {
 	PostID   int64  `json:"PostID"`
 	Nickname string `json:"Nickname"`
 	ImageURL string `json:"imageURL"`
+	CreatedAt string `json:"CreatedAt"`
 }
 
 func CreatPostHandler(w http.ResponseWriter, r *http.Request) {

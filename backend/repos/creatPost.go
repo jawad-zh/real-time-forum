@@ -8,7 +8,7 @@ import (
 )
 
 func CreatPost(postInfo *models.PostInformation, session *models.Session) (int64,string){
-	fmt.Println("hello from creatpost service")
+	fmt.Println("hello from creatpost service", postInfo )
 	result, err := db.DataBase.Exec(`
 	INSERT INTO Posts (UserID,Title,Content,ImageURL)
 	VALUES(?,?,?,?)
@@ -32,9 +32,17 @@ func CreatPost(postInfo *models.PostInformation, session *models.Session) (int64
 			return 0,""
 		}
 	 }
-	 var nickname string 
+	 var nickname,createdAt string 
 	 err= db.DataBase.QueryRow(`
-	 SELECT Nickname FROM Users WHERE UserID = ?
-	 `,session.UserID).Scan(&nickname)
+	 SELECT 
+    Users.Nickname,
+    Posts.CreatedAt
+FROM Posts
+JOIN Users 
+    ON  Users.UserID = ?
+WHERE Posts.PostID = ?;
+
+	 `,session.UserID,LastPostId).Scan(&nickname,&createdAt)
+	 fmt.Println("heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeer",createdAt)
 	return LastPostId,nickname
 }

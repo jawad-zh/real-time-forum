@@ -1,6 +1,6 @@
 import { getUserInfo } from "/frontend/services/getUserInfo.js"
 import { getPost } from "/frontend/services/getPost.js"
-
+import { TimeAgo } from "../services/timeAgo.js"
 export async function setHomePage(Category) {
     let bodyChildren = document.body.children
     if (bodyChildren) {
@@ -791,7 +791,7 @@ export async function setHomePage(Category) {
             `
     // get Posts 
     var data = await getPost(Category)
-    console.log('data',data);
+    console.log('++++++++++++++++++++++++++++data',data);
     
     if (data){
          var middle = document.getElementById('middle')
@@ -806,6 +806,7 @@ export async function setHomePage(Category) {
             saved = 'saved'
         }
         console.log('----------',UserInfo.ProfileURL);
+        var createdAt = TimeAgo(data[i].CreatedAt)
         var Profile = data[i].ProfileURL.String ? data[i].ProfileURL.String : '' 
         var post = document.createElement('div')
         post.classList.add('PostsCountainer')
@@ -819,7 +820,7 @@ export async function setHomePage(Category) {
                             <p id="name">${data[i].Nickname}</p>
                             <div id="titleTime">
                                 <p id="PostTitle">${data[i].Title}</p>
-                                <p id="time">1h</p>
+                                <p id="time">${createdAt}</p>
                             </div>
 
                         </div>
