@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"golang/backend/repos"
@@ -14,6 +15,7 @@ type getUserInfoHandlerFormat struct{
 	Statue string `json:"statue"`
 	Likes int `json:"likes"`
 	Saves int `json:"saves"`
+	ImageURL sql.NullString `json:"ImageURL"`
 }
 
 func GetUserInfoHandler(w http.ResponseWriter, r *http.Request) {
@@ -33,6 +35,8 @@ func GetUserInfoHandler(w http.ResponseWriter, r *http.Request) {
 	getUserInfoResponse.LastName = data.LastName
 	getUserInfoResponse.Likes = data.Likes
 	getUserInfoResponse.Saves = data.Saves
+	getUserInfoResponse.ImageURL = data.ProfileURL
+	fmt.Println(getUserInfoResponse)
 	w.Header().Set("Content-Type","application/json")
 	json.NewEncoder(w).Encode(getUserInfoResponse)
 }

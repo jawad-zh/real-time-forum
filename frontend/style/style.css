@@ -604,7 +604,7 @@ body {
     border-radius: 20px;
 }
 #backgroundLeft{
-    background-color: blue;
+    background-color:#ffd500af;
     width: 100%;
     height: 30%;
 }
@@ -942,4 +942,102 @@ img{
 }
 #IconePostComment{
     color:#FFD500 ;
+}
+#addPrifileImage{
+    height: 35px;
+    width: 50%;
+    background-color: #FFD500;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: auto;
+}
+#fileInputProfile{
+    display: none;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#addImageProfileCountainer{
+    background-color: rgba(0, 0, 0, 0.822);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+}
+#addImageProfilePage{
+     background-color: #222428;
+    height: 50%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+#imageProfile{
+    background-color: white;
+    height: 200px;
+    width: 200px;
+    border-radius: 30px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+#imageProfile img {
+    height: 100%;
+    width: 100%;
+}
+#addImageProfile{
+    margin-bottom: 10px;
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    font-weight:bold;
+    background-color: yellow;
+    cursor: pointer;
+}
+#ignoreImageProfile{
+        margin-bottom: 10px;
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    font-weight:bold;
+    background-color: rgba(128, 128, 128, 0.541);
+    cursor: pointer;
+}
+#addProfileIconeCountainer{
+    background-color: yellow;
+    position: absolute;
+    transform: translate(90px , 230px);
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: yellow;
+    cursor: pointer;
+}
+#addProfileIcone {
+    font-size: 18px;
+}
+#fileInputProfileImage{
+display: none;
 }

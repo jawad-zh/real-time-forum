@@ -1,18 +1,22 @@
-export function creatComment(PostID, data) {
+
+export function creatComment(PostID) {
     var post = document.querySelector(`.PostsCountainer[data--post-i-d="${PostID}"]`)
     var input = post.querySelector("input").value.trim()
     post.querySelector('input').value = ""
     var comment = post.querySelector('.CommentsCountainer:last-of-type') 
     ? post.querySelector('.CommentsCountainer:last-of-type') 
     : document.createElement('div')
+    var Profile = document.getElementById('ProfilInforamtionImage').src
 
+    console.log('Profile',Profile);
+    
     if (!comment.classList.contains('CommentsCountainer')) {
         comment.classList.add('CommentsCountainer')
         if(post.querySelector('.addYourComment'))  post.querySelector(".addYourComment").remove() 
         var newComment = `
          
                                <div class="commentProfile">
-                                   <img src=" frontend/state/images/icones/profile.jpeg" alt="">
+                                   <img src="${Profile}" alt="">
                                </div>
                                <div class="CommentContent" >
                                    <p>${input}
@@ -27,7 +31,7 @@ export function creatComment(PostID, data) {
         post.append(comment)
         var yourComment = `
                          <div class="yourCommentProfile">
-                              <img src=" frontend/state/images/icones/profile.jpeg" alt="">
+                              <img src="${Profile}" alt="">
                             </div>
                             <div class="yourCommentContent" >
                                 <input  placeholder="add your comment" type="commentValue">

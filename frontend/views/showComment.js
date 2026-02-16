@@ -1,5 +1,5 @@
 import {getComments} from "/frontend/services/getComments.js"
-
+import {getUserInfo} from "/frontend/services/getUserInfo.js"
 export async function showComment(postID){
     var post = document.querySelector(`.PostsCountainer[data--post-i-d="${postID}"]`)
     post.classList.toggle('active')
@@ -16,6 +16,9 @@ export async function showComment(postID){
         }
     }else{        
        var allData = await getComments(postID)
+       var UserInfo = await getUserInfo()
+       console.log('-----------',UserInfo);
+       
        if (allData){
         var oldComments = document.querySelector('.CommentCountainer')
         if (oldComments){
@@ -28,7 +31,7 @@ export async function showComment(postID){
               var comment =`
                         <div class="commentCountainer" >
                             <div class="commentProfile">
-                                <img src=" frontend/state/images/icones/profile.jpeg" alt="">
+                                <img src="${data.UserProfile.String}" alt="">
                             </div>
                             <div class="CommentContent" >
                                 <p>${data.Content}
@@ -50,7 +53,7 @@ export async function showComment(postID){
     //----------------------------
      var yourComment = `
                          <div class="yourCommentProfile">
-                              <img src=" frontend/state/images/icones/profile.jpeg" alt="">
+                              <img src="${UserInfo.ImageURL.String}" alt="">
                             </div>
                             <div class="yourCommentContent" >
                                 <input  placeholder="add your comment" type="commentValue">

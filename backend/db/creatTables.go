@@ -17,6 +17,7 @@ func CreatTables(db *sql.DB) {
     LastName TEXT NOT NULL,
     Email TEXT NOT NULL UNIQUE,
     Password TEXT NOT NULL,
+    ProfileURL TEXT,
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );`)
 	if err != nil {

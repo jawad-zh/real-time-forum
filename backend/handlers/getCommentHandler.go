@@ -14,13 +14,13 @@ func GetCommentHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("method not allowed")
 		return
 	}
-	PostID := r.URL.Query().Get("PostID")
-	id, err := strconv.Atoi(PostID)
+	id := r.URL.Query().Get("PostID")
+	PostID, err := strconv.Atoi(id)
 	if err != nil {
 		fmt.Println("Atoi Error:", err)
 		return
 	}
-	data, err := repos.GetComments(id)
+	data, err := repos.GetComments(PostID)
 	if err != nil {
 		fmt.Println("getPost err",err)
 		return

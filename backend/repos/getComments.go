@@ -11,7 +11,15 @@ func GetComments(PostID int) (*[]models.Comments,error){
 	
 	var allComment []models.Comments
 	Rows,err:= db.DataBase.Query(`
-	SELECT UserID,Content FROM Comments WHERE PostID = ?
+	SELECT
+    Comments.UserID,
+    Comments.Content,
+    Users.ProfileURL
+FROM Comments
+INNER JOIN Users
+    ON Comments.UserID = Users.UserID   -- who wrote the comment
+WHERE Comments.PostID = ?
+
 	`,PostID)
 	if err != nil{
 		fmt.Println("select comment error",err)
@@ -19,7 +27,7 @@ func GetComments(PostID int) (*[]models.Comments,error){
 	}
 	for Rows.Next(){
 		var comment models.Comments
-		err:=Rows.Scan(&comment.UserID,&comment.Content)
+		err:=Rows.Scan(&comment.UserID,&comment.Content,&comment.UserProfile)
 		if err != nil && err!= sql.ErrNoRows{
 			fmt.Println("comment scan error",err)
 			return nil ,err

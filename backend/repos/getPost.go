@@ -26,6 +26,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Posts.CreatedAt,
 				Posts.ImageURL,
 				Users.Nickname,
+				Users.ProfileURL,
 				Categories.CategoryName,
 				CASE WHEN PostLike.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsLiked,
 				CASE WHEN PostSave.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsSaved
@@ -47,6 +48,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Posts.CreatedAt,
 				Posts.ImageURL,
 				Users.Nickname,
+				Users.ProfileURL,
 				Categories.CategoryName
 			FROM Posts
 			INNER JOIN Users ON Posts.UserID = Users.UserID
@@ -67,6 +69,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Posts.CreatedAt,
 				Posts.ImageURL,
 				Users.Nickname,
+				Users.ProfileURL
 				Categories.CategoryName
 			FROM Posts
 			INNER JOIN Users ON Posts.UserID = Users.UserID
@@ -87,6 +90,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Posts.CreatedAt,
 				Posts.ImageURL,
 				Users.Nickname,
+				Users.ProfileURL,
 				Categories.CategoryName,
 				CASE WHEN PostLike.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsLiked,
 				CASE WHEN PostSave.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsSaved
@@ -121,17 +125,18 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 	for rows.Next() {
 		var postID int
 		var title, content, createdAt, nickname, categoryName ,imageURL string
+		var ProfileURL sql.NullString
 		var isLiked, isSaved int
 
 		switch category {
 		case "like", "save":
-			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname, &categoryName); err != nil {
+			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname,&ProfileURL ,&categoryName); err != nil {
 				log.Println("Scan error:", err)
 				continue
 			}
 			isLiked, isSaved = 0, 0
 		default:
-			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname, &categoryName, &isLiked, &isSaved); err != nil {
+			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname,&ProfileURL ,&categoryName, &isLiked, &isSaved); err != nil {
 				log.Println("Scan error:", err)
 				continue
 			}
@@ -144,6 +149,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Content:    content,
 				ImageURL: imageURL,
 				Nickname:   nickname,
+				ProfileURL: ProfileURL,
 				Categories: []string{},
 				Isliked:    isLiked,
 				IsSaved:    isSaved,

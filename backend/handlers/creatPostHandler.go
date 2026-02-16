@@ -37,7 +37,7 @@ func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 		CreatPostResponse.Message = "no session found"
 		CreatPostResponse.Status = "failed"
 		w.Header().Set("Type-Content", "application/json")
-		json.NewEncoder(w).Encode(&post)
+		json.NewEncoder(w).Encode(&CreatPostResponse)
 		return
 	}
 	err = os.MkdirAll("frontend/uploads", os.ModePerm)

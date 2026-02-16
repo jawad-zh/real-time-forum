@@ -10,7 +10,7 @@ export async function setHomePage(Category) {
     }
     // need to check
     var UserInfo = await getUserInfo()
-    console.log(UserInfo);
+    console.log('UserInfo',UserInfo.ImageURL.String);
     
     document.body.innerHTML = `
     <div id="appCountainer">
@@ -27,7 +27,7 @@ export async function setHomePage(Category) {
             </div>
             <div id="profile">
                 <div id="navBarImage">
-                    <img src="frontend/state/images/icones/profile.jpeg" alt="">
+                    <img id="navBarImageimg" src="${UserInfo.ImageURL.String}" alt="">
                 </div>
                  <i id="logoutIcone" class="fa-solid fa-right-from-bracket"></i>
             </div>
@@ -46,15 +46,18 @@ export async function setHomePage(Category) {
                         </div>
                         <div id="informationImage" >
 
-                            <img  id="ProfilInforamtionImage" src="frontend/state/images/icones/profile.jpeg" alt="">
+                            <img  id="ProfilInforamtionImage" src="${UserInfo.ImageURL.String}" alt="">
                         </div>
                          <div id="howMuchSaves" ><p id="saves">saves</p>
                         <p id="savesNumber" >${UserInfo.saves}</p>
                         </div>
                     </div>
                           <div id="informationName" >
-                        <p id="profileNickname" >${UserInfo.Nickname}</p>
+                        <p id="profileNickname" >@${UserInfo.Nickname}</p>
                         <p id="profileName" >${UserInfo.FirstName} ${UserInfo.LastName}</p>
+                    </div>
+                    <div id="addPrifileImage" >
+                        add your Profile
                     </div>
                 </div>
                 <div id="categories">
@@ -802,14 +805,15 @@ export async function setHomePage(Category) {
         if (data[i].IsSaved === 1) {
             saved = 'saved'
         }
-
+        console.log('----------',UserInfo.ProfileURL);
+        var Profile = data[i].ProfileURL.String ? data[i].ProfileURL.String : '' 
         var post = document.createElement('div')
         post.classList.add('PostsCountainer')
         post.dataset.PostID = data[i].PostID
         post.innerHTML = `
     <div id="profilePost">
                         <div id="profileImage">
-                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
+                            <img src="${Profile}" alt="">
                         </div>
                         <div id="NameTitlePost">
                             <p id="name">${data[i].Nickname}</p>

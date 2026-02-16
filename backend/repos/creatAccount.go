@@ -26,6 +26,8 @@ func CreatAccount(user *models.Users) (bool, string) {
 			return false ,"email already used"
 		}else if strings.Contains(err.Error(),"UNIQUE constraint failed: Users.Nickname"){
 			return false , "nickname already used"
+		}else{
+			fmt.Println("Error",err)
 		}
 		return false , "Error"
 		// other DB errors

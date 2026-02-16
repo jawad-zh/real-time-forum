@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"database/sql"
+	"time"
+)
 
 type Users struct {
 	UserID    int
@@ -14,6 +17,7 @@ type Users struct {
 	CreatedAt time.Time `json:"CreatedAt"`
 	Likes int `json:"Likes"`
 	Saves int `json:"Saves"`
+	ProfileURL sql.NullString `json:"ProfileURL"`
 
 }
 type Session struct {
@@ -31,6 +35,7 @@ type Posts struct {
 	ImageURL string `json:"ImageURL"`
 	CreatedAt string `json:"CreatedAt"`
 	Nickname string `json:"Nickname"`
+	ProfileURL sql.NullString `json:"ProfileURL"`
 	Categories []string `json:"Categories"`
 	Isliked int `json:"Isliked"`
 	IsSaved int `json:"IsSaved"`
@@ -50,6 +55,7 @@ type Comments struct {
 	UserID   int `json:"UserID"`
 	Content   string `json:"Content"`
 	CreatedAt string `json:"CreatedAt"`
+	UserProfile sql.NullString `json:"UserProfile"`
 }
 type CommentInteractions struct {
 	UserId     int `json:"UserId"`

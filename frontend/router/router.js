@@ -15,6 +15,10 @@ import { creatComment } from "/frontend/views/creatComment.js"
 import { checkCreatPost} from "/frontend/services/checkCreatPost.js"
 import { checkCreatPostRespons } from "../views/checkFrontResponse.js";
 import { checkComment } from "../services/checkComment.js";
+import { setImageProfilePage } from "/frontend/views/setImageProfilePage.js"
+import { imageViewer } from "/frontend/views/imageviewer.js"
+import {addImageBackend} from "/frontend/services/addImageBackend.js"
+import { addImage } from "../views/addImage.js";
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -35,6 +39,8 @@ async function router() {
             setRegister()
         } else if (e.target.id === 'registerButton') {
             let data = await registerCheck(e)
+            console.log('data:',data);
+            
             if (data.status === 'success') {
                 setTimeout(() => {
                     setLoginHtml()
@@ -50,6 +56,7 @@ async function router() {
         } else if (e.target.id === 'creatPostIcone') {
             setCreatPost()
         } else if (e.target.id === 'cancelCreatPost') {
+            // need to handle don't call main
             setHomePage('all')
         } else if (e.target.id === 'logoutIcone') {
             var ok = logout()
@@ -116,6 +123,17 @@ async function router() {
                 // make action
             }
            
+        }else if ((e.target.id === 'addPrifileImage') || (e.target.id === 'ignoreImageProfile')){
+            console.log(typeof(e.target.id));
+            
+            setImageProfilePage(e.target.id)
+        }else if (e.target.id === 'addProfileIcone' || e.target.id ==='addProfileIconeCountainer'){
+            imageViewer()
+        }else if (e.target.id === 'addImageProfile'){
+            var res = await addImageBackend()
+            if (res.statue === 'success'){
+                addImage()
+            }
         }
 
     })
