@@ -2,8 +2,9 @@ package services
 
 import (
 	"regexp"
-	"fmt"
+
 	"golang/backend/models"
+	"golang/backend/repos"
 )
 
 func RegisterChecker(user *models.Users) (bool, string) {
@@ -11,7 +12,7 @@ func RegisterChecker(user *models.Users) (bool, string) {
 	speacialCharacterRegex := regexp.MustCompile(`[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]`)
 	// emailRegex := regexp.MustCompile(`.+@[a-zA-z]+\.[a-zA-Z]+`)
 	// notNumbersRegex := regexp.MustCompile(`\D`)
-	NumbersRegex  := regexp.MustCompile(`\d`)
+	NumbersRegex := regexp.MustCompile(`\d`)
 	lowerCaseRegex := regexp.MustCompile(`[a-z]`)
 	upperCaseRegex := regexp.MustCompile(`[A-Z]`)
 	if len(user.Nickname) <= 2 {
@@ -70,6 +71,10 @@ func RegisterChecker(user *models.Users) (bool, string) {
 	} else if len(user.Password) == 0 {
 		return false, "Password is required (backend) "
 	}
-	fmt.Print("salka")
-	return true, ""
+
+	ok, creatMessage := repos.CreatAccount(user)
+	if ok {
+		return true, "register successful"
+	}
+	return false, creatMessage
 }

@@ -27,10 +27,9 @@ func CreatAccount(user *models.Users) (bool, string) {
 		}else if strings.Contains(err.Error(),"UNIQUE constraint failed: Users.Nickname"){
 			return false , "nickname already used"
 		}else{
-			fmt.Println("Error",err)
+			return false , "register failed try later"
 		}
-		return false , "Error"
-		// other DB errors
+		
 	}
 	return true, "success"
 }

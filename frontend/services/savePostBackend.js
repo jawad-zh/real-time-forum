@@ -1,5 +1,4 @@
 export async function savePostsBackend(postID){
-    console.log('save icone type',typeof(postID),'post id :',postID);
     var post = {
         "postID" : Number(postID)
     }
@@ -11,5 +10,7 @@ export async function savePostsBackend(postID){
         body: JSON.stringify(post)
     })
    var data = await res.json()
+   console.log('data----------------------------',data);
+   
     return data
 }

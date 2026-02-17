@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"golang/backend/repos"
+	"golang/backend/services"
 )
 
 type SaveJsonFormat struct {
@@ -19,23 +19,15 @@ type SaveHandlerResponseFormat struct {
 func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 	var postID SaveJsonFormat
 	var saveHandlerResponse SaveHandlerResponseFormat
-	err, session := repos.CheckSession(r)
-	if err != nil {
-		fmt.Println("no session")
-		saveHandlerResponse.Message = "no session"
-		saveHandlerResponse.Statue = "failed"
-		json.NewEncoder(w).Encode(&saveHandlerResponse)
-		return
-	}
-	err = json.NewDecoder(r.Body).Decode(&postID)
+	err := json.NewDecoder(r.Body).Decode(&postID)
 	if err != nil {
 		fmt.Println("Error:", err)
-		saveHandlerResponse.Message = "sever error"
+		saveHandlerResponse.Message = "save post failed try later"
 		saveHandlerResponse.Statue = "failed"
 		json.NewEncoder(w).Encode(&saveHandlerResponse)
 		return
 	}
-	err, message := repos.SavePost(postID.ID, session.UserID)
+	err, message := services.SavePostService(r, postID.ID)
 	if err != nil {
 		saveHandlerResponse.Message = message
 		saveHandlerResponse.Statue = "failed"
@@ -44,5 +36,6 @@ func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	saveHandlerResponse.Message = message
 	saveHandlerResponse.Statue = "success"
+	fmt.Println("saveResult",saveHandlerResponse)
 	json.NewEncoder(w).Encode(&saveHandlerResponse)
 }

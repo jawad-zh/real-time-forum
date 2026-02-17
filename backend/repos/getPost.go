@@ -10,8 +10,8 @@ import (
 	"golang/backend/models"
 )
 
-func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
-	_, session := CheckSession(r)
+func GetPosts(category string, r *http.Request ,session *models.Session ) (*[]models.Posts, error) {
+	
 
 	var rows *sql.Rows
 	var err error

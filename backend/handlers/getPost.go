@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"golang/backend/repos"
+	"golang/backend/services"
 )
 
 func GetPostsHandler(w http.ResponseWriter, r *http.Request) {
@@ -12,12 +12,7 @@ func GetPostsHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
 	}
-	category := r.URL.Query().Get("category")
-	posts, err := repos.GetPosts(category, r)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
+	_, posts := services.GetPosts(r)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(&posts)
 }

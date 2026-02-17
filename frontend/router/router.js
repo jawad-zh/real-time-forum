@@ -94,10 +94,10 @@ async function router() {
             setHomePage('like')
         }else if(e.target.id === 'saveIconeFilter'){
             setHomePage('save')
-        }else if (e.target.id === 'likeIcone'){  
+        }else if (e.target.id === 'likeIcone'){              
             var post = await e.target.closest(".PostsCountainer")  
             var icone = e.target
-           var data = await LikeBackend(post.dataset.PostID)           
+           var data = await LikeBackend(post.dataset.PostID)                      
            if (data.statue === 'success'){
             LikeFrontend(data,icone)
            }
@@ -105,7 +105,10 @@ async function router() {
             var post = await e.target.closest(".PostsCountainer")  
             var icone = e.target
             var data = await savePostsBackend(post.dataset.PostID)
-            if (data.statue === 'success'){
+            
+            if (data.statue === 'success'){  
+                console.log('all right');
+                              
                 savePostFront(data,icone)
             }
         }else if (e.target.id === 'commentIcone'){
