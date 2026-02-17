@@ -1,3 +1,5 @@
+import { TimeAgo } from "/frontend/services/timeAgo.js"
+
 export async function creatPost(e) {
     e.preventDefault()
 
@@ -43,12 +45,17 @@ export async function creatPost(e) {
         body: postInformation
     })
 
-    
-    var data = await res.json()
-    console.log('data*------------------------- ', data);
+    if (res){
+        var data = await res.json()
+    }
     var tempURL =''
+    var Profile = ''
+    var time = TimeAgo(data.CreatedAt)
     if (imageFile){
          tempURL = URL.createObjectURL(imageFile);
+    }
+    if(data.ProfileURL.Valid){
+        Profile = data.ProfileURL.String
     }
     if (data.status === 'success') {
         var middle = document.getElementById('middle')
@@ -58,13 +65,13 @@ export async function creatPost(e) {
         post.innerHTML = `
     <div id="profilePost">
                         <div id="profileImage">
-                            <img src="frontend/state/images/icones/profile.jpeg" alt="">
+                            <img src="${Profile}" alt="">
                         </div>
                         <div id="NameTitlePost">
                             <p id="name">${data.Nickname}</p>
                             <div id="titleTime">
                                 <p id="PostTitle">${title}</p>
-                                <p id="time">1h</p>
+                                <p id="time">${time}</p>
                             </div>
 
                         </div>

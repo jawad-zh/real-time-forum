@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -20,6 +21,7 @@ type CreatPostResponseFormat struct {
 	Nickname string `json:"Nickname"`
 	ImageURL string `json:"imageURL"`
 	CreatedAt string `json:"CreatedAt"`
+	ProfileURL sql.NullString `json:"ProfileURL"`
 }
 
 func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
@@ -71,12 +73,15 @@ func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 		post.Content = content
 		post.Categories = categories
 		post.ImageURL = imagePath
-		postId, nickname := repos.CreatPost(&post, session)
-		if postId != 0 {
+		err, data := repos.CreatPost(&post, session)
+		if err == nil {
 			CreatPostResponse.Message = ""
 			CreatPostResponse.Status = "success"
-			CreatPostResponse.PostID = postId
-			CreatPostResponse.Nickname = nickname
+			CreatPostResponse.PostID = data.PostID
+			CreatPostResponse.Nickname = data.Nickname
+			CreatPostResponse.CreatedAt = data.CreatedAt
+			CreatPostResponse.ImageURL = data.ImageURL
+			CreatPostResponse.ProfileURL = data.ProfileURL
 			json.NewEncoder(w).Encode(&CreatPostResponse)
 		}
 	} else if err.Error() == "http: no such file"{
@@ -84,12 +89,15 @@ func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 		post.Title = title
 		post.Content = content
 		post.Categories = categories
-		postId, nickname := repos.CreatPost(&post, session)
-		if postId != 0 {
+		err, data := repos.CreatPost(&post, session)
+		if err==nil{
 			CreatPostResponse.Message = ""
 			CreatPostResponse.Status = "success"
-			CreatPostResponse.PostID = postId
-			CreatPostResponse.Nickname = nickname
+			CreatPostResponse.PostID = data.PostID
+			CreatPostResponse.Nickname = data.Nickname
+			CreatPostResponse.CreatedAt = data.CreatedAt
+			CreatPostResponse.ImageURL = data.ImageURL
+			CreatPostResponse.ProfileURL = data.ProfileURL
 			json.NewEncoder(w).Encode(&CreatPostResponse)
 		}
 	}else{
