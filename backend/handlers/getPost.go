@@ -14,12 +14,10 @@ func GetPostsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	category := r.URL.Query().Get("category")
 	posts, err := repos.GetPosts(category, r)
-	// fmt.Println("posts from posthandler",posts)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	// repos.GetPostsCategorys(&posts)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(&posts)
 }

@@ -6,6 +6,8 @@ export async function getUserInfo() {
         }
     })
     var data = await res.json()
+    console.log('usssssseeeeeeeeeeeer infffffffffffffo',data);
+    
     return data
 
 }

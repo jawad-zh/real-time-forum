@@ -69,7 +69,7 @@ func GetPosts(category string, r *http.Request) (*[]models.Posts, error) {
 				Posts.CreatedAt,
 				Posts.ImageURL,
 				Users.Nickname,
-				Users.ProfileURL
+				Users.ProfileURL,
 				Categories.CategoryName
 			FROM Posts
 			INNER JOIN Users ON Posts.UserID = Users.UserID

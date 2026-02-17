@@ -10,7 +10,6 @@ export async function setHomePage(Category) {
     }
     // need to check
     var UserInfo = await getUserInfo()
-    console.log('UserInfo',UserInfo.ImageURL.String);
     
     document.body.innerHTML = `
     <div id="appCountainer">
@@ -791,7 +790,6 @@ export async function setHomePage(Category) {
             `
     // get Posts 
     var data = await getPost(Category)
-    console.log('++++++++++++++++++++++++++++data',data);
     
     if (data){
          var middle = document.getElementById('middle')
@@ -805,7 +803,6 @@ export async function setHomePage(Category) {
         if (data[i].IsSaved === 1) {
             saved = 'saved'
         }
-        console.log('----------',UserInfo.ProfileURL);
         var createdAt = TimeAgo(data[i].CreatedAt)
         var Profile = data[i].ProfileURL.String ? data[i].ProfileURL.String : '' 
         var post = document.createElement('div')
@@ -846,7 +843,6 @@ export async function setHomePage(Category) {
 
 
         middle.append(post)
-        // console.log('data[i]dd',data[i].Categories);
         for (let j = 0; j < data[i].Categories.length; j++) {
             var PostCategorie = post.querySelector('.Postcategories')
 
@@ -857,21 +853,14 @@ export async function setHomePage(Category) {
             PostCategorie.append(category)
         }
 
-    }
-    console.log('siiiiiiiiiiiiiiiiiiiiiii');
-    console.log('category',category);
-    
+    }    
     if (Category == 'like'){
         var hearts = document.querySelectorAll('.fa-heart')
          for (let heart of hearts){
             heart.classList.add('liked')
         }
-    }else if (Category == 'save'){
-        console.log('siiiiiiiiiiii');
-        
-        var saves = document.querySelectorAll('.fa-bookmark')
-        console.log(saves);
-        
+    }else if (Category == 'save'){        
+        var saves = document.querySelectorAll('.fa-bookmark')        
         for (let save of saves){
             save.classList.add('saved')
         }
