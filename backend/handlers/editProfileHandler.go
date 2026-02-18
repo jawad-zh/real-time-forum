@@ -14,7 +14,6 @@ type EditProfileHandlerResponsFormat struct {
 
 func EditProfileHandler(w http.ResponseWriter, r *http.Request) {
 	var editProfileRespons EditProfileHandlerResponsFormat
-
 	err, message := services.EditProfile(r)
 	if err != nil {
 		editProfileRespons.Statue = "failed"

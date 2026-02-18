@@ -9,8 +9,6 @@ export async function savePostsBackend(postID){
         },
         body: JSON.stringify(post)
     })
-   var data = await res.json()
-   console.log('data----------------------------',data);
-   
+   var data = await res.json()   
     return data
 }

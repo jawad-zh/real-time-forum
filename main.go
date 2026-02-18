@@ -37,6 +37,7 @@ func main() {
 	mux.HandleFunc("/getComment", handlers.GetCommentHandler)
 	mux.HandleFunc("/getUserInfo", handlers.GetUserInfoHandler)
 	mux.HandleFunc("/editProfile", handlers.EditProfileHandler)
+	mux.HandleFunc("/getAllUsers", handlers.EditProfileHandler)
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//

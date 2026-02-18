@@ -5,19 +5,19 @@ import { setHomePage } from "/frontend/views/home.js"
 import { setCreatPost } from "/frontend/views/creatPost.js"
 import { logout } from "/frontend/services/logout.js"
 import { creatPost } from "/frontend/services/creatPost.js"
-import {LikeFrontend}from "/frontend/views/like.js"
-import{LikeBackend} from "/frontend/services/likePost.js"
+import { LikeFrontend } from "/frontend/views/like.js"
+import { LikeBackend } from "/frontend/services/likePost.js"
 import { savePostsBackend } from "../services/savePostBackend.js";
 import { savePostFront } from "../views/save.js";
 import { showComment } from "../views/showComment.js";
-import {commentBackend } from "/frontend/services/commentBackend.js"
+import { commentBackend } from "/frontend/services/commentBackend.js"
 import { creatComment } from "/frontend/views/creatComment.js"
-import { checkCreatPost} from "/frontend/services/checkCreatPost.js"
+import { checkCreatPost } from "/frontend/services/checkCreatPost.js"
 import { checkCreatPostRespons } from "../views/checkFrontResponse.js";
 import { checkComment } from "../services/checkComment.js";
 import { setImageProfilePage } from "/frontend/views/setImageProfilePage.js"
 import { imageViewer } from "/frontend/views/imageviewer.js"
-import {addImageBackend} from "/frontend/services/addImageBackend.js"
+import { addImageBackend } from "/frontend/services/addImageBackend.js"
 import { addImage } from "../views/addImage.js";
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
@@ -39,8 +39,8 @@ async function router() {
             setRegister()
         } else if (e.target.id === 'registerButton') {
             let data = await registerCheck(e)
-            console.log('data:',data);
-            
+            console.log('data:', data);
+
             if (data.status === 'success') {
                 setTimeout(() => {
                     setLoginHtml()
@@ -64,15 +64,15 @@ async function router() {
                 started()
             }
         } else if (e.target.id === 'creatPostButton') {
-           var message =  checkCreatPost()
-           if (message === 'success'){
-            console.log('si');
-            
-            //    checkCreatPostRespons('your post is created','red')
-               creatPost(e)
-           }else{
-            checkCreatPostRespons(message,'red')
-           }
+            var message = checkCreatPost()
+            if (message === 'success') {
+                console.log('si');
+
+                //    checkCreatPostRespons('your post is created','red')
+                creatPost(e)
+            } else {
+                checkCreatPostRespons(message, 'red')
+            }
         } else if (e.target.id === 'homePageIcone') {
             setHomePage('all')
         } else if (e.target.id === 'musicCategory') {
@@ -89,52 +89,52 @@ async function router() {
             setHomePage('recentyl')
         } else if (e.target.id === 'testCategory') {
             setHomePage('test')
-        //---------
-        }else if(e.target.id === 'likeIconeFilter'){
+            //---------
+        } else if (e.target.id === 'likeIconeFilter') {
             setHomePage('like')
-        }else if(e.target.id === 'saveIconeFilter'){
+        } else if (e.target.id === 'saveIconeFilter') {
             setHomePage('save')
-        }else if (e.target.id === 'likeIcone'){              
-            var post = await e.target.closest(".PostsCountainer")  
+        } else if (e.target.id === 'likeIcone') {
+            var post = await e.target.closest(".PostsCountainer")
             var icone = e.target
-           var data = await LikeBackend(post.dataset.PostID)                      
-           if (data.statue === 'success'){
-            LikeFrontend(data,icone)
-           }
-        }else if (e.target.id === 'saveIcone'){
-            var post = await e.target.closest(".PostsCountainer")  
+            var data = await LikeBackend(post.dataset.PostID)
+            if (data.statue === 'success') {
+                LikeFrontend(data, icone)
+            }
+        } else if (e.target.id === 'saveIcone') {
+            var post = await e.target.closest(".PostsCountainer")
             var icone = e.target
             var data = await savePostsBackend(post.dataset.PostID)
-            
-            if (data.statue === 'success'){  
+
+            if (data.statue === 'success') {
                 console.log('all right');
-                              
-                savePostFront(data,icone)
+
+                savePostFront(data, icone)
             }
-        }else if (e.target.id === 'commentIcone'){
-            var post = await e.target.closest(".PostsCountainer")  
+        } else if (e.target.id === 'commentIcone') {
+            var post = await e.target.closest(".PostsCountainer")
             showComment(post.dataset.PostID)
-        }else if (e.target.id === 'IconePostComment'){
-            var post = await e.target.closest(".PostsCountainer")  
+        } else if (e.target.id === 'IconePostComment') {
+            var post = await e.target.closest(".PostsCountainer")
             var res = checkComment(post.dataset.PostID)
-            if (res  === 'success' ){
+            if (res === 'success') {
                 var res = await commentBackend(post.dataset.PostID)
-           if (res.statue === 'success'){
-            creatComment(post.dataset.PostID , res)
-           }
-            }else{
+                if (res.statue === 'success') {
+                    creatComment(post.dataset.PostID, res)
+                }
+            } else {
                 // make action
             }
-           
-        }else if ((e.target.id === 'addPrifileImage') || (e.target.id === 'ignoreImageProfile')){
-            console.log(typeof(e.target.id));
-            
+
+        } else if ((e.target.id === 'addPrifileImage') || (e.target.id === 'ignoreImageProfile')) {
+            console.log(typeof (e.target.id));
+
             setImageProfilePage(e.target.id)
-        }else if (e.target.id === 'addProfileIcone' || e.target.id ==='addProfileIconeCountainer'){
+        } else if (e.target.id === 'addProfileIcone' || e.target.id === 'addProfileIconeCountainer') {
             imageViewer()
-        }else if (e.target.id === 'addImageProfile'){
+        } else if (e.target.id === 'addImageProfile') {
             var res = await addImageBackend()
-            if (res.statue === 'success'){
+            if (res.statue === 'success') {
                 addImage()
             }
         }
