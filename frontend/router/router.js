@@ -19,6 +19,8 @@ import { setImageProfilePage } from "/frontend/views/setImageProfilePage.js"
 import { imageViewer } from "/frontend/views/imageviewer.js"
 import { addImageBackend } from "/frontend/services/addImageBackend.js"
 import { addImage } from "../views/addImage.js";
+import {showMessageCountainer} from "/frontend/views/showMessageCountainer.js"
+import {hideMessageSection} from '/frontend/views/hideMessageSection.js';
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -137,6 +139,13 @@ async function router() {
             if (res.statue === 'success') {
                 addImage()
             }
+        }else if (e.target.id === 'messageCountainer'){
+            var message = await e.target.closest("#messageCountainer")            
+            // console.log('message',message.e.dataset);
+             
+            showMessageCountainer(message.dataset.id)
+        }else if (e.target.id === 'cancenlChatIcone'){
+            hideMessageSection()
         }
 
     })

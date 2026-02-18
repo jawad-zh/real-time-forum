@@ -5,9 +5,7 @@ export async function getUserInfo() {
             "Content-Type":"application/json"
         }
     })
-    var data = await res.json()
-    console.log('usssssseeeeeeeeeeeer infffffffffffffo',data);
-    
+    var data = await res.json()    
     return data
 
 }

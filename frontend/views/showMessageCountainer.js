@@ -1,17 +1,28 @@
-export function showMessageCountainer(){
-    var section = `
-     <div id="imageSectionCountainer" >
+import {ExportedUsers} from "/frontend/views/home.js"
+
+export function showMessageCountainer(UserID){
+    console.log("userID",UserID);
+    console.log("ExportedUsers",ExportedUsers);
+    let UserInfo = {}
+    for (let user of ExportedUsers){        
+        if (user.UserID == UserID){            
+            UserInfo = {...user}
+            break
+        }
+    }
+
+ var section = `
         <div id="barSection" >
             <div id="image" >
-                <img src="" alt="">
-                aa
+                <img src="${UserInfo.ProfileURL.String}" alt="">
+               
             </div>
             <div id="MessageUserInfo" >
                 <div id="Name" >
-                    jawad zahraoui
+                    ${UserInfo.Nickname}
                 </div>
                 <div id="SubName" >
-                    aa
+                    online
                 </div>
             </div>
             <div id="cancelButton" >
@@ -37,6 +48,16 @@ export function showMessageCountainer(){
                 <i id="sendMessageIcone" class="fa-regular fa-paper-plane"></i>
             </div>
         </div>
-    </div>
+    
     `
+
+    const appCountainer = document.getElementById('appCountainer')
+    const oldMessageSection = document.getElementById('imageSectionCountainer')
+    if (oldMessageSection){
+        oldMessageSection.remove()
+    }
+    const messageSection = document.createElement('div')
+    messageSection.setAttribute('id','imageSectionCountainer')
+    messageSection.innerHTML = section
+    appCountainer.append(messageSection)
 }

@@ -2,6 +2,7 @@ import { getUserInfo } from "/frontend/services/getUserInfo.js"
 import { getPost } from "/frontend/services/getPost.js"
 import { TimeAgo } from "../services/timeAgo.js"
 import {getAllUser}  from "/frontend/services/getAllUsers.js"
+export let ExportedUsers = []
 export async function setHomePage(Category) {
     let bodyChildren = document.body.children
     if (bodyChildren) {
@@ -10,8 +11,7 @@ export async function setHomePage(Category) {
         }
     }
     // need to check
-    var UserInfo = await getUserInfo()
-    
+    let UserInfo = await getUserInfo()
     document.body.innerHTML = `
     <div id="appCountainer">
         <div id="navBar">
@@ -114,13 +114,13 @@ export async function setHomePage(Category) {
 
             `
     // get Posts 
-    var data = await getPost(Category)
+    let data = await getPost(Category)
     
     if (data){
-         var middle = document.getElementById('middle')
+         let middle = document.getElementById('middle')
     for (let i = 0; i < data.length; i++) {
-        var liked = ''
-        var saved = ''
+        let liked = ''
+        let saved = ''
         if (data[i].Isliked === 1) {
             liked = 'liked'
         }
@@ -128,9 +128,9 @@ export async function setHomePage(Category) {
         if (data[i].IsSaved === 1) {
             saved = 'saved'
         }
-        var createdAt = TimeAgo(data[i].CreatedAt)
-        var Profile = data[i].ProfileURL.String ? data[i].ProfileURL.String : '' 
-        var post = document.createElement('div')
+        let createdAt = TimeAgo(data[i].CreatedAt)
+        let Profile = data[i].ProfileURL.String ? data[i].ProfileURL.String : '' 
+        let post = document.createElement('div')
         post.classList.add('PostsCountainer')
         post.dataset.PostID = data[i].PostID
         post.innerHTML = `
@@ -169,9 +169,9 @@ export async function setHomePage(Category) {
 
         middle.append(post)
         for (let j = 0; j < data[i].Categories.length; j++) {
-            var PostCategorie = post.querySelector('.Postcategories')
+            let PostCategorie = post.querySelector('.Postcategories')
 
-            var category = document.createElement('div')
+            let category = document.createElement('div')
             category.classList.add('Postcategorie')
             category.innerHTML = data[i].Categories[j]
 
@@ -180,12 +180,12 @@ export async function setHomePage(Category) {
 
     }    
     if (Category == 'like'){
-        var hearts = document.querySelectorAll('.fa-heart')
+        let hearts = document.querySelectorAll('.fa-heart')
          for (let heart of hearts){
             heart.classList.add('liked')
         }
     }else if (Category == 'save'){        
-        var saves = document.querySelectorAll('.fa-bookmark')        
+        let saves = document.querySelectorAll('.fa-bookmark')        
         for (let save of saves){
             save.classList.add('saved')
         }
@@ -193,23 +193,34 @@ export async function setHomePage(Category) {
     }
 
     // get All Users
-    var users = await getAllUser()
-    console.log('useeeeeeeeeeeeeerrrrrrrrsssssssss',users);
+     let users = await getAllUser()
+    console.log('type of users',typeof(users),'users',users);
     
-      const messageCountainer = `
-        <div id="messageCountainer" >
-                    <div id="messageProfile" >
-                        <img src="frontend/state/images/icones/profile.jpeg" alt="">
-                    </div>
-                    <div id="messageName" >
-                        jawad zahraoui
-                    </div>
-                    <div id="notificationAndTime" >
-                        <p>11 min</p>
-                        <div id="messageNotification" ></div>
-                    </div>
-
-                </div>
-    `
+    if (users.statue==='success'){
+        const messagesSection = document.getElementById('rightSide')
+        for (let user of users.Data){
+            ExportedUsers.push(user)
+            if (user.Nickname === UserInfo.Nickname){
+                continue
+            }
+            let messageCountainer = document.createElement('div')
+            messageCountainer.setAttribute('id','messageCountainer')
+            messageCountainer.dataset.id = `${user.UserID}`
+            messageCountainer.innerHTML = `
+                    
+                      <div id="messageProfile" >
+                          <img src="${user.ProfileURL.String}" alt="">
+                      </div>
+                      <div id="messageName" >
+                          ${user.Nickname}
+                      </div>
+                      <div id="notificationAndTime" >
+                          <p>11 min</p>
+                          <div id="messageNotification" ></div>
+                      </div>
+      `
+      messagesSection.append(messageCountainer)
+        }
+    }
    
 }
