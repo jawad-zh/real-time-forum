@@ -2,8 +2,12 @@ import {UserInfo} from '/frontend/views/home.js';
 export async function sendMessagBackend() {
 
     const messageValue = document.getElementById('MessageContentValue').value
-    const receiverID = document.getElementById('imageSectionCountainer').dataset.ID
+    const receiverID = document.getElementById('imageSectionCountainer').dataset.id
+    console.log('reciverID from send message:',receiverID);
+    
     const senderID = UserInfo.UserID
+    console.log('message',messageValue,);
+    
     // const msg = { sender_id: senderID, receiver_id: receiverID, content };
     // window.socket.send(JSON.stringify(msg))
     let message ={

@@ -7,9 +7,8 @@ import (
 )
 
 func GetMessagesRepos(receiverID int , senderID int)(error,*[]models.PrivateMessage){
+	fmt.Println("reciever from repost",receiverID)
 	var messages []models.PrivateMessage
-	fmt.Println("Receiver:",receiverID)
-	fmt.Println("senderID:",senderID)
 	rows, err := db.DataBase.Query(`
     SELECT SenderId, Content 
     FROM PrivateMessages 
@@ -30,6 +29,8 @@ func GetMessagesRepos(receiverID int , senderID int)(error,*[]models.PrivateMess
 			return err , nil
 		}
 		messages = append(messages, message)
+		
 	}
+	fmt.Println("messages:::::::",messages)
 	return nil , &messages
 }

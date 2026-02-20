@@ -16,6 +16,7 @@ func SendMessageHandler(w http.ResponseWriter , r *http.Request){
 	}
 	var message models.PrivateMessage
 	err:=json.NewDecoder(r.Body).Decode(&message)
+	fmt.Println("message",message)
 	if err != nil {
 		fmt.Println("Decod err:",err)
 		return

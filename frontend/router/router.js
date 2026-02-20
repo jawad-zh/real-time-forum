@@ -148,6 +148,8 @@ async function router() {
         }else if (e.target.id === 'cancenlChatIcone'){
             hideMessageSection()
         }else if (e.target.id === 'sendMessageIcone'){
+            console.log('sii');
+            
             sendMessagBackend()
         }
 

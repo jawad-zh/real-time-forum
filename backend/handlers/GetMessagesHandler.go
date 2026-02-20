@@ -22,9 +22,9 @@ func GetMessagesHandler( w http.ResponseWriter , r *http.Request ){
 	}
 
 	id:=r.URL.Query().Get("receiverID")
-	fmt.Println("id string:",id)
+	
 	receiverID,err:= strconv.Atoi(id)
-	fmt.Println("id int:",receiverID)
+	fmt.Println("receiver form handler:",receiverID)
 
 	if err != nil{
 		fmt.Println("Atoi Error:",err)
