@@ -1,25 +1,27 @@
 import {ExportedUsers} from "/frontend/views/home.js"
-
-export function showMessageCountainer(UserID){
-    console.log("userID",UserID);
-    console.log("ExportedUsers",ExportedUsers);
-    let UserInfo = {}
+import {getMessages} from '/frontend/services/getMessages.js';
+import { UserInfo } from "./home.js";
+export async function showMessageCountainer(UserID){
+    let RecieverUser = {}
     for (let user of ExportedUsers){        
         if (user.UserID == UserID){            
-            UserInfo = {...user}
+            RecieverUser = {...user}
             break
         }
     }
+    console.log('User',UserID);
+    console.log('RecieverUser',RecieverUser.UserID);
+    
 
  var section = `
         <div id="barSection" >
             <div id="image" >
-                <img src="${UserInfo.ProfileURL.String}" alt="">
+                <img src="${RecieverUser.ProfileURL.String}" alt="">
                
             </div>
             <div id="MessageUserInfo" >
                 <div id="Name" >
-                    ${UserInfo.Nickname}
+                    ${RecieverUser.Nickname}
                 </div>
                 <div id="SubName" >
                     online
@@ -30,19 +32,11 @@ export function showMessageCountainer(UserID){
             </div>
         </div>
         <div id="messagesSection" >
-            <div id="messagCountainer" class="receiver" >
-            <div id="ImageMessage" ></div>
-            <div id="MessageAndTime" >
-                <div id="MessageContent" >
-
-                </div>
-                <div id="MessageTime" ></div>
-            </div>
-            </div>
+           
         </div>
         <div id="inputMessagesSection" >
             <div id="MessageContentInput" >
-                <input  placeholder="send message" type="text">
+                <input id="MessageContentValue" placeholder="send message" type="text">
             </div>
             <div id="sendMessageIconeCountainer" >
                 <i id="sendMessageIcone" class="fa-regular fa-paper-plane"></i>
@@ -50,14 +44,58 @@ export function showMessageCountainer(UserID){
         </div>
     
     `
+    console.log('usssssssssssserIIIIIInfo',UserInfo);
+    
 
-    const appCountainer = document.getElementById('appCountainer')
+    const messagesSection = document.getElementById('messagesSection')
     const oldMessageSection = document.getElementById('imageSectionCountainer')
     if (oldMessageSection){
         oldMessageSection.remove()
     }
     const messageSection = document.createElement('div')
     messageSection.setAttribute('id','imageSectionCountainer')
+    messageSection.dataset.ID = UserID
     messageSection.innerHTML = section
-    appCountainer.append(messageSection)
+    var messages = await getMessages(UserID)
+    console.log('messsssssssageeees from showing messages',messages);
+    if (messages){
+        for (let message of messages){
+                var sectionM = `
+     
+            <div id="ImageMessage" ></div>
+            <div id="MessageAndTime" >
+                <div id="MessageContent" >
+                ${message.messageContent}
+                </div>
+                <div id="MessageTime" ></div>
+            </div>
+          
+    `
+    var messagCountainer = document.createElement('div')
+    messagCountainer.setAttribute('id','messagCountainer')
+    messagCountainer.innerHTML = sectionM
+    if (UserInfo.UserID == message.senderID){
+        if (messagCountainer.classList.contains('receiver')){
+            messagCountainer.classList.remove('reicever')
+        }
+        messagCountainer.classList.add('sender')
+    }else{
+         if (messagCountainer.classList.contains('sender')){
+            messagCountainer.classList.remove('sender')
+        }
+        messagCountainer.classList.add('reicever')
+    }
+    // if (message.senderID === ){
+
+    // }
+    if (messageSection){
+
+        messagesSection.append(messagCountainer)
+    }
+        }
+    }else{
+
+    }
+
+   
 }

@@ -3,6 +3,7 @@ import { getPost } from "/frontend/services/getPost.js"
 import { TimeAgo } from "../services/timeAgo.js"
 import {getAllUser}  from "/frontend/services/getAllUsers.js"
 export let ExportedUsers = []
+export let UserInfo = {}
 export async function setHomePage(Category) {
     let bodyChildren = document.body.children
     if (bodyChildren) {
@@ -11,7 +12,8 @@ export async function setHomePage(Category) {
         }
     }
     // need to check
-    let UserInfo = await getUserInfo()
+     UserInfo = await getUserInfo()
+     
     document.body.innerHTML = `
     <div id="appCountainer">
         <div id="navBar">

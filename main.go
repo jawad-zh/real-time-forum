@@ -38,6 +38,9 @@ func main() {
 	mux.HandleFunc("/getUserInfo", handlers.GetUserInfoHandler)
 	mux.HandleFunc("/editProfile", handlers.EditProfileHandler)
 	mux.HandleFunc("/getAllUsers", handlers.GetAllUsersHandler)
+	mux.HandleFunc("/sendMessage", handlers.SendMessageHandler)
+	mux.HandleFunc("/getMessages", handlers.GetMessagesHandler)
+	mux.HandleFunc("/ws", handlers.WebSocketHandler)
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//

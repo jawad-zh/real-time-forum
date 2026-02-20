@@ -44,7 +44,7 @@ export async function creatPost(e) {
         method: "POST",
         body: postInformation
     })
-
+    // need to be on views
     if (res){
         var data = await res.json()
     }

@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"golang/backend/models"
@@ -19,7 +18,6 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	var registerRespons registerResponsFormat
 	json.NewDecoder(r.Body).Decode(&user)
 	ok, message := services.RegisterChecker(&user)
-	fmt.Println("-----------------------")
 	if !ok {
 		registerRespons.Message = message
 		registerRespons.Status = "failed"

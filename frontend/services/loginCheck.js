@@ -1,5 +1,5 @@
 import { checkLoginResponse } from "../views/checkFrontResponse.js"
-
+import {StartWebsocketConection} from "/frontend/websocket/startConection.js"
 export async function loginCheck(e) {
     e.preventDefault()
     const emailOrNicknameInput = (document.getElementById('loginEmailInput').value).trim()
@@ -69,6 +69,9 @@ export async function loginCheck(e) {
          checkLoginResponse(data.message,'red')
         } 
         console.log(data);
+        if (data.status === 'success'){
+          StartWebsocketConection()
+        }
          
     return data
     

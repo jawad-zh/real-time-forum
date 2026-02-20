@@ -169,6 +169,5 @@ func GetPosts(category string, r *http.Request ,session *models.Session ) (*[]mo
 	for _, id := range order {
 		posts = append(posts, *postsMap[id])
 	}
-	fmt.Println("----------------",posts[0])
 	return &posts, nil
 }

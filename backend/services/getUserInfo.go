@@ -16,6 +16,7 @@ type getUserInfoHandlerFormat struct {
 	Likes     int            `json:"likes"`
 	Saves     int            `json:"saves"`
 	ImageURL  sql.NullString `json:"ImageURL"`
+	UserID int `json:"UserID"`
 }
 
 func GetUserInfo(r *http.Request)(error,*getUserInfoHandlerFormat) {
@@ -33,5 +34,6 @@ func GetUserInfo(r *http.Request)(error,*getUserInfoHandlerFormat) {
 	getUserInfoResponse.Likes = data.Likes
 	getUserInfoResponse.Saves = data.Saves
 	getUserInfoResponse.ImageURL = data.ProfileURL
+	getUserInfoResponse.UserID = data.UserID
 	return nil,&getUserInfoResponse
 }

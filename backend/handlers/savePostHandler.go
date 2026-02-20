@@ -36,6 +36,5 @@ func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	saveHandlerResponse.Message = message
 	saveHandlerResponse.Statue = "success"
-	fmt.Println("saveResult",saveHandlerResponse)
 	json.NewEncoder(w).Encode(&saveHandlerResponse)
 }

@@ -16,6 +16,7 @@ func GetUserInfo(r *http.Request)(error,*models.Users){
 	}
 	err=db.DataBase.QueryRow(`
 	SELECT 
+	Users.UserID,
     Users.Nickname,
     Users.FirstName,
     Users.LastName,
@@ -25,7 +26,7 @@ func GetUserInfo(r *http.Request)(error,*models.Users){
 FROM Users 
 WHERE UserID = ?;
 
-	`,session.UserID).Scan(&user.Nickname,&user.FirstName,&user.LastName,&user.ProfileURL,&user.Likes,&user.Saves)
+	`,session.UserID).Scan(&user.UserID,&user.Nickname,&user.FirstName,&user.LastName,&user.ProfileURL,&user.Likes,&user.Saves)
 	if err != nil{
 		fmt.Println("Selct UserInfo error:",err)
 		return err,nil

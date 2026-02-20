@@ -24,6 +24,6 @@ func GetAllUsesRepo()(error,*[]models.Users){
 		}
 		users = append(users, user)
 	}
-	fmt.Println("------------------------------------****************",users)
+
 	return nil, &users
 }

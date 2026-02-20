@@ -64,12 +64,13 @@ type CommentInteractions struct {
 }
 type PrivateMessage struct {
 	MessageID  int `json:"MessageID"`
-	SenderID   int  `json:"SenderID"`
-	ReceiverID int `json:"ReceiverID"`
-	Content    string `json:"Content"`
+	SenderID   int  `json:"senderID"`
+	ReceiverID int `json:"receiverID"`
+	Content    string `json:"messageContent"`
 	CreatAt    string `json:"CreatAt"`
 	IsREad     bool `json:"IsREad"`
 }
+
 type Login struct {
 	NicknameOrEmailInput string `json:"NicknameOrEmailInput"`
 	EmailOrNickname      string `json:"EmailOrNickname"`

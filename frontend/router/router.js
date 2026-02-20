@@ -21,6 +21,7 @@ import { addImageBackend } from "/frontend/services/addImageBackend.js"
 import { addImage } from "../views/addImage.js";
 import {showMessageCountainer} from "/frontend/views/showMessageCountainer.js"
 import {hideMessageSection} from '/frontend/views/hideMessageSection.js';
+import {sendMessagBackend} from '/frontend/services/sendMessageBackend.js'
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -146,6 +147,8 @@ async function router() {
             showMessageCountainer(message.dataset.id)
         }else if (e.target.id === 'cancenlChatIcone'){
             hideMessageSection()
+        }else if (e.target.id === 'sendMessageIcone'){
+            sendMessagBackend()
         }
 
     })

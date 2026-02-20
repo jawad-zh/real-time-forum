@@ -21,4 +21,3 @@ export function TimeAgo(createdAt){
     const months = Math.floor(days / 30)
     return months + "mo"
 }
-//box-sizing: border-box;

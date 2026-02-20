@@ -56,6 +56,6 @@ WHERE Posts.PostID = ?;
 	fmt.Println("Scan Error:",err)
  }
 	Post.PostID = LastPostId
-	fmt.Println("Pooooooooooosssssssssssssst", Post)
+
 	return nil, &Post
 }
