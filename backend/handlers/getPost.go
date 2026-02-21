@@ -12,6 +12,7 @@ func GetPostsHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
 	}
+
 	_, posts := services.GetPosts(r)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(&posts)

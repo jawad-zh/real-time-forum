@@ -8,14 +8,18 @@ import (
 	"golang/backend/repos"
 )
 
-func SendeMessageService(r *http.Request, messageInfo *models.PrivateMessage) {
+func SendeMessageService(r *http.Request, messageInfo *models.PrivateMessage)error {
 	// need to check
 	err,_:=repos.CheckSession(r)
 	if err != nil {
 		fmt.Println("Error session",err)
-		return
+		return err
 	}
 	// then isert ...
-	repos.InserMessages(messageInfo)
-
+	err=repos.InserMessages(messageInfo)
+	if err != nil{
+		return err
+	}
+	
+	return nil
 }

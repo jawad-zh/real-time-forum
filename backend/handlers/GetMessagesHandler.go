@@ -11,7 +11,7 @@ import (
 
 type GetMessagesHandlerResponsFormat struct{
 	Statue string `json:"statue"`
-	Messages *[]models.PrivateMessage `json"Messages"`
+	Messages *[]models.PrivateMessage `json:"Messages"`
 }
 
 func GetMessagesHandler( w http.ResponseWriter , r *http.Request ){

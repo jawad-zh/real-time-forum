@@ -7,6 +7,7 @@ import (
 
 	"golang/backend/db"
 	"golang/backend/handlers"
+	"golang/backend/wbs"
 )
 
 func main() {
@@ -16,6 +17,9 @@ func main() {
 	}
 	db.CreatTables(db.DataBase)
 	// server part
+	m := wbs.NewManager()
+	wbs.GlobalManager = &m
+
 	mux := http.NewServeMux()
 
 	fs := http.FileServer(http.Dir("./frontend"))
@@ -40,7 +44,7 @@ func main() {
 	mux.HandleFunc("/getAllUsers", handlers.GetAllUsersHandler)
 	mux.HandleFunc("/sendMessage", handlers.SendMessageHandler)
 	mux.HandleFunc("/getMessages", handlers.GetMessagesHandler)
-	mux.HandleFunc("/ws", handlers.WebSocketHandler)
+	mux.HandleFunc("/ws", wbs.WebSocketHandler)
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//
