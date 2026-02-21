@@ -7,6 +7,7 @@ import (
 
 	"golang/backend/models"
 	"golang/backend/services"
+	"golang/backend/wbs"
 )
 
 func SendMessageHandler(w http.ResponseWriter, r *http.Request) {
@@ -26,4 +27,5 @@ func SendMessageHandler(w http.ResponseWriter, r *http.Request) {
 		// need to do action
 		return
 	}
+	wbs.GlobalManager.SendMessage(message.SenderID,message.ReceiverID,message.Content)
 }

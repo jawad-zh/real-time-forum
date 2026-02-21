@@ -3,8 +3,11 @@ export function StartWebsocketConection(){
        socket.onopen = ()=>{
         console.log("the web socket connection is opned");
        }
-       socket.onmessage = ()=>{
-
+       socket.onmessage = (event)=>{
+        console.log('evneeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet:',event);
+        // console.log('sokcet',socket);
+        
+        
        }
        
 //         socket.onmessage = (event) => {

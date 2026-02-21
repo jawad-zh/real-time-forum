@@ -30,10 +30,8 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	GlobalManager.AddConnection(client)
-	conns := GlobalManager.Clients[client.UserID]
-	for i, c := range conns {
-		fmt.Println("user Number:", i, "have", c, "conection")
-	}
+	conn.WriteJSON("kaaaaaaaayn")
+	
 	for {
 		_, _, err := conn.ReadMessage()
 		if err != nil {
@@ -41,6 +39,7 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
+	
 	defer func() {
 		GlobalManager.RemoveConnection(client)
 		conn.Close()
