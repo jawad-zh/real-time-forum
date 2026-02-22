@@ -212,6 +212,7 @@ export async function setHomePage(Category) {
                     
                       <div id="messageProfile" >
                           <img src="${user.ProfileURL.String}" alt="">
+                           <div id="onlineState" ></div>
                       </div>
                       <div id="messageName" >
                           ${user.Nickname}

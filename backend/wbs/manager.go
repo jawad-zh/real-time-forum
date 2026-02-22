@@ -6,13 +6,14 @@ import (
 	"github.com/gorilla/websocket"
 )
 type Events struct{
-	ContentType string
-	Load        any
+	SenderID int `json:"SenderID"`
+	ReceiverID int `json:"ReceiverID"`
+	ContentType string `json:"ContentType"`
+	Load        any `json:"Load"`
 }
 type Client struct {
 	Conn        *websocket.Conn
 	UserID      int
-	
 }
 
 type Manager struct {

@@ -75,7 +75,7 @@ export async function showMessageCountainer(UserID){
             
         `
         messageToApp.innerHTML = messageTemplate
-        messageCountainer.append(messageToApp)
+        messageCountainer.prepend(messageToApp)
             }
         }
        

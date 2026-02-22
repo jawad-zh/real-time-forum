@@ -22,6 +22,7 @@ import { addImage } from "../views/addImage.js";
 import {showMessageCountainer} from "/frontend/views/showMessageCountainer.js"
 import {hideMessageSection} from '/frontend/views/hideMessageSection.js';
 import {sendMessagBackend} from '/frontend/services/sendMessageBackend.js'
+import {StartWebsocketConection}from '/frontend/websocket/startConection.js'
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -32,6 +33,7 @@ async function router() {
     var data = await res.json()
     if (data.status === 'success') {
         setHomePage('all')
+        StartWebsocketConection()
     } else {
         started()
     }
@@ -42,7 +44,6 @@ async function router() {
             setRegister()
         } else if (e.target.id === 'registerButton') {
             let data = await registerCheck(e)
-            console.log('data:', data);
 
             if (data.status === 'success') {
                 setTimeout(() => {
@@ -69,7 +70,6 @@ async function router() {
         } else if (e.target.id === 'creatPostButton') {
             var message = checkCreatPost()
             if (message === 'success') {
-                console.log('si');
 
                 //    checkCreatPostRespons('your post is created','red')
                 creatPost(e)

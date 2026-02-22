@@ -15,17 +15,17 @@ type loginResponseFormat struct {
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method==http.MethodGet{
-		http.ServeFile(w,r,"frontend/index.html")
+	if r.Method == http.MethodGet {
+		http.ServeFile(w, r, "frontend/index.html")
 	}
 	var loginUser *models.Login
 	var loginResponse loginResponseFormat
 	json.NewDecoder(r.Body).Decode(&loginUser)
 	ok, message, data := services.LoginChecker(loginUser)
 	if ok {
-		err,sessionID := services.CreatSession(data)
+		err, sessionID := services.CreatSession(data)
 		if err != nil {
-			fmt.Println("Error",err)
+			fmt.Println("Error", err)
 			return
 		}
 		http.SetCookie(w, &http.Cookie{
@@ -33,7 +33,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 			Value:    sessionID,
 			Path:     "/",
 			HttpOnly: true,
-			MaxAge:   86400, 
+			MaxAge:   86400,
 		})
 
 		loginResponse.Message = message

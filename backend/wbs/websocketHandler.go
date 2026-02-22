@@ -30,7 +30,7 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	GlobalManager.AddConnection(client)
-	conn.WriteJSON("kaaaaaaaayn")
+	GlobalManager.BrodcastConnection(client)
 	
 	for {
 		_, _, err := conn.ReadMessage()

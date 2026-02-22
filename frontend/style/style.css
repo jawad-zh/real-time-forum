@@ -618,6 +618,14 @@ body {
     background-color: #FFD500;
     border-radius: 20px;
 }
+#onlineState{
+    height: 10px;
+    width: 10px;
+    background-color: rgb(1, 180, 1);
+    position: absolute;
+    border-radius: 50px;
+    transform: translate(23px,-12px);
+}
 #backgroundLeft{
     background-color:#ffd500af;
     width: 100%;
@@ -1068,6 +1076,7 @@ display: none;
     justify-content: space-between;
     border-radius: 15px;
     z-index: 1000;
+   
 }
 #barSection{
     background-color: black;    
@@ -1134,6 +1143,8 @@ display: none;
     height: 75%;
     width: 100%;
     overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
 }
 .sender{
     height: 60px;
@@ -1164,6 +1175,7 @@ display: none;
     border-radius: 10px 10px 10px 0px;
     padding: 10px;
      word-break: break-word;
+     margin : 10px
 }
 .receiver{
     height: 60px;
@@ -1198,4 +1210,5 @@ display: none;
     border-radius: 10px 10px 0px 10px;
     margin-right: 10px;
      word-break: break-word;
+     margin : 10px
 }
