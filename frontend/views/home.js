@@ -4,6 +4,7 @@ import { TimeAgo } from "../services/timeAgo.js"
 import {getAllUser}  from "/frontend/services/getAllUsers.js"
 export let ExportedUsers = []
 export let UserInfo = {}
+export let rightSide = document.getElementById('rightSide')
 export async function setHomePage(Category) {
     let bodyChildren = document.body.children
     if (bodyChildren) {
@@ -208,6 +209,7 @@ export async function setHomePage(Category) {
             let messageCountainer = document.createElement('div')
             messageCountainer.setAttribute('id','messageCountainer')
             messageCountainer.dataset.id = `${user.UserID}`
+            messageCountainer.classList.add('messageCountainer')
             messageCountainer.innerHTML = `
                     
                       <div id="messageProfile" >
