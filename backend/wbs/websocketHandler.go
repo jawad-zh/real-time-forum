@@ -43,5 +43,6 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	defer func() {
 		GlobalManager.RemoveConnection(client)
 		conn.Close()
+		
 	}()
 }

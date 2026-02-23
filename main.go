@@ -45,6 +45,7 @@ func main() {
 	mux.HandleFunc("/sendMessage", handlers.SendMessageHandler)
 	mux.HandleFunc("/getMessages", handlers.GetMessagesHandler)
 	mux.HandleFunc("/ws", wbs.WebSocketHandler)
+	mux.HandleFunc("/UpdateMessageState", handlers.UpdateMessageStateHandler)
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//

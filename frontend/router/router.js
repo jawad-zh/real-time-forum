@@ -23,6 +23,7 @@ import {showMessageCountainer} from "/frontend/views/showMessageCountainer.js"
 import {hideMessageSection} from '/frontend/views/hideMessageSection.js';
 import {sendMessagBackend} from '/frontend/services/sendMessageBackend.js'
 import {StartWebsocketConection}from '/frontend/websocket/startConection.js'
+import {updateMessageState} from "/frontend/services/updateMessageState.js"
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -56,7 +57,6 @@ async function router() {
             if (data.status === 'success') {
                
                  let messagesSection = await setHomePage('all')  
-                 console.log('from router Section:',messagesSection);
                  
                   StartWebsocketConection(messagesSection) 
                 
@@ -149,6 +149,9 @@ async function router() {
             // console.log('message',message.e.dataset);
              
             showMessageCountainer(message.dataset.id)
+            console.log('from router,',message.dataset.id);
+            
+            updateMessageState(message.dataset.id)
         }else if (e.target.id === 'cancenlChatIcone'){
             hideMessageSection()
         }else if (e.target.id === 'sendMessageIcone'){

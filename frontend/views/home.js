@@ -211,6 +211,7 @@ export async function setHomePage(Category) {
             messageCountainer.setAttribute('id','messageCountainer')
             messageCountainer.dataset.id = `${user.UserID}`
             messageCountainer.classList.add('messageCountainer')
+            if (!user.IsRead.Bool) {messageCountainer.classList.add('new')}else{if (messageCountainer.classList.contains('new')){messageCountainer.classList.remove('new')}}
             messageCountainer.innerHTML = `
                     
                       <div id="messageProfile" >
@@ -222,7 +223,7 @@ export async function setHomePage(Category) {
                       </div>
                       <div id="notificationAndTime" >
                           <p>11 min</p>
-                          <div id="messageNotification" ></div>
+                          <div class="messageNotification" ></div>
                       </div>
       `
       messagesSection.append(messageCountainer)

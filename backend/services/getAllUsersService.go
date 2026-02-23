@@ -7,11 +7,11 @@ import (
 )
 
 func GetAllUsersService(r *http.Request )(error,*[]models.Users){
-	err,_:=repos.CheckSession(r)
+	err,session:=repos.CheckSession(r)
 	if err != nil {
 		return err,nil
 	}
-	err,data:=repos.GetAllUsesRepo()
+	err,data:=repos.GetAllUsesRepo(session.UserID)
 	if err != nil{
 		return err,nil
 	}

@@ -18,6 +18,7 @@ type Users struct {
 	Likes int `json:"Likes"`
 	Saves int `json:"Saves"`
 	ProfileURL sql.NullString `json:"ProfileURL"`
+	IsRead     sql.NullBool `json:"IsRead"`
 
 }
 type Session struct {
@@ -68,7 +69,7 @@ type PrivateMessage struct {
 	ReceiverID int `json:"receiverID"`
 	Content    string `json:"messageContent"`
 	CreatAt    string `json:"CreatAt"`
-	IsREad     bool `json:"IsREad"`
+	IsRead     bool `json:"IsRead"`
 }
 
 type Login struct {

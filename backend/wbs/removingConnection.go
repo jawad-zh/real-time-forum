@@ -14,4 +14,7 @@ func (m *Manager) RemoveConnection(client *Client) {
 			break
 		}
 	}
+	if len(m.Clients[client.UserID])==0{
+		m.Desconnection(client.UserID)
+	}
 }

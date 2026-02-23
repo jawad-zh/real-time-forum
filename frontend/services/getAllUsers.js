@@ -6,6 +6,8 @@ export async function getAllUser(){
         }
     })
     var data = await res.json()
+    console.log('dddddddaaaaaaaata-----------------------------------------------------------------------',data);
+    
     return data
     
 }

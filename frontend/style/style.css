@@ -612,11 +612,12 @@ body {
     color:#FFD500;
     display: none;
 }
-#messageNotification{
+.messageNotification{
     height: 10px;
     width: 10px;
     background-color: #FFD500;
     border-radius: 20px;
+    display: none;
 }
 #onlineState{
     height: 10px;
@@ -1216,4 +1217,7 @@ display: none;
     margin-right: 10px;
      word-break: break-word;
      margin : 10px
+}
+.new .messageNotification{
+    display: flex;
 }
