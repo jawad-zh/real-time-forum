@@ -32,8 +32,9 @@ async function router() {
     })
     var data = await res.json()
     if (data.status === 'success') {
-        setHomePage('all')
-        StartWebsocketConection()
+        console.log('from router111111111111');
+        let messagesSection = await setHomePage('all')  
+        StartWebsocketConection(messagesSection)
     } else {
         started()
     }
@@ -53,9 +54,12 @@ async function router() {
         } else if (e.target.id === 'loginButton') {
             let data = await loginCheck(e)
             if (data.status === 'success') {
-                setTimeout(() => {
-                    setHomePage('all')
-                }, 1500)
+               
+                 let messagesSection = await setHomePage('all')  
+                 console.log('from router Section:',messagesSection);
+                 
+                  StartWebsocketConection(messagesSection) 
+                
             }
         } else if (e.target.id === 'creatPostIcone') {
             setCreatPost()

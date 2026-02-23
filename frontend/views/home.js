@@ -2,6 +2,7 @@ import { getUserInfo } from "/frontend/services/getUserInfo.js"
 import { getPost } from "/frontend/services/getPost.js"
 import { TimeAgo } from "../services/timeAgo.js"
 import {getAllUser}  from "/frontend/services/getAllUsers.js"
+import {StartWebsocketConection}from '/frontend/websocket/startConection.js'
 export let ExportedUsers = []
 export let UserInfo = {}
 export let rightSide = document.getElementById('rightSide')
@@ -200,7 +201,7 @@ export async function setHomePage(Category) {
     console.log('type of users',typeof(users),'users',users);
     
     if (users.statue==='success'){
-        const messagesSection = document.getElementById('rightSide')
+        const messagesSection = document.getElementById('rightSide')        
         for (let user of users.Data){
             ExportedUsers.push(user)
             if (user.Nickname === UserInfo.Nickname){
@@ -226,6 +227,12 @@ export async function setHomePage(Category) {
       `
       messagesSection.append(messageCountainer)
         }
+        console.log('froooome homee login   2222222');
+
+        
+            
+            return messagesSection
+     
     }
-   
+    
 }

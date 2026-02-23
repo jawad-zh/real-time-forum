@@ -1,8 +1,10 @@
 import {showNewMessage} from "/frontend/views/showNewMessage.js"
 import {UserInfo} from "/frontend/views/home.js"
 import {onlineStateUpdate} from "/frontend/views/onlineStateUpdate.js"
-export   function StartWebsocketConection(){
-     const socket = new WebSocket("ws://localhost:8080/ws");
+export   function StartWebsocketConection(messageSection){
+   console.log('from webSocket333333');
+   
+     const socket = new WebSocket("/ws");
        socket.onopen = ()=>{
         console.log("the web socket connection is opned");
        }
@@ -16,9 +18,9 @@ export   function StartWebsocketConection(){
             showNewMessage("from-other",data.SenderID,data.ReceiverID,data.Load)
           }
           case "onlineState" :
-            console.log('this is the data',data);
+            console.log('---------------------------*******************=========================');
             
-          onlineStateUpdate(data.Load.logeddUserID,data.Load.otherLoggedClients)
+          onlineStateUpdate(data.Load.logeddUserID,data.Load.otherLoggedClients,messageSection)
         }
        }
 

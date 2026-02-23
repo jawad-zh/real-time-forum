@@ -625,6 +625,11 @@ body {
     position: absolute;
     border-radius: 50px;
     transform: translate(23px,-12px);
+    display: none;
+}
+
+#messageCountainer.onlineUser #onlineState{
+    display: flex;
 }
 #backgroundLeft{
     background-color:#ffd500af;

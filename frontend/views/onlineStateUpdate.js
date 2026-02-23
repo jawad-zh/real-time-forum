@@ -1,26 +1,26 @@
-import {getUserInfo} from "/frontend/services/getUserInfo.js"
-import {rightSide} from "/frontend/views/home.js"
-export  async function onlineStateUpdate(connectedUser,otherconnectedClient){
+import { getUserInfo } from "/frontend/services/getUserInfo.js"
+export async function onlineStateUpdate(connectedUser, otherconnectedClient,messageSection) {
     const UserInfo = await getUserInfo()
-    
-    if (connectedUser == UserInfo.UserID ){
-        
-        if (otherconnectedClient){
-            let usersDiv = rightSide.querySelectorAll('.messageCountainer')
-            console.log('userrrrrrrrrrrrsdiv',usersDiv);  
-             for (let clientID of otherconnectedClient){
+    if (connectedUser == UserInfo.UserID) {
+        if (otherconnectedClient) {
+            var allUsers = messageSection.querySelectorAll('.messageCountainer')
+            for(let user of allUsers){
+                if(otherconnectedClient.includes(Number(user.dataset.id))){
+                    user.classList.add('onlineUser')
+                }
+            }
+        } else {
            
-            const target = Array.from(usersDiv).find(
-  user => user.dataset.id === clientID
-);
-            
-
         }
-        }else{
-            console.log('no user online');
             
-        }
-       
+    } else {
+         var allUsers = messageSection.querySelectorAll('.messageCountainer')
+              for(let user of allUsers){
+                if(Number(user.dataset.id) == Number(connectedUser)){
+                    user.classList.add('onlineUser')
+                }
+            }
+        
     }
-    
+
 }

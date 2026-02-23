@@ -65,7 +65,6 @@ export async function loginCheck(e) {
     var data = await res.json()
     if (data.status === 'success') {
         checkLoginResponse(data.message, 'green')
-        StartWebsocketConection()
     } else {
         checkLoginResponse(data.message, 'red')
     }
