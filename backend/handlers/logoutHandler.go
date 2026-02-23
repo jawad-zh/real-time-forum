@@ -2,9 +2,11 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"golang/backend/services"
+	"golang/backend/wbs"
 )
 
 type logoutResponseFormat struct {
@@ -14,7 +16,7 @@ type logoutResponseFormat struct {
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 	var logoutRespons loginResponseFormat
-	err := services.LogoutService(r)
+	err,deletedUserID := services.LogoutService(r)
 	if err != nil {
 		logoutRespons.Message = "logout failed try later"
 		logoutRespons.Status = "failed"
@@ -35,4 +37,6 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 	logoutRespons.Status = "success"
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(logoutRespons)
+	fmt.Println("heeeeeeeelo from lougout handler")
+	wbs.GlobalManager.Desconnection(deletedUserID)
 }

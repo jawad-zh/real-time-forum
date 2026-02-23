@@ -28,7 +28,6 @@ func (m *Manager) BrodcastConnection(clientID *Client){
 		if key != clientID.UserID{
 				for _,client := range clients{
 					client.Conn.WriteJSON(Event)
-					fmt.Println("---------------++++++++++++++++++++++++************")
 				}
 		}
 	}

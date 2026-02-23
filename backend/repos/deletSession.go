@@ -5,14 +5,18 @@ import (
 	"golang/backend/db"
 )
 
-func DeletSession(sessonID string)bool{
-	_,err:= db.DataBase.Exec(`
+func DeletSession(sessonID string)(bool,int){
+	var deletedUserID int
+	err:= db.DataBase.QueryRow(`
+	SELECT UserID FROM Session WHERE token = ?
+	`,sessonID).Scan(&deletedUserID)
+	_,err= db.DataBase.Exec(`
 	DELETE FROM Session WHERE token = ?
 	`,sessonID)
 	if err != nil{
 		fmt.Println("DeletSessionError",err)
-		return false
+		return false ,0
 	}
 	
-	return true
+	return true ,deletedUserID
 }
