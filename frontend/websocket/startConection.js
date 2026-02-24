@@ -2,6 +2,7 @@ import {showNewMessage} from "/frontend/views/showNewMessage.js"
 import {UserInfo} from "/frontend/views/home.js"
 import {onlineStateUpdate} from "/frontend/views/onlineStateUpdate.js"
 import {offlineStateUpdate} from "/frontend/views/offlineStateUpdate.js"
+import{updateMessageState} from "/frontend/views/updateMessageState.js"
 export   function StartWebsocketConection(messageSection){
      const socket = new WebSocket("/ws");
        socket.onopen = ()=>{
@@ -9,7 +10,6 @@ export   function StartWebsocketConection(messageSection){
        }
        socket.onmessage =  (event)=>{           
         let data =  JSON.parse(event.data)  
-        console.log('data content typeeeee:',data.ContentType);
                       
         switch (data.ContentType){
           case "NewMessage" :  
@@ -19,17 +19,14 @@ export   function StartWebsocketConection(messageSection){
             showNewMessage("from-other",data.SenderID,data.ReceiverID,data.Load)
           }
           break
-          case "onlineState" :       
-          console.log('hhhhhhhhhhhhhhhhhhhhhh');
-               
+          case "onlineState" :                      
           onlineStateUpdate(data.Load.logeddUserID,data.Load.otherLoggedClients,messageSection)
           break
-          case "offlineState":
-            console.log('whaaaaaaaaaaaatttttttttt');
-            
-            console.log("offlineStateUpdate=========================> it'''''''''ssssss happppppppppppppeeeeeeeeeeeennnnd",data);
-            
+          case "offlineState":            
           offlineStateUpdate(data.Load.UserID)
+          break
+          case "updateMessageState":
+            updateMessageState(data.Load.SenderID)
         }
        }
 

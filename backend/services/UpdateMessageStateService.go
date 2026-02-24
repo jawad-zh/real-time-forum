@@ -3,6 +3,7 @@ package services
 import (
 	"fmt"
 	"golang/backend/repos"
+	"golang/backend/wbs"
 	"net/http"
 )
 
@@ -12,6 +13,6 @@ func UpdateMessageStateServie(r *http.Request,SenderID int){
 		fmt.Println("no session",err)
 		return
 	}
-	fmt.Println("waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",session.UserID,SenderID)
 	repos.UpdateMessageStateRepos(session.UserID,SenderID)
+	wbs.GlobalManager.UpdateMessageState(session.UserID,SenderID)
 }

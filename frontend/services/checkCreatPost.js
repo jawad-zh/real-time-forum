@@ -19,7 +19,6 @@ export  function checkCreatPost() {
         
         
         if(!categories.includes(categoriecheck.value)){
-            console.log(categoriecheck.value);
             
             return 'invalid categorie'
         }

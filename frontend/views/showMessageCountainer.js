@@ -2,7 +2,6 @@ import {ExportedUsers} from "/frontend/views/home.js"
 import {getMessages} from '/frontend/services/getMessages.js';
 import { UserInfo } from "./home.js";
 export async function showMessageCountainer(UserID){
-    console.log("userId",UserID);
     
     let RecieverUser = {}
     for (let user of ExportedUsers){        
@@ -52,7 +51,6 @@ export async function showMessageCountainer(UserID){
     document.body.append(imageSectionCountainer)
 
     var messages = await getMessages(UserID)
-    console.log('messssssssssssaaaaaaaaaageeeeeeeees:',messages);
     const messageCountainer = document.getElementById('messagesSection')
     if (messageCountainer){
         if (messages){

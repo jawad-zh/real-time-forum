@@ -13,7 +13,6 @@ export async function commentBackend(PostID){
         body: JSON.stringify(commentInfo)
     })
     var data = await res.json()
-    console.log('comment backend',data);
     
     return data
 }

@@ -8,7 +8,6 @@ export async function getMessages(reiverId) {
         }
     })
     var data = await res.json()
-    console.log('dddddddddaaaaaaaaata',data);
     return data
     
 }

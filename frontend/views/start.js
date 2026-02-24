@@ -28,7 +28,6 @@ export function setLoginHtml() {
     const bodyChildren = document.body.children
     if (bodyChildren) {        
         for (let i = bodyChildren.length-1; i >= 0; i--) {
-            console.log(bodyChildren[i]);
             
             bodyChildren[i].remove()
         }

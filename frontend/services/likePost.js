@@ -1,6 +1,5 @@
 export async function LikeBackend(idString){   
     var id = Number(idString)
-    console.log('type of id is ',typeof(id) ,'id:',id);
      
     var postID = {
         'PostID' :id

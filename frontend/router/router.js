@@ -33,7 +33,6 @@ async function router() {
     })
     var data = await res.json()
     if (data.status === 'success') {
-        console.log('from router111111111111');
         let messagesSection = await setHomePage('all')  
         StartWebsocketConection(messagesSection)
     } else {
@@ -114,7 +113,6 @@ async function router() {
             var data = await savePostsBackend(post.dataset.PostID)
 
             if (data.statue === 'success') {
-                console.log('all right');
 
                 savePostFront(data, icone)
             }
@@ -134,7 +132,6 @@ async function router() {
             }
 
         } else if ((e.target.id === 'addPrifileImage') || (e.target.id === 'ignoreImageProfile')) {
-            console.log(typeof (e.target.id));
 
             setImageProfilePage(e.target.id)
         } else if (e.target.id === 'addProfileIcone' || e.target.id === 'addProfileIconeCountainer') {
@@ -149,13 +146,11 @@ async function router() {
             // console.log('message',message.e.dataset);
              
             showMessageCountainer(message.dataset.id)
-            console.log('from router,',message.dataset.id);
             
             updateMessageState(message.dataset.id)
         }else if (e.target.id === 'cancenlChatIcone'){
             hideMessageSection()
         }else if (e.target.id === 'sendMessageIcone'){
-            console.log('sii');
             
             sendMessagBackend()
         }

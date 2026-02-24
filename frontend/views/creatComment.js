@@ -8,7 +8,6 @@ export function creatComment(PostID) {
     : document.createElement('div')
     var Profile = document.getElementById('ProfilInforamtionImage').src
 
-    console.log('Profile',Profile);
     
     if (!comment.classList.contains('CommentsCountainer')) {
         comment.classList.add('CommentsCountainer')

@@ -7,7 +7,6 @@ export  async function getComments(PostId){
         }
     })
     var data = await res.json()
-    console.log('comment data',data);
     
     return data
 

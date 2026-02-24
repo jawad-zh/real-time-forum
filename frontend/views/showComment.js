@@ -17,7 +17,6 @@ export async function showComment(postID){
     }else{        
        var allData = await getComments(postID)
        var UserInfo = await getUserInfo()
-       console.log('-----------',UserInfo);
        
        if (allData){
         var oldComments = document.querySelector('.CommentCountainer')

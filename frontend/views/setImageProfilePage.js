@@ -1,9 +1,7 @@
 export function setImageProfilePage(action){
-    console.log('action',action);
     
     switch (action){
      case 'addPrifileImage':
-        console.log('add');
         
          var appCountainer = document.createElement('div')
     appCountainer.setAttribute('id','addImageProfileCountainer')
@@ -25,7 +23,6 @@ export function setImageProfilePage(action){
     document.getElementById('appCountainer').append(appCountainer)
     break
     case 'ignoreImageProfile':
-        console.log('remove');
         
         var container = document.getElementById('addImageProfileCountainer')
         if (container){

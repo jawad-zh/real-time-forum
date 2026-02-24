@@ -6,7 +6,6 @@ export async function getPost(Category){
         },
     })
     var data = await res.json()     
-    console.log('------------------',data[0].CreatedAt);
     
     return data
     

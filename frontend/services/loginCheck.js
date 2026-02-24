@@ -68,7 +68,6 @@ export async function loginCheck(e) {
     } else {
         checkLoginResponse(data.message, 'red')
     }
-    console.log(data);
 
 
     return data

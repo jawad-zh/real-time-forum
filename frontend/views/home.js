@@ -198,7 +198,6 @@ export async function setHomePage(Category) {
 
     // get All Users
      let users = await getAllUser()
-    console.log('type of users',typeof(users),'users',users);
     
     if (users.statue==='success'){
         const messagesSection = document.getElementById('rightSide')        
@@ -228,7 +227,6 @@ export async function setHomePage(Category) {
       `
       messagesSection.append(messageCountainer)
         }
-        console.log('froooome homee login   2222222');
 
         
             
