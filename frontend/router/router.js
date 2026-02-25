@@ -146,10 +146,9 @@ async function router() {
             }
         } else if (e.target.id === 'messageCountainer' || e.target.id === 'messageName') {
             var message = await e.target.closest("#messageCountainer")
-            // console.log('message',message.e.dataset);
-
+            console.log(message);
+            
             showMessageCountainer(message.dataset.id)
-
             updateMessageState(message.dataset.id)
         } else if (e.target.id === 'cancenlChatIcone') {
             hideMessageSection()

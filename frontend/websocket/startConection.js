@@ -14,7 +14,6 @@ export   function StartWebsocketConection(messageSection){
        }
        socket.onmessage =  (event)=>{           
         let data =  JSON.parse(event.data)  
-          console.log('daaaaaaaaataaaaaaa',data);
                       
         switch (data.ContentType){
           case "NewMessage" :  
@@ -31,6 +30,8 @@ export   function StartWebsocketConection(messageSection){
           offlineStateUpdate(data.Load.UserID)
           break
           case "updateMessageState":
+            console.log('update message==============================================> ,',data);
+            
             updateMessageState(data.Load.SenderID)
         }
        }

@@ -198,6 +198,7 @@ export async function setHomePage(Category) {
 
     // get All Users
      let users = await getAllUser()
+    console.log('ussssssssser',users);
     
     if (users.statue==='success'){
         const messagesSection = document.getElementById('rightSide')        

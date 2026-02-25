@@ -6,12 +6,12 @@ import (
 	"golang/backend/db"
 )
 
-func UpdateMessageStateRepos( senderID int, ReceiverId int) {
+func UpdateMessageStateRepos( ReceiverID int, senderID int) {
 	_, err := db.DataBase.Exec(`
 	UPDATE PrivateMessages 
 	SET IsRead = TRUE 
 	WHERE SenderId = ? AND ReceiverId = ?
-	`, senderID, ReceiverId)
+	`, senderID, ReceiverID)
 	if err != nil {
 		fmt.Println("Errorrr data base", err)
 		return
