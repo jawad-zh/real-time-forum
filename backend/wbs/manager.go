@@ -18,7 +18,7 @@ type Client struct {
 
 type Manager struct {
 	Clients map[int][]*Client
-	mu      sync.RWMutex
+	sync.RWMutex
 }
 
 var GlobalManager *Manager

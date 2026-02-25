@@ -3,13 +3,18 @@ import {UserInfo} from "/frontend/views/home.js"
 import {onlineStateUpdate} from "/frontend/views/onlineStateUpdate.js"
 import {offlineStateUpdate} from "/frontend/views/offlineStateUpdate.js"
 import{updateMessageState} from "/frontend/views/updateMessageState.js"
+let socket = null
 export   function StartWebsocketConection(messageSection){
-     const socket = new WebSocket("/ws");
+  console.log('*******************************');
+  
+    if (socket && socket.readyState === WebSocket.OPEN)return
+    socket = new WebSocket("/ws");
        socket.onopen = ()=>{
         console.log("the web socket connection is opned");
        }
        socket.onmessage =  (event)=>{           
         let data =  JSON.parse(event.data)  
+          console.log('daaaaaaaaataaaaaaa',data);
                       
         switch (data.ContentType){
           case "NewMessage" :  
@@ -29,5 +34,8 @@ export   function StartWebsocketConection(messageSection){
             updateMessageState(data.Load.SenderID)
         }
        }
-
+       socket.onclose = () => {
+        console.log('COnnection CLOSED //////');
+        
+       }
 }

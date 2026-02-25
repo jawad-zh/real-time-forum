@@ -34,7 +34,10 @@ async function router() {
     var data = await res.json()
     if (data.status === 'success') {
         let messagesSection = await setHomePage('all')
+        console.log('in check session +++++++');
+        
         StartWebsocketConection(messagesSection)
+        console.log('in check session -------------');
     } else {
         started()
     }

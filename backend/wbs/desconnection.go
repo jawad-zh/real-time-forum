@@ -7,7 +7,8 @@ type InfoFormatDec struct {
 }
 
 func (m *Manager) Desconnection(UserID int) {
-	fmt.Println("hello from Desconnectionssssssssssssss")
+	m.Lock()
+	defer m.Unlock()
 	var Event Events
 	var info InfoFormatDec
 	Event.ContentType = "offlineState"
@@ -19,12 +20,18 @@ func (m *Manager) Desconnection(UserID int) {
 			return
 		}
 	}
+
 	delete(m.Clients, UserID)
 	Event.Load = info
 	for _, clients := range m.Clients {
 		for _, client := range clients {
 			err:=client.Conn.WriteJSON(Event)
-			fmt.Println("the broaddcaaaste error here:",err)
+			if err!= nil{
+				fmt.Println("Error deconnect",err)
+				return
+			}
+			
 		}
 	}
+
 }

@@ -6,7 +6,7 @@ import (
 	"golang/backend/db"
 )
 
-func UpdateMessageStateRepos(ReceiverId int, senderID int) {
+func UpdateMessageStateRepos( senderID int, ReceiverId int) {
 	_, err := db.DataBase.Exec(`
 	UPDATE PrivateMessages 
 	SET IsRead = TRUE 

@@ -3,7 +3,8 @@ package wbs
 import "fmt"
 
 func (m *Manager) SendMessage(SenderID int, ReceiverID int, MessageContent string) {
-	fmt.Println("entrred to sendmessage")
+	m.Lock()
+	defer m.Unlock()
 	senderClients , ok := m.Clients[SenderID]
 	var Event Events
 	Event.ContentType = "NewMessage"
@@ -22,7 +23,6 @@ func (m *Manager) SendMessage(SenderID int, ReceiverID int, MessageContent strin
 		fmt.Println("Connection not found")
 		return
 	}
-	fmt.Println("it'''''''''s happen")
 		for _, client := range receiverClients {
 			client.Conn.WriteJSON(Event)
 		}

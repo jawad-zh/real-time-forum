@@ -1,5 +1,7 @@
 import {updateMessageState} from "/frontend/services/updateMessageState.js"
-export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {
+export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {    
+    console.log('rrrrrrrreeeeeeecccc:',ReceiverID);
+    
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
     if (messageContainerCheck) {

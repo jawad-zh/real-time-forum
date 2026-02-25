@@ -10,13 +10,17 @@ import (
 )
 
 var upgrader = websocket.Upgrader{
-	CheckOrigin: func(r *http.Request) bool { return true },
+	ReadBufferSize:  1024,
+	WriteBufferSize: 1024,
+	CheckOrigin:     func(r *http.Request) bool { return true },
 }
 
 func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
+	
 	err, session := repos.CheckSession(r)
 	if err != nil {
 		fmt.Println("Error session", err)
+		return
 	}
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
@@ -28,10 +32,13 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 		Conn:   conn,
 		UserID: session.UserID,
 	}
-
 	GlobalManager.AddConnection(client)
 	GlobalManager.BrodcastConnection(client)
-	
+	defer func() {
+		GlobalManager.RemoveConnection(client)
+		conn.Close()
+	}()
+
 	for {
 		_, _, err := conn.ReadMessage()
 		if err != nil {
@@ -39,10 +46,4 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
-	
-	defer func() {
-		GlobalManager.RemoveConnection(client)
-		conn.Close()
-		
-	}()
 }
