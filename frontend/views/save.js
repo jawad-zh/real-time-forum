@@ -1,6 +1,4 @@
 export function savePostFront(data, icone) {
-    console.log('entreeeeeeeeeeeeeeeeeeeed');
-
     const saveValue = document.getElementById("savesNumber")
     if (data.message === 'save success') {
         console.log('saved');

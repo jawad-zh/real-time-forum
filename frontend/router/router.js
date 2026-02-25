@@ -33,11 +33,8 @@ async function router() {
     })
     var data = await res.json()
     if (data.status === 'success') {
-        let messagesSection = await setHomePage('all')
-        console.log('in check session +++++++');
-        
+        let messagesSection = await setHomePage('all')        
         StartWebsocketConection(messagesSection)
-        console.log('in check session -------------');
     } else {
         started()
     }
@@ -145,16 +142,16 @@ async function router() {
                 addImage()
             }
         } else if (e.target.id === 'messageCountainer' || e.target.id === 'messageName') {
-            var message = await e.target.closest("#messageCountainer")
-            console.log(message);
-            
-            showMessageCountainer(message.dataset.id)
+            var message = await e.target.closest("#messageCountainer")            
+            showMessageCountainer(message.dataset.id)            
             updateMessageState(message.dataset.id)
         } else if (e.target.id === 'cancenlChatIcone') {
             hideMessageSection()
         } else if (e.target.id === 'sendMessageIcone') {
 
             sendMessagBackend()
+        }else if (e.target.id === 'imageIconeCountainer' || e.target.id === 'imageUploadIcone' || e.target.id === 'imageTextIcone'){
+            document.getElementById('fileInput').click()            
         }
 
     })

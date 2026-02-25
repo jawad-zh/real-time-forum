@@ -1,12 +1,8 @@
 import {updateMessageState} from "/frontend/services/updateMessageState.js"
-export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {    
-    console.log('rrrrrrrreeeeeeecccc:',ReceiverID);
-    
+export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {        
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
     if (messageContainerCheck) {
-        // const Checker = flag === 'from-me' ? ReceiverID :  SenderID ;       
-        // if (messageContainerCheck.dataset.id != ReceiverID) { console.log('Id changed'); return }
         const messageTamplate = `
             <div id="ImageMessage" ></div>
             <div id="MessageAndTime" >
@@ -25,7 +21,8 @@ export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {
         if (messagesSection) {
             messagesSection.prepend(messageToApp)
         }
-        updateMessageState(ReceiverID)
+            updateMessageState(ReceiverID)
+            updateMessageState(SenderID)        
     } else {
         const allUsers = document.querySelectorAll('.messageCountainer')
         for (let user of allUsers) {

@@ -10,11 +10,12 @@ export async function showMessageCountainer(UserID) {
             break
         }
     }
+    
     var section = `
         
         <div id="barSection" >
             <div id="image" >
-                <img src="${RecieverUser.ProfileURL.String}" alt="">
+                <img src="${RecieverUser.ProfileURL}" alt="">
             </div>
             <div id="MessageUserInfo" >
                 <div id="Name" >

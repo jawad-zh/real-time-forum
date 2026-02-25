@@ -2,10 +2,9 @@ import {showNewMessage} from "/frontend/views/showNewMessage.js"
 import {UserInfo} from "/frontend/views/home.js"
 import {onlineStateUpdate} from "/frontend/views/onlineStateUpdate.js"
 import {offlineStateUpdate} from "/frontend/views/offlineStateUpdate.js"
-import{updateMessageState} from "/frontend/views/updateMessageState.js"
+import{updateMessageStateFront} from "/frontend/views/updateMessageStateFront.js"
 let socket = null
 export   function StartWebsocketConection(messageSection){
-  console.log('*******************************');
   
     if (socket && socket.readyState === WebSocket.OPEN)return
     socket = new WebSocket("/ws");
@@ -29,10 +28,8 @@ export   function StartWebsocketConection(messageSection){
           case "offlineState":            
           offlineStateUpdate(data.Load.UserID)
           break
-          case "updateMessageState":
-            console.log('update message==============================================> ,',data);
-            
-            updateMessageState(data.Load.SenderID)
+          case "updateMessageState":                      
+            updateMessageStateFront(data.Load.SenderID)
         }
        }
        socket.onclose = () => {

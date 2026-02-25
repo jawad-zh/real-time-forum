@@ -15,7 +15,7 @@ export function setCreatPost() {
                     <div id="imageIconeCountainer" >
                         <input type="file" id="fileInput" accept="image/*" >
                         <i id="imageUploadIcone" class="fa-regular fa-image"></i>
-                        <p>Image</p>
+                        <p id="imageTextIcone" >Image</p>
                     </div>
                 </div>
                 <div id="creatPostCategories" >
