@@ -283,6 +283,9 @@ body {
 #navBarImage img{
     height: 100%;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
+
 }
 /* #profile p{
     color: white;
@@ -434,7 +437,6 @@ body {
     gap:30px
 }
 #creatPostIcones i{
-    background-color: #1B1D20;
     height: 100%;
     width: 25%;
     display: flex;
@@ -477,6 +479,8 @@ body {
 #profileImage img{
     height: 100%;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 #titleTime{
   display: flex;
@@ -532,7 +536,10 @@ body {
 #postImage img{
     height: 100%;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
+
 #iconesAndCategories{
     width: 100%;
     margin-top: 10px;
@@ -586,7 +593,6 @@ body {
 #messageProfile{
     height: 80%;
     width: 10%;
-    background-color: blue;
     margin: 0px 10px 0px 10px;
     border-radius: 10px;
     overflow: hidden;
@@ -594,6 +600,8 @@ body {
 #messageProfile img{
     height: 100%;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 #messageName{
     /* background-color: blue; */
@@ -661,6 +669,8 @@ body {
 #informationImage img{
     height: 100%;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 #informationName{
     height: 50px;
@@ -852,7 +862,9 @@ body {
     cursor: pointer;
     color: black;
 }
-
+#imageIconeCountainer p{
+    color: white;
+}
 #imageUploadIcone{
     color: rgb(0, 255, 170);
 }
@@ -917,6 +929,12 @@ body {
     border-radius: 10px;
     overflow: hidden;
 }
+.commentProfile img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
 .CommentContent{
     background-color: #2A2D32;
     height: auto;
@@ -927,10 +945,7 @@ body {
     color: #b0b7c9;
 
 }
-img{
-    height: 100%;
-    width: 100%;
-}
+
 .addYourComment{
      height: auto;
     padding: 15px;
@@ -946,6 +961,12 @@ img{
     width: 40px;
     border-radius: 10px;
     overflow: hidden;
+}
+.yourCommentProfile img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 .yourCommentContent{
     background-color: #141517;
@@ -1030,6 +1051,8 @@ body{
 #imageProfile img {
     height: 100%;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 #addImageProfile{
     margin-bottom: 10px;
@@ -1070,6 +1093,9 @@ body{
 #fileInputProfileImage{
 display: none;
 }
+#fileInput{
+    display: none;
+}
 #imageSectionCountainer{
     position: absolute;
     bottom: 0;
@@ -1088,6 +1114,7 @@ display: none;
     background-color: black;    
     height: 15%;
     color: white;
+    border-radius: 10px 10px 0px 0px;
 }
 #barSection{
     display: flex;
@@ -1102,8 +1129,15 @@ display: none;
     align-items:center;
     justify-content: center;
     margin-left:10px;
-    border-radius: 10px;
+    border-radius: 50px;
+    overflow: hidden;
 
+}
+#image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 #cancelButton{
   /* background-color: blue; */
@@ -1135,7 +1169,7 @@ display: none;
     border: none;
     padding : 8px;
     background-color: black;
-    color: rgba(128, 128, 128, 0.63);
+    color: #b0b7c9;
 }
 #inputMessagesSection input:focus{
     outline: none;
@@ -1145,7 +1179,7 @@ display: none;
     cursor: pointer;
 }
 #messagesSection{
-    background-color:rgba(0, 0, 0, 0.795);
+    background-color:#141517;
     height: 75%;
     width: 100%;
     overflow: auto;
@@ -1165,16 +1199,15 @@ display: none;
     gap: 15px;
     
 }
-.sender #ImageMessage{
-    background-color: yellow;
-    height: 30px;
-    width: 30px;
-    margin-left: 7px;
-    border-radius: 10px;
+#sendMessageIcone{
+    color: #FFD500;
+}
+#MessageContentValue{
+    color: white;
 }
  .sender #MessageAndTime{
-    background-color: yellow;
-    color: black;
+    background-color:#222428;
+    color:#b0b7c9;
     min-height: 50px;
     /* min-width: 40px; */
     min-width: calc(50% - 40px);
@@ -1197,18 +1230,10 @@ display: none;
     justify-content: end;
      word-break: break-word;
 }
-.receiver #ImageMessage{
-    background-color: yellow;
-    height: 30px;
-    width: 30px;
-    margin-left: 7px;
-    border-radius: 10px;
-    display: none;
-     word-break: break-word;
-}
+
  .receiver #MessageAndTime{
-    background-color: rgba(0, 0, 0, 0.76);
-    color: white;
+    background-color:#FFD500;
+    color: black;
     padding: 10px;
     min-height: 50px;
     /* min-width: 40px; */

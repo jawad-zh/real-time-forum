@@ -38,7 +38,7 @@ async function router() {
     } else {
         started()
     }
-    document.addEventListener('click', async (e) => {
+    document.addEventListener('click', async (e) => {        
         if (e.target.id === 'startedLoginButton') {
             setLoginHtml()
         } else if (e.target.id === 'startedRegisterButton') {
@@ -62,7 +62,7 @@ async function router() {
             }
         } else if (e.target.id === 'creatPostIcone') {
             setCreatPost()
-        } else if (e.target.id === 'cancelCreatPost') {
+        } else if (e.target.id === 'cancelCreatPost' || e.target.id === 'creatPostCountainer') {
             // need to handle don't call main
             setHomePage('all')
         } else if (e.target.id === 'logoutIcone') {
@@ -131,7 +131,7 @@ async function router() {
                 // make action
             }
 
-        } else if ((e.target.id === 'addPrifileImage') || (e.target.id === 'ignoreImageProfile')) {
+        } else if ((e.target.id === 'addPrifileImage') || (e.target.id === 'ignoreImageProfile') || e.target.id === 'addImageProfileCountainer') {
 
             setImageProfilePage(e.target.id)
         } else if (e.target.id === 'addProfileIcone' || e.target.id === 'addProfileIconeCountainer') {
@@ -141,7 +141,7 @@ async function router() {
             if (res.statue === 'success') {
                 addImage()
             }
-        }else if (e.target.id === 'messageCountainer'){
+        }else if (e.target.id === 'messageCountainer' || e.target.id === 'messageName' ){
             var message = await e.target.closest("#messageCountainer")            
             // console.log('message',message.e.dataset);
              

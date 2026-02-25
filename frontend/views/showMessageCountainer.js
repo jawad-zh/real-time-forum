@@ -63,7 +63,7 @@ export async function showMessageCountainer(UserID){
                     messageToApp.classList.add('sender')
                 }
                  const messageTemplate = `
-            <div id="ImageMessage" ></div>
+           
             <div id="MessageAndTime" >
                 <div id="MessageContent" >
                 ${message.messageContent}

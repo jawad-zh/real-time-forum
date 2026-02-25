@@ -28,6 +28,12 @@ export function setImageProfilePage(action){
         if (container){
             container.remove()
         }
+        break
+        case 'addImageProfileCountainer':
+            var container = document.getElementById('addImageProfileCountainer')
+        if (container){
+            container.remove()
+        }
     }
    
    
