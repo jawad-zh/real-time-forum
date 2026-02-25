@@ -31,6 +31,5 @@ func GetMessagesRepos(receiverID int , senderID int)(error,*[]models.PrivateMess
 		messages = append(messages, message)
 		
 	}
-	fmt.Println("messages:::::::",messages)
 	return nil , &messages
 }

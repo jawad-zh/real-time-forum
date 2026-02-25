@@ -1,3 +1,4 @@
+import {updateMessageState} from "/frontend/services/updateMessageState.js"
 export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
@@ -22,6 +23,7 @@ export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {
         if (messagesSection) {
             messagesSection.prepend(messageToApp)
         }
+        updateMessageState(ReceiverID)
     } else {
         const allUsers = document.querySelectorAll('.messageCountainer')
         for (let user of allUsers) {

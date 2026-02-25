@@ -21,12 +21,13 @@ func GetUserInfo(r *http.Request)(error,*models.Users){
     Users.FirstName,
     Users.LastName,
 	Users.ProfileURL,
+	Users.Gender,
     (SELECT COUNT(*) FROM PostLike WHERE UserID = Users.UserID) AS LikeCount,
     (SELECT COUNT(*) FROM PostSave WHERE UserID = Users.UserID) AS SaveCount
 FROM Users 
 WHERE UserID = ?;
 
-	`,session.UserID).Scan(&user.UserID,&user.Nickname,&user.FirstName,&user.LastName,&user.ProfileURL,&user.Likes,&user.Saves)
+	`,session.UserID).Scan(&user.UserID,&user.Nickname,&user.FirstName,&user.LastName,&user.ProfileURL,&user.Gender,&user.Likes,&user.Saves)
 	if err != nil{
 		fmt.Println("Selct UserInfo error:",err)
 		return err,nil

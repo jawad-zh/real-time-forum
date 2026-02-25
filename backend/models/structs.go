@@ -17,7 +17,7 @@ type Users struct {
 	CreatedAt time.Time `json:"CreatedAt"`
 	Likes int `json:"Likes"`
 	Saves int `json:"Saves"`
-	ProfileURL sql.NullString `json:"ProfileURL"`
+	ProfileURL string `json:"ProfileURL"`
 	IsRead     sql.NullBool `json:"IsRead"`
 
 }
@@ -57,6 +57,7 @@ type Comments struct {
 	Content   string `json:"Content"`
 	CreatedAt string `json:"CreatedAt"`
 	UserProfile sql.NullString `json:"UserProfile"`
+	UserGender string `json:"Gender"`
 }
 type CommentInteractions struct {
 	UserId     int `json:"UserId"`

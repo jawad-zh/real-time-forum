@@ -1,8 +1,8 @@
 import { getUserInfo } from "/frontend/services/getUserInfo.js"
 import { getPost } from "/frontend/services/getPost.js"
 import { TimeAgo } from "../services/timeAgo.js"
-import { getAllUser } from "/frontend/services/getAllUsers.js"
-import { StartWebsocketConection } from '/frontend/websocket/startConection.js'
+import {getAllUser}  from "/frontend/services/getAllUsers.js"
+import {StartWebsocketConection}from '/frontend/websocket/startConection.js'
 export let ExportedUsers = []
 export let UserInfo = {}
 export let rightSide = document.getElementById('rightSide')
@@ -14,8 +14,8 @@ export async function setHomePage(Category) {
         }
     }
     // need to check
-    UserInfo = await getUserInfo()
-
+     UserInfo = await getUserInfo()
+     
     document.body.innerHTML = `
     <div id="appCountainer">
         <div id="navBar">
@@ -31,7 +31,7 @@ export async function setHomePage(Category) {
             </div>
             <div id="profile">
                 <div id="navBarImage">
-                    <img id="navBarImageimg" src="${UserInfo.ImageURL.String}" alt="">
+                    <img id="navBarImageimg" src="${UserInfo.ImageURL}" alt="">
                 </div>
                  <i id="logoutIcone" class="fa-solid fa-right-from-bracket"></i>
             </div>
@@ -50,7 +50,7 @@ export async function setHomePage(Category) {
                         </div>
                         <div id="informationImage" >
 
-                            <img  id="ProfilInforamtionImage" src="${UserInfo.ImageURL.String}" alt="">
+                            <img  id="ProfilInforamtionImage" src="${UserInfo.ImageURL}" alt="">
                         </div>
                          <div id="howMuchSaves" ><p id="saves">saves</p>
                         <p id="savesNumber" >${UserInfo.saves}</p>
@@ -119,25 +119,25 @@ export async function setHomePage(Category) {
             `
     // get Posts 
     let data = await getPost(Category)
+    
+    if (data){
+         let middle = document.getElementById('middle')
+    for (let i = 0; i < data.length; i++) {
+        let liked = ''
+        let saved = ''
+        if (data[i].Isliked === 1) {
+            liked = 'liked'
+        }
 
-    if (data) {
-        let middle = document.getElementById('middle')
-        for (let i = 0; i < data.length; i++) {
-            let liked = ''
-            let saved = ''
-            if (data[i].Isliked === 1) {
-                liked = 'liked'
-            }
-
-            if (data[i].IsSaved === 1) {
-                saved = 'saved'
-            }
-            let createdAt = TimeAgo(data[i].CreatedAt)
-            let Profile = data[i].ProfileURL.String ? data[i].ProfileURL.String : ''
-            let post = document.createElement('div')
-            post.classList.add('PostsCountainer')
-            post.dataset.PostID = data[i].PostID
-            post.innerHTML = `
+        if (data[i].IsSaved === 1) {
+            saved = 'saved'
+        }
+        let createdAt = TimeAgo(data[i].CreatedAt)
+        let Profile = data[i].ProfileURL.String ? data[i].ProfileURL.String : '' 
+        let post = document.createElement('div')
+        post.classList.add('PostsCountainer')
+        post.dataset.PostID = data[i].PostID
+        post.innerHTML = `
     <div id="profilePost">
                         <div id="profileImage">
                             <img src="${Profile}" alt="">
@@ -171,50 +171,50 @@ export async function setHomePage(Category) {
     `
 
 
-            middle.append(post)
-            for (let j = 0; j < data[i].Categories.length; j++) {
-                let PostCategorie = post.querySelector('.Postcategories')
+        middle.append(post)
+        for (let j = 0; j < data[i].Categories.length; j++) {
+            let PostCategorie = post.querySelector('.Postcategories')
 
-                let category = document.createElement('div')
-                category.classList.add('Postcategorie')
-                category.innerHTML = data[i].Categories[j]
+            let category = document.createElement('div')
+            category.classList.add('Postcategorie')
+            category.innerHTML = data[i].Categories[j]
 
-                PostCategorie.append(category)
-            }
-
+            PostCategorie.append(category)
         }
-        if (Category == 'like') {
-            let hearts = document.querySelectorAll('.fa-heart')
-            for (let heart of hearts) {
-                heart.classList.add('liked')
-            }
-        } else if (Category == 'save') {
-            let saves = document.querySelectorAll('.fa-bookmark')
-            for (let save of saves) {
-                save.classList.add('saved')
-            }
+
+    }    
+    if (Category == 'like'){
+        let hearts = document.querySelectorAll('.fa-heart')
+         for (let heart of hearts){
+            heart.classList.add('liked')
         }
+    }else if (Category == 'save'){        
+        let saves = document.querySelectorAll('.fa-bookmark')        
+        for (let save of saves){
+            save.classList.add('saved')
+        }
+    }
     }
 
     // get All Users
-    let users = await getAllUser()
-
-    if (users.statue === 'success') {
-        const messagesSection = document.getElementById('rightSide')
-        for (let user of users.Data) {
+     let users = await getAllUser()
+    
+    if (users.statue==='success'){
+        const messagesSection = document.getElementById('rightSide')        
+        for (let user of users.Data){
             ExportedUsers.push(user)
-            if (user.Nickname === UserInfo.Nickname) {
+            if (user.Nickname === UserInfo.Nickname){
                 continue
             }
             let messageCountainer = document.createElement('div')
-            messageCountainer.setAttribute('id', 'messageCountainer')
+            messageCountainer.setAttribute('id','messageCountainer')
             messageCountainer.dataset.id = `${user.UserID}`
             messageCountainer.classList.add('messageCountainer')
-            if (!user.IsRead.Bool) { messageCountainer.classList.add('new') } else { if (messageCountainer.classList.contains('new')) { messageCountainer.classList.remove('new') } }
+            if (!user.IsRead.Bool) {messageCountainer.classList.add('new')}else{if (messageCountainer.classList.contains('new')){messageCountainer.classList.remove('new')}}
             messageCountainer.innerHTML = `
                     
                       <div id="messageProfile" >
-                          <img src="${user.ProfileURL.String}" alt="">
+                          <img src="${user.ProfileURL}" alt="">
                            <div id="onlineState" ></div>
                       </div>
                       <div id="messageName" >
@@ -225,13 +225,13 @@ export async function setHomePage(Category) {
                           <div class="messageNotification" ></div>
                       </div>
       `
-            messagesSection.append(messageCountainer)
+      messagesSection.append(messageCountainer)
         }
 
-
-
-        return messagesSection
-
+        
+            
+            return messagesSection
+     
     }
-
+    
 }

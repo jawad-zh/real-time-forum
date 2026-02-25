@@ -18,7 +18,6 @@ func UpdateMessageStateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	json.NewDecoder(r.Body).Decode(&id)
-	fmt.Println("r.body", id.UserID)
 	services.UpdateMessageStateServie(r, id.UserID)
 
 }

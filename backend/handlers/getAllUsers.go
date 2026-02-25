@@ -30,6 +30,5 @@ func GetAllUsers(w http.ResponseWriter , r *http.Request){
 		w.Header().Set("Content-Type","application/json")
 		res.Statue = "success"
 		res.Data = data
-		fmt.Println("resresresres",res)
 		json.NewEncoder(w).Encode(res)
 }

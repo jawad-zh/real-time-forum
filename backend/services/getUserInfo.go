@@ -1,7 +1,6 @@
 package services
 
 import (
-	"database/sql"
 	"fmt"
 	"net/http"
 
@@ -9,17 +8,18 @@ import (
 )
 
 type getUserInfoHandlerFormat struct {
-	Nickname  string         `json:"Nickname"`
-	FirstName string         `json:"FirstName"`
-	LastName  string         `json:"LastName"`
-	Statue    string         `json:"statue"`
-	Likes     int            `json:"likes"`
-	Saves     int            `json:"saves"`
-	ImageURL  sql.NullString `json:"ImageURL"`
-	UserID int `json:"UserID"`
+	Nickname  string `json:"Nickname"`
+	FirstName string `json:"FirstName"`
+	LastName  string `json:"LastName"`
+	Statue    string `json:"statue"`
+	Likes     int    `json:"likes"`
+	Saves     int    `json:"saves"`
+	ImageURL  string `json:"ImageURL"`
+	UserID    int    `json:"UserID"`
+	Gender    string `json:"Gender"`
 }
 
-func GetUserInfo(r *http.Request)(error,*getUserInfoHandlerFormat) {
+func GetUserInfo(r *http.Request) (error, *getUserInfoHandlerFormat) {
 	var getUserInfoResponse getUserInfoHandlerFormat
 
 	err, data := repos.GetUserInfo(r)
@@ -35,5 +35,6 @@ func GetUserInfo(r *http.Request)(error,*getUserInfoHandlerFormat) {
 	getUserInfoResponse.Saves = data.Saves
 	getUserInfoResponse.ImageURL = data.ProfileURL
 	getUserInfoResponse.UserID = data.UserID
-	return nil,&getUserInfoResponse
+	getUserInfoResponse.Gender = data.Gender
+	return nil, &getUserInfoResponse
 }

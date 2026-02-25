@@ -8,7 +8,6 @@ import (
 )
 
 func GetMessages(r *http.Request , receiverID int) (error,*[]models.PrivateMessage){
-	fmt.Println("receiver from service:",receiverID)
 	err,session:= repos.CheckSession(r)
 	if err != nil{
 		fmt.Println("Get messages session Error",err)
