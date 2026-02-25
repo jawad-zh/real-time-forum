@@ -17,25 +17,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
 ::-webkit-scrollbar {
-  width: 5px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f100;
-  border-radius: 10px;
+    background: #f1f1f100;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
+    background: #888;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: #555;
 }
+
 #startCountainer {
     display: flex;
     flex-direction: column;
@@ -212,16 +214,17 @@ body {
     transform: translateY(0);
     pointer-events: auto;
 }
- #appCountainer{
+
+#appCountainer {
     position: absolute;
     z-index: 1000;
     height: 90%;
     width: 90%;
-    background-color:#141517 ;
+    background-color: #141517;
     display: none;
 }
 
-#navBar{
+#navBar {
     height: 100px;
     width: 97%;
     /* background-color: red; */
@@ -230,7 +233,8 @@ body {
     justify-content: space-between;
     padding: 0px 10px;
 }
-#logo{
+
+#logo {
     height: 100%;
     width: 100px;
     /* background-color: blue; */
@@ -238,11 +242,13 @@ body {
     align-items: center;
     justify-content: center;
 }
-#logo img{
+
+#logo img {
     height: 70px;
     width: 70px;
 }
-#icones{
+
+#icones {
     height: 100%;
     width: 50%;
     /* background-color: yellow; */
@@ -251,6 +257,7 @@ body {
     justify-content: center;
     gap: 40px;
 }
+
 #icones i {
     /* background-color: blue; */
     height: 40px;
@@ -260,7 +267,8 @@ body {
     justify-content: center;
     font-size: 20px;
 }
-#profile{
+
+#profile {
     /* background-color: white; */
     height: 30px;
     width: 160px;
@@ -269,40 +277,44 @@ body {
     justify-content: space-between;
     border-radius: 10px;
     padding: 2px 10px 2px 5px;
-    background-color:#2A2D32 ;
+    background-color: #2A2D32;
     color: white;
 
 }
-#navBarImage{
+
+#navBarImage {
     /* background-color: blue; */
     height: 100%;
     width: 30px;
     overflow: hidden;
     border-radius: 10px;
 }
-#navBarImage img{
+
+#navBarImage img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 
 }
+
 /* #profile p{
     color: white;
 } */
- i{
+i {
     color: #5C5F66;
     cursor: pointer;
- }
+}
 
- #appCountainer{
+#appCountainer {
     display: flex;
     /* align-items: center;
      */
-     justify-content: center;
-     flex-direction: column;
- }
- #letSide{
+    justify-content: center;
+    flex-direction: column;
+}
+
+#letSide {
     height: 98%;
     width: 30%;
     /* background-color: #222428; */
@@ -311,21 +323,24 @@ body {
     align-items: center;
     flex-direction: column;
     /* background-color: red; */
- }
- #leftProfile{
+}
+
+#leftProfile {
     height: 40%;
     width: 75%;
     background-color: #222428;
     border-radius: 15px;
     margin-bottom: 10px;
     /* overflow: hidden; */
- }
- #categories{
+}
+
+#categories {
     margin-top: 45px;
     height: 40%;
     width: 75%;
- }
- #rightSide{
+}
+
+#rightSide {
     height: 98%;
     width: 30%;
     background-color: #222428;
@@ -335,13 +350,15 @@ body {
     padding: 10px;
 
 }
-#homePageCountainer{
+
+#homePageCountainer {
     /* background-color: red; */
     height: 90%;
     width: 100%;
     display: flex;
 }
-#middle{
+
+#middle {
     /* background-color: green; */
     height: 100%;
     width: calc(80% - 40px);
@@ -354,35 +371,38 @@ body {
     flex-direction: column;
     /* justify-content: center; */
 }
-#creatPostCountainer{
+
+#creatPostCountainer {
     height: 25%;
     width: 100%;
     border-radius: 15px;
     overflow: hidden;
     display: flex;
     justify-content: center;
-     position: fixed;   
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;      
+    z-index: -1;
     opacity: 0;
     pointer-events: none;
     transition: .3s;
 }
-#creatPostCountainer.active{
-    z-index: 9999;    
+
+#creatPostCountainer.active {
+    z-index: 9999;
     opacity: 1;
     pointer-events: auto;
-   background-color: rgba(0, 0, 0, 0.863);
+    background-color: rgba(0, 0, 0, 0.863);
 }
-#creatPostAlert{
+
+#creatPostAlert {
     background-color: red;
     height: 50px;
     width: 300px;
     z-index: 10000000000000000000;
-    transform: translate(0px,-300px);
+    transform: translate(0px, -300px);
     border-radius: 10px;
     color: white;
     transition: opasity 2s ease;
@@ -391,27 +411,31 @@ body {
     align-items: center;
     padding: 10px;
 }
-#inputSectionAndProfile{
+
+#inputSectionAndProfile {
     height: 100%;
     width: 70%;
     background-color: #222428;
     display: flex;
     padding: 10px;
-    gap:20px;
+    gap: 20px;
     border-radius: 15px;
 }
-#creatPostProfile{
+
+#creatPostProfile {
     height: 40px;
     width: 40px;
     border-radius: 15px;
     overflow: hidden;
     background-color: blue;
 }
-#creatPostProfile img{
+
+#creatPostProfile img {
     height: 100%;
     width: 100%;
 }
-#creatPostInput{
+
+#creatPostInput {
     /* background-color: blue; */
     display: flex;
     flex-direction: column;
@@ -419,7 +443,8 @@ body {
     height: 80%;
     gap: 15px;
 }
-#creatPostInput input{
+
+#creatPostInput input {
     border: none;
     background-color: #1B1D20;
     height: 100px;
@@ -427,16 +452,18 @@ body {
     padding: 10px;
     color: #B3B3B3
 }
-#creatPostIcones{
-    height:100px;
+
+#creatPostIcones {
+    height: 100px;
     width: 100%;
     /* background-color: blue; */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:30px
+    gap: 30px
 }
-#creatPostIcones i{
+
+#creatPostIcones i {
     height: 100%;
     width: 25%;
     display: flex;
@@ -447,52 +474,62 @@ body {
     padding: 3px 0px;
     border-radius: 10px;
 }
-#creatPostIcones i p{
+
+#creatPostIcones i p {
     color: white;
     font-size: 10px;
 }
-#imageIcone{
+
+#imageIcone {
     color: rgb(47, 255, 186);
 }
-#categorieIcone{
+
+#categorieIcone {
     color: orange;
 }
-.PostsCountainer{
+
+.PostsCountainer {
     width: 75%;
     background-color: #222428;
-    margin-top:5px;
+    margin-top: 5px;
     padding: 15px;
     border-radius: 15px;
     margin-bottom: 15px;
 }
-#profilePost{
+
+#profilePost {
     display: flex;
     gap: 15px;
     margin-left: 6px;
 }
-#profileImage{
+
+#profileImage {
     height: 40px;
     width: 40px;
     border-radius: 15px;
     overflow: hidden;
 }
-#profileImage img{
+
+#profileImage img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-#titleTime{
-  display: flex;
+
+#titleTime {
+    display: flex;
     gap: 10px;
     width: 100%;
-    min-width: 0; 
+    min-width: 0;
 }
-#name{
+
+#name {
     margin-bottom: 10px;
     color: #B3B3B3;
 }
-#PostTitle{
+
+#PostTitle {
     color: #E6E6E6;
     font-weight: 600;
     box-sizing: border-box;
@@ -503,18 +540,21 @@ body {
     overflow-wrap: break-word;
     word-break: break-word;
 }
-#time{
-    color:#FFD500 ;
+
+#time {
+    color: #FFD500;
 }
-#contentPost{
-      color:#E6E6E6;
+
+#contentPost {
+    color: #E6E6E6;
     padding: 5px 15px;
     box-sizing: border-box;
     overflow-wrap: break-word;
     word-break: break-word;
     white-space: pre-wrap;
 }
-#postImageCountainer{
+
+#postImageCountainer {
     /* background-color: rebeccapurple; */
     height: 400px;
     width: 100%;
@@ -525,7 +565,8 @@ body {
     align-items: center;
     justify-content: center;
 }
-#postImage{
+
+#postImage {
     height: 100%;
     width: 95%;
     border-radius: 15px;
@@ -533,14 +574,15 @@ body {
     cursor: pointer;
 
 }
-#postImage img{
+
+#postImage img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
 
-#iconesAndCategories{
+#iconesAndCategories {
     width: 100%;
     margin-top: 10px;
     display: flex;
@@ -548,7 +590,8 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-#postIncones{
+
+#postIncones {
     height: 40px;
     width: 100px;
     /* background-color: yellow; */
@@ -558,30 +601,35 @@ body {
     justify-content: center;
 
 }
-#postIncones i{
+
+#postIncones i {
     /* background-color: blue; */
     margin: 5px;
     font-size: 20px;
 }
-.Postcategories{
+
+.Postcategories {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
     justify-content: flex-end;
 }
-.Postcategorie{
-    padding: 6px 14px;   /* instead of height/width */
+
+.Postcategorie {
+    padding: 6px 14px;
+    /* instead of height/width */
     background-color: #FFD500;
     border-radius: 15px;
     font-size: 13px;
     white-space: nowrap;
 }
 
-#messagesTitle{
-    color:#E6E6E6 ;
+#messagesTitle {
+    color: #E6E6E6;
     margin-bottom: 20px;
 }
-#messageCountainer{
+
+#messageCountainer {
     height: 50px;
     width: 100%;
     /* background-color: red; */
@@ -590,89 +638,102 @@ body {
     /* justify-content: space-around; */
     cursor: pointer;
 }
-#messageProfile{
+
+#messageProfile {
     height: 80%;
     width: 10%;
     margin: 0px 10px 0px 10px;
     border-radius: 10px;
     overflow: hidden;
 }
-#messageProfile img{
+
+#messageProfile img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-#messageName{
+
+#messageName {
     /* background-color: blue; */
     font-size: 13px;
     color: #E6E6E6;
 }
-#notificationAndTime{
+
+#notificationAndTime {
     /* background-color: yellow; */
     width: 45%;
     display: flex;
     justify-content: flex-end;
-    
+
 }
-#notificationAndTime p{
+
+#notificationAndTime p {
     font-size: 13px;
-    color:#FFD500;
+    color: #FFD500;
     display: none;
 }
-.messageNotification{
+
+.messageNotification {
     height: 10px;
     width: 10px;
     background-color: #FFD500;
     border-radius: 20px;
     display: none;
 }
-#onlineState{
+
+#onlineState {
     height: 10px;
     width: 10px;
     background-color: rgb(1, 180, 1);
     position: absolute;
     border-radius: 50px;
-    transform: translate(23px,-12px);
+    transform: translate(23px, -12px);
     display: none;
 }
 
-#messageCountainer.onlineUser #onlineState{
+#messageCountainer.onlineUser #onlineState {
     display: flex;
 }
-#backgroundLeft{
-    background-color:#ffd500af;
+
+#backgroundLeft {
+    background-color: #ffd500af;
     width: 100%;
     height: 30%;
 }
-#backgroundLeft img{
+
+#backgroundLeft img {
     height: 100%;
     width: 100%;
 }
-#profilneAndIformations{
+
+#profilneAndIformations {
     height: 20%;
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: space-around;
     /* background-color: yellow; */
     align-items: center;
 }
-#informationImage{
+
+#informationImage {
     height: 70px;
     width: 30%;
     /* background-color: red; */
-    transform: translate(0px,-30px);
+    transform: translate(0px, -30px);
     /* position: absolute; */
     border-radius: 15px;
     overflow: hidden;
 }
-#informationImage img{
+
+#informationImage img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-#informationName{
+
+#informationName {
     height: 50px;
     width: 100px;
     color: white;
@@ -681,11 +742,13 @@ body {
     align-items: center;
     flex-direction: column;
 }
-#profileNickname{
+
+#profileNickname {
     margin-bottom: 7px;
-    color:#5C5F66;
+    color: #5C5F66;
 }
-#howMuchLike{
+
+#howMuchLike {
     color: #E6E6E6;
     height: 100%;
     display: flex;
@@ -699,10 +762,11 @@ body {
 }
 
 #howMuchLike p {
-   margin: 9px 0px 0px 0px;
+    margin: 9px 0px 0px 0px;
 }
-#howMuchSaves{
-     color: #E6E6E6;
+
+#howMuchSaves {
+    color: #E6E6E6;
     height: 100%;
     display: flex;
     align-items: center;
@@ -712,67 +776,78 @@ body {
     justify-content: center;
     padding-top: 10px;
 }
+
 #howMuchSaves p {
-   margin: 9px 0px 0px 0px;
+    margin: 9px 0px 0px 0px;
 }
 
-#categories{
+#categories {
     /* background-color: rebeccapurple; */
     padding: 10px;
 }
-#categorieTitle{
+
+#categorieTitle {
     color: #E6E6E6;
     margin-bottom: 15px;
 }
-#categorieCountainer{
+
+#categorieCountainer {
     /* background-color: red; */
     height: 88%;
     color: #E6E6E6;
     font-size: 13px;
 }
-#first{
+
+#first {
     /* background-color: green; */
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
 }
-#first p{
+
+#first p {
     padding: 5px 7px;
     border-radius: 10px;
     background-color: #222428;
     cursor: pointer;
 }
-#second{
+
+#second {
     /* background-color: green; */
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
 }
-#second p{
+
+#second p {
     padding: 5px 7px;
     border-radius: 10px;
     background-color: #222428;
     cursor: pointer;
 }
-#third{
+
+#third {
     display: flex;
     gap: 15px;
 }
-#third p{
+
+#third p {
     padding: 5px 7px;
     border-radius: 10px;
     background-color: #222428;
     cursor: pointer;
 }
-#informationName{
+
+#informationName {
     display: flex;
     /* align-items: center; */
     justify-content: center;
     height: 30%;
     width: 100%;
 }
+
 /* creatPostcss */
-#creatPostCountainer{
+#creatPostCountainer {
     background-color: rgba(0, 0, 0, 0.301);
     height: 100%;
     width: 100%;
@@ -780,7 +855,8 @@ body {
     align-items: center;
     justify-content: center
 }
-#creatPost{
+
+#creatPost {
     background-color: #141517;
     height: 60%;
     width: 60%;
@@ -790,28 +866,33 @@ body {
     align-items: center;
     padding: 15px;
 }
-.cancelCreatPost{
+
+.cancelCreatPost {
     height: 65%;
-   
+
 }
-.cancelCreatPost i{
+
+.cancelCreatPost i {
     cursor: pointer;
     color: yellow;
 }
-.cancelCreatPost i:hover{
+
+.cancelCreatPost i:hover {
     color: #2A2D32;
 }
-#inputs{
+
+#inputs {
     height: 100px;
     width: 100%;
     /* background-color: red; */
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin: 10px 0px 10px 0px ;
+    margin: 10px 0px 10px 0px;
     align-items: center;
 
 }
+
 #inputs input {
     height: 100px;
     border: none;
@@ -821,7 +902,8 @@ body {
     color: #B3B3B3;
     width: 60%;
 }
-#creatPostIcones{
+
+#creatPostIcones {
     /* background-color: green; */
     height: 100px;
     width: 100%;
@@ -832,7 +914,7 @@ body {
     margin-top: 20px;
 }
 
-#creatPostCategories{
+#creatPostCategories {
     width: 70%;
     display: flex;
     margin-top: 30px;
@@ -841,7 +923,8 @@ body {
     justify-content: center;
     gap: 10px;
 }
-#creatPostButton{
+
+#creatPostButton {
     margin-top: 20px;
     height: 40px;
     width: 130px;
@@ -850,31 +933,35 @@ body {
     border: none;
     border-radius: 10px;
 }
-#imageIconeCountainer{
-    background-color:#2A2D32;
+
+#imageIconeCountainer {
+    background-color: #2A2D32;
     height: 30%;
     width: 10%;
     display: flex;
     align-items: center;
-    padding:0px 10px;
+    padding: 0px 10px;
     gap: 10px;
-    border-radius:10px ;
+    border-radius: 10px;
     cursor: pointer;
     color: black;
 }
-#imageIconeCountainer p{
+
+#imageIconeCountainer p {
     color: white;
 }
-#imageUploadIcone{
+
+#imageUploadIcone {
     color: rgb(0, 255, 170);
 }
+
 .cat {
     position: relative;
     cursor: pointer;
 }
 
 .cat input {
-    display: none; 
+    display: none;
 }
 
 .cat span {
@@ -887,21 +974,24 @@ body {
     transition: 0.2s ease;
 }
 
-.cat input:checked + span {
+.cat input:checked+span {
     background: #FFD500;
     border-color: #FFD500;
     color: white;
     box-shadow: 0 4px 12px rgba(239, 255, 91, 0.4);
 }
-#likeIcone.liked{
-   color: red;
-   font-weight: 600;
-    
+
+#likeIcone.liked {
+    color: red;
+    font-weight: 600;
+
 }
-#saveIcone.saved{
-   font-weight: 600;
+
+#saveIcone.saved {
+    font-weight: 600;
 }
-.CommentsCountainer{
+
+.CommentsCountainer {
     /* background-color: red; */
     width: 100%;
     position: relative;
@@ -911,8 +1001,9 @@ body {
     /* display: none; */
     /* height: 500px; */
 }
-.commentCountainer{
-    
+
+.commentCountainer {
+
     /* background-color: blue; */
     height: auto;
     padding: 15px;
@@ -922,20 +1013,23 @@ body {
     gap: 10px;
     word-break: break-word;
 }
-.commentProfile{
+
+.commentProfile {
     background-color: purple;
     height: 40px;
     width: 40px;
     border-radius: 10px;
     overflow: hidden;
 }
-.commentProfile img{
+
+.commentProfile img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-.CommentContent{
+
+.CommentContent {
     background-color: #2A2D32;
     height: auto;
     padding: 15px 8px;
@@ -946,8 +1040,8 @@ body {
 
 }
 
-.addYourComment{
-     height: auto;
+.addYourComment {
+    height: auto;
     padding: 15px;
     margin-top: 10px;
     display: flex;
@@ -955,20 +1049,23 @@ body {
     gap: 10px;
     /* background-color: #003D99; */
 }
-.yourCommentProfile{
+
+.yourCommentProfile {
     background-color: purple;
     height: 40px;
     width: 40px;
     border-radius: 10px;
     overflow: hidden;
 }
-.yourCommentProfile img{
+
+.yourCommentProfile img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-.yourCommentContent{
+
+.yourCommentContent {
     background-color: #141517;
     height: 100%;
     padding: 8px;
@@ -977,8 +1074,9 @@ body {
     border-radius: 10px 10px 10px 0px;
     color: #b0b7c9;
 }
-.yourCommentContent input{
-     background-color: #141517;
+
+.yourCommentContent input {
+    background-color: #141517;
     height: 100%;
     padding: 8px;
     width: calc(100% - 40px);
@@ -986,14 +1084,17 @@ body {
     border-radius: 10px 10px 10px 0px;
     color: #b0b7c9;
 }
-.yourCommentContent input:focus{
+
+.yourCommentContent input:focus {
     border: none;
     outline: none;
 }
-#IconePostComment{
-    color:#FFD500 ;
+
+#IconePostComment {
+    color: #FFD500;
 }
-#addPrifileImage{
+
+#addPrifileImage {
     height: 35px;
     width: 50%;
     background-color: #FFD500;
@@ -1006,21 +1107,25 @@ body {
     cursor: pointer;
     margin: auto;
 }
-#fileInputProfile{
+
+#fileInputProfile {
     display: none;
 }
-*{
+
+* {
     padding: 0;
     margin: 0;
 }
-body{
+
+body {
     height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#addImageProfileCountainer{
+
+#addImageProfileCountainer {
     background-color: rgba(0, 0, 0, 0.822);
     height: 100%;
     width: 100%;
@@ -1030,8 +1135,9 @@ body{
     flex-direction: column;
     position: absolute;
 }
-#addImageProfilePage{
-     background-color: #222428;
+
+#addImageProfilePage {
+    background-color: #222428;
     height: 50%;
     width: 40%;
     display: flex;
@@ -1039,7 +1145,8 @@ body{
     flex-direction: column;
     border-radius: 10px;
 }
-#imageProfile{
+
+#imageProfile {
     background-color: white;
     height: 200px;
     width: 200px;
@@ -1048,36 +1155,40 @@ body{
     margin-bottom: 30px;
     overflow: hidden;
 }
+
 #imageProfile img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-#addImageProfile{
+
+#addImageProfile {
     margin-bottom: 10px;
     height: 40px;
     width: 100px;
     border: none;
     border-radius: 10px;
-    font-weight:bold;
+    font-weight: bold;
     background-color: yellow;
     cursor: pointer;
 }
-#ignoreImageProfile{
-        margin-bottom: 10px;
+
+#ignoreImageProfile {
+    margin-bottom: 10px;
     height: 40px;
     width: 100px;
     border: none;
     border-radius: 10px;
-    font-weight:bold;
+    font-weight: bold;
     background-color: rgba(128, 128, 128, 0.541);
     cursor: pointer;
 }
-#addProfileIconeCountainer{
+
+#addProfileIconeCountainer {
     background-color: yellow;
     position: absolute;
-    transform: translate(90px , 230px);
+    transform: translate(90px, 230px);
     height: 40px;
     width: 40px;
     border-radius: 50px;
@@ -1087,16 +1198,20 @@ body{
     background-color: yellow;
     cursor: pointer;
 }
+
 #addProfileIcone {
     font-size: 18px;
 }
-#fileInputProfileImage{
-display: none;
-}
-#fileInput{
+
+#fileInputProfileImage {
     display: none;
 }
-#imageSectionCountainer{
+
+#fileInput {
+    display: none;
+}
+
+#imageSectionCountainer {
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -1108,52 +1223,60 @@ display: none;
     justify-content: space-between;
     border-radius: 15px;
     z-index: 1000;
-   
+
 }
-#barSection{
-    background-color: black;    
+
+#barSection {
+    background-color: black;
     height: 15%;
     color: white;
     border-radius: 10px 10px 0px 0px;
 }
-#barSection{
+
+#barSection {
     display: flex;
     gap: 15px;
     align-items: center;
 }
-#image{
+
+#image {
     background-color: rgba(255, 255, 0, 0.733);
     width: 40px;
     height: 40px;
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: center;
-    margin-left:10px;
+    margin-left: 10px;
     border-radius: 50px;
     overflow: hidden;
 
 }
-#image img{
+
+#image img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
-#cancelButton{
-  /* background-color: blue; */
+
+#cancelButton {
+    /* background-color: blue; */
     width: 150px;
     display: flex;
     justify-content: flex-end;
     height: 100%;
     padding: 10px;
 }
-#cancelButton i:hover{
+
+#cancelButton i:hover {
     color: yellow;
 }
-#cancelButton i{
+
+#cancelButton i {
     cursor: pointer;
 }
-#inputMessagesSection{
+
+#inputMessagesSection {
     background-color: black;
     color: white;
     height: 40px;
@@ -1161,32 +1284,37 @@ display: none;
     align-items: center;
     padding: 10px;
     justify-content: space-between;
-    
+
 }
-#inputMessagesSection input{
+
+#inputMessagesSection input {
     height: 40px;
     width: 130%;
     border: none;
-    padding : 8px;
+    padding: 8px;
     background-color: black;
     color: #b0b7c9;
 }
-#inputMessagesSection input:focus{
+
+#inputMessagesSection input:focus {
     outline: none;
     border: none;
 }
-#inputMessagesSection i{
+
+#inputMessagesSection i {
     cursor: pointer;
 }
-#messagesSection{
-    background-color:#141517;
+
+#messagesSection {
+    background-color: #141517;
     height: 75%;
     width: 100%;
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;
 }
-.sender{
+
+.sender {
     height: 60px;
     width: 100px;
     /* background-color: blue; */
@@ -1197,26 +1325,30 @@ display: none;
     align-items: center;
     width: 100%;
     gap: 15px;
-    
+
 }
-#sendMessageIcone{
+
+#sendMessageIcone {
     color: #FFD500;
 }
-#MessageContentValue{
+
+#MessageContentValue {
     color: white;
 }
- .sender #MessageAndTime{
-    background-color:#222428;
-    color:#b0b7c9;
+
+.sender #MessageAndTime {
+    background-color: #222428;
+    color: #b0b7c9;
     min-height: 50px;
     /* min-width: 40px; */
     min-width: calc(50% - 40px);
     border-radius: 10px 10px 10px 0px;
     padding: 10px;
-     word-break: break-word;
-     margin : 10px
+    word-break: break-word;
+    margin: 10px
 }
-.receiver{
+
+.receiver {
     height: 60px;
     width: 100px;
     /* background-color: blue; */
@@ -1228,11 +1360,11 @@ display: none;
     width: 100%;
     gap: 15px;
     justify-content: end;
-     word-break: break-word;
+    word-break: break-word;
 }
 
- .receiver #MessageAndTime{
-    background-color:#FFD500;
+.receiver #MessageAndTime {
+    background-color: #FFD500;
     color: black;
     padding: 10px;
     min-height: 50px;
@@ -1240,9 +1372,10 @@ display: none;
     min-width: calc(50% - 40px);
     border-radius: 10px 10px 0px 10px;
     margin-right: 10px;
-     word-break: break-word;
-     margin : 10px
+    word-break: break-word;
+    margin: 10px
 }
-.new .messageNotification{
+
+.new .messageNotification {
     display: flex;
 }

@@ -1,10 +1,10 @@
-export function setCreatPost(){
+export function setCreatPost() {
   var alert = document.createElement('div')
-  alert.setAttribute('id','creatPostAlert')
+  alert.setAttribute('id', 'creatPostAlert')
   document.body.append(alert)
-    var creatPostCountainer = document.createElement('div')
-    creatPostCountainer.setAttribute('id','creatPostCountainer')
-    creatPostCountainer.innerHTML =`
+  var creatPostCountainer = document.createElement('div')
+  creatPostCountainer.setAttribute('id', 'creatPostCountainer')
+  creatPostCountainer.innerHTML = `
           
             <div id="creatPost">
                 <div id="inputs">
@@ -57,7 +57,7 @@ export function setCreatPost(){
             </div>
         </div>
     `
-    document.body.append(creatPostCountainer)
-     document.getElementById("creatPostCountainer").classList.add("active")
+  document.body.append(creatPostCountainer)
+  document.getElementById("creatPostCountainer").classList.add("active")
 
 }

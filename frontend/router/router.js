@@ -19,11 +19,11 @@ import { setImageProfilePage } from "/frontend/views/setImageProfilePage.js"
 import { imageViewer } from "/frontend/views/imageviewer.js"
 import { addImageBackend } from "/frontend/services/addImageBackend.js"
 import { addImage } from "../views/addImage.js";
-import {showMessageCountainer} from "/frontend/views/showMessageCountainer.js"
-import {hideMessageSection} from '/frontend/views/hideMessageSection.js';
-import {sendMessagBackend} from '/frontend/services/sendMessageBackend.js'
-import {StartWebsocketConection}from '/frontend/websocket/startConection.js'
-import {updateMessageState} from "/frontend/services/updateMessageState.js"
+import { showMessageCountainer } from "/frontend/views/showMessageCountainer.js"
+import { hideMessageSection } from '/frontend/views/hideMessageSection.js';
+import { sendMessagBackend } from '/frontend/services/sendMessageBackend.js'
+import { StartWebsocketConection } from '/frontend/websocket/startConection.js'
+import { updateMessageState } from "/frontend/services/updateMessageState.js"
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -33,12 +33,12 @@ async function router() {
     })
     var data = await res.json()
     if (data.status === 'success') {
-        let messagesSection = await setHomePage('all')  
+        let messagesSection = await setHomePage('all')
         StartWebsocketConection(messagesSection)
     } else {
         started()
     }
-    document.addEventListener('click', async (e) => {        
+    document.addEventListener('click', async (e) => {
         if (e.target.id === 'startedLoginButton') {
             setLoginHtml()
         } else if (e.target.id === 'startedRegisterButton') {
@@ -54,11 +54,11 @@ async function router() {
         } else if (e.target.id === 'loginButton') {
             let data = await loginCheck(e)
             if (data.status === 'success') {
-               
-                 let messagesSection = await setHomePage('all')  
-                 
-                  StartWebsocketConection(messagesSection) 
-                
+
+                let messagesSection = await setHomePage('all')
+
+                StartWebsocketConection(messagesSection)
+
             }
         } else if (e.target.id === 'creatPostIcone') {
             setCreatPost()
@@ -141,17 +141,17 @@ async function router() {
             if (res.statue === 'success') {
                 addImage()
             }
-        }else if (e.target.id === 'messageCountainer' || e.target.id === 'messageName' ){
-            var message = await e.target.closest("#messageCountainer")            
+        } else if (e.target.id === 'messageCountainer' || e.target.id === 'messageName') {
+            var message = await e.target.closest("#messageCountainer")
             // console.log('message',message.e.dataset);
-             
+
             showMessageCountainer(message.dataset.id)
-            
+
             updateMessageState(message.dataset.id)
-        }else if (e.target.id === 'cancenlChatIcone'){
+        } else if (e.target.id === 'cancenlChatIcone') {
             hideMessageSection()
-        }else if (e.target.id === 'sendMessageIcone'){
-            
+        } else if (e.target.id === 'sendMessageIcone') {
+
             sendMessagBackend()
         }
 

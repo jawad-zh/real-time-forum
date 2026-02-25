@@ -1,5 +1,5 @@
-export function TimeAgo(createdAt){
-   var postDate=  new Date(createdAt.replace(" ", "T"))
+export function TimeAgo(createdAt) {
+    var postDate = new Date(createdAt.replace(" ", "T"))
     const now = new Date()
 
     const seconds = Math.floor((now - postDate) / 1000)

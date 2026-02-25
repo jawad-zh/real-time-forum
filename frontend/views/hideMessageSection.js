@@ -1,6 +1,6 @@
-export function hideMessageSection(){
+export function hideMessageSection() {
     const messageSection = document.getElementById('imageSectionCountainer')
-    if (messageSection){
+    if (messageSection) {
         messageSection.remove()
     }
 }

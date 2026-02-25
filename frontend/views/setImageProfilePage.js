@@ -1,11 +1,11 @@
-export function setImageProfilePage(action){
-    
-    switch (action){
-     case 'addPrifileImage':
-        
-         var appCountainer = document.createElement('div')
-    appCountainer.setAttribute('id','addImageProfileCountainer')
-    var app = `
+export function setImageProfilePage(action) {
+
+    switch (action) {
+        case 'addPrifileImage':
+
+            var appCountainer = document.createElement('div')
+            appCountainer.setAttribute('id', 'addImageProfileCountainer')
+            var app = `
    <div id="addImageProfilePage" >
     <div id="imageProfile" >
         <img  id="ImageProfileSrc" src="" alt="">
@@ -19,22 +19,22 @@ export function setImageProfilePage(action){
     <button id="ignoreImageProfile" >ignore</button>
    </div>
     `
-    appCountainer.innerHTML = app
-    document.getElementById('appCountainer').append(appCountainer)
-    break
-    case 'ignoreImageProfile':
-        
-        var container = document.getElementById('addImageProfileCountainer')
-        if (container){
-            container.remove()
-        }
-        break
+            appCountainer.innerHTML = app
+            document.getElementById('appCountainer').append(appCountainer)
+            break
+        case 'ignoreImageProfile':
+
+            var container = document.getElementById('addImageProfileCountainer')
+            if (container) {
+                container.remove()
+            }
+            break
         case 'addImageProfileCountainer':
             var container = document.getElementById('addImageProfileCountainer')
-        if (container){
-            container.remove()
-        }
+            if (container) {
+                container.remove()
+            }
     }
-   
-   
+
+
 }

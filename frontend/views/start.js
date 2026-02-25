@@ -1,7 +1,7 @@
 export function started() {
     var childrens = document.body.children
-    for (let i = childrens.length ; i >=0 ; i--){
-        if (childrens[i]){
+    for (let i = childrens.length; i >= 0; i--) {
+        if (childrens[i]) {
 
             childrens[i].remove()
         }
@@ -26,9 +26,9 @@ export function started() {
 
 export function setLoginHtml() {
     const bodyChildren = document.body.children
-    if (bodyChildren) {        
-        for (let i = bodyChildren.length-1; i >= 0; i--) {
-            
+    if (bodyChildren) {
+        for (let i = bodyChildren.length - 1; i >= 0; i--) {
+
             bodyChildren[i].remove()
         }
     }
@@ -86,7 +86,7 @@ export function setLoginHtml() {
 export function setRegister() {
     const bodyChildren = document.body.children
     if (bodyChildren) {
-        for (let i = bodyChildren.length-1; i >= 0; i--) {
+        for (let i = bodyChildren.length - 1; i >= 0; i--) {
             bodyChildren[i].remove()
         }
     }

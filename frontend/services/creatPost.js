@@ -6,7 +6,7 @@ export async function creatPost(e) {
     const title = document.getElementById('creatPostTitle').value.trim()
     const content = document.getElementById('creatPostContent').value.trim()
     const imageFile = document.getElementById('fileInput').files[0]
-    
+
     const inputCategories = {
         'music': '1',
         'footballe': '2',
@@ -44,16 +44,16 @@ export async function creatPost(e) {
         body: postInformation
     })
     // need to be on views
-    if (res){
+    if (res) {
         var data = await res.json()
     }
-    var tempURL =''
+    var tempURL = ''
     var Profile = ''
     var time = TimeAgo(data.CreatedAt)
-    if (imageFile){
-         tempURL = URL.createObjectURL(imageFile);
+    if (imageFile) {
+        tempURL = URL.createObjectURL(imageFile);
     }
-    if(data.ProfileURL.Valid){
+    if (data.ProfileURL.Valid) {
         Profile = data.ProfileURL.String
     }
     if (data.status === 'success') {

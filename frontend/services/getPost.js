@@ -1,12 +1,12 @@
-export async function getPost(Category){
-    var res = await fetch(`http://localhost:8080/getPosts?category=${Category}`,{
-        method : "GET",
-        headers:{
-            "Content-Type" : "application/json"
+export async function getPost(Category) {
+    var res = await fetch(`http://localhost:8080/getPosts?category=${Category}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
         },
     })
-    var data = await res.json()     
-    
+    var data = await res.json()
+
     return data
-    
+
 }
