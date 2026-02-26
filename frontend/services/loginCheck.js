@@ -1,5 +1,5 @@
-import { checkLoginResponse } from "../views/checkFrontResponse.js"
-import { StartWebsocketConection } from "/frontend/websocket/startConection.js"
+import {setAlert} from "/frontend/components/alert.js"
+
 export async function loginCheck(e) {
     e.preventDefault()
     const emailOrNicknameInput = (document.getElementById('loginEmailInput').value).trim()
@@ -9,10 +9,11 @@ export async function loginCheck(e) {
     // const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
     const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]/
     if (emailOrNickname === '') {
-        checkLoginResponse('email or nickname is required', 'red')
+        setAlert('error', '✖', 'email or nickname is required');
+        
         return
     } else if (password === '') {
-        checkLoginResponse('password is required', 'red')
+        setAlert('error', '✖', 'password is required');
         return
     }
     if (emailOrNicknameInput.match(/@/)) {
@@ -23,30 +24,30 @@ export async function loginCheck(e) {
         // }
     } else {
         if (emailOrNicknameInput.length <= 2) {
-            checkLoginResponse('nickname should be more than two charachter')
+        setAlert('error', '✖', 'nickname should be more than two charachter');
             return
         } else if (emailOrNicknameInput.match(nicknameSpeacialCharacterRegex)) {
-            checkLoginResponse('the only speacial character allowe in nickname are - _ and .')
+        setAlert('error', '✖', 'the only speacial character allowe in nickname are - _ and .');
             return
         }
     }
     if (password.length <= 7) {
-        checkLoginResponse('invalid email or password', 'red')
+        setAlert('error', '✖', 'invalid email or password');
         return
     } else if (!password.match(/[a-z]/)) {
-        checkLoginResponse('invalid email or password', 'red')
+        setAlert('error', '✖', 'invalid email or password');
         return
     } else if (!password.match(/[A-Z]/)) {
-        checkLoginResponse('invalid email or password', 'red')
+        setAlert('error', '✖', 'invalid email or password');
         return
 
     } else if (!password.match(/\d/)) {
-        checkLoginResponse('invalid email or password', 'red')
+        setAlert('error', '✖', 'invalid email or password');
         return
 
     } else if (!password.match(speacialCharacterRegex)) {
         //need to handl
-        checkLoginResponse('invalid email or password', 'red')
+        setAlert('error', '✖', 'invalid email or password');
         return
 
     }
@@ -64,9 +65,9 @@ export async function loginCheck(e) {
     })
     var data = await res.json()
     if (data.status === 'success') {
-        checkLoginResponse(data.message, 'green')
+         setAlert('success', '✔', 'Login successfully!');
     } else {
-        checkLoginResponse(data.message, 'red')
+        setAlert('error', '✖', data.message);
     }
 
 

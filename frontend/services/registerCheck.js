@@ -1,6 +1,4 @@
-import { checkRegisterResponse } from "../views/checkFrontResponse.js"
-import { sendRegisterData } from "../websocket/sendRegisterData.js"
-
+import {setAlert} from "/frontend/components/alert.js"
 export async function registerCheck(e) {
      e.preventDefault()
      const nickname = (document.getElementById('nicknameInput').value).trim()
@@ -15,54 +13,54 @@ export async function registerCheck(e) {
      const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]/
      //     const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
      if (nickname.length <= 2) {
-          checkRegisterResponse('nickname need to be more than two character', 'red')
+          setAlert('error', '✖', 'nickname need to be more than two character');
           return false
      } else if (nickname.match(nicknameSpeacialCharacterRegex)) {
-          checkRegisterResponse('nickname speacial character allowed is - _ and .', 'red')
+          setAlert('error', '✖', 'nickname speacial character allowed is - _ and .', 'red');
           return false
      }
      if (ageInput.match(/\D/)) {
-          checkRegisterResponse('the age accept only numbers', 'red')
+          setAlert('error', '✖', 'the age accept only numbers');
           return false
      }
      if (genderInput !== 'male' && genderInput !== 'female') {
-          checkRegisterResponse('invalid Gender', 'red')
+          setAlert('error', '✖', 'invalid Gender');
           return false
      }
      if (firstNameInput.length <= 2) {
-          checkRegisterResponse('first Name need to be more than two character', 'red')
+          setAlert('error', '✖', 'first Name need to be more than two character');
           return false
 
      } else if (firstNameInput.match(speacialCharacterRegex) || firstNameInput.match(/\d/)) {
           // need to modfy regex
-          checkRegisterResponse('speacial character or numbers in first Name not allowed', 'red')
+          setAlert('error', '✖', 'speacial character or numbers in first Name not allowed');
           return false
      }
      if (lastNameInput.length <= 2) {
-          checkRegisterResponse('last Name need to be more than two character', 'red')
+          setAlert('error', '✖', 'last Name need to be more than two character');
           return false
 
      } else if (lastNameInput.match(speacialCharacterRegex) || lastNameInput.match(/\d/)) {
           // need to modfy regex
-          checkRegisterResponse('speacial character or numbers in first Name not allowed', 'red')
+          setAlert('error', '✖', 'speacial character or numbers in first Name not allowed');
           return false
      }
      if (password.length <= 7) {
-          checkRegisterResponse('password need to be 8 character as minimum', 'red')
+          setAlert('error', '✖', 'password need to be 8 character as minimum');
           return false
      } else if (!password.match(/[a-z]/)) {
-          checkRegisterResponse('should be one lowerCase character in password', 'red')
+          setAlert('error', '✖', 'should be one lowerCase character in password');
           return false
      } else if (!password.match(/[A-Z]/)) {
-          checkRegisterResponse('should be one UpperCase character in password', 'red')
+          setAlert('error', '✖', 'should be one UpperCase character in password');
           return false
 
      } else if (!password.match(/\d/)) {
-          checkRegisterResponse('should be one digit character in password', 'red')
+          setAlert('error', '✖', 'should be one UpperCase character in password');
           return false
 
      } else if (!password.match(speacialCharacterRegex)) {
-          checkRegisterResponse('should be one special character in password', 'red')
+          setAlert('error', '✖', 'should be one special character in password');
           return false
 
      }
@@ -73,24 +71,25 @@ export async function registerCheck(e) {
 
      //check empty
      if (nickname === '') {
-          checkRegisterResponse('nickname is required', 'red')
+          setAlert('error', '✖', 'nickname is required');
 
      } else if (ageInput === '') {
-          checkRegisterResponse('Age is required', 'red')
+          setAlert('error', '✖', 'Age is required');
           return false
      } else if (genderInput === '') {
-          checkRegisterResponse('Gender is required', 'red')
+          setAlert('error', '✖', 'Gender is required');
           return false
      } else if (firstNameInput === '') {
-          checkRegisterResponse('First Name is required', 'red')
+          setAlert('error', '✖', 'First Name is required');
           return false
      } else if (lastNameInput === '') {
-          checkRegisterResponse('Last Name is required', 'red')
+          setAlert('error', '✖', 'Last Name is required');
           return false
      } else if (email === '') {
-          return checkRegisterResponse('Email is required', 'red')
+          setAlert('error', '✖', 'Email is required');
+          return 
      } else if (password === '') {
-          checkRegisterResponse('Password is required', 'red')
+          setAlert('error', '✖', 'Password is required');
           return false
      }
      //backend
@@ -114,9 +113,9 @@ export async function registerCheck(e) {
      })
      var data = await res.json()
      if (data.status === 'success') {
-          checkRegisterResponse(data.message, 'green')
+          setAlert('success', '✔', 'Register Successful');
      } else {
-          checkRegisterResponse(data.message, 'red')
+           setAlert('error', '✖', data.message);
      }
      return data
 }

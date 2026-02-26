@@ -4,6 +4,7 @@ import {onlineStateUpdate} from "/frontend/views/onlineStateUpdate.js"
 import {offlineStateUpdate} from "/frontend/views/offlineStateUpdate.js"
 import{updateMessageStateFront} from "/frontend/views/updateMessageStateFront.js"
 let socket = null
+export let onlineUsers = []
 export   function StartWebsocketConection(messageSection){
   
     if (socket && socket.readyState === WebSocket.OPEN)return
@@ -12,7 +13,7 @@ export   function StartWebsocketConection(messageSection){
         console.log("the web socket connection is opned");
        }
        socket.onmessage =  (event)=>{           
-        let data =  JSON.parse(event.data)  
+        let data =  JSON.parse(event.data)          
                       
         switch (data.ContentType){
           case "NewMessage" :  
@@ -34,6 +35,8 @@ export   function StartWebsocketConection(messageSection){
        }
        socket.onclose = () => {
         console.log('COnnection CLOSED //////');
+    
+        
         
        }
 }

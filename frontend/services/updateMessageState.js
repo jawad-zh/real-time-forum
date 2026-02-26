@@ -1,5 +1,4 @@
 export async function updateMessageState(UserID){   
-     console.log('id I received:',UserID);
      
     let userInfo = {
         UserID:Number(UserID)

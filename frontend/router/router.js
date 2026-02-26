@@ -13,7 +13,7 @@ import { showComment } from "../views/showComment.js";
 import { commentBackend } from "/frontend/services/commentBackend.js"
 import { creatComment } from "/frontend/views/creatComment.js"
 import { checkCreatPost } from "/frontend/services/checkCreatPost.js"
-import { checkCreatPostRespons } from "../views/checkFrontResponse.js";
+import {checkMessage} from "/frontend/services/checkMessage.js"
 import { checkComment } from "../services/checkComment.js";
 import { setImageProfilePage } from "/frontend/views/setImageProfilePage.js"
 import { imageViewer } from "/frontend/views/imageviewer.js"
@@ -24,6 +24,7 @@ import { hideMessageSection } from '/frontend/views/hideMessageSection.js';
 import { sendMessagBackend } from '/frontend/services/sendMessageBackend.js'
 import { StartWebsocketConection } from '/frontend/websocket/startConection.js'
 import { updateMessageState } from "/frontend/services/updateMessageState.js"
+import {setAlert} from "/frontend/components/alert.js"
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -54,10 +55,11 @@ async function router() {
         } else if (e.target.id === 'loginButton') {
             let data = await loginCheck(e)
             if (data.status === 'success') {
-
-                let messagesSection = await setHomePage('all')
-
-                StartWebsocketConection(messagesSection)
+               
+                  setTimeout(async () => {
+                      let messagesSection = await setHomePage('all')
+                      StartWebsocketConection(messagesSection)
+                }, 1500)
 
             }
         } else if (e.target.id === 'creatPostIcone') {
@@ -77,7 +79,7 @@ async function router() {
                 //    checkCreatPostRespons('your post is created','red')
                 creatPost(e)
             } else {
-                checkCreatPostRespons(message, 'red')
+               setAlert('error', '✖', message);
             }
         } else if (e.target.id === 'homePageIcone') {
             setHomePage('all')
@@ -113,8 +115,9 @@ async function router() {
             var data = await savePostsBackend(post.dataset.PostID)
 
             if (data.statue === 'success') {
-
                 savePostFront(data, icone)
+            }else{
+                setAlert('error', '✖', 'save failed try later');
             }
         } else if (e.target.id === 'commentIcone') {
             var post = await e.target.closest(".PostsCountainer")
@@ -128,7 +131,7 @@ async function router() {
                     creatComment(post.dataset.PostID, res)
                 }
             } else {
-                // make action
+                setAlert('error', '✖', res);
             }
 
         } else if ((e.target.id === 'addPrifileImage') || (e.target.id === 'ignoreImageProfile') || e.target.id === 'addImageProfileCountainer') {
@@ -140,16 +143,21 @@ async function router() {
             var res = await addImageBackend()
             if (res.statue === 'success') {
                 addImage()
+            }else{
+                setAlert('error', '✖', 'add profile image failed try later');
             }
         } else if (e.target.id === 'messageCountainer' || e.target.id === 'messageName') {
-            var message = await e.target.closest("#messageCountainer")            
-            showMessageCountainer(message.dataset.id)            
+            var message = await e.target.closest("#messageCountainer")
+            let online =  message.classList.contains('onlineUser')? true :false
+            showMessageCountainer(message.dataset.id,online)            
             updateMessageState(message.dataset.id)
         } else if (e.target.id === 'cancenlChatIcone') {
             hideMessageSection()
         } else if (e.target.id === 'sendMessageIcone') {
-
-            sendMessagBackend()
+           let ok= checkMessage()
+           if (ok){
+               sendMessagBackend()
+           }
         }else if (e.target.id === 'imageIconeCountainer' || e.target.id === 'imageUploadIcone' || e.target.id === 'imageTextIcone'){
             document.getElementById('fileInput').click()            
         }
