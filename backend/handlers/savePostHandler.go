@@ -1,0 +1,40 @@
+package handlers
+
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"golang/backend/services"
+)
+
+type SaveJsonFormat struct {
+	ID int `json:"PostID"`
+}
+type SaveHandlerResponseFormat struct {
+	Statue  string `json:"statue"`
+	Message string `json:"message"`
+}
+
+func SavePostHandler(w http.ResponseWriter, r *http.Request) {
+	var postID SaveJsonFormat
+	var saveHandlerResponse SaveHandlerResponseFormat
+	err := json.NewDecoder(r.Body).Decode(&postID)
+	if err != nil {
+		fmt.Println("Error:", err)
+		saveHandlerResponse.Message = "save post failed try later"
+		saveHandlerResponse.Statue = "failed"
+		json.NewEncoder(w).Encode(&saveHandlerResponse)
+		return
+	}
+	err, message := services.SavePostService(r, postID.ID)
+	if err != nil {
+		saveHandlerResponse.Message = message
+		saveHandlerResponse.Statue = "failed"
+		json.NewEncoder(w).Encode(&saveHandlerResponse)
+		return
+	}
+	saveHandlerResponse.Message = message
+	saveHandlerResponse.Statue = "success"
+	json.NewEncoder(w).Encode(&saveHandlerResponse)
+}
