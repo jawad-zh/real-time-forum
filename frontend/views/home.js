@@ -2,7 +2,7 @@ import { getUserInfo } from "/frontend/services/getUserInfo.js"
 import { getPost } from "/frontend/services/getPost.js"
 import { TimeAgo } from "../services/timeAgo.js"
 import {getAllUser}  from "/frontend/services/getAllUsers.js"
-import {StartWebsocketConection}from '/frontend/websocket/startConection.js'
+// export let onlineUsers = []
 export let ExportedUsers = []
 export let UserInfo = {}
 export let rightSide = document.getElementById('rightSide')

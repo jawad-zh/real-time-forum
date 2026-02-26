@@ -1,8 +1,11 @@
 import { ExportedUsers } from "/frontend/views/home.js"
 import { getMessages } from '/frontend/services/getMessages.js';
 import { UserInfo } from "./home.js";
-export async function showMessageCountainer(UserID) {
-
+// import { onlineUsers } from "/frontend/websocket/startConection.js"
+export async function showMessageCountainer(UserID,online) {
+    // let onlineStat = onlineUsers.includes(UserID) ? 'onlie' : 'offline'
+    // console.log('onlineStat',onlineUsers);
+    
     let RecieverUser = {}
     for (let user of ExportedUsers) {
         if (user.UserID == UserID) {
@@ -10,9 +13,8 @@ export async function showMessageCountainer(UserID) {
             break
         }
     }
-    
+    let onlineStat = online ? 'online' : 'offline'
     var section = `
-        
         <div id="barSection" >
             <div id="image" >
                 <img src="${RecieverUser.ProfileURL}" alt="">
@@ -22,7 +24,7 @@ export async function showMessageCountainer(UserID) {
                     ${RecieverUser.Nickname}
                 </div>
                 <div id="SubName" >
-                online
+                ${onlineStat}
                 </div>
             </div>
             <div id="cancelButton" >
@@ -47,6 +49,7 @@ export async function showMessageCountainer(UserID) {
     if (oldMessageCountainer) oldMessageCountainer.remove()
     const imageSectionCountainer = document.createElement('div')
     imageSectionCountainer.setAttribute('id', 'imageSectionCountainer')
+    imageSectionCountainer.classList.add('imageSectionCountainer')
     imageSectionCountainer.dataset.id = UserID
     imageSectionCountainer.innerHTML = section
     document.body.append(imageSectionCountainer)
