@@ -6,7 +6,7 @@ import (
 	"golang/backend/models"
 )
 
-func GetMessagesRepos(receiverID int , senderID int)(error,*[]models.PrivateMessage){
+func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.PrivateMessage){
 	fmt.Println("reciever from repost",receiverID)
 	var messages []models.PrivateMessage
 	rows, err := db.DataBase.Query(`

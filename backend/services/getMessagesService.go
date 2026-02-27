@@ -7,13 +7,13 @@ import (
 	"net/http"
 )
 
-func GetMessages(r *http.Request , receiverID int) (error,*[]models.PrivateMessage){
+func GetMessages(r *http.Request , receiverID int,offset int) (error,*[]models.PrivateMessage){
 	err,session:= repos.CheckSession(r)
 	if err != nil{
 		fmt.Println("Get messages session Error",err)
 		return err ,nil
 	}
-	err,data:=repos.GetMessagesRepos(receiverID,session.UserID)
+	err,data:=repos.GetMessagesRepos(receiverID,session.UserID,offset)
 	if err != nil{
 		return err ,nil
 	}
