@@ -7,7 +7,7 @@ import (
 )
 
 func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.PrivateMessage){
-	fmt.Println("reciever from repost",receiverID)
+	
 	var messages []models.PrivateMessage
 	rows, err := db.DataBase.Query(`
     SELECT SenderId, Content 
@@ -16,7 +16,9 @@ func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.
 	(ReceiverId = ? AND SenderId = ?)
 	OR
 	(ReceiverId = ? AND SenderId = ?)
-	`, receiverID, senderID, senderID, receiverID)
+	ORDER BY MessageID DESC
+	LIMIT 10 OFFSET ?
+	`, receiverID, senderID, senderID, receiverID,offset)
 	if err != nil{
 		fmt.Println("Select messages err:",err)
 		return err ,nil
