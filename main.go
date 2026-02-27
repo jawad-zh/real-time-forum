@@ -14,6 +14,7 @@ func main() {
 	err := db.DbConnection()
 	if err != nil {
 		fmt.Print("DataBaseErr", err)
+		return
 	}
 	db.CreatTables(db.DataBase)
 	// server part
