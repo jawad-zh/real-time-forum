@@ -1,12 +1,11 @@
 import { getUserInfo } from "/frontend/services/getUserInfo.js"
-import { getPost } from "/frontend/services/getPost.js"
-import { TimeAgo } from "../services/timeAgo.js"
-import {getAllUser}  from "/frontend/services/getAllUsers.js"
+import{loadPosts} from "/frontend/views/loadPosts.js"
+import { loadUsers } from "./loadUsers.js"
+import {scrollTracking} from "/frontend/services/scrolling.js"
 // export let onlineUsers = []
 export let ExportedUsers = []
 export let UserInfo = {}
-export let rightSide = document.getElementById('rightSide')
-export async function setHomePage(Category) {
+export async function setHomePage(Category) {    
     let bodyChildren = document.body.children
     if (bodyChildren) {
         for (let i = 0; i < bodyChildren.length; i++) {
@@ -23,10 +22,10 @@ export async function setHomePage(Category) {
                 <img src="frontend/state/images/logo.png" alt="">
             </div>
             <div id="icones">
-                <i id="homePageIcone"  class="fa-solid fa-house"></i>
-                <i  id="creatPostIcone" class="fa-regular fa-square-plus"></i>
-                <i  id="saveIconeFilter" class="fa-regular fa-bookmark"></i>
-                <i  id="likeIconeFilter" class="fa-regular fa-heart"></i>
+                <i id="homePageIcone"  class="fa-regular fa-house   nav-item "></i>
+                <i  id="creatPostIcone" class="fa-regular fa-square-plus nav-item "></i>
+                <i  id="saveIconeFilter" class="fa-regular fa-bookmark nav-item "></i>
+                <i  id="likeIconeFilter" class="fa-regular fa-heart nav-item "></i>
                 <i class="fa-regular fa-sun"></i>
             </div>
             <div id="profile">
@@ -118,120 +117,15 @@ export async function setHomePage(Category) {
 
             `
     // get Posts 
-    let data = await getPost(Category)
-    
-    if (data){
-         let middle = document.getElementById('middle')
-    for (let i = 0; i < data.length; i++) {
-        let liked = ''
-        let saved = ''
-        if (data[i].Isliked === 1) {
-            liked = 'liked'
-        }
+   
+    loadPosts(Category,'home')
+let messagesSection = loadUsers()
 
-        if (data[i].IsSaved === 1) {
-            saved = 'saved'
-        }
-        let createdAt = TimeAgo(data[i].CreatedAt)
-        let Profile = data[i].ProfileURL.String ? data[i].ProfileURL.String : '' 
-        let post = document.createElement('div')
-        post.classList.add('PostsCountainer')
-        post.dataset.PostID = data[i].PostID
-        post.innerHTML = `
-    <div id="profilePost">
-                        <div id="profileImage">
-                            <img src="${Profile}" alt="">
-                        </div>
-                        <div id="NameTitlePost">
-                            <p id="name">${data[i].Nickname}</p>
-                            <div id="titleTime">
-                                <p id="PostTitle">${data[i].Title}</p>
-                                <p id="time">${createdAt}</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div id="contentPost">${data[i].Content}</div>
-                        <div id="postImageCountainer" >
-                            <div id="postImage">
-                        <img src="${data[i].ImageURL}" alt="">
-                    </div>
-                        </div>
-                    
-                    <div id="iconesAndCategories">
-                        <div id="postIncones">
-                            <i id="likeIcone" class="fa-regular fa-heart ${liked}" data-postid=${data[i].PostID} ></i>
-                            <i  id="commentIcone" class="fa-regular fa-comment-dots " data-postid=${data[i].PostID}></i>
-                            <i  id= "saveIcone" class="fa-regular fa-bookmark ${saved} " data-postid=${data[i].PostID}></i>
-                        </div>
-                        <div class="Postcategories">
-                        </div>
-                    </div>
-    `
-
-
-        middle.append(post)
-        for (let j = 0; j < data[i].Categories.length; j++) {
-            let PostCategorie = post.querySelector('.Postcategories')
-
-            let category = document.createElement('div')
-            category.classList.add('Postcategorie')
-            category.innerHTML = data[i].Categories[j]
-
-            PostCategorie.append(category)
-        }
-
-    }    
-    if (Category == 'like'){
-        let hearts = document.querySelectorAll('.fa-heart')
-         for (let heart of hearts){
-            heart.classList.add('liked')
-        }
-    }else if (Category == 'save'){        
-        let saves = document.querySelectorAll('.fa-bookmark')        
-        for (let save of saves){
-            save.classList.add('saved')
-        }
-    }
-    }
-
-    // get All Users
-     let users = await getAllUser()
-    
-    if (users.statue==='success'){
-        const messagesSection = document.getElementById('rightSide')        
-        for (let user of users.Data){
-            ExportedUsers.push(user)
-            if (user.Nickname === UserInfo.Nickname){
-                continue
-            }
-            let messageCountainer = document.createElement('div')
-            messageCountainer.setAttribute('id','messageCountainer')
-            messageCountainer.dataset.id = `${user.UserID}`
-            messageCountainer.classList.add('messageCountainer')
-            if (!user.IsRead.Bool) {messageCountainer.classList.add('new')}else{if (messageCountainer.classList.contains('new')){messageCountainer.classList.remove('new')}}
-            messageCountainer.innerHTML = `
-                    
-                      <div id="messageProfile" >
-                          <img src="${user.ProfileURL}" alt="">
-                           <div id="onlineState" ></div>
-                      </div>
-                      <div id="messageName" >
-                          ${user.Nickname}
-                      </div>
-                      <div id="notificationAndTime" >
-                          <p>11 min</p>
-                          <div class="messageNotification" ></div>
-                      </div>
-      `
-      messagesSection.append(messageCountainer)
-        }
-
-        
-            
-            return messagesSection
-     
-    }
+const middle = document.getElementById("middle")
+scrollTracking(middle, Category)   
+return messagesSection
     
 }
+// const container = document.getElementById('middle')
+// console.log('middle',container);
+
