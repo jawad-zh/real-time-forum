@@ -1,5 +1,7 @@
 import {updateMessageState} from "/frontend/services/updateMessageState.js"
-export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {        
+import { messageScrolling } from "../services/scrolling.js";
+import {addMessageOffset} from "/frontend/services/getMessages.js"
+export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {   
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
     if (messageContainerCheck) {
@@ -31,5 +33,6 @@ export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {
             }
         }
     }
-
+    addMessageOffset()
+    
 }
