@@ -24,7 +24,9 @@ import { hideMessageSection } from '/frontend/views/hideMessageSection.js';
 import { sendMessagBackend } from '/frontend/services/sendMessageBackend.js'
 import { StartWebsocketConection } from '/frontend/websocket/startConection.js'
 import { updateMessageState } from "/frontend/services/updateMessageState.js"
+import {active} from "/frontend/views/active.js"
 import {setAlert} from "/frontend/components/alert.js"
+import {removeCreatPostPage} from '/frontend/views/removeCreatPostPage.js'
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -64,9 +66,11 @@ async function router() {
             }
         } else if (e.target.id === 'creatPostIcone') {
             setCreatPost()
+            active(e.target.id)
+
         } else if (e.target.id === 'cancelCreatPost' || e.target.id === 'creatPostCountainer') {
             // need to handle don't call main
-            setHomePage('all')
+            removeCreatPostPage()
         } else if (e.target.id === 'logoutIcone') {
             var ok = logout()
             if (ok) {
@@ -164,4 +168,5 @@ async function router() {
 
     })
 }
+
 router()
