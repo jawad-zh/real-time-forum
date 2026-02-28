@@ -27,6 +27,7 @@ import { updateMessageState } from "/frontend/services/updateMessageState.js"
 import {active} from "/frontend/views/active.js"
 import {setAlert} from "/frontend/components/alert.js"
 import {removeCreatPostPage} from '/frontend/views/removeCreatPostPage.js'
+import{loadPosts} from '/frontend/views/loadPosts.js'
 async function router() {
     var res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
@@ -57,7 +58,6 @@ async function router() {
         } else if (e.target.id === 'loginButton') {
             let data = await loginCheck(e)
             if (data.status === 'success') {
-               
                   setTimeout(async () => {
                       let messagesSection = await setHomePage('all')
                       StartWebsocketConection(messagesSection)
@@ -86,26 +86,26 @@ async function router() {
                setAlert('error', '✖', message);
             }
         } else if (e.target.id === 'homePageIcone') {
-            setHomePage('all')
+            loadPosts('all','home')
         } else if (e.target.id === 'musicCategory') {
-            setHomePage('music')
+            loadPosts('music','home')
         } else if (e.target.id === 'footballeCategory') {
-            setHomePage('footballe')
+            loadPosts('footballe','home')
         } else if (e.target.id === 'artCategory') {
-            setHomePage('art')
+            loadPosts('art','home')
         } else if (e.target.id === 'sportCategory') {
-            setHomePage('sport')
+            loadPosts('sport','home')
         } else if (e.target.id === 'technologyCategory') {
-            setHomePage('technology')
+            loadPosts('technology','home')
         } else if (e.target.id === 'recentCategory') {
-            setHomePage('recentyl')
+            loadPosts('recentyl','home')
         } else if (e.target.id === 'testCategory') {
-            setHomePage('test')
+            loadPosts('test','home')
             //---------
         } else if (e.target.id === 'likeIconeFilter') {
-            setHomePage('like')
+            loadPosts('like','home')
         } else if (e.target.id === 'saveIconeFilter') {
-            setHomePage('save')
+            loadPosts('save','home')
         } else if (e.target.id === 'likeIcone') {
             var post = await e.target.closest(".PostsCountainer")
             var icone = e.target

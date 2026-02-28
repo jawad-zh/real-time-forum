@@ -1,7 +1,8 @@
 import { getUserInfo } from "/frontend/services/getUserInfo.js"
 import{loadPosts} from "/frontend/views/loadPosts.js"
 import { loadUsers } from "./loadUsers.js"
-import {scrollTracking} from "/frontend/services/scrolling.js"
+import { scrollTracking } from "../services/scrolling.js"
+// import {scrollTracking} from "/frontend/services/scrolling.js"
 // export let onlineUsers = []
 export let ExportedUsers = []
 export let UserInfo = {}
@@ -117,12 +118,19 @@ export async function setHomePage(Category) {
 
             `
     // get Posts 
+ let test =   document.getElementById('middle')
+ console.log('froooooooooom hoooooooome',test.scrollHeight);
+ 
+   console.log('111111111111111111111111111111111111');
    
-    loadPosts(Category,'home')
+    loadPosts(Category)
+    console.log('3333333333333333333333333333333333333333333333333333');
+    
 let messagesSection = loadUsers()
+console.log('444444444444444444444444444444444444444444444');
+scrollTracking('all')
 
-const middle = document.getElementById("middle")
-scrollTracking(middle, Category)   
+
 return messagesSection
     
 }
