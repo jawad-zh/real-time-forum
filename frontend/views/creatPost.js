@@ -1,7 +1,4 @@
 export function setCreatPost() {
-  var alert = document.createElement('div')
-  alert.setAttribute('id', 'creatPostAlert')
-  document.body.append(alert)
   var creatPostCountainer = document.createElement('div')
   creatPostCountainer.setAttribute('id', 'creatPostCountainer')
   creatPostCountainer.innerHTML = `

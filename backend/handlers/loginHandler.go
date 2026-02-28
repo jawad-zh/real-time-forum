@@ -14,7 +14,7 @@ type loginResponseFormat struct {
 	Status  string `json:"status"`
 }
 
-func LoginHandler(w http.ResponseWriter, r *http.Request) {
+func 	   LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		http.ServeFile(w, r, "frontend/index.html")
 	}

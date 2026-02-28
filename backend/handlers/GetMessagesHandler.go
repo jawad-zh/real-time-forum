@@ -22,15 +22,20 @@ func GetMessagesHandler( w http.ResponseWriter , r *http.Request ){
 	}
 
 	id:=r.URL.Query().Get("receiverID")
-	
+	offset:= r.URL.Query().Get("offset")
 	receiverID,err:= strconv.Atoi(id)
 
 	if err != nil{
 		fmt.Println("Atoi Error:",err)
 		return
 	}
+	offsetNum,err:= strconv.Atoi(offset)
+	if err != nil{
+		fmt.Println("Atoi Error:",err)
+		return
+	}
 
-	err,data:=services.GetMessages(r,receiverID)
+	err,data:=services.GetMessages(r,receiverID,offsetNum)
 	if err != nil{
 		GetMessagesRepons.Statue = "failed"
 		w.Header().Set("Content-Type","application/json")
