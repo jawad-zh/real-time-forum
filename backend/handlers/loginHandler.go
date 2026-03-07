@@ -12,9 +12,10 @@ import (
 type loginResponseFormat struct {
 	Message string `json:"message"`
 	Status  string `json:"status"`
+	Data *models.Users `json:"userInfo"`
 }
 
-func 	   LoginHandler(w http.ResponseWriter, r *http.Request) {
+func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		http.ServeFile(w, r, "frontend/index.html")
 	}
@@ -38,6 +39,7 @@ func 	   LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 		loginResponse.Message = message
 		loginResponse.Status = "success"
+		loginResponse.Data = data
 	} else {
 		loginResponse.Message = message
 		loginResponse.Status = "failed"

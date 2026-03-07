@@ -2,14 +2,6 @@ import { getMessages } from '/frontend/services/getMessages.js';
 import { UserInfo } from "./home.js";
 export async function loadMessages(UserID,flag){
     var messages = await getMessages(UserID,flag)
-    // if (data){
-    //      if (append){
-    //     var messages = data.reverse()
-    // }else{
-    //     var messages = data
-    // }
-    // }
-   
     const messageCountainer = document.getElementById('messagesSection')
     if (messageCountainer) {
         if (messages) {
@@ -29,10 +21,8 @@ export async function loadMessages(UserID,flag){
                 </div>
                 <div id="MessageTime" ></div>
             </div>
-            
-        `
+            `
                 messageToApp.innerHTML = messageTemplate
-                
                     messageCountainer.append(messageToApp)
                 
             }

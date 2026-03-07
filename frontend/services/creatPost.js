@@ -6,7 +6,6 @@ export async function creatPost(e) {
     const title = document.getElementById('creatPostTitle').value.trim()
     const content = document.getElementById('creatPostContent').value.trim()
     const imageFile = document.getElementById('fileInput').files[0]
-
     const inputCategories = {
         'music': '1',
         'footballe': '2',

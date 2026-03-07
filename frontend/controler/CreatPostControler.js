@@ -8,7 +8,6 @@ import { active } from "/frontend/views/active.js"
 
 export async function CreatePostController(e) {
     const el = e.target.closest('[id]')
-    if (!el) return
     const id = el.id
 
     if (id === 'creatPostIcone') {

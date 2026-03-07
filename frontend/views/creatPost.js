@@ -2,7 +2,6 @@ export function setCreatPost() {
   var creatPostCountainer = document.createElement('div')
   creatPostCountainer.setAttribute('id', 'creatPostCountainer')
   creatPostCountainer.innerHTML = `
-          
             <div id="creatPost">
                 <div id="inputs">
                     <input id="creatPostTitle" type="text">
@@ -56,5 +55,4 @@ export function setCreatPost() {
     `
   document.body.append(creatPostCountainer)
   document.getElementById("creatPostCountainer").classList.add("active")
-
 }

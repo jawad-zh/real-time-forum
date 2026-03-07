@@ -60,8 +60,9 @@ func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
 			return err, "Creat Post failed try later", nil
 		}
 		defer dst.Close()
-
+		// need to search
 		io.Copy(dst, file)
+		//--------------
 		post.Title = title
 		post.Content = content
 		post.Categories = categories

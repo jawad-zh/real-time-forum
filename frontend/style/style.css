@@ -57,137 +57,156 @@ body {
     cursor: pointer;
 }
 
-#loginPageCountainer {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    opacity: 0;
-    transition: opacity 2s ease;
+.container{
+position:relative;
+width:800px;
+height:500px;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
 }
 
-#imagePart {
-    background-color: white;
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* form containers */
+
+.form-container{
+position:absolute;
+top:0;
+height:100%;
+width:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+transition:all 0.6s ease;
 }
 
-#loginCountainer {
-    height: 40%;
-    background-color: white;
-    width: 50%;
-    border-radius: 20px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    /* justify-content: center; */
+/* LOGIN */
 
+.login-container{
+left:0;
+opacity:1;
+z-index:2;
+background-color: #141517;
+color: white;
 }
 
-#loginPart {
-    height: 100%;
-    width: 50%;
-    background:
-        linear-gradient(#0066FF, #003D99);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
+/* REGISTER */
+
+.register-container{
+left:0;
+opacity:0;
+pointer-events:none;
+z-index:1;
+background-color: #141517;
+color: white;
 }
 
-#welcomMessage {
-    font-weight: 700;
-    margin-bottom: 40px;
+/* when register active */
+
+.container.right-panel-active .login-container{
+transform:translateX(100%);
+opacity:0;
+pointer-events:none;
 }
 
-.loginInput {
-    height: 35px;
-    width: 70%;
-    padding: 3px 10px;
-    border: 1px solid black;
-    border-radius: 10px;
+.container.right-panel-active .register-container{
+transform:translateX(100%);
+opacity:1;
+pointer-events:auto;
+z-index:5;
 }
 
-#loginButton {
-    background-color: #0066FF;
-    border: none;
-    color: white;
-    height: 40px;
-    width: 110px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 30px;
-    margin-bottom: 10px;
+/* form */
+
+form{
+display:flex;
+flex-direction:column;
+width:70%;
 }
 
-#registerPageCountainer {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 2s ease;
+form h2{
+margin-bottom:20px;
+text-align:center;
 }
 
-#imagePart {
-    height: 100%;
-    width: 50%;
+input{
+margin:8px 0;
+padding:12px;
+border-radius:8px;
+border:1px solid #ddd;
+font-size:14px;
 }
 
-#registerBlue {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
+button{
+margin-top:15px;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#FFD500;
+color:black;
+font-size:15px;
+cursor:pointer;
+transition:0.3s;
 }
 
-#registerPart {
-    background-color: white;
-    height: 80%;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    border-radius: 20px;
+button:hover{
+background:#ff9f43;
 }
 
-#registerTitle {
-    font-size: 25px;
-    font-weight: 700;
-    margin-bottom: 60px;
-    margin-top: 15px;
+/* overlay */
+
+.overlay-container{
+position:absolute;
+top:0;
+left:50%;
+width:50%;
+height:100%;
+overflow:hidden;
+transition:transform 0.6s ease;
+z-index:100;
 }
 
-.registerInput {
-    height: 35px;
-    width: 45%;
-    margin: 10px;
-    padding: 2px 10px;
-    border: solid black 1px;
-    border-radius: 10px;
+.overlay{
+background:linear-gradient(135deg,#ff9f43,#FFD500);
+color:black;
+position:relative;
+left:-100%;
+height:100%;
+width:200%;
+display:flex;
+transition:transform 0.6s ease;
 }
 
-#registerButton {
-    background-color: #0066FF;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    height: 40px;
-    min-width: 20%;
-    margin: 20px;
-    cursor: pointer;
+.overlay-panel{
+width:50%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px;
 }
 
+.overlay-panel h2{
+margin-bottom:10px;
+}
 
+.overlay-panel p{
+margin-bottom:20px;
+}
+
+.overlay-panel button{
+background:transparent;
+border:2px solid black;
+}
+
+.container.right-panel-active .overlay-container{
+transform:translateX(-100%);
+}
+
+.container.right-panel-active .overlay{
+transform:translateX(50%);
+}
 
 #appCountainer {
     position: absolute;

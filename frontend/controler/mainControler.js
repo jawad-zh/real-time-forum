@@ -1,4 +1,4 @@
-import { started } from "/frontend/views/start.js";
+import { LoginRegister } from "/frontend/views/start.js";
 import { setHomePage } from "/frontend/views/home.js"
 import { StartWebsocketConection } from '/frontend/websocket/startConection.js'
 import { authController } from '/frontend/controler/authControler.js'
@@ -20,7 +20,7 @@ async function mainController() {
         const messagesSection = await setHomePage('all')        
         StartWebsocketConection(messagesSection)
     } else {
-        started()
+        LoginRegister()
     }
 
     // Attach single delegated click listener

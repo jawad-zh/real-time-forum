@@ -6,7 +6,7 @@ import (
 
 	"golang/backend/services"
 )
-
+// weeeee neeeeeeeed stusssss
 func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 	_, _, data := services.CreatPostCheck(r)
 	w.Header().Set("Content-Type", "application/json")

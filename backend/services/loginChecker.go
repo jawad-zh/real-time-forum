@@ -14,6 +14,7 @@ func LoginChecker(user *models.Login) (bool, string, *models.Users) {
 		if err != nil {
 			return false, "Incorrect Email or Password ", nil
 		}
+		
 		return true, " Login successful", data
 	} else {
 		if message == "Email or Password Incorrect" {

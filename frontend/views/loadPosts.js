@@ -3,15 +3,11 @@ import {TimeAgo} from "/frontend/services/timeAgo.js"
 import {scrollTracking} from "/frontend/services/scrolling.js"
 
 export async function loadPosts(Category,flag){
-    console.log('flage',flag);
     let middle = document.getElementById('middle')
-     console.log('midddddddddddlllllllllllllleee height:',middle.clientHeight);
      if (flag === 'home'){
-console.log('children count befor clear:', middle.children.length)        
     let  oldPosts = middle.children
     if (oldPosts){
       middle.innerHTML = ""
-console.log('children count after clear:', middle.children.length)
        }
     }
      let data = await getPost(Category,flag)
@@ -89,7 +85,5 @@ console.log('children count after clear:', middle.children.length)
             save.classList.add('saved')
         }
     }
-    }
-    console.log('222222222222222222222222');
-   
+    }   
     }

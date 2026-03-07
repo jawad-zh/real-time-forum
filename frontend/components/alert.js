@@ -14,14 +14,8 @@ export function setAlert(status, icon, content) {
   container.innerHTML = `
     <span class="alert-icon">${icon}</span>
     <span class="alert-message">${content}</span>
-    <button class="alert-close">&times;</button>
   `;
-
   alertWrapper.appendChild(container);
-
-  container.querySelector('.alert-close').addEventListener('click', () => {
-    removeAlert(container);
-  });
 
   setTimeout(() => {
     removeAlert(container);

@@ -118,21 +118,10 @@ export async function setHomePage(Category) {
 
             `
     // get Posts 
- let test =   document.getElementById('middle')
- console.log('froooooooooom hoooooooome',test.scrollHeight);
- 
-   console.log('111111111111111111111111111111111111');
-   
     loadPosts(Category)
-    console.log('3333333333333333333333333333333333333333333333333333');
-    
 let messagesSection = loadUsers()
-console.log('444444444444444444444444444444444444444444444');
 scrollTracking('all')
-
-
 return messagesSection
-    
 }
 // const container = document.getElementById('middle')
 // console.log('middle',container);

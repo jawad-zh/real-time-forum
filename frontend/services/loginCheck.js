@@ -66,6 +66,8 @@ export async function loginCheck(e) {
     var data = await res.json()
     if (data.status === 'success') {
          setAlert('success', '✔', 'Login successfully!');
+         console.log('datauser',data);
+         
     } else {
         setAlert('error', '✖', data.message);
     }
