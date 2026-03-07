@@ -8,6 +8,7 @@ import (
 )
 
 func LoginChecker(user *models.Login) (bool, string, *models.Users) {
+	// need to check here
 	ok, data, message := repos.LoginSelect(user)
 	if ok {
 		err := bcrypt.CompareHashAndPassword([]byte(data.Password), []byte(user.Password))

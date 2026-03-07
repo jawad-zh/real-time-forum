@@ -15,14 +15,9 @@ export function setCreatPost() {
                     </div>
                 </div>
                 <div id="creatPostCategories" >
-                   <label class="cat">
-        <input type="checkbox" value="music">
-        <span>music</span>
-      </label>
-    
       <label class="cat">
-        <input type="checkbox" value="footballe">
-        <span>footballe</span>
+        <input type="checkbox" value="lifestyle">
+        <span>lifestyle</span>
       </label>
     
       <label class="cat">
@@ -31,19 +26,19 @@ export function setCreatPost() {
       </label>
     
       <label class="cat">
-        <input type="checkbox" value="sport">
-        <span>sport</span>
+        <input type="checkbox" value="education">
+        <span>education</span>
       </label>
       <label class="cat">
-        <input type="checkbox" value="technology">
-        <span>technology</span>
+        <input type="checkbox" value="business">
+        <span>business</span>
       </label><label class="cat">
-        <input type="checkbox" value="recentyl">
-        <span>recentyl</span>
+        <input type="checkbox" value="entertainment">
+        <span>entertainment</span>
       </label>
       </label><label class="cat">
-        <input type="checkbox" value="test">
-        <span>test</span>
+        <input type="checkbox" value="opinion">
+        <span>opinion</span>
       </label>
                 </div>
                 <button id="creatPostButton" >creat your post</button>

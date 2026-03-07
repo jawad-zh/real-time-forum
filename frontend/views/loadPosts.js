@@ -1,7 +1,5 @@
 import {getPost} from "/frontend/services/getPost.js"
 import {TimeAgo} from "/frontend/services/timeAgo.js"
-import {scrollTracking} from "/frontend/services/scrolling.js"
-
 export async function loadPosts(Category,flag){
     let middle = document.getElementById('middle')
      if (flag === 'home'){

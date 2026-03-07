@@ -20,6 +20,7 @@ export async function CreatePostController(e) {
         const message = checkCreatPost()
         if (message === 'success') {
             await creatPost(e)
+            active('homePageIcone')
         } else {
             setAlert('error', '✖', message)
         }

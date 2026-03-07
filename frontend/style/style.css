@@ -5,12 +5,7 @@
 }
 
 body {
-    /* height: 100vh;
-    width: 100%;
-    background: linear-gradient(156deg, #002F59, #004DFF);
-    display: flex;
-    align-items: center;
-    justify-content: center; */
+    justify-content: center; 
     height: 100vh;
     width: 100%;
     background-color: #0B0C0E;
@@ -66,8 +61,6 @@ overflow:hidden;
 box-shadow:0 20px 40px rgba(0,0,0,0.3);
 }
 
-/* form containers */
-
 .form-container{
 position:absolute;
 top:0;
@@ -80,7 +73,6 @@ flex-direction:column;
 transition:all 0.6s ease;
 }
 
-/* LOGIN */
 
 .login-container{
 left:0;
@@ -89,8 +81,6 @@ z-index:2;
 background-color: #141517;
 color: white;
 }
-
-/* REGISTER */
 
 .register-container{
 left:0;
@@ -101,7 +91,6 @@ background-color: #141517;
 color: white;
 }
 
-/* when register active */
 
 .container.right-panel-active .login-container{
 transform:translateX(100%);
@@ -115,8 +104,6 @@ opacity:1;
 pointer-events:auto;
 z-index:5;
 }
-
-/* form */
 
 form{
 display:flex;
@@ -152,8 +139,6 @@ transition:0.3s;
 button:hover{
 background:#ff9f43;
 }
-
-/* overlay */
 
 .overlay-container{
 position:absolute;
@@ -220,7 +205,6 @@ transform:translateX(50%);
 #navBar {
     height: 100px;
     width: 97%;
-    /* background-color: red; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -230,7 +214,6 @@ transform:translateX(50%);
 #logo {
     height: 100%;
     width: 100px;
-    /* background-color: blue; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -244,7 +227,6 @@ transform:translateX(50%);
 #icones {
     height: 100%;
     width: 50%;
-    /* background-color: yellow; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,7 +234,6 @@ transform:translateX(50%);
 }
 
 #icones i {
-    /* background-color: blue; */
     height: 40px;
     width: 40px;
     display: flex;
@@ -262,7 +243,6 @@ transform:translateX(50%);
 }
 
 #profile {
-    /* background-color: white; */
     height: 30px;
     width: 160px;
     display: flex;
@@ -276,7 +256,6 @@ transform:translateX(50%);
 }
 
 #navBarImage {
-    /* background-color: blue; */
     height: 100%;
     width: 30px;
     overflow: hidden;
@@ -290,10 +269,6 @@ transform:translateX(50%);
     object-position: center;
 
 }
-
-/* #profile p{
-    color: white;
-} */
 i {
     color: #5C5F66;
     cursor: pointer;
@@ -301,8 +276,7 @@ i {
 
 #appCountainer {
     display: flex;
-    /* align-items: center;
-     */
+
     justify-content: center;
     flex-direction: column;
 }
@@ -310,12 +284,9 @@ i {
 #letSide {
     height: 98%;
     width: 30%;
-    /* background-color: #222428; */
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
-    /* background-color: red; */
 }
 
 #leftProfile {
@@ -324,7 +295,6 @@ i {
     background-color: #222428;
     border-radius: 15px;
     margin-bottom: 10px;
-    /* overflow: hidden; */
 }
 
 #categories {
@@ -345,24 +315,20 @@ i {
 }
 
 #homePageCountainer {
-    /* background-color: red; */
     height: 90%;
     width: 100%;
     display: flex;
 }
 
 #middle {
-    /* background-color: green; */
     height: 100%;
     width: calc(80% - 40px);
     margin-right: 20px;
     overflow: auto;
-    /* background-color: green; */
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-direction: column;
-    /* justify-content: center; */
 }
 
 #creatPostCountainer {

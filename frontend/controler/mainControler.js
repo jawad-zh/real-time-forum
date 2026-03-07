@@ -32,7 +32,7 @@ async function mainController() {
 
         const authIds = ['startedLoginButton','startedRegisterButton','registerButton','loginButton','logoutIcone']
         const postIds = ['creatPostIcone','cancelCreatPost','creatPostCountainer','creatPostButton']
-        const filterIds = ['homePageIcone','musicCategory','footballeCategory','artCategory','sportCategory','technologyCategory','recentCategory','testCategory','likeIconeFilter','saveIconeFilter']
+        const filterIds = ['homePageIcone', 'allCategory','LifestyleCategory','artCategory','Educationategory','BusinessCategory','EntertainmentCategory','OpinionCategory','likeIconeFilter','saveIconeFilter']
         const likeSaveIds = ['likeIcone','saveIcone']
         const commentIds = ['commentIcone','IconePostComment']
         const profileIds = ['addPrifileImage','ignoreImageProfile','addImageProfileCountainer','addProfileIcone','addProfileIconeCountainer','addImageProfile','imageIconeCountainer','imageUploadIcone','imageTextIcone']

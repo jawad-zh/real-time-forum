@@ -2,8 +2,6 @@ import { getUserInfo } from "/frontend/services/getUserInfo.js"
 import{loadPosts} from "/frontend/views/loadPosts.js"
 import { loadUsers } from "./loadUsers.js"
 import { scrollTracking } from "../services/scrolling.js"
-// import {scrollTracking} from "/frontend/services/scrolling.js"
-// export let onlineUsers = []
 export let ExportedUsers = []
 export let UserInfo = {}
 export async function setHomePage(Category) {    
@@ -23,7 +21,7 @@ export async function setHomePage(Category) {
                 <img src="frontend/state/images/logo.png" alt="">
             </div>
             <div id="icones">
-                <i id="homePageIcone"  class="fa-regular fa-house   nav-item "></i>
+                <i id="homePageIcone"  class="fa-regular fa-house   nav-item  active"></i>
                 <i  id="creatPostIcone" class="fa-regular fa-square-plus nav-item "></i>
                 <i  id="saveIconeFilter" class="fa-regular fa-bookmark nav-item "></i>
                 <i  id="likeIconeFilter" class="fa-regular fa-heart nav-item "></i>
@@ -71,17 +69,17 @@ export async function setHomePage(Category) {
                     </div>
                       <div id="categorieCountainer" >
                            <div id="first" >
-                             <p id="musicCategory" >music</p>
-                            <p id="footballeCategory" >footballe</p>
+                             <p id="allCategory" >all</p>
+                            <p id="LifestyleCategory" >Lifestyle</p>
                             <p id="artCategory" >art</p>
                            </div>
                             <div id="second" >
-                                <p id="sportCategory" >sport</p>
-                                <p id="technologyCategory" >technology</p>
-                                <p id="recentCategory" >recent</p>
+                                <p id="Educationategory" >Education</p>
+                                <p id="BusinessCategory" >Business</p>
+                                <p id="EntertainmentCategory" >Entertainment</p>
                             </div>
                             <div id="third">
-                                <p id="testCategory" >test</p>
+                                <p id="OpinionCategory" >Opinion</p>
                             </div>
                         </div>
                         </div>

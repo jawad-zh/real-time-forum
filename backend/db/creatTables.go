@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS PostSave (
 	}
 
 	// set categories
-	categories := []string{"music", "footballe", "art", "sport", "technology", "recentyl", "test"}
+	categories := []string{ "lifestyle", "art", "education", "business", "entertainment", "opinion"}
 	for i := 0; i < len(categories); i++ {
 		_, err = db.Exec(`
       INSERT INTO Categories (CategoryName)

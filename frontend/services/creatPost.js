@@ -7,22 +7,20 @@ export async function creatPost(e) {
     const content = document.getElementById('creatPostContent').value.trim()
     const imageFile = document.getElementById('fileInput').files[0]
     const inputCategories = {
-        'music': '1',
-        'footballe': '2',
-        'art': '3',
-        'sport': '4',
-        'technology': '5',
-        'recentyl': '6',
-        'test': '7',
+        'lifestyle': '1',
+        'art': '2',
+        'education': '3',
+        'business': '4',
+        'entertainment': '5',
+        'opinion': '6',
     }
     const outputCategories = {
-        '1': 'music',
-        '2': 'footballe',
-        '3': 'art',
-        '4': 'sport',
-        '5': 'technology',
-        '6': 'recentyl',
-        '7': 'test',
+        '1': 'lifestyle',
+        '2': 'art',
+        '3': 'education',
+        '4': 'business',
+        '5': 'entertainment',
+        '6': 'opinion',
     }
     var categories = []
     var categoriesChecked = document.querySelectorAll("#creatPostCategories input:checked")

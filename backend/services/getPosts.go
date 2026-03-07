@@ -11,6 +11,7 @@ import (
 
 func GetPosts(r *http.Request) (error, *[]models.Posts) {
 	category := r.URL.Query().Get("category")
+	fmt.Println("category:::",category)
 	offset, err := strconv.Atoi(r.URL.Query().Get("postoffset"))
 	if err != nil {
 		fmt.Println("getPost atoi error", err)

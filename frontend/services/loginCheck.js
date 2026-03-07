@@ -6,7 +6,7 @@ export async function loginCheck(e) {
     const password = (document.getElementById('passwordInput').value).trim()
     let emailOrNickname = emailOrNicknameInput.match(/@/) ? 'email' : 'nickname'
     const nicknameSpeacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
-    // const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
+    // const emailRegex = /^[^\s@]+@[A-Za-z]+\.[A-Za-z]+$/
     const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]/
     if (emailOrNickname === '') {
         setAlert('error', '✖', 'email or nickname is required');
@@ -19,7 +19,9 @@ export async function loginCheck(e) {
     if (emailOrNicknameInput.match(/@/)) {
         // need to handl
         // if (!emailOrNickname.match(emailRegex)){
-        //     checkLoginResponse('invalid email format !')
+        //     console.log('this',!emailOrNickname.match(emailRegex));
+            
+        //     setAlert('error', '✖','invalid email format !')
         //     return
         // }
     } else {

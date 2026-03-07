@@ -13,13 +13,16 @@ export async function authController(e) {
         if (data.status === 'success') setTimeout(() =>  1500)
     } else if (id === 'loginButton') {
         const data = await loginCheck(e)
-        if (data.status === 'success') {
+        if (data){
+               if (data.status === 'success') {
             
             setTimeout(async () => {
                 const messagesSection = await setHomePage('all',data.userInfo)
                 StartWebsocketConection(messagesSection)
             }, 1500)
         }
+        }
+     
     } else if (id === 'logoutIcone') {
         const ok = logout()
         if (ok) LoginRegister()
