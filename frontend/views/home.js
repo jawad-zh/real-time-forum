@@ -25,12 +25,13 @@ export async function setHomePage(Category) {
                 <i  id="creatPostIcone" class="fa-regular fa-square-plus nav-item "></i>
                 <i  id="saveIconeFilter" class="fa-regular fa-bookmark nav-item "></i>
                 <i  id="likeIconeFilter" class="fa-regular fa-heart nav-item "></i>
-                <i class="fa-regular fa-sun"></i>
+                <i class="fa-regular fa-sun" id="lightDarkmoded"></i>
             </div>
             <div id="profile">
                 <div id="navBarImage">
                     <img id="navBarImageimg" src="${UserInfo.ImageURL}" alt="">
                 </div>
+                <p id="logoutName" >${UserInfo.FirstName} ${UserInfo.LastName}</p>
                  <i id="logoutIcone" class="fa-solid fa-right-from-bracket"></i>
             </div>
         </div>
@@ -116,9 +117,9 @@ export async function setHomePage(Category) {
 
             `
     // get Posts 
-    loadPosts(Category)
+    loadPosts(Category)    
 let messagesSection = loadUsers()
-scrollTracking('all')
+scrollTracking()
 return messagesSection
 }
 // const container = document.getElementById('middle')

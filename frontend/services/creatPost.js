@@ -58,6 +58,7 @@ export async function creatPost(e) {
         var post = document.createElement('div')
         post.classList.add('PostsCountainer')
         post.dataset.PostID = data.PostID
+        let imageDisplay = tempURL ? '' : 'hide'
         post.innerHTML = `
     <div id="profilePost">
                         <div id="profileImage">
@@ -74,9 +75,9 @@ export async function creatPost(e) {
 
                     </div>
                     <div id="contentPost">${content}</div>
-                        <div id="postImageCountainer" >
+                        <div id="postImageCountainer"  class="${imageDisplay}" >
                             <div id="postImage">
-                        <img src="${tempURL}" alt="image place">
+                        <img src="${tempURL}" >
                     </div>
                         </div>
                     

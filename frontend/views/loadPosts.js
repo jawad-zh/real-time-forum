@@ -11,9 +11,11 @@ export async function loadPosts(Category,flag){
      let data = await getPost(Category,flag)
     
     if (data){
+        
     for (let i = 0; i < data.length; i++) {
         let liked = ''
         let saved = ''
+        let imageDisplay = data[i].ImageURL && data[i].ImageURL.trim() !== '' ? '' : 'hide'
         if (data[i].Isliked === 1) {
             liked = 'liked'
         }
@@ -42,7 +44,7 @@ export async function loadPosts(Category,flag){
 
                     </div>
                     <div id="contentPost">${data[i].Content}</div>
-                        <div id="postImageCountainer" >
+                        <div id="postImageCountainer" class="${imageDisplay}">
                             <div id="postImage">
                         <img src="${data[i].ImageURL}" alt="">
                     </div>
