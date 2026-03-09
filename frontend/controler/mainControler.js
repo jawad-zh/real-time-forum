@@ -52,6 +52,9 @@ async function mainController() {
             profileController(e)
         } else if (messageIds.includes(id)) {
             messageController(e)
+        }else if(id=== 'lightDarkmoded'){
+            document.getElementById('homePageCountainer').classList.toggle('light')
+            document.body.classList.toggle('light')
         }
     })
 }

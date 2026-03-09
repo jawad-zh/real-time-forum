@@ -1,3 +1,25 @@
+
+:root {
+    --bg: #141517;
+    --card: #222428;
+    --primry:#FFD500;
+    --seconder:#ff9f43;
+    --primryText: #E6E6E6;
+    --seconderText:#B3B3B3;
+    --darckBackground:black;
+    --lightcard:#2A2D32
+}
+body.light{
+    --bg: #e3e5e9;          
+    --card: #FFFFFF;        
+    --primry: #3B82F6;     
+    --seconder: #60A5FA;   
+    --primryText: #1F2937; 
+    --seconderText: #31343a; 
+    --darckBackground:#d2d5db;
+    --lightcard:#F5F7FB;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -8,7 +30,7 @@ body {
     justify-content: center; 
     height: 100vh;
     width: 100%;
-    background-color: #0B0C0E;
+    background-color: var(--darckBackground);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,7 +100,7 @@ transition:all 0.6s ease;
 left:0;
 opacity:1;
 z-index:2;
-background-color: #141517;
+background-color: var(--bg);
 color: white;
 }
 
@@ -87,7 +109,7 @@ left:0;
 opacity:0;
 pointer-events:none;
 z-index:1;
-background-color: #141517;
+background-color: var(--bg);
 color: white;
 }
 
@@ -129,15 +151,15 @@ margin-top:15px;
 padding:12px;
 border:none;
 border-radius:8px;
-background:#FFD500;
-color:black;
+background:var(--primry);
+color:var(--darckBackground);
 font-size:15px;
 cursor:pointer;
 transition:0.3s;
 }
 
 button:hover{
-background:#ff9f43;
+background:var(--seconder);
 }
 
 .overlay-container{
@@ -152,8 +174,8 @@ z-index:100;
 }
 
 .overlay{
-background:linear-gradient(135deg,#ff9f43,#FFD500);
-color:black;
+background:linear-gradient(135deg,var(--seconder),var(--primry));
+color:var(--darckBackground);
 position:relative;
 left:-100%;
 height:100%;
@@ -182,7 +204,7 @@ margin-bottom:20px;
 
 .overlay-panel button{
 background:transparent;
-border:2px solid black;
+border:2px solid var(--darckBackground);
 }
 
 .container.right-panel-active .overlay-container{
@@ -198,7 +220,7 @@ transform:translateX(50%);
     z-index: 1000;
     height: 90%;
     width: 90%;
-    background-color: #141517;
+    background-color: var(--bg);
     display: none;
 }
 
@@ -250,11 +272,13 @@ transform:translateX(50%);
     justify-content: space-between;
     border-radius: 10px;
     padding: 2px 10px 2px 5px;
-    background-color: #2A2D32;
-    color: white;
+    background-color: var(--card);
+    color: var(--primryText);
 
 }
-
+#profile p{
+    font-size: 10px;
+}
 #navBarImage {
     height: 100%;
     width: 30px;
@@ -287,12 +311,13 @@ i {
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow: auto;
 }
 
 #leftProfile {
     height: 40%;
     width: 75%;
-    background-color: #222428;
+    background-color: var(--card);
     border-radius: 15px;
     margin-bottom: 10px;
 }
@@ -306,7 +331,7 @@ i {
 #rightSide {
     height: 98%;
     width: 30%;
-    background-color: #222428;
+    background-color: var(--card);
     overflow: auto;
     border-radius: 15px;
     margin-right: 20px;
@@ -374,7 +399,7 @@ i {
 #inputSectionAndProfile {
     height: 100%;
     width: 70%;
-    background-color: #222428;
+    background-color: var(--card);
     display: flex;
     padding: 10px;
     gap: 20px;
@@ -409,7 +434,7 @@ i {
     height: 100px;
     border-radius: 10px 10px 10px 0px;
     padding: 10px;
-    color: #B3B3B3
+    color: var(--seconderText)
 }
 
 #creatPostIcones {
@@ -435,7 +460,7 @@ i {
 }
 
 #creatPostIcones i p {
-    color: white;
+    color: var(--primryText);
     font-size: 10px;
 }
 
@@ -449,7 +474,7 @@ i {
 
 .PostsCountainer {
     width: 75%;
-    background-color: #222428;
+    background-color: var(--card);
     margin-top: 5px;
     padding: 15px;
     border-radius: 15px;
@@ -485,27 +510,27 @@ i {
 
 #name {
     margin-bottom: 10px;
-    color: #B3B3B3;
+    color: var(--seconderText);
 }
 
 #PostTitle {
-    color: #E6E6E6;
+    color: var(--primryText);
     font-weight: 600;
     box-sizing: border-box;
     flex: 1;
     min-width: 0;
-    color: #E6E6E6;
+    color: var(--primryText);
     font-weight: 600;
     overflow-wrap: break-word;
     word-break: break-word;
 }
 
 #time {
-    color: #FFD500;
+    color: var(--primry);
 }
 
 #contentPost {
-    color: #E6E6E6;
+    color: var(--primryText);
     padding: 5px 15px;
     box-sizing: border-box;
     overflow-wrap: break-word;
@@ -572,19 +597,23 @@ i {
     gap: 10px;
     flex-wrap: wrap;
     justify-content: flex-end;
+    /* width: calc(100% - 100px); */
+    position: relative;
+    color: var(--darckBackground);
 }
 
 .Postcategorie {
     padding: 6px 14px;
     /* instead of height/width */
-    background-color: #FFD500;
+    background-color: var(--primry);
     border-radius: 15px;
     font-size: 13px;
     white-space: nowrap;
+    position: relative;
 }
 
 #messagesTitle {
-    color: #E6E6E6;
+    color: var(--primryText);
     margin-bottom: 20px;
 }
 
@@ -600,10 +629,11 @@ i {
 
 #messageProfile {
     height: 80%;
-    width: 10%;
+    width: 34px;
     margin: 0px 10px 0px 10px;
     border-radius: 10px;
     overflow: hidden;
+    /* position: relative; */
 }
 
 #messageProfile img {
@@ -616,7 +646,7 @@ i {
 #messageName {
     /* background-color: blue; */
     font-size: 13px;
-    color: #E6E6E6;
+    color: var(--primryText);
 }
 
 #notificationAndTime {
@@ -629,14 +659,14 @@ i {
 
 #notificationAndTime p {
     font-size: 13px;
-    color: #FFD500;
+    color: var(--primry);
     display: none;
 }
 
 .messageNotification {
     height: 10px;
     width: 10px;
-    background-color: #FFD500;
+    background-color: var(--primry);
     border-radius: 20px;
     display: none;
 }
@@ -656,7 +686,7 @@ i {
 }
 
 #backgroundLeft {
-    background-color: #ffd500af;
+    background-color: var(--primry);
     width: 100%;
     height: 30%;
 }
@@ -677,7 +707,7 @@ i {
 
 #informationImage {
     height: 70px;
-    width: 30%;
+    width: 70px;
     /* background-color: red; */
     transform: translate(0px, -30px);
     /* position: absolute; */
@@ -695,7 +725,7 @@ i {
 #informationName {
     height: 50px;
     width: 100px;
-    color: white;
+    color: var(--primryText);
     /* background-color: red; */
     display: flex;
     align-items: center;
@@ -708,7 +738,7 @@ i {
 }
 
 #howMuchLike {
-    color: #E6E6E6;
+    color: var(--primryText);
     height: 100%;
     display: flex;
     align-items: center;
@@ -725,7 +755,7 @@ i {
 }
 
 #howMuchSaves {
-    color: #E6E6E6;
+    color: var(--primryText);
     height: 100%;
     display: flex;
     align-items: center;
@@ -746,15 +776,18 @@ i {
 }
 
 #categorieTitle {
-    color: #E6E6E6;
+    color: var(--primryText);
     margin-bottom: 15px;
 }
 
 #categorieCountainer {
     /* background-color: red; */
-    height: 88%;
-    color: #E6E6E6;
+    /* height: 88%; */
+    color: var(--primryText);
     font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 #first {
@@ -762,12 +795,14 @@ i {
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
+    position: relative;
+    flex-wrap: wrap;
 }
 
 #first p {
     padding: 5px 7px;
     border-radius: 10px;
-    background-color: #222428;
+    background-color: var(--card);
     cursor: pointer;
 }
 
@@ -776,24 +811,28 @@ i {
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
+    position: relative;
+    flex-wrap: wrap;
 }
 
 #second p {
     padding: 5px 7px;
     border-radius: 10px;
-    background-color: #222428;
+    background-color: var(--card);
     cursor: pointer;
 }
 
 #third {
     display: flex;
     gap: 15px;
+    position: relative;
+    flex-wrap: wrap;
 }
 
 #third p {
     padding: 5px 7px;
     border-radius: 10px;
-    background-color: #222428;
+    background-color: var(--card);
     cursor: pointer;
 }
 
@@ -816,8 +855,8 @@ i {
 }
 
 #creatPost {
-    background-color: #141517;
-    height: 60%;
+    background-color: var(--bg);
+    min-height: 60%;
     width: 60%;
     border-radius: 10px;
     display: flex;
@@ -833,11 +872,11 @@ i {
 
 .cancelCreatPost i {
     cursor: pointer;
-    color: yellow;
+    color:var(--primry);
 }
 
 .cancelCreatPost i:hover {
-    color: #2A2D32;
+    color: var(--seconder);
 }
 
 #inputs {
@@ -855,10 +894,10 @@ i {
 #inputs input {
     height: 100px;
     border: none;
-    background-color: #2A2D32;
+    background-color: var(--lightcard);
     border-radius: 10px;
     padding: 10px;
-    color: #B3B3B3;
+    color: var(--seconderText);
     width: 60%;
 }
 
@@ -874,13 +913,15 @@ i {
 }
 
 #creatPostCategories {
-    width: 70%;
+    width: 100%;
     display: flex;
     margin-top: 30px;
-    height: 100px;
+    /* height: 100px; */
     padding: 20px;
     justify-content: center;
     gap: 10px;
+    flex-wrap: wrap;
+    height: auto;
 }
 
 #creatPostButton {
@@ -888,26 +929,26 @@ i {
     height: 40px;
     width: 130px;
     cursor: pointer;
-    background-color: #FFD500;
+    background-color: var(--primry);
     border: none;
     border-radius: 10px;
 }
 
 #imageIconeCountainer {
-    background-color: #2A2D32;
+    background-color: var(--lightcard);
     height: 30%;
-    width: 10%;
+    min-width: 10%;
     display: flex;
     align-items: center;
     padding: 0px 10px;
     gap: 10px;
     border-radius: 10px;
     cursor: pointer;
-    color: black;
+    color: var(--darckBackground);
 }
 
 #imageIconeCountainer p {
-    color: white;
+    color: var(--primryText);
 }
 
 #imageUploadIcone {
@@ -915,8 +956,9 @@ i {
 }
 
 .cat {
-    position: relative;
+    /* position: relative; */
     cursor: pointer;
+    margin: 10px 0px;
 }
 
 .cat input {
@@ -926,17 +968,17 @@ i {
 .cat span {
     padding: 8px 18px;
     border-radius: 20px;
-    border: 2px solid #2A2D32;
-    background: #2A2D32;
-    color: white;
+    border: 2px solid var(--lightcard);
+    background: var(--lightcard);
+    color: var(--primryText);
     font-weight: 500;
     transition: 0.2s ease;
 }
 
 .cat input:checked+span {
-    background: #FFD500;
-    border-color: #FFD500;
-    color: white;
+    background: var(--primry);
+    border-color: var(--primry);
+    color: var(--primryText);
     box-shadow: 0 4px 12px rgba(239, 255, 91, 0.4);
 }
 
@@ -989,7 +1031,7 @@ i {
 }
 
 .CommentContent {
-    background-color: #2A2D32;
+    background-color: var(--lightcard);
     height: auto;
     padding: 15px 8px;
     width: calc(80% - 40px);
@@ -1025,7 +1067,7 @@ i {
 }
 
 .yourCommentContent {
-    background-color: #141517;
+    background-color: var(--bg);
     height: 100%;
     padding: 8px;
     width: calc(100% - 40px);
@@ -1035,7 +1077,7 @@ i {
 }
 
 .yourCommentContent input {
-    background-color: #141517;
+    background-color: var(--bg);
     height: 100%;
     padding: 8px;
     width: calc(100% - 40px);
@@ -1050,14 +1092,14 @@ i {
 }
 
 #IconePostComment {
-    color: #FFD500;
+    color: var(--primry);
 }
 
 #addPrifileImage {
     height: 35px;
-    width: 50%;
-    background-color: #FFD500;
-    color: black;
+    width: 70%;
+    background-color: var(--primry);
+    color: var(--darckBackground);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1096,7 +1138,7 @@ body {
 }
 
 #addImageProfilePage {
-    background-color: #222428;
+    background-color: var(--card);
     height: 50%;
     width: 40%;
     display: flex;
@@ -1186,9 +1228,9 @@ body {
 }
 
 #barSection {
-    background-color: black;
+    background-color: var(--darckBackground);
     height: 15%;
-    color: white;
+    color: var(--primryText);
     border-radius: 10px 10px 0px 0px;
 }
 
@@ -1236,8 +1278,8 @@ body {
 }
 
 #inputMessagesSection {
-    background-color: black;
-    color: white;
+    background-color: var(--darckBackground);
+    color: var(--primryText);
     height: 40px;
     display: flex;
     align-items: center;
@@ -1251,8 +1293,8 @@ body {
     width: 130%;
     border: none;
     padding: 8px;
-    background-color: black;
-    color: #b0b7c9;
+    background-color: var(--darckBackground);
+    color: var(--primryText);
 }
 
 #inputMessagesSection input:focus {
@@ -1265,7 +1307,7 @@ body {
 }
 
 #messagesSection {
-    background-color: #141517;
+    background-color: var(--bg);
     height: 75%;
     width: 100%;
     overflow: auto;
@@ -1288,16 +1330,16 @@ body {
 }
 
 #sendMessageIcone {
-    color: #FFD500;
+    color: var(--primry);
 }
 
 #MessageContentValue {
-    color: white;
+    color: var(--primryText);
 }
 
 .sender #MessageAndTime {
-    background-color: #222428;
-    color: #b0b7c9;
+    background-color: var(--card);
+    color: var(--primryText);
     min-height: 50px;
     /* min-width: 40px; */
     min-width: calc(50% - 40px);
@@ -1323,8 +1365,8 @@ body {
 }
 
 .receiver #MessageAndTime {
-    background-color: #FFD500;
-    color: black;
+    background-color: var(--primry);
+    color: var(--darckBackground);
     padding: 10px;
     min-height: 50px;
     /* min-width: 40px; */
@@ -1403,7 +1445,7 @@ body {
 .alert-warning {
   background: #fff4e5;
   color: #9a6700;
-  border-left: 5px solid #ff9f43;
+  border-left: 5px solid var(--seconder);
 }
 
 .alert-info {
@@ -1411,7 +1453,9 @@ body {
   color: #0c63e4;
   border-left: 5px solid #3a86ff;
 }
-
+#postImageCountainer.hide {
+  display: none;
+}
 @keyframes slideIn {
   from {
     transform: translateY(-15px);
@@ -1423,5 +1467,6 @@ body {
   }
 }
 .nav-item.active{
-    border-bottom: 1px #ff9f43 solid;
+    border-bottom: 1px var(--seconder) solid;
 }
+
