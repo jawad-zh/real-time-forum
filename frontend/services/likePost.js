@@ -11,6 +11,10 @@ export async function LikeBackend(idString) {
         },
         body: JSON.stringify(postID)
     })
-    var data = await res.json()
+    if(res){
+        var data = await res.json()
+        console.log('sii',data);
+        
+    }
     return data
 }

@@ -1,5 +1,6 @@
 import {getComments} from "/frontend/services/getComments.js"
 import {getUserInfo} from "/frontend/services/getUserInfo.js"
+import {TimeAgo}  from "/frontend/services/timeAgo.js"
 export async function showComment(postID){
     var post = document.querySelector(`.PostsCountainer[data--post-i-d="${postID}"]`)
     post.classList.toggle('active')
@@ -27,15 +28,19 @@ export async function showComment(postID){
             }
         }
           for (let data of allData){
+            let time = TimeAgo(data.CreatedAt)            
               var comment =`
                         <div class="commentCountainer" >
                             <div class="commentProfile">
                                 <img src="${data.UserProfile.String}" alt="">
                             </div>
                             <div class="CommentContent" >
+                                <p id="commentNickname" >${data.Nickname}</p>
                                 <p>${data.Content}
                                 </p>
+                                <div id="commentTime" >${time}</div>
                             </div>
+                            
                         </div>
     `
    

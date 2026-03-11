@@ -7,6 +7,7 @@ import (
 
 	"golang/backend/db"
 	"golang/backend/handlers"
+	"golang/backend/middleware"
 	"golang/backend/wbs"
 )
 
@@ -30,23 +31,23 @@ func main() {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./frontend/index.html")
 	})
-	mux.HandleFunc("/login", handlers.LoginHandler)
-	mux.HandleFunc("/logout", handlers.LogoutHandler)
-	mux.HandleFunc("/register", handlers.RegisterHandler)
-	mux.HandleFunc("/creatPost", handlers.CreatPostHandler)
+	mux.HandleFunc("/login",handlers.LoginHandler)
+	mux.Handle("/logout", middleware.Authuntication(http.HandlerFunc(handlers.LogoutHandler)))
+	mux.Handle("/register", http.HandlerFunc(handlers.RegisterHandler))
+	mux.Handle("/creatPost", middleware.Authuntication(http.HandlerFunc(handlers.CreatPostHandler)))
 	mux.HandleFunc("/sessionCheck", handlers.SessionHandler)
-	mux.HandleFunc("/getPosts", handlers.GetPostsHandler)
-	mux.HandleFunc("/like", handlers.LikeHandler)
-	mux.HandleFunc("/save", handlers.SavePostHandler)
-	mux.HandleFunc("/creatComment", handlers.CreatCommentHandler)
-	mux.HandleFunc("/getComment", handlers.GetCommentHandler)
-	mux.HandleFunc("/getUserInfo", handlers.GetUserInfoHandler)
-	mux.HandleFunc("/editProfile", handlers.EditProfileHandler)
-	mux.HandleFunc("/getAllUsers", handlers.GetAllUsersHandler)
-	mux.HandleFunc("/sendMessage", handlers.SendMessageHandler)
-	mux.HandleFunc("/getMessages", handlers.GetMessagesHandler)
+	mux.Handle("/getPosts", middleware.Authuntication(http.HandlerFunc(handlers.GetPostsHandler)))
+	mux.Handle("/like", middleware.Authuntication(http.HandlerFunc(handlers.LikeHandler)))
+	mux.Handle("/save", middleware.Authuntication(http.HandlerFunc(handlers.SavePostHandler)))
+	mux.Handle("/creatComment", middleware.Authuntication(http.HandlerFunc(handlers.CreatCommentHandler)))
+	mux.Handle("/getComment",middleware.Authuntication(http.HandlerFunc( handlers.GetCommentHandler)))
+	mux.Handle("/getUserInfo", middleware.Authuntication(http.HandlerFunc(handlers.GetUserInfoHandler)))
+	mux.Handle("/editProfile", middleware.Authuntication(http.HandlerFunc(handlers.EditProfileHandler)))
+	mux.Handle("/getAllUsers", middleware.Authuntication(http.HandlerFunc(handlers.GetAllUsersHandler)))
+	mux.Handle("/sendMessage", middleware.Authuntication(http.HandlerFunc(handlers.SendMessageHandler)))
+	mux.Handle("/getMessages", middleware.Authuntication(http.HandlerFunc(handlers.GetMessagesHandler)))
 	mux.HandleFunc("/ws", wbs.WebSocketHandler)
-	mux.HandleFunc("/UpdateMessageState", handlers.UpdateMessageStateHandler)
+	mux.Handle("/UpdateMessageState",middleware.Authuntication(http.HandlerFunc(handlers.UpdateMessageStateHandler)))
 	//
 	fmt.Println("server started on http://localhost:8080")
 	//

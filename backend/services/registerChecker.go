@@ -58,7 +58,7 @@ func RegisterChecker(user *models.Users) (bool, string) {
 
 	if len(user.Nickname) == 0 {
 		return false, "Nickname is required (backend) "
-	} else if len(string(user.Age)) == 0 || user.Age == 0 {
+	} else if user.Age == 0  {
 		return false, "Age is required (backend) "
 	} else if len(user.Gender) == 0 {
 		return false, "Gender is required (backend) "

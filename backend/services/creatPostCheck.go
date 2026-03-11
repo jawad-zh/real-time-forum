@@ -16,7 +16,7 @@ import (
 
 type CreatPostResponseFormat struct {
 	Message    string         `json:"message"`
-	Status     string         `json:"status"`
+	Statue    string         `json:"statue"`
 	PostID     int64          `json:"PostID"`
 	Nickname   string         `json:"Nickname"`
 	ImageURL   string         `json:"imageURL"`
@@ -39,7 +39,7 @@ func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
 	}
 	err = os.MkdirAll("frontend/uploads", os.ModePerm)
 	if err != nil {
-		fmt.Println("failed to create uploads folder: %v", err)
+		fmt.Println("failed to create uploads folder: ", err)
 		return err, "Creat Post failed try later", nil
 	}
 
@@ -70,7 +70,7 @@ func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
 		err, data := repos.CreatPost(&post, session)
 		if err == nil {
 			CreatPostResponse.Message = ""
-			CreatPostResponse.Status = "success"
+			CreatPostResponse.Statue = "success"
 			CreatPostResponse.PostID = data.PostID
 			CreatPostResponse.Nickname = data.Nickname
 			CreatPostResponse.CreatedAt = data.CreatedAt
@@ -88,7 +88,7 @@ func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
 		err, data := repos.CreatPost(&post, session)
 		if err == nil {
 			CreatPostResponse.Message = ""
-			CreatPostResponse.Status = "success"
+			CreatPostResponse.Statue = "success"
 			CreatPostResponse.PostID = data.PostID
 			CreatPostResponse.Nickname = data.Nickname
 			CreatPostResponse.CreatedAt = data.CreatedAt

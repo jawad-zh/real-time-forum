@@ -9,8 +9,13 @@ import (
 	"golang/backend/services"
 	"golang/backend/wbs"
 )
+type SendMessageResponseFormat struct{
+	Statue string `json:"statue"`
+}
 
 func SendMessageHandler(w http.ResponseWriter, r *http.Request) {
+	// need to handle failed requests
+	var SendMessageRespons SendMessageResponseFormat
 	if r.Method != http.MethodPost {
 		fmt.Println("method not allowe")
 		return
@@ -23,8 +28,15 @@ func SendMessageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	err = services.SendeMessageService(r, &message)
 	if err != nil {
-		// need to do action
+		SendMessageRespons.Statue = "failed"
+		w.Header().Set("Content-Type","application/json")
+		json.NewEncoder(w).Encode(SendMessageRespons)
 		return
 	}
+	// need to return something
 	wbs.GlobalManager.SendMessage(message.SenderID,message.ReceiverID,message.Content)
+	SendMessageRespons.Statue = "success"
+	w.Header().Set("Content-Type","application/json")
+	json.NewEncoder(w).Encode(SendMessageRespons)
+
 }

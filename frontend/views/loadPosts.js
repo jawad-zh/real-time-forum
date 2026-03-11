@@ -1,5 +1,7 @@
 import {getPost} from "/frontend/services/getPost.js"
 import {TimeAgo} from "/frontend/services/timeAgo.js"
+import {LoginRegister} from '/frontend/views/start.js';
+
 export async function loadPosts(Category,flag){
     let middle = document.getElementById('middle')
      if (flag === 'home'){
@@ -11,7 +13,10 @@ export async function loadPosts(Category,flag){
      let data = await getPost(Category,flag)
     
     if (data){
-        
+         if (data.statue === 'Unauthorized'){
+                    LoginRegister()
+                    return
+                }
     for (let i = 0; i < data.length; i++) {
         let liked = ''
         let saved = ''

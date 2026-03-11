@@ -1,5 +1,3 @@
-import { TimeAgo } from "/frontend/services/timeAgo.js"
-
 export async function creatPost(e) {
     e.preventDefault()
 
@@ -13,14 +11,6 @@ export async function creatPost(e) {
         'business': '4',
         'entertainment': '5',
         'opinion': '6',
-    }
-    const outputCategories = {
-        '1': 'lifestyle',
-        '2': 'art',
-        '3': 'education',
-        '4': 'business',
-        '5': 'entertainment',
-        '6': 'opinion',
     }
     var categories = []
     var categoriesChecked = document.querySelectorAll("#creatPostCategories input:checked")
@@ -40,71 +30,16 @@ export async function creatPost(e) {
         method: "POST",
         body: postInformation
     })
-    // need to be on views
     if (res) {
         var data = await res.json()
     }
-    var tempURL = ''
-    var Profile = ''
-    var time = TimeAgo(data.CreatedAt)
-    if (imageFile) {
-        tempURL = URL.createObjectURL(imageFile);
-    }
-    if (data.ProfileURL.Valid) {
-        Profile = data.ProfileURL.String
-    }
-    if (data.status === 'success') {
-        var middle = document.getElementById('middle')
-        var post = document.createElement('div')
-        post.classList.add('PostsCountainer')
-        post.dataset.PostID = data.PostID
-        let imageDisplay = tempURL ? '' : 'hide'
-        post.innerHTML = `
-    <div id="profilePost">
-                        <div id="profileImage">
-                            <img src="${Profile}" alt="">
-                        </div>
-                        <div id="NameTitlePost">
-                            <p id="name">${data.Nickname}</p>
-                            <div id="titleTime">
-                                <p id="PostTitle">${title}</p>
-                                <p id="time">${time}</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div id="contentPost">${content}</div>
-                        <div id="postImageCountainer"  class="${imageDisplay}" >
-                            <div id="postImage">
-                        <img src="${tempURL}" >
-                    </div>
-                        </div>
-                    
-                    <div id="iconesAndCategories">
-                        <div id="postIncones">
-                            <i id="likeIcone" class="fa-regular fa-heart"></i>
-                            <i  id="commentIcone" class="fa-regular fa-comment-dots"></i>
-                            <i  id= "saveIcone" class="fa-regular fa-bookmark"></i>
-                        </div>
-                        <div class="Postcategories">
-                        </div>
-                    </div>
-    `
-        var addCategories = post.querySelector('.Postcategories')
-
-        for (let categorie of categories) {
-
-            var cat = document.createElement('div');
-            cat.classList.add('Postcategorie');
-            cat.textContent = outputCategories[categorie];
-            addCategories.append(cat);
+    console.log('data returneed',data);
+       const RenderPostData = {
+        title : title,
+        content:content,
+        categories:categories,
         }
-
-        middle.prepend(post)
-        document.getElementById("creatPostCountainer").classList.remove("active")
-
-    }
-    document.getElementById('creatPostTitle').value = ''
-    document.getElementById('creatPostContent').value = ''
+        console.log('render post data form creatPost',RenderPostData);
+        
+       return {data:data,RenderPostData:RenderPostData}
 }

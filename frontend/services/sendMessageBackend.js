@@ -15,6 +15,7 @@ export async function sendMessagBackend() {
         },
         body: JSON.stringify(message)
     })
-    document.getElementById('MessageContentValue').value = ''
-
+    const data = await res.json()    
+    return data
+   
 }

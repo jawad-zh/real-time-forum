@@ -35,8 +35,5 @@ export   function StartWebsocketConection(messageSection){
        }
        socket.onclose = () => {
         console.log('COnnection CLOSED //////');
-    
-        
-        
        }
 }

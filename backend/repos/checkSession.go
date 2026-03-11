@@ -11,15 +11,18 @@ import (
 
 func CheckSession(r *http.Request)(error,*models.Session) {
 	var session models.Session
-	coockie, err := r.Cookie("session_id")
+	cookie, err := r.Cookie("session_id")
 	if err != nil {
 		fmt.Println("Error", err)
 		return err ,nil
 	}
-	row:= db.DataBase.QueryRow(`
-	SELECT UserID , ExpiresAt FROM Session WHERE token = ?
-	`,coockie.Value)
-	err = row.Scan(&session.UserID,&session.ExpiresAt)
+	row := db.DataBase.QueryRow(`
+	SELECT s.UserID, u.Nickname, s.ExpiresAt
+	FROM Session s
+	JOIN Users u ON s.UserID = u.UserID
+	WHERE s.token = ?
+`, cookie.Value)
+	err = row.Scan(&session.UserID,&session.UserNickname,&session.ExpiresAt)
 	if err == sql.ErrNoRows{
 		return err ,nil
 	}

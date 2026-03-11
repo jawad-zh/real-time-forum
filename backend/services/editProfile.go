@@ -26,7 +26,7 @@ func EditProfile(r *http.Request) (error , string){
 
 	err = os.MkdirAll("frontend/uploads", os.ModePerm)
 	if err != nil {
-		fmt.Println("failed to create uploads folder: %v", err)
+		fmt.Println("failed to create uploads folder: ", err)
 		return err , " edit profile failed try later "
 	}
 
