@@ -32,7 +32,7 @@ export function LoginRegister() {
 
 <input type="email" placeholder="E-mail" id="emailInput">
 
-<input type="password" placeholder="Password" id=""passwordInput>
+<input type="password" placeholder="Password" id="RegisterpasswordInput">
 
 <button type="submit" id="registerButton">Register</button>
 

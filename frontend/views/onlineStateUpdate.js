@@ -1,7 +1,5 @@
 import { getUserInfo } from "/frontend/services/getUserInfo.js"
-export async function onlineStateUpdate(connectedUser, otherconnectedClient, messageSection) {
-    console.log('connectedUser',connectedUser);
-    
+export async function onlineStateUpdate(connectedUser, otherconnectedClient, messageSection,nickname) {
     const UserInfo = await getUserInfo()    
     if (connectedUser == UserInfo.UserID) {
         if (otherconnectedClient) {
@@ -26,26 +24,26 @@ export async function onlineStateUpdate(connectedUser, otherconnectedClient, mes
         }
         if (!found){
             // need to get the login user 
-        //    const messageSection =  document.getElementById('rightSide')
-        //      let messageCountainer = document.createElement('div')
-        //         messageCountainer.setAttribute('id','messageCountainer')
-        //         messageCountainer.dataset.id = `${connectedUser}`
-        //         messageCountainer.classList.add('messageCountainer')
-        //         messageCountainer.innerHTML = `
+           const messageSection =  document.getElementById('rightSide')
+             let messageCountainer = document.createElement('div')
+                messageCountainer.setAttribute('id','messageCountainer')
+                messageCountainer.dataset.id = `${connectedUser}`
+                messageCountainer.classList.add('messageCountainer')
+                messageCountainer.innerHTML = `
                         
-        //                   <div id="messageProfile" >
-        //                       <img src="" alt="">
-        //                        <div id="onlineState" ></div>
-        //                   </div>
-        //                   <div id="messageName" >
-        //                       ${connectedUser}
-        //                   </div>
-        //                   <div id="notificationAndTime" >
-        //                       <p>11 min</p>
-        //                       <div class="messageNotification" ></div>
-        //                   </div>
-        //   `
-        //    messageSection.append(messageCountainer)
+                          <div id="messageProfile" >
+                              <img src="" alt="">
+                               <div id="onlineState" ></div>
+                          </div>
+                          <div id="messageName" >
+                              ${nickname}
+                          </div>
+                          <div id="notificationAndTime" >
+                              <p></p>
+                              <div class="messageNotification" ></div>
+                          </div>
+          `
+           messageSection.append(messageCountainer)
         }
         let allConversations = document.querySelectorAll('.imageSectionCountainer')
         for (let conv of allConversations){

@@ -34,22 +34,22 @@ export async function loginCheck(e) {
         }
     }
     if (password.length <= 7) {
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 1');
         return
     } else if (!password.match(/[a-z]/)) {
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 2');
         return
     } else if (!password.match(/[A-Z]/)) {
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 3');
         return
 
     } else if (!password.match(/\d/)) {
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 4');
         return
 
     } else if (!password.match(speacialCharacterRegex)) {
         //need to handl
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 5');
         return
 
     }

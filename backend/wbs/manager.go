@@ -14,6 +14,7 @@ type Events struct{
 type Client struct {
 	Conn        *websocket.Conn
 	UserID      int
+	UserNickname string 
 }
 
 type Manager struct {

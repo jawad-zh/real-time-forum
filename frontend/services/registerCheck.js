@@ -7,7 +7,9 @@ export async function registerCheck(e) {
      const firstNameInput = document.getElementById('firstNameInpu').value.trim()
      const lastNameInput = document.getElementById('lastNameInput').value.trim()
      const email = document.getElementById('emailInput').value.trim()
-     const password = document.getElementById('passwordInput').value.trim()
+     const password = document.getElementById('RegisterpasswordInput').value.trim()
+     console.log('heere is the password from registercheck',password);
+     
 
      const nicknameSpeacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
      const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]/
@@ -45,25 +47,25 @@ export async function registerCheck(e) {
           setAlert('error', '✖', 'speacial character or numbers in first Name not allowed');
           return false
      }
-     if (password.length <= 7) {
-          setAlert('error', '✖', 'password need to be 8 character as minimum');
-          return false
-     } else if (!password.match(/[a-z]/)) {
-          setAlert('error', '✖', 'should be one lowerCase character in password');
-          return false
-     } else if (!password.match(/[A-Z]/)) {
-          setAlert('error', '✖', 'should be one UpperCase character in password');
-          return false
+     // if (password.length <= 7) {
+     //      setAlert('error', '✖', 'password need to be 8 character as minimum');
+     //      return false
+     // } else if (!password.match(/[a-z]/)) {
+     //      setAlert('error', '✖', 'should be one lowerCase character in password');
+     //      return false
+     // } else if (!password.match(/[A-Z]/)) {
+     //      setAlert('error', '✖', 'should be one UpperCase character in password');
+     //      return false
 
-     } else if (!password.match(/\d/)) {
-          setAlert('error', '✖', 'should be one UpperCase character in password');
-          return false
+     // } else if (!password.match(/\d/)) {
+     //      setAlert('error', '✖', 'should be one UpperCase character in password');
+     //      return false
 
-     } else if (!password.match(speacialCharacterRegex)) {
-          setAlert('error', '✖', 'should be one special character in password');
-          return false
+     // } else if (!password.match(speacialCharacterRegex)) {
+     //      setAlert('error', '✖', 'should be one special character in password');
+     //      return false
 
-     }
+     // }
      //     if (!email.match(emailRegex)){
      //          checkRegisterResponse('incorrect email format','red')
      //          return false
@@ -88,10 +90,11 @@ export async function registerCheck(e) {
      } else if (email === '') {
           setAlert('error', '✖', 'Email is required');
           return 
-     } else if (password === '') {
-          setAlert('error', '✖', 'Password is required');
-          return false
-     }
+     } 
+     // else if (password === '') {
+     //      setAlert('error', '✖', 'Password is required');
+     //      return false
+     // }
      //backend
      const Users = {
           Nickname: nickname,

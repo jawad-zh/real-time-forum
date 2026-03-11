@@ -2,19 +2,20 @@ package services
 
 import (
 	"regexp"
-
+	"fmt"
 	"golang/backend/models"
 	"golang/backend/repos"
 )
 
 func RegisterChecker(user *models.Users) (bool, string) {
+	fmt.Println("from register ----------",user)
 	nicknameRegex := regexp.MustCompile(`[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]`)
 	speacialCharacterRegex := regexp.MustCompile(`[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]`)
 	// emailRegex := regexp.MustCompile(`.+@[a-zA-z]+\.[a-zA-Z]+`)
 	// notNumbersRegex := regexp.MustCompile(`\D`)
 	NumbersRegex := regexp.MustCompile(`\d`)
-	lowerCaseRegex := regexp.MustCompile(`[a-z]`)
-	upperCaseRegex := regexp.MustCompile(`[A-Z]`)
+	// lowerCaseRegex := regexp.MustCompile(`[a-z]`)
+	// upperCaseRegex := regexp.MustCompile(`[A-Z]`)
 	if len(user.Nickname) <= 2 {
 		return false, "Nickname should be more the two character (backend)"
 	} else if nicknameRegex.MatchString(user.Nickname) {
@@ -42,15 +43,15 @@ func RegisterChecker(user *models.Users) (bool, string) {
 	} else if speacialCharacterRegex.MatchString(user.LastName) || NumbersRegex.MatchString(user.LastName) {
 		return false, "Speacial Character or Numbers Not Allowed In First Name (backend)"
 	}
-	if len(user.Password) <= 7 {
-		return false, "Password Sould Be More Than 8 Charachter (backend)"
-	} else if !lowerCaseRegex.MatchString(user.Password) {
-		return false, "Password Should Countain Lower Case Character (backend) "
-	} else if !upperCaseRegex.MatchString(user.Password) {
-		return false, "Password Should Countain Upper Case Character  (backend)"
-	} else if !NumbersRegex.MatchString(user.Password) {
-		return false, "Password Should Countain Number (backend) "
-	}
+	// if len(user.Password) <= 7 {
+	// 	return false, "Password Sould Be More Than 8 Charachter (backend)"
+	// } else if !lowerCaseRegex.MatchString(user.Password) {
+	// 	return false, "Password Should Countain Lower Case Character (backend) "
+	// } else if !upperCaseRegex.MatchString(user.Password) {
+	// 	return false, "Password Should Countain Upper Case Character  (backend)"
+	// } else if !NumbersRegex.MatchString(user.Password) {
+	// 	return false, "Password Should Countain Number (backend) "
+	// }
 	// if !emailRegex.MatchString(user.Email) {
 	// 	return false, "Incorrect Email Format (backend) "
 	// }
@@ -68,9 +69,10 @@ func RegisterChecker(user *models.Users) (bool, string) {
 		return false, "LastName  is required (backend) "
 	} else if len(user.Email) == 0 {
 		return false, "Email is required (backend) "
-	} else if len(user.Password) == 0 {
-		return false, "Password is required (backend) "
-	}
+	} 
+	// else if len(user.Password) == 0 {
+	// 	return false, "Password is required (backend) "
+	// }
 
 	ok, creatMessage := repos.CreatAccount(user)
 	if ok {

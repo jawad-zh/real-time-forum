@@ -35,7 +35,6 @@ export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {
         }
     }
     addMessageOffset()
-    
 }
 function rangeUser(id){
     const container = document.getElementById('rightSide')

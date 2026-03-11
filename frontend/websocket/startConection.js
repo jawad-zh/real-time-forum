@@ -23,8 +23,10 @@ export   function StartWebsocketConection(messageSection){
             showNewMessage("from-other",data.SenderID,data.ReceiverID,data.Load)
           }
           break
-          case "onlineState" :                      
-          onlineStateUpdate(data.Load.logeddUserID,data.Load.otherLoggedClients,messageSection)
+          case "onlineState" :   
+          console.log('from online state:',data);
+                                       
+          onlineStateUpdate(data.Load.logeddUserID,data.Load.otherLoggedClients,messageSection,data.Load.logeddUserNickname)
           break
           case "offlineState":            
           offlineStateUpdate(data.Load.UserID)

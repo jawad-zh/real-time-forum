@@ -46,7 +46,7 @@ func main() {
 	mux.Handle("/getAllUsers", middleware.Authuntication(http.HandlerFunc(handlers.GetAllUsersHandler)))
 	mux.Handle("/sendMessage", middleware.Authuntication(http.HandlerFunc(handlers.SendMessageHandler)))
 	mux.Handle("/getMessages", middleware.Authuntication(http.HandlerFunc(handlers.GetMessagesHandler)))
-	mux.HandleFunc("/ws", wbs.WebSocketHandler)
+	mux.Handle("/ws", middleware.Authuntication(http.HandlerFunc(wbs.WebSocketHandler)))
 	mux.Handle("/UpdateMessageState",middleware.Authuntication(http.HandlerFunc(handlers.UpdateMessageStateHandler)))
 	//
 	fmt.Println("server started on http://localhost:8080")

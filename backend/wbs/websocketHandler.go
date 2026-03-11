@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"golang/backend/repos"
-
+	"golang/backend/middleware"
 	"github.com/gorilla/websocket"
 )
 
@@ -17,20 +16,21 @@ var upgrader = websocket.Upgrader{
 
 func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	
-	err, session := repos.CheckSession(r)
-	if err != nil {
-		fmt.Println("Error session", err)
-		return
+	user, ok := middleware.GetUserFromContext(r)
+	if !ok{
+		fmt.Println("somthing wrong")
+		return 
 	}
+	fmt.Println("usssssseeeeeeeeeeer",user)
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
-
 		fmt.Println("Upgrade error:", err)
 		return
 	}
 	client := &Client{
 		Conn:   conn,
-		UserID: session.UserID,
+		UserID: user.UserID,
+		UserNickname: user.Nickname,
 	}
 	GlobalManager.AddConnection(client)
 	GlobalManager.BrodcastConnection(client)
