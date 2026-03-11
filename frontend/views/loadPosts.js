@@ -39,12 +39,11 @@ export async function loadPosts(Category,flag){
                             <img src="${Profile}" alt="">
                         </div>
                         <div id="NameTitlePost">
+                        <div id="titleTime">
                             <p id="name">${data[i].Nickname}</p>
-                            <div id="titleTime">
-                                <p id="PostTitle">${data[i].Title}</p>
-                                <p id="time">${createdAt}</p>
+                            <p id="time">${createdAt}</p>
                             </div>
-
+                                <p id="PostTitle">${data[i].Title}</p>
                         </div>
 
                     </div>

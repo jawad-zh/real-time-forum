@@ -4,6 +4,8 @@ export async function loadUsers() {
       let users = await getAllUser()
         
         if (users.statue==='success'){
+            console.log("user.data",users.Data);
+            
             const messagesSection = document.getElementById('rightSide')        
             for (let user of users.Data){
                 ExportedUsers.push(user)

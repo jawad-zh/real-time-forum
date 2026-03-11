@@ -523,6 +523,7 @@ i {
     font-weight: 600;
     overflow-wrap: break-word;
     word-break: break-word;
+    margin-bottom: 8px;
 }
 
 #time {
@@ -683,6 +684,11 @@ i {
 
 #messageCountainer.onlineUser #onlineState {
     display: flex;
+}
+#MessageTime{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 11px;
 }
 
 #backgroundLeft {
@@ -1034,7 +1040,8 @@ i {
     background-color: var(--lightcard);
     height: auto;
     padding:  8px;
-    width: calc(80% - 40px);
+    /* width: calc(80% - 40px); */
+    min-width:100px;
     border: none;
     border-radius: 10px 10px 10px 0px;
     color: #b0b7c9;
@@ -1044,12 +1051,9 @@ i {
 
 }
 #commentTime{
-    /* background-color: red; */
     display: flex;
     justify-content: flex-end;
     color: var(--primry);
-    /* position: absolute; */
-    transform: translate(0px , -20px);
 }
 #commentNickname{
     font-weight: bolder;

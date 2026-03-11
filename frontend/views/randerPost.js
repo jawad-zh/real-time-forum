@@ -23,12 +23,11 @@ export function renderPost(data,RenderPostData){
                             <img src="${data.ProfileURL.String}" alt="">
                         </div>
                         <div id="NameTitlePost">
+                        <div id="titleTime">
                             <p id="name">${data.Nickname}</p>
-                            <div id="titleTime">
-                                <p id="PostTitle">${RenderPostData.title}</p>
-                                <p id="time">${time}</p>
+                            <p id="time">${time}</p>
                             </div>
-
+                                <p id="PostTitle">${RenderPostData.title}</p>
                         </div>
 
                     </div>

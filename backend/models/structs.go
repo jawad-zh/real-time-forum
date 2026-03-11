@@ -19,6 +19,7 @@ type Users struct {
 	Saves int `json:"Saves"`
 	ProfileURL string `json:"ProfileURL"`
 	IsRead     sql.NullBool `json:"IsRead"`
+	LastMessageTime sql.NullString `json:"LastMessageTime"`
 
 }
 type Session struct {

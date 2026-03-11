@@ -15,6 +15,7 @@ type commentInfoFormat struct {
 type CreatCommentHandlerResponsFormat struct {
 	Statue  string `json:"statue"`
 	Message string `json:"message"`
+	Data any `json:"commentData"`
 }
 
 func CreatCommentHandler(w http.ResponseWriter, r *http.Request) {

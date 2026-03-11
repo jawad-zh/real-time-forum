@@ -10,7 +10,7 @@ func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.
 	
 	var messages []models.PrivateMessage
 	rows, err := db.DataBase.Query(`
-    SELECT SenderId, Content 
+    SELECT SenderId, Content ,CreatedAt
     FROM PrivateMessages 
     WHERE 
 	(ReceiverId = ? AND SenderId = ?)
@@ -25,7 +25,7 @@ func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.
 	}
 	for rows.Next(){
 		var message models.PrivateMessage
-		err:=rows.Scan(&message.SenderID,&message.Content)
+		err:=rows.Scan(&message.SenderID,&message.Content,&message.CreatAt)
 		if err != nil{
 			fmt.Println("Scan messages Error:",err)
 			return err , nil
