@@ -4,6 +4,7 @@ import { showMessageCountainer } from "/frontend/views/showMessageCountainer.js"
 import { hideMessageSection } from '/frontend/views/hideMessageSection.js'
 import { sendMessagBackend } from '/frontend/services/sendMessageBackend.js'
 import { updateMessageState } from "/frontend/services/updateMessageState.js"
+import {LoginRegister} from '/frontend/views/start.js';
 
 export async function messageController(e) {
     const el = e.target.closest('[id]')
@@ -20,6 +21,13 @@ export async function messageController(e) {
     } else if (id === 'cancenlChatIcone') {
         hideMessageSection()
     } else if (id === 'sendMessageIcone') {
-        if (checkMessage()) await sendMessagBackend()
+        if (checkMessage()) {
+            const data = await sendMessagBackend()
+            if (data){
+                if (data.statue === 'Unauthorized'){
+                    LoginRegister()
+                }
+            }
+        }
     }
 }

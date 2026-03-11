@@ -5,7 +5,8 @@ import { checkCreatPost } from "/frontend/services/checkCreatPost.js"
 import { removeCreatPostPage } from '/frontend/views/removeCreatPostPage.js'
 import { setAlert } from "/frontend/components/alert.js"
 import { active } from "/frontend/views/active.js"
-
+import { LoginRegister } from '/frontend/views/start.js';
+import { renderPost } from '/frontend/views/randerPost.js';
 export async function CreatePostController(e) {
     const el = e.target.closest('[id]')
     const id = el.id
@@ -19,8 +20,14 @@ export async function CreatePostController(e) {
     } else if (id === 'creatPostButton') {
         const message = checkCreatPost()
         if (message === 'success') {
-            await creatPost(e)
-            active('homePageIcone')
+            let {data,RenderPostData} = await creatPost(e)            
+            if (data.statue === 'success') {                
+                renderPost(data,RenderPostData)
+                active('homePageIcone')
+            }
+            else if (data.statue === 'Unauthorized') {
+                LoginRegister()
+            }
         } else {
             setAlert('error', '✖', message)
         }

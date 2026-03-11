@@ -4,6 +4,7 @@ import { imageViewer } from "/frontend/views/imageviewer.js"
 import { addImageBackend } from "/frontend/services/addImageBackend.js"
 import { addImage } from "../views/addImage.js"
 import { setAlert } from "/frontend/components/alert.js"
+import {LoginRegister} from '/frontend/views/start.js';
 
 export async function profileController(e) {
     const el = e.target.closest('[id]')
@@ -16,7 +17,11 @@ export async function profileController(e) {
         imageViewer()
     } else if (id === 'addImageProfile') {
         const res = await addImageBackend()
-        if (res.statue === 'success') addImage()
+        if (res.statue === 'success') {
+            addImage()
+        } else if (res.statue === 'Unauthorized'){
+                    LoginRegister()
+                }
         else setAlert('error','✖','add profile image failed try later')
     } else if (['imageIconeCountainer','imageUploadIcone','imageTextIcone'].includes(id)) {
         document.getElementById('fileInput').click()
