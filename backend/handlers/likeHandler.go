@@ -14,7 +14,7 @@ type likeHandlerResponseFormat struct {
 	Message string `json:"message"`
 }
 type PostIDFormat struct {
-	Id int
+	Id int `json:"PostID"`
 }
 
 func LikeHandler(w http.ResponseWriter, r *http.Request) {
@@ -27,6 +27,7 @@ func LikeHandler(w http.ResponseWriter, r *http.Request) {
 		likeHandlerResponse.Statue = "Unauthorized"
 	}
 	err := json.NewDecoder(r.Body).Decode(&postID)
+	fmt.Println("the post id is ::",postID)
 	if err != nil {
 		likeHandlerResponse.Message = "sever error"
 		likeHandlerResponse.Statue = "failed"

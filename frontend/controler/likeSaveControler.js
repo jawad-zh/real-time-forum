@@ -16,8 +16,6 @@ export async function LikeSaveController(e) {
 
     if (id === 'likeIcone') {
         const data = await LikeBackend(post.dataset.PostID)
-        console.log('like data',data);
-        
         if (data.statue === 'success'){LikeFrontend(data, icone)}else if(data.statue === 'Unauthorized'){LoginRegister()}
     } else if (id === 'saveIcone') {
         const data = await savePostsBackend(post.dataset.PostID)

@@ -1,6 +1,7 @@
 export async function LikeBackend(idString) {
     var id = Number(idString)
-
+    console.log('id from likeBackend',id);
+    
     var postID = {
         'PostID': id
     }
