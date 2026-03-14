@@ -633,11 +633,17 @@ i {
     width: 34px;
     margin: 0px 10px 0px 10px;
     border-radius: 10px;
-    overflow: hidden;
+    position: relative;
     /* position: relative; */
 }
+#imgmsg{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
 
-#messageProfile img {
+#imgmsg img {
     height: 100%;
     width: 100%;
     object-fit: cover;

@@ -10,10 +10,13 @@ export async function registerCheck(e) {
      const password = document.getElementById('RegisterpasswordInput').value.trim()
      console.log('heere is the password from registercheck',password);
      
-
      const nicknameSpeacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
-     const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]/
-     //     const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
+     const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',=";:{}.\/\-_]/
+     const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
+     if(firstNameInput.match(speacialCharacterRegex)){
+          console.log('wttff',firstNameInput);
+          
+     }
      if (nickname.length <= 2) {
           setAlert('error', '✖', 'nickname need to be more than two character');
           return false
@@ -33,9 +36,9 @@ export async function registerCheck(e) {
           setAlert('error', '✖', 'first Name need to be more than two character');
           return false
 
-     } else if (firstNameInput.match(speacialCharacterRegex) || firstNameInput.match(/\d/)) {
+     } else if (firstNameInput.match(speacialCharacterRegex) ) {
           // need to modfy regex
-          setAlert('error', '✖', 'speacial character or numbers in first Name not allowed');
+          setAlert('error', '✖', 'speacial character or numbers in first Name not allowed heerrree---------');
           return false
      }
      if (lastNameInput.length <= 2) {
@@ -47,29 +50,29 @@ export async function registerCheck(e) {
           setAlert('error', '✖', 'speacial character or numbers in first Name not allowed');
           return false
      }
-     // if (password.length <= 7) {
-     //      setAlert('error', '✖', 'password need to be 8 character as minimum');
-     //      return false
-     // } else if (!password.match(/[a-z]/)) {
-     //      setAlert('error', '✖', 'should be one lowerCase character in password');
-     //      return false
-     // } else if (!password.match(/[A-Z]/)) {
-     //      setAlert('error', '✖', 'should be one UpperCase character in password');
-     //      return false
+     if (password.length <= 7) {
+          setAlert('error', '✖', 'password need to be 8 character as minimum');
+          return false
+     } else if (!password.match(/[a-z]/)) {
+          setAlert('error', '✖', 'should be one lowerCase character in password');
+          return false
+     } else if (!password.match(/[A-Z]/)) {
+          setAlert('error', '✖', 'should be one UpperCase character in password');
+          return false
 
-     // } else if (!password.match(/\d/)) {
-     //      setAlert('error', '✖', 'should be one UpperCase character in password');
-     //      return false
+     } else if (!password.match(/\d/)) {
+          setAlert('error', '✖', 'should be one UpperCase character in password');
+          return false
 
-     // } else if (!password.match(speacialCharacterRegex)) {
-     //      setAlert('error', '✖', 'should be one special character in password');
-     //      return false
+     } else if (!password.match(speacialCharacterRegex)) {
+          setAlert('error', '✖', 'should be one special character in password');
+          return false
 
-     // }
-     //     if (!email.match(emailRegex)){
-     //          checkRegisterResponse('incorrect email format','red')
-     //          return false
-     //     }
+     }
+         if (!email.match(emailRegex)){
+              setAlert('error', '✖', 'incorrect email format')
+              return false
+         }
 
      //check empty
      if (nickname === '') {
@@ -90,11 +93,10 @@ export async function registerCheck(e) {
      } else if (email === '') {
           setAlert('error', '✖', 'Email is required');
           return 
-     } 
-     // else if (password === '') {
-     //      setAlert('error', '✖', 'Password is required');
-     //      return false
-     // }
+     }  else if (password === '') {
+          setAlert('error', '✖', 'Password is required');
+          return false
+     }
      //backend
      const Users = {
           Nickname: nickname,

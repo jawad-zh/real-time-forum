@@ -20,7 +20,9 @@ export async function loadUsers() {
                 messageCountainer.innerHTML = `
                         
                           <div id="messageProfile" >
+                          <div id="imgmsg" >
                               <img src="${user.ProfileURL}" alt="">
+                              </div>
                                <div id="onlineState" ></div>
                           </div>
                           <div id="messageName" >
