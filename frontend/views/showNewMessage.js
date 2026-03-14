@@ -1,5 +1,6 @@
 import {updateMessageState} from "/frontend/services/updateMessageState.js"
 import {addMessageOffset} from "/frontend/services/getMessages.js"
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
 export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {   
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
@@ -8,7 +9,7 @@ export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {
             <div id="ImageMessage" ></div>
             <div id="MessageAndTime" >
                 <div id="MessageContent" >
-                ${MessageContent}
+                ${htmlXSS(MessageContent)}
                 </div>
                 <div id="MessageTime" ></div>
             </div>

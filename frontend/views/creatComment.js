@@ -1,3 +1,4 @@
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
 
 export function creatComment(PostID,data) {
     console.log('datas from creatComment',data);
@@ -20,7 +21,7 @@ export function creatComment(PostID,data) {
                                    <img src="${Profile}" alt="">
                                </div>
                                <div class="CommentContent" >
-                                   <p>${input}
+                                   <p>${htmlXSS(input)}
                                    </p>
                                </div>
                            

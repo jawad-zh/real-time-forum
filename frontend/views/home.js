@@ -2,6 +2,7 @@ import { getUserInfo } from "/frontend/services/getUserInfo.js"
 import{loadPosts} from "/frontend/views/loadPosts.js"
 import { loadUsers } from "./loadUsers.js"
 import { scrollTracking } from "../services/scrolling.js"
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
 export let ExportedUsers = []
 export let UserInfo = {}
 export async function setHomePage(Category) {    
@@ -13,7 +14,9 @@ export async function setHomePage(Category) {
     }
     // need to check
      UserInfo = await getUserInfo()
-     
+     const firstName= htmlXSS(UserInfo.FirstName)
+     const lastName = htmlXSS(UserInfo.LastName)
+     const Nickname = htmlXSS(UserInfo.Nickname)
     document.body.innerHTML = `
     <div id="appCountainer">
         <div id="navBar">
@@ -31,7 +34,7 @@ export async function setHomePage(Category) {
                 <div id="navBarImage">
                     <img id="navBarImageimg" src="${UserInfo.ImageURL}" alt="">
                 </div>
-                <p id="logoutName" >${UserInfo.FirstName} ${UserInfo.LastName}</p>
+                <p id="logoutName" >${firstName} ${lastName}</p>
                  <i id="logoutIcone" class="fa-solid fa-right-from-bracket"></i>
             </div>
         </div>
@@ -56,8 +59,8 @@ export async function setHomePage(Category) {
                         </div>
                     </div>
                           <div id="informationName" >
-                        <p id="profileNickname" >@${UserInfo.Nickname}</p>
-                        <p id="profileName" >${UserInfo.FirstName} ${UserInfo.LastName}</p>
+                        <p id="profileNickname" >@${Nickname}</p>
+                        <p id="profileName" >${firstName} ${lastName}</p>
                     </div>
                     <div id="addPrifileImage" >
                         add your Profile

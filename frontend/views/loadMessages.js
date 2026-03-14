@@ -1,6 +1,8 @@
 import { getMessages } from '/frontend/services/getMessages.js';
 import { UserInfo } from "./home.js";
 import {TimeAgo}  from "/frontend/services/timeAgo.js"
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
+
 export async function loadMessages(UserID,flag){
     var messages = await getMessages(UserID,flag)    
     const messageCountainer = document.getElementById('messagesSection')
@@ -19,7 +21,7 @@ export async function loadMessages(UserID,flag){
            
             <div id="MessageAndTime" >
                 <div id="MessageContent" >
-                ${message.messageContent}
+                ${htmlXSS(message.messageContent)}
                 </div>
                 <div id="MessageTime" >${time}</div>
             </div>

@@ -1,6 +1,7 @@
 import {getComments} from "/frontend/services/getComments.js"
 import {getUserInfo} from "/frontend/services/getUserInfo.js"
 import {TimeAgo}  from "/frontend/services/timeAgo.js"
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
 export async function showComment(postID){
     var post = document.querySelector(`.PostsCountainer[data--post-i-d="${postID}"]`)
     post.classList.toggle('active')
@@ -35,8 +36,8 @@ export async function showComment(postID){
                                 <img src="${data.UserProfile.String}" alt="">
                             </div>
                             <div class="CommentContent" >
-                                <p id="commentNickname" >${data.Nickname}</p>
-                                <p>${data.Content}
+                                <p id="commentNickname" >${htmlXSS(data.Nickname)}</p>
+                                <p>${htmlXSS(data.Content)}
                                 </p>
                                 <div id="commentTime" >${time}</div>
                             </div>

@@ -1,6 +1,7 @@
 import {getPost} from "/frontend/services/getPost.js"
 import {TimeAgo} from "/frontend/services/timeAgo.js"
 import {LoginRegister} from '/frontend/views/start.js';
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
 
 export async function loadPosts(Category,flag){
     let middle = document.getElementById('middle')
@@ -43,11 +44,11 @@ export async function loadPosts(Category,flag){
                             <p id="name">${data[i].Nickname}</p>
                             <p id="time">${createdAt}</p>
                             </div>
-                                <p id="PostTitle">${data[i].Title}</p>
+                                <p id="PostTitle">${htmlXSS(data[i].Title)}</p>
                         </div>
 
                     </div>
-                    <div id="contentPost">${data[i].Content}</div>
+                    <div id="contentPost">${htmlXSS(data[i].Content)}</div>
                         <div id="postImageCountainer" class="${imageDisplay}">
                             <div id="postImage">
                         <img src="${data[i].ImageURL}" alt="">

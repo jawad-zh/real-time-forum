@@ -1,4 +1,5 @@
 import {TimeAgo} from '/frontend/services/timeAgo.js';
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
 export function renderPost(data,RenderPostData){
     console.log('renderPostData:',RenderPostData);
     
@@ -27,11 +28,11 @@ export function renderPost(data,RenderPostData){
                             <p id="name">${data.Nickname}</p>
                             <p id="time">${time}</p>
                             </div>
-                                <p id="PostTitle">${RenderPostData.title}</p>
+                                <p id="PostTitle">${htmlXSS(RenderPostData.title)}</p>
                         </div>
 
                     </div>
-                    <div id="contentPost">${RenderPostData.content}</div>
+                    <div id="contentPost">${htmlXSS(RenderPostData.content)}</div>
                         <div id="postImageCountainer"  class="${imageDisplay}" >
                             <div id="postImage">
                         <img src="${data.imageURL}" >
@@ -48,6 +49,7 @@ export function renderPost(data,RenderPostData){
                         </div>
                     </div>
     `
+    
         var addCategories = post.querySelector('.Postcategories')
 
         for (let categorie of RenderPostData.categories) {
