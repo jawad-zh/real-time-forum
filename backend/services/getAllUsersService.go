@@ -3,15 +3,10 @@ package services
 import (
 	"golang/backend/models"
 	"golang/backend/repos"
-	"net/http"
 )
 
-func GetAllUsersService(r *http.Request )(error,*[]models.Users){
-	err,session:=repos.CheckSession(r)
-	if err != nil {
-		return err,nil
-	}
-	err,data:=repos.GetAllUsesRepo(session.UserID)
+func GetAllUsersService(UserID int )(error,*[]models.Users){
+	err,data:=repos.GetAllUsesRepo(UserID)
 	if err != nil{
 		return err,nil
 	}

@@ -2,16 +2,15 @@ package services
 
 import (
 	"database/sql"
-	"errors"
 	"fmt"
 	"io"
-	"net/http"
 	"os"
 	"path/filepath"
 	"time"
-
+	"net/http"
 	"golang/backend/models"
 	"golang/backend/repos"
+	"golang/backend/middleware"
 )
 
 type CreatPostResponseFormat struct {
@@ -24,7 +23,7 @@ type CreatPostResponseFormat struct {
 	ProfileURL sql.NullString `json:"ProfileURL"`
 }
 
-func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
+func CreatPostCheck(r *http.Request,user middleware.MiddlewareInfoFormat) (error, string, *CreatPostResponseFormat) {
 	var post models.PostInformation
 	var CreatPostResponse CreatPostResponseFormat
 	err := r.ParseMultipartForm(10 << 20)
@@ -33,10 +32,6 @@ func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
 		return err, "large image size", nil
 	}
 
-	err, session := repos.CheckSession(r)
-	if err != nil {
-		return errors.New("no session"), "your session is expired", nil
-	}
 	err = os.MkdirAll("frontend/uploads", os.ModePerm)
 	if err != nil {
 		fmt.Println("failed to create uploads folder: ", err)
@@ -67,7 +62,7 @@ func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
 		post.Content = content
 		post.Categories = categories
 		post.ImageURL = imagePath
-		err, data := repos.CreatPost(&post, session)
+		err, data := repos.CreatPost(&post, user.UserID)
 		if err == nil {
 			CreatPostResponse.Message = ""
 			CreatPostResponse.Statue = "success"
@@ -85,7 +80,7 @@ func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
 		post.Title = title
 		post.Content = content
 		post.Categories = categories
-		err, data := repos.CreatPost(&post, session)
+		err, data := repos.CreatPost(&post, user.UserID)
 		if err == nil {
 			CreatPostResponse.Message = ""
 			CreatPostResponse.Statue = "success"

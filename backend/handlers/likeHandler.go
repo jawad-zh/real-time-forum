@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"golang/backend/middleware"
@@ -18,7 +17,6 @@ type PostIDFormat struct {
 }
 
 func LikeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("hello from like handler")
 	var postID PostIDFormat
 	var likeHandlerResponse likeHandlerResponseFormat
 	user, ok := middleware.GetUserFromContext(r)
@@ -27,7 +25,6 @@ func LikeHandler(w http.ResponseWriter, r *http.Request) {
 		likeHandlerResponse.Statue = "Unauthorized"
 	}
 	err := json.NewDecoder(r.Body).Decode(&postID)
-	fmt.Println("the post id is ::",postID)
 	if err != nil {
 		likeHandlerResponse.Message = "sever error"
 		likeHandlerResponse.Statue = "failed"

@@ -26,7 +26,7 @@ func SendMessageHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Decod err:", err)
 		return
 	}
-	err = services.SendeMessageService(r, &message)
+	err = services.SendeMessageService(&message)
 	if err != nil {
 		SendMessageRespons.Statue = "failed"
 		w.Header().Set("Content-Type","application/json")

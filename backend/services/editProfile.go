@@ -12,18 +12,12 @@ import (
 	"golang/backend/repos"
 )
 
-func EditProfile(r *http.Request) (error , string){
+func EditProfile(r *http.Request,UserID int) (error , string){
 	err := r.ParseMultipartForm(10 << 20)
 	if err != nil {
 		fmt.Println("large size")
 		return errors.New("larg image size") , "image too large"
 	}
-
-	err, session := repos.CheckSession(r)
-	if err != nil {
-		return errors.New("no session") , "your session is expired"
-	}
-
 	err = os.MkdirAll("frontend/uploads", os.ModePerm)
 	if err != nil {
 		fmt.Println("failed to create uploads folder: ", err)
@@ -48,7 +42,7 @@ func EditProfile(r *http.Request) (error , string){
 		io.Copy(dst, file)
 
 		ImageURL := imagePath
-		err = repos.EditProfile(ImageURL, session)
+		err = repos.EditProfile(ImageURL, UserID)
 		if err != nil {
 			return err , "edit profile failed try later"
 		}

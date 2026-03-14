@@ -10,7 +10,7 @@ import (
 	"golang/backend/models"
 )
 
-func GetPosts(category string, r *http.Request ,session *models.Session ,offset int) (*[]models.Posts, error) {
+func GetPosts(category string, r *http.Request ,UserID int ,offset int) (*[]models.Posts, error) {
 	
 
 	var rows *sql.Rows
@@ -38,7 +38,7 @@ func GetPosts(category string, r *http.Request ,session *models.Session ,offset 
 			LEFT JOIN PostSave ON PostSave.PostID = Posts.PostID AND PostSave.UserID = ?
 			ORDER BY Posts.PostID DESC
 			LIMIT 10 OFFSET ?
-		`, session.UserID, session.UserID,offset)
+		`, UserID, UserID,offset)
 
 	case "like":
 		rows, err = db.DataBase.Query(`
@@ -60,7 +60,7 @@ func GetPosts(category string, r *http.Request ,session *models.Session ,offset 
 			)
 			ORDER BY Posts.PostID DESC
 			LIMIT 10 OFFSET ?
-		`, session.UserID,offset)
+		`, UserID,offset)
 
 	case "save":
 		rows, err = db.DataBase.Query(`
@@ -82,7 +82,7 @@ func GetPosts(category string, r *http.Request ,session *models.Session ,offset 
 			)
 			ORDER BY Posts.PostID DESC
 			LIMIT 10 OFFSET ?
-		`, session.UserID,offset)
+		`, UserID,offset)
 
 	default:
 		rows, err = db.DataBase.Query(`
@@ -111,7 +111,7 @@ func GetPosts(category string, r *http.Request ,session *models.Session ,offset 
 			)
 			ORDER BY Posts.PostID DESC
 			LIMIT 10 OFFSET ?
-		`, session.UserID, session.UserID, category,offset)
+		`, UserID, UserID, category,offset)
 	}
 
 	if err != nil {

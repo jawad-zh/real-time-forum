@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"golang/backend/middleware"
 	"golang/backend/services"
 	"net/http"
 )
@@ -17,7 +18,12 @@ func UpdateMessageStateHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("method not allowed")
 		return
 	}
+	user, ok := middleware.GetUserFromContext(r)
+	if !ok {
+		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+		return
+	}
 	json.NewDecoder(r.Body).Decode(&id)
-	services.UpdateMessageStateServie(r, id.UserID)
+	services.UpdateMessageStateServie(user.UserID, id.UserID)
 
 }

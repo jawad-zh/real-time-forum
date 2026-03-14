@@ -19,7 +19,7 @@ export async function LikeSaveController(e) {
         if (data.statue === 'success'){LikeFrontend(data, icone)}else if(data.statue === 'Unauthorized'){LoginRegister()}
     } else if (id === 'saveIcone') {
         const data = await savePostsBackend(post.dataset.PostID)
-        if (data.statue === 'success') savePostFront(data, icone)
+        if (data.statue === 'success') {savePostFront(data, icone)}else if (data.statue === 'Unauthorized'){LoginRegister()}
         else setAlert('error','✖','save failed try later')
     }
 }

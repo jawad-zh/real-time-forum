@@ -2,7 +2,6 @@ package services
 
 import (
 	"fmt"
-	"net/http"
 
 	"golang/backend/repos"
 )
@@ -19,10 +18,10 @@ type getUserInfoHandlerFormat struct {
 	Gender    string `json:"Gender"`
 }
 
-func GetUserInfo(r *http.Request) (error, *getUserInfoHandlerFormat) {
+func GetUserInfo(UserID int) (error, *getUserInfoHandlerFormat) {
 	var getUserInfoResponse getUserInfoHandlerFormat
 
-	err, data := repos.GetUserInfo(r)
+	err, data := repos.GetUserInfo(UserID)
 	if err != nil {
 		fmt.Println("Get user info error", err)
 		return err, nil

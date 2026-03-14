@@ -4,17 +4,11 @@ import (
 	"fmt"
 	"golang/backend/db"
 	"golang/backend/models"
-	"net/http"
 )
 
-func GetUserInfo(r *http.Request)(error,*models.Users){
+func GetUserInfo(UserID int) (error, *models.Users) {
 	var user models.Users
-	err,session:=CheckSession(r)
-	if err != nil {
-		fmt.Println("sesson Error:")
-		return err,nil
-	}
-	err=db.DataBase.QueryRow(`
+	err := db.DataBase.QueryRow(`
 	SELECT 
 	Users.UserID,
     Users.Nickname,
@@ -27,10 +21,10 @@ func GetUserInfo(r *http.Request)(error,*models.Users){
 FROM Users 
 WHERE UserID = ?;
 
-	`,session.UserID).Scan(&user.UserID,&user.Nickname,&user.FirstName,&user.LastName,&user.ProfileURL,&user.Gender,&user.Likes,&user.Saves)
-	if err != nil{
-		fmt.Println("Selct UserInfo error:",err)
-		return err,nil
+	`, UserID).Scan(&user.UserID, &user.Nickname, &user.FirstName, &user.LastName, &user.ProfileURL, &user.Gender, &user.Likes, &user.Saves)
+	if err != nil {
+		fmt.Println("Selct UserInfo error:", err)
+		return err, nil
 	}
 	return nil, &user
 }

@@ -9,7 +9,7 @@ import (
 	"golang/backend/repos"
 )
 
-func GetPosts(r *http.Request) (error, *[]models.Posts) {
+func GetPosts(r *http.Request,UserID int) (error, *[]models.Posts) {
 	category := r.URL.Query().Get("category")
 	fmt.Println("category:::",category)
 	offset, err := strconv.Atoi(r.URL.Query().Get("postoffset"))
@@ -17,8 +17,7 @@ func GetPosts(r *http.Request) (error, *[]models.Posts) {
 		fmt.Println("getPost atoi error", err)
 		return err ,nil
 	}
-	_, session := repos.CheckSession(r)
-	posts, err := repos.GetPosts(category, r, session,offset)
+	posts, err := repos.GetPosts(category, r, UserID,offset)
 	if err != nil {
 		return err, nil
 	}

@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"golang/backend/middleware"
 	"golang/backend/models"
 	"golang/backend/services"
 	"net/http"
@@ -20,6 +21,11 @@ func GetMessagesHandler( w http.ResponseWriter , r *http.Request ){
 		fmt.Println("method not allowed")
 		return  
 	}
+user, ok := middleware.GetUserFromContext(r)
+if !ok{
+fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+return
+}
 
 	id:=r.URL.Query().Get("receiverID")
 	offset:= r.URL.Query().Get("offset")
@@ -35,7 +41,7 @@ func GetMessagesHandler( w http.ResponseWriter , r *http.Request ){
 		return
 	}
 
-	err,data:=services.GetMessages(r,receiverID,offsetNum)
+	err,data:=services.GetMessages(user.UserID,receiverID,offsetNum)
 	if err != nil{
 		GetMessagesRepons.Statue = "failed"
 		w.Header().Set("Content-Type","application/json")

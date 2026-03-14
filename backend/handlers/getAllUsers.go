@@ -6,6 +6,7 @@ import (
 	"golang/backend/models"
 	"golang/backend/services"
 	"net/http"
+	"golang/backend/middleware"
 )
 
 type GetAllUsersFormat struct{
@@ -19,7 +20,12 @@ func GetAllUsers(w http.ResponseWriter , r *http.Request){
 		fmt.Println("method not allowed")
 		return
 	}
-	err,data:=services.GetAllUsersService(r)
+	user, ok := middleware.GetUserFromContext(r)
+if !ok{
+fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+return
+}
+	err,data:=services.GetAllUsersService(user.UserID)
 	if err != nil{
 		w.Header().Set("Content-Type","application/json")
 		res.Statue = "failed"
