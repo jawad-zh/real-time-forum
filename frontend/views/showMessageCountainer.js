@@ -1,7 +1,10 @@
 import { ExportedUsers } from "/frontend/views/home.js"
 import {loadMessages} from "/frontend/views/loadMessages.js"
 import { messageScrolling } from "../services/scrolling.js";
+import { typing } from "../services/typing.js";
 export async function showMessageCountainer(UserID,online) {
+    console.log('user id from show message countainer',UserID);
+    
     let RecieverUser = {}
     for (let user of ExportedUsers) {
         if (user.UserID == UserID) {
@@ -28,6 +31,11 @@ export async function showMessageCountainer(UserID,online) {
             </div>
         </div>
         <div id="messagesSection" >
+        <div id="typingIndicator" style="display:none">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
         </div>
         <div id="inputMessagesSection" >
             <div id="MessageContentInput" >
@@ -50,4 +58,8 @@ export async function showMessageCountainer(UserID,online) {
     loadMessages(UserID)
     const messagesSection = imageSectionCountainer.querySelector('#messagesSection')
     messageScrolling(messagesSection,RecieverUser.UserID)
+    document.getElementById('MessageContentValue').addEventListener('keydown',()=>typing(UserID))
+    
+    
+
 }
