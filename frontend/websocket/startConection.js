@@ -3,10 +3,10 @@ import {UserInfo} from "/frontend/views/home.js"
 import {onlineStateUpdate} from "/frontend/views/onlineStateUpdate.js"
 import {offlineStateUpdate} from "/frontend/views/offlineStateUpdate.js"
 import{updateMessageStateFront} from "/frontend/views/updateMessageStateFront.js"
-let socket = null
+import { typingViews } from "../views/typingViews.js"
+export let socket = null
 export let onlineUsers = []
 export   function StartWebsocketConection(messageSection){
-  
     if (socket && socket.readyState === WebSocket.OPEN)return
     socket = new WebSocket("/ws");
        socket.onopen = ()=>{
@@ -15,7 +15,9 @@ export   function StartWebsocketConection(messageSection){
        socket.onmessage =  (event)=>{           
         let data =  JSON.parse(event.data)          
                       
+        console.log("data.contentypeisss::",data)
         switch (data.ContentType){
+          
           case "NewMessage" :  
           if (data.SenderID === UserInfo.UserID){
             showNewMessage("from-me","",data.ReceiverID,data.Load)
@@ -33,6 +35,10 @@ export   function StartWebsocketConection(messageSection){
           break
           case "updateMessageState":                      
             updateMessageStateFront(data.Load.SenderID)
+            break
+            case "typing":
+              typingViews(data.Load)
+              
         }
        }
        socket.onclose = () => {
