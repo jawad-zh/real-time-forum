@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"golang/backend/middleware"
+
 	"github.com/gorilla/websocket"
 )
 
@@ -14,22 +15,29 @@ var upgrader = websocket.Upgrader{
 	CheckOrigin:     func(r *http.Request) bool { return true },
 }
 
+type wsMessage struct {
+	From int
+	To   int    `json:"to"`
+	Type string `json:"type"`
+	Action string `json:"action"`
+}
+
 func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
-	
+
 	user, ok := middleware.GetUserFromContext(r)
-	if !ok{
+	if !ok {
 		fmt.Println("somthing wrong")
-		return 
+		return
 	}
-	fmt.Println("usssssseeeeeeeeeeer",user)
+	fmt.Println("usssssseeeeeeeeeeer", user)
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		fmt.Println("Upgrade error:", err)
 		return
 	}
 	client := &Client{
-		Conn:   conn,
-		UserID: user.UserID,
+		Conn:         conn,
+		UserID:       user.UserID,
 		UserNickname: user.Nickname,
 	}
 	GlobalManager.AddConnection(client)
@@ -40,10 +48,16 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	}()
 
 	for {
-		_, _, err := conn.ReadMessage()
+		var msg wsMessage
+		err := conn.ReadJSON(&msg)
+		msg.From = user.UserID
+		fmt.Println("form handler wbs",msg)
 		if err != nil {
 			fmt.Println("Errror  clossssse connnecction ", err)
 			break
+		}
+		if msg.Action =="typing" {
+			GlobalManager.Typing(msg)
 		}
 	}
 }
