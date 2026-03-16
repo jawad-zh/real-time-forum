@@ -14,8 +14,6 @@ export   function StartWebsocketConection(messageSection){
        }
        socket.onmessage =  (event)=>{           
         let data =  JSON.parse(event.data)          
-                      
-        console.log("data.contentypeisss::",data)
         switch (data.ContentType){
           
           case "NewMessage" :  
@@ -26,7 +24,6 @@ export   function StartWebsocketConection(messageSection){
           }
           break
           case "onlineState" :   
-          console.log('from online state:',data);
                                        
           onlineStateUpdate(data.Load.logeddUserID,data.Load.otherLoggedClients,messageSection,data.Load.logeddUserNickname)
           break
