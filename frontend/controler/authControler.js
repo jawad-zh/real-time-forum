@@ -10,6 +10,7 @@ export async function authController(e) {
 
      if (id === 'registerButton') {
         const data = await registerCheck(e)
+        // need to do somthing
         if (data.status === 'success') setTimeout(() =>  1500)
     } else if (id === 'loginButton') {
         const data = await loginCheck(e)
@@ -17,6 +18,7 @@ export async function authController(e) {
                if (data.status === 'success') {
             
             setTimeout(async () => {
+                window.history.replaceState({},"","/")
                 const messagesSection = await setHomePage('all',data.userInfo)
                 StartWebsocketConection(messagesSection)
             }, 1500)
@@ -25,6 +27,6 @@ export async function authController(e) {
      
     } else if (id === 'logoutIcone') {
         const ok = logout()
-        if (ok) LoginRegister()
+        if (ok) LoginRegister(); window.history.replaceState({},"","authontication")
     }
 }

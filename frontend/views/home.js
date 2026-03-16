@@ -14,7 +14,6 @@ export async function setHomePage(Category) {
     }
     // need to check
      UserInfo = await getUserInfo()
-     console.log('user infoooo ------------',UserInfo);
      
      const firstName= htmlXSS(UserInfo.FirstName)
      const lastName = htmlXSS(UserInfo.LastName)

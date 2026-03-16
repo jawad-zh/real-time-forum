@@ -1,6 +1,3 @@
-import { LoginRegister } from "/frontend/views/start.js";
-import { setHomePage } from "/frontend/views/home.js"
-import { StartWebsocketConection } from '/frontend/websocket/startConection.js'
 import { authController } from '/frontend/controler/authControler.js'
 import { commentController } from '/frontend/controler/commentControler.js'
 import { CreatePostController } from '/frontend/controler/CreatPostControler.js'
@@ -8,21 +5,9 @@ import { filterController } from '/frontend/controler/filterControler.js'
 import { LikeSaveController } from '/frontend/controler/likeSaveControler.js'
 import { messageController } from '/frontend/controler/messageControler.js'
 import { profileController } from '/frontend/controler/profileControler.js'
-
+import {router} from '/frontend/router/router.js';
 async function mainController() {
-    const res = await fetch("http://localhost:8080/sessionCheck", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" }
-    })
-    const data = await res.json()
-
-    if (data.status === 'success') {
-        const messagesSection = await setHomePage('all')        
-        StartWebsocketConection(messagesSection)
-    } else {
-        LoginRegister()
-    }
-
+     router()
     // Attach single delegated click listener
     document.addEventListener('click', async (e) => {
         const el = e.target.closest('[id]')
