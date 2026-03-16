@@ -13,6 +13,12 @@ var upgrader = websocket.Upgrader{
 	WriteBufferSize: 1024,
 	CheckOrigin:     func(r *http.Request) bool { return true },
 }
+type wsMessage struct{
+	From int 
+	To int `json:"to"`
+	Type string `json:"type"`
+	Action string `json:"action"`
+}
 
 func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	
@@ -40,10 +46,16 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	}()
 
 	for {
-		_, _, err := conn.ReadMessage()
+		var msg wsMessage
+		err := conn.ReadJSON(&msg)
+		msg.From = user.UserID
+		if msg.Action == "typing"{
+			GlobalManager.Typing(msg)
+		}
 		if err != nil {
 			fmt.Println("Errror  clossssse connnecction ", err)
 			break
 		}
+
 	}
 }
