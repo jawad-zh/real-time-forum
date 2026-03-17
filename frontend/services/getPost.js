@@ -2,6 +2,8 @@ let Postoffset = 0
 let lastCategory = null
 
 export async function getPost(Category,flag) {
+    console.log("offsssssseeeeeeetttt befor",Postoffset);
+    
     if (flag !== 'scroll'){Postoffset=0}
     if (Category !== lastCategory) {
         Postoffset = 0
@@ -19,7 +21,11 @@ export async function getPost(Category,flag) {
     const data = await res.json()
 
     if (data && data.length !== 0) {
-        Postoffset += 10
+        console.log('data from get post',data);
+        
+        Postoffset += data.length
+        console.log('after',Postoffset);
+        
     }
     return data
 }

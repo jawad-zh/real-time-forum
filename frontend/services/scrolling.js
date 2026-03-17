@@ -11,6 +11,8 @@ export function scrollTracking( ) {
         const visibleHeight = container.clientHeight
         const fullHeight = container.scrollHeight
         if (scrollTop + visibleHeight >= fullHeight) {
+            console.log('scrool event happen::::::');
+            
             isLoading = true
             console.log('category scroll:',category);
             await loadPosts(category, 'scroll')
