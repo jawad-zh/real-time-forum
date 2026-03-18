@@ -9,8 +9,8 @@ export function filterController(e) {
     console.log('id', id);
 
     switch (id) {
-        case 'homePageIcone': loadPosts('all', 'home'); active(id); category = ''; break
-        case 'allCategory': loadPosts('all', 'home'); active('homePageIcone'); category = ''; break
+        case 'homePageIcone': loadPosts('all', 'home'); active(id); category = 'all'; break
+        case 'allCategory': loadPosts('all', 'home'); active('homePageIcone'); category = 'all'; break
         case 'LifestyleCategory': loadPosts('lifestyle', 'home'); active('homePageIcone'); category = 'lifestyle'; break
         case 'artCategory': loadPosts('art', 'home'); active('homePageIcone'); category = 'art';break
         case 'Educationategory': loadPosts('education', 'home'); active('homePageIcone'); category = 'education'; break
