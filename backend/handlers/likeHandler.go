@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"golang/backend/middleware"
@@ -25,11 +26,12 @@ func LikeHandler(w http.ResponseWriter, r *http.Request) {
 		likeHandlerResponse.Statue = "Unauthorized"
 	}
 	err := json.NewDecoder(r.Body).Decode(&postID)
+	fmt.Println("PostID", postID.Id)
 	if err != nil {
 		likeHandlerResponse.Message = "sever error"
 		likeHandlerResponse.Statue = "failed"
 	}
-	err, message := services.LikeServie(user.UserID, postID.Id)
+	err, message := services.LikeServie( postID.Id,user.UserID)
 	if err != nil {
 		likeHandlerResponse.Statue = "failed"
 

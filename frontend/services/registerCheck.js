@@ -61,7 +61,7 @@ export async function registerCheck(e) {
           return false
 
      } else if (!password.match(/\d/)) {
-          setAlert('error', '✖', 'should be one UpperCase character in password');
+          setAlert('error', '✖', 'should be one digit in password');
           return false
 
      } else if (!password.match(speacialCharacterRegex)) {

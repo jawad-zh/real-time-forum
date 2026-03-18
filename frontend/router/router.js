@@ -1,6 +1,7 @@
 import { LoginRegister } from "/frontend/views/start.js";
 import { setHomePage } from "/frontend/views/home.js"
 import { StartWebsocketConection } from '/frontend/websocket/startConection.js'
+import {errorPage} from '/frontend/components/errorPage.js';
 export async function router(){
     console.log('haaaaaaaaaaaaaaaaaaaapppppppppeeeeeeeeeennnnnnn');
     
@@ -22,7 +23,7 @@ export async function router(){
         LoginRegister()
 
     }else {
-        console.log('mafiiiihach am3lm');
+        errorPage()
         
     }
 }

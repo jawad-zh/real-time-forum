@@ -2,6 +2,10 @@ import { ExportedUsers } from "/frontend/views/home.js"
 import {loadMessages} from "/frontend/views/loadMessages.js"
 import { messageScrolling } from "../services/scrolling.js";
 import { typing } from "../services/typing.js";
+import { checkMessage } from "/frontend/services/checkMessage.js"
+import { sendMessagBackend } from '/frontend/services/sendMessageBackend.js'
+import {LoginRegister} from '/frontend/views/start.js';
+
 export async function showMessageCountainer(UserID,online) {
     console.log('user id from show message countainer',UserID);
     
@@ -59,7 +63,21 @@ export async function showMessageCountainer(UserID,online) {
     loadMessages(UserID)
     const messagesSection = imageSectionCountainer.querySelector('#messagesSection')
     messageScrolling(messagesSection,RecieverUser.UserID)
-    document.getElementById('MessageContentValue').addEventListener('keydown',()=>typing(UserID))
+    document.getElementById('MessageContentValue').addEventListener('keydown',async (e)=>{
+         if (e.key === "Enter") {
+        e.preventDefault(); 
+         if (checkMessage()) {
+            const data = await sendMessagBackend()
+            if (data){
+                if (data.statue === 'Unauthorized'){
+                    LoginRegister()
+                }
+            }
+        }
+    }else{
+        typing(UserID)
+    }
+    })
     
     
 

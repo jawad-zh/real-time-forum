@@ -9,6 +9,7 @@ import (
 )
 
 func LikePost(PostID int, UserID int) (error,string){
+	fmt.Println("postID from likePost",PostID)
 	var id int
 	var potLike models.PostLike
 	err:= db.DataBase.QueryRow(`
