@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"encoding/json"
 	"net/http"
 
 	"golang/backend/services"
@@ -15,12 +14,11 @@ type logoutResponseFormat struct {
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 	var logoutRespons loginResponseFormat
-	err, deletedUserID := services.LogoutService(r)
+	err, deletedUserID, statueCode := services.LogoutService(r)
 	if err != nil {
 		logoutRespons.Message = "logout failed try later"
 		logoutRespons.Status = "failed"
-		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(logoutRespons)
+		services.Api(w, logoutRespons, statueCode)
 		return
 	}
 	cookie := &http.Cookie{
@@ -34,7 +32,6 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 	http.SetCookie(w, cookie)
 	logoutRespons.Message = "logout"
 	logoutRespons.Status = "success"
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(logoutRespons)
+	services.Api(w, logoutRespons, http.StatusOK)
 	wbs.GlobalManager.Desconnection(deletedUserID)
 }

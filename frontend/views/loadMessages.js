@@ -4,11 +4,13 @@ import {TimeAgo}  from "/frontend/services/timeAgo.js"
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
 
 export async function loadMessages(UserID,flag){
-    var messages = await getMessages(UserID,flag)    
+    var messages = await getMessages(UserID,flag)   
+    console.log('messages',messages);
+     
     const messageCountainer = document.getElementById('messagesSection')
     if (messageCountainer) {
         if (messages) {
-            for (let message of messages) {
+            for (let message of messages.Messages) {
                 const messageToApp = document.createElement('div')
                 messageToApp.setAttribute('id', 'messagCountainer')
                 if (message.senderID == UserInfo.UserID) {

@@ -18,25 +18,26 @@ func SendMessageHandler(w http.ResponseWriter, r *http.Request) {
 	var SendMessageRespons SendMessageResponseFormat
 	if r.Method != http.MethodPost {
 		fmt.Println("method not allowe")
+		services.Api(w,"",http.StatusMethodNotAllowed)
 		return
 	}
 	var message models.PrivateMessage
 	err := json.NewDecoder(r.Body).Decode(&message)
 	if err != nil {
 		fmt.Println("Decod err:", err)
+		services.Api(w,"",http.StatusInternalServerError)
 		return
 	}
-	err = services.SendeMessageService(&message)
+	err,statueCode := services.SendeMessageService(&message)
 	if err != nil {
 		SendMessageRespons.Statue = "failed"
-		w.Header().Set("Content-Type","application/json")
-		json.NewEncoder(w).Encode(SendMessageRespons)
+		services.Api(w,SendMessageRespons,statueCode)
 		return
 	}
 	// need to return something
 	wbs.GlobalManager.SendMessage(message.SenderID,message.ReceiverID,message.Content)
 	SendMessageRespons.Statue = "success"
-	w.Header().Set("Content-Type","application/json")
-	json.NewEncoder(w).Encode(SendMessageRespons)
+	services.Api(w,SendMessageRespons,statueCode)
+
 
 }

@@ -21,7 +21,7 @@ var Contextkey Context = "userInfo"
 func Authuntication(handler http.Handler) http.Handler {
 	var response middleWarRespons
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		err, session := repos.CheckSession(r)
+		err, session,_ := repos.CheckSession(r)
 		if err != nil {
 			response.Statue = "Unauthorized"
 		w.Header().Set("Content-Type","application/json")

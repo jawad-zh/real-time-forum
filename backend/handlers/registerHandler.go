@@ -17,18 +17,16 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	var user models.Users
 	var registerRespons registerResponsFormat
 	json.NewDecoder(r.Body).Decode(&user)
-	ok, message := services.RegisterChecker(&user)
+	ok, message ,statueCode:= services.RegisterChecker(&user)
 	if !ok {
 		registerRespons.Message = message
 		registerRespons.Status = "failed"
-		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(registerRespons)
+		services.Api(w,registerRespons,statueCode)
 		return
 	}
 
 	registerRespons.Message = message
 	registerRespons.Status = "success"
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(registerRespons)
+	services.Api(w,registerRespons,statueCode)
 	// fmt.Println(user,creatMessage)
 }

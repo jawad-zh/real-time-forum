@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -12,15 +11,16 @@ import (
 func GetUserInfoHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		fmt.Println("method not allowed")
+		services.Api(w, "", http.StatusMethodNotAllowed)
 		return
 	}
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+		services.Api(w, "", http.StatusUnauthorized)
 		return
 	}
-	_, getUserInfoResponse := services.GetUserInfo(user.UserID)
+	_, getUserInfoResponse, statueCode := services.GetUserInfo(user.UserID)
 
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(getUserInfoResponse)
+	services.Api(w, getUserInfoResponse, statueCode)
 }

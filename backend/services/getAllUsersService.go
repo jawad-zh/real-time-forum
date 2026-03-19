@@ -5,10 +5,10 @@ import (
 	"golang/backend/repos"
 )
 
-func GetAllUsersService(UserID int )(error,*[]models.Users){
-	err,data:=repos.GetAllUsesRepo(UserID)
+func GetAllUsersService(UserID int )(error,*[]models.Users,int){
+	err,data,statueCode:=repos.GetAllUsesRepo(UserID)
 	if err != nil{
-		return err,nil
+		return err,nil,statueCode
 	}
-	return nil,data
+	return nil,data,statueCode
 }

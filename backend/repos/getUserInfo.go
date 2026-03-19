@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"golang/backend/db"
 	"golang/backend/models"
+	"net/http"
 )
 
-func GetUserInfo(UserID int) (error, *models.Users) {
+func GetUserInfo(UserID int) (error, *models.Users,int) {
 	var user models.Users
 	err := db.DataBase.QueryRow(`
 	SELECT 
@@ -24,7 +25,7 @@ WHERE UserID = ?;
 	`, UserID).Scan(&user.UserID, &user.Nickname, &user.FirstName, &user.LastName, &user.ProfileURL, &user.Gender, &user.Likes, &user.Saves)
 	if err != nil {
 		fmt.Println("Selct UserInfo error:", err)
-		return err, nil
+		return err, nil,http.StatusInternalServerError
 	}
-	return nil, &user
+	return nil, &user, http.StatusOK
 }

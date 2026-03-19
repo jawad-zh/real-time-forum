@@ -5,10 +5,10 @@ import (
 	"golang/backend/repos"
 )
 
-func GetMessages(UserID int, receiverID int, offset int) (error, *[]models.PrivateMessage) {
-	err, data := repos.GetMessagesRepos(receiverID, UserID, offset)
+func GetMessages(UserID int, receiverID int, offset int) (error, *[]models.PrivateMessage ,int ) {
+	err, data,statueCode := repos.GetMessagesRepos(receiverID, UserID, offset)
 	if err != nil {
-		return err, nil
+		return err, nil,statueCode
 	}
-	return nil, data
+	return nil, data , statueCode
 }

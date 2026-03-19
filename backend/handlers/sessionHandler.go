@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"encoding/json"
 	"net/http"
 
 	"golang/backend/repos"
+	"golang/backend/services"
 )
 
 type sessionCheckResponseFormat struct {
@@ -13,14 +13,12 @@ type sessionCheckResponseFormat struct {
 
 func SessionHandler(w http.ResponseWriter, r *http.Request) {
 	var sessionCheckResponse sessionCheckResponseFormat
-	err,_ := repos.CheckSession(r)
+	err, _,statueCode := repos.CheckSession(r)
 	if err != nil {
 		sessionCheckResponse.Status = "unsuccess"
-		w.Header().Set("Type-Content", "application/json")
-		json.NewEncoder(w).Encode(sessionCheckResponse)
+		services.Api(w, "", statueCode)
 		return
 	}
 	sessionCheckResponse.Status = "success"
-	w.Header().Set("Type-Content", "application/json")
-	json.NewEncoder(w).Encode(sessionCheckResponse)
+	services.Api(w, sessionCheckResponse, statueCode)
 }

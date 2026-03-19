@@ -6,12 +6,12 @@ import (
 	"golang/backend/repos"
 )
 
-func SavePostService(UserID int, postID int) (error, string) {
+func SavePostService(UserID int, postID int) (error, string,int) {
 
-	err, message := repos.SavePost(postID, UserID)
+	err, message ,statueCode:= repos.SavePost(postID, UserID)
 	if err != nil {
 		fmt.Println("Erorrrrrrrrr", err)
-		return err, message
+		return err, message,statueCode
 	}
-	return nil, message
+	return nil, message,statueCode
 }

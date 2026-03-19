@@ -33,14 +33,14 @@ func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
 		return
 	}
-	err, message := services.SavePostService(user.UserID, postID.ID)
+	err, message,statueCode := services.SavePostService(user.UserID, postID.ID)
 	if err != nil {
 		saveHandlerResponse.Message = message
 		saveHandlerResponse.Statue = "failed"
-		json.NewEncoder(w).Encode(&saveHandlerResponse)
+		services.Api(w,saveHandlerResponse,statueCode)
 		return
 	}
 	saveHandlerResponse.Message = message
 	saveHandlerResponse.Statue = "success"
-	json.NewEncoder(w).Encode(&saveHandlerResponse)
+	services.Api(w,saveHandlerResponse,statueCode)
 }

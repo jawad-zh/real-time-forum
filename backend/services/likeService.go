@@ -5,13 +5,13 @@ import (
 	"golang/backend/repos"
 )
 
-func LikeServie(PostID int, UserID int) (error, string) {
+func LikeServie(PostID int, UserID int) (error, string,int) {
 	// PostID need to come from handler
 	fmt.Println("post id from service",PostID)
-	err, message := repos.LikePost(PostID, UserID)
+	err, message ,statueCode:= repos.LikePost(PostID, UserID)
 	if err != nil {
-		return err, ""
+		return err, "",statueCode
 	}
 
-	return nil, message
+	return nil, message,statueCode
 }
