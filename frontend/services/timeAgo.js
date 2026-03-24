@@ -21,3 +21,12 @@ export function TimeAgo(createdAt) {
     const months = Math.floor(days / 30)
     return months + "mo"
 }
+export function formatTime(isoString) {
+    const date = new Date(isoString);
+
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+
+    return `${hours}:${minutes}`;
+}
+

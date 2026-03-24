@@ -34,5 +34,5 @@ func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.
 		messages = append(messages, message)
 		
 	}
-	return nil , &messages ,http.StatusOK
+		return nil , &messages ,http.StatusOK
 }

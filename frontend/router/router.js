@@ -2,11 +2,8 @@ import { LoginRegister } from "/frontend/views/start.js";
 import { setHomePage } from "/frontend/views/home.js"
 import { StartWebsocketConection } from '/frontend/websocket/startConection.js'
 import {errorPage} from '/frontend/components/errorPage.js';
-export async function router(){
-    console.log('haaaaaaaaaaaaaaaaaaaapppppppppeeeeeeeeeennnnnnn');
-    
+export async function router(){    
     const path = window.location.pathname
-    
     const res = await fetch("http://localhost:8080/sessionCheck", {
         method: "POST",
         headers: { "Content-Type": "application/json" }
