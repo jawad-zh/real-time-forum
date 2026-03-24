@@ -1,9 +1,7 @@
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
 import { UserInfo } from './home.js';
 import { TimeAgo } from '../services/timeAgo.js';
-export function creatComment(PostID,data) {
-    console.log('this is the data from creatComment ::',UserInfo);
-        
+export function creatComment(PostID) {        
     var post = document.querySelector(`.PostsCountainer[data--post-i-d="${PostID}"]`)
     var input = post.querySelector("input").value.trim()
     post.querySelector('input').value = ""
@@ -11,8 +9,6 @@ export function creatComment(PostID,data) {
         ? post.querySelector('.CommentsCountainer:last-of-type')
         : document.createElement('div')
     var Profile = document.getElementById('ProfilInforamtionImage').src
-
-
     if (!comment.classList.contains('CommentsCountainer')) {
         comment.classList.add('CommentsCountainer')
         if (post.querySelector('.addYourComment')) post.querySelector(".addYourComment").remove()

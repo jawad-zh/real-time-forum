@@ -2,6 +2,7 @@ import {getAllUser} from "/frontend/services/getAllUsers.js"
 import {ExportedUsers , UserInfo} from "/frontend/views/home.js"
 export async function loadUsers() {
       let users = await getAllUser()
+        console.log('users infoooo::',users);
         
         if (users.statue==='success'){            
             const messagesSection = document.getElementById('rightSide')        

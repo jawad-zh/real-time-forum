@@ -11,11 +11,11 @@ export async function router(){
     const data = await res.json()
     console.log('my path issssssss:',path,'and my statue is ',data.status);
 
-    if (data.status === 'success' && (path === "/" || path==="/login"|| path==="/register") ) {
+    if (data.status === 'success' && (path === "/" || path==="/login"|| path==="/register"|| path==='/authontication') ) {
          history.replaceState({}, "", "/")
         const messagesSection = await setHomePage('all')        
         StartWebsocketConection(messagesSection)
-    }else if(data.status != 'success' && (path === "/" || path==="/login"|| path==="/register") ){
+    }else if(data.status != 'success' && (path === "/" || path==="/login"|| path==="/register"|| path==='/authontication') ){
         history.replaceState({},"","authontication")
         LoginRegister()
 
