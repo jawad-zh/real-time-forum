@@ -1,12 +1,10 @@
 import { getMessages } from '/frontend/services/getMessages.js';
 import { UserInfo } from "./home.js";
-import {TimeAgo}  from "/frontend/services/timeAgo.js"
+import {formatTime}  from "/frontend/services/timeAgo.js"
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
 
 export async function loadMessages(UserID,flag){
-    var messages = await getMessages(UserID,flag)   
-    console.log('messages',messages);
-     
+    var messages = await getMessages(UserID,flag)        
     const messageCountainer = document.getElementById('messagesSection')
     if (messageCountainer) {
         if (messages) {
@@ -18,7 +16,7 @@ export async function loadMessages(UserID,flag){
                 } else {
                     messageToApp.classList.add('sender')
                 }
-                const time = TimeAgo(message.CreatAt)
+                const time = formatTime(message.CreatAt)
                 const messageTemplate = `
            
             <div id="MessageAndTime" >

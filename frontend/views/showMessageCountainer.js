@@ -6,9 +6,7 @@ import { checkMessage } from "/frontend/services/checkMessage.js"
 import { sendMessagBackend } from '/frontend/services/sendMessageBackend.js'
 import {LoginRegister} from '/frontend/views/start.js';
 
-export async function showMessageCountainer(UserID,online) {
-    console.log('user id from show message countainer',UserID);
-    
+export async function showMessageCountainer(UserID,online) {    
     let RecieverUser = {}
     for (let user of ExportedUsers) {
         if (user.UserID == UserID) {

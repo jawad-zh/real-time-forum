@@ -14,11 +14,11 @@ export async function commentController(e) {
         showComment(post.dataset.PostID)
     } else if (id === 'IconePostComment') {
         const res = checkComment(post.dataset.PostID)
-        if (res === 'success') {
-            const data = await commentBackend(post.dataset.PostID)            
-            if (data.statue === 'success') {
+        if (res === 'success') {            
+            const data = await commentBackend(post.dataset.PostID)                        
+            if (data.status === 'success') {                
                 creatComment(post.dataset.PostID, data)
-            }else if (data.statue === 'Unauthorized'){    
+            }else if (data.status === 'Unauthorized'){    
             LoginRegister()
         }
         } else {

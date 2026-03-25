@@ -1,8 +1,7 @@
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
-
-export function creatComment(PostID,data) {
-    console.log('datas from creatComment',data);
-    
+import { UserInfo } from './home.js';
+import { TimeAgo } from '../services/timeAgo.js';
+export function creatComment(PostID) {        
     var post = document.querySelector(`.PostsCountainer[data--post-i-d="${PostID}"]`)
     var input = post.querySelector("input").value.trim()
     post.querySelector('input').value = ""
@@ -10,20 +9,24 @@ export function creatComment(PostID,data) {
         ? post.querySelector('.CommentsCountainer:last-of-type')
         : document.createElement('div')
     var Profile = document.getElementById('ProfilInforamtionImage').src
-
-
     if (!comment.classList.contains('CommentsCountainer')) {
         comment.classList.add('CommentsCountainer')
         if (post.querySelector('.addYourComment')) post.querySelector(".addYourComment").remove()
+            const time = TimeAgo(new Date().toISOString())
         var newComment = `
          
-                               <div class="commentProfile">
-                                   <img src="${Profile}" alt="">
-                               </div>
-                               <div class="CommentContent" >
-                                   <p>${htmlXSS(input)}
-                                   </p>
-                               </div>
+                                <div class="commentCountainer" >
+                            <div class="commentProfile">
+                                <img src="${Profile}" alt="">
+                            </div>
+                            <div class="CommentContent" >
+                                <p id="commentNickname" >${htmlXSS(UserInfo.Nickname)}</p>
+                                <p>${htmlXSS(input)}
+                                </p>
+                                <div id="commentTime" >${time}</div>
+                            </div>
+                            
+                        </div>
                            
         `
         var newCommentCountainer = document.createElement('div')
