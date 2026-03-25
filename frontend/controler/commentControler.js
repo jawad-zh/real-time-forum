@@ -18,7 +18,7 @@ export async function commentController(e) {
             const data = await commentBackend(post.dataset.PostID)                        
             if (data.status === 'success') {                
                 creatComment(post.dataset.PostID, data)
-            }else if (data.statue === 'Unauthorized'){    
+            }else if (data.status === 'Unauthorized'){    
             LoginRegister()
         }
         } else {
