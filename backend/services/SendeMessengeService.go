@@ -1,25 +1,17 @@
 package services
 
 import (
-	"fmt"
-	"net/http"
-
 	"golang/backend/models"
 	"golang/backend/repos"
+	"net/http"
 )
 
-func SendeMessageService(r *http.Request, messageInfo *models.PrivateMessage)error {
+func SendeMessageService(messageInfo *models.PrivateMessage) (error,int) {
 	// need to check
-	err,_:=repos.CheckSession(r)
+	err := repos.InserMessages(messageInfo)
 	if err != nil {
-		fmt.Println("Error session",err)
-		return err
+		return err,http.StatusInternalServerError
 	}
-	// then isert ...
-	err=repos.InserMessages(messageInfo)
-	if err != nil{
-		return err
-	}
-	
-	return nil
+
+	return nil,http.StatusOK
 }

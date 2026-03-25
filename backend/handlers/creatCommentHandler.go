@@ -2,9 +2,10 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
+	"strings"
 
+	"golang/backend/middleware"
 	"golang/backend/services"
 )
 
@@ -12,27 +13,62 @@ type commentInfoFormat struct {
 	PostID         int    `json:"PostID"`
 	CommentContent string `json:"commentValue"`
 }
-type CreatCommentHandlerResponsFormat struct {
-	Statue  string `json:"statue"`
+
+type CreateCommentResponse struct {
+	Status  string `json:"status"`
 	Message string `json:"message"`
+	Data    any    `json:"commentData,omitempty"`
 }
 
 func CreatCommentHandler(w http.ResponseWriter, r *http.Request) {
+	// Only allow POST requests
+	if r.Method != http.MethodPost {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
 	var commentInfo commentInfoFormat
-	var CreatCommentHandlerRespons CreatCommentHandlerResponsFormat
-	err := json.NewDecoder(r.Body).Decode(&commentInfo)
-	if err != nil {
-		fmt.Println("creat comment handler err", err)
+	var res CreateCommentResponse
+
+	// Get authenticated user
+	user, ok := middleware.GetUserFromContext(r)
+	if !ok {
+		res.Status = "failed"
+		res.Message = "unauthorized"
+		services.Api(w, res, http.StatusUnauthorized)
 		return
 	}
-	err, message := services.CommentCheck(r, commentInfo.PostID, commentInfo.CommentContent)
-	if err != nil {
-		CreatCommentHandlerRespons.Statue = "failed"
-		CreatCommentHandlerRespons.Message = message
-		json.NewEncoder(w).Encode(&CreatCommentHandlerRespons)
-		fmt.Println("creat comment handler error", err)
+
+	// Decode JSON body
+	if err := json.NewDecoder(r.Body).Decode(&commentInfo); err != nil {
+		res.Status = "failed"
+		res.Message = "invalid request body"
+		services.Api(w, res, http.StatusBadRequest)
 		return
 	}
-	CreatCommentHandlerRespons.Statue = "success"
-	json.NewEncoder(w).Encode(&CreatCommentHandlerRespons)
+
+	// Trim whitespace and check for empty comment
+	commentInfo.CommentContent = strings.TrimSpace(commentInfo.CommentContent)
+	if commentInfo.CommentContent == "" {
+		res.Status = "failed"
+		res.Message = "comment cannot be empty"
+		services.Api(w, res, http.StatusBadRequest)
+		return
+	}
+
+	// Check comment business logic (length, forbidden words, etc.)
+	err, message, statusCode := services.CommentCheck(user, commentInfo.PostID, commentInfo.CommentContent)
+	if err != nil {
+		res.Status = "failed"
+		res.Message = message
+		services.Api(w, res, statusCode)
+		return
+	}
+
+	// Success: send back created comment info
+	res.Status = "success"
+	res.Message = "comment created successfully"
+	res.Data = commentInfo 
+
+	services.Api(w, res, http.StatusOK)
 }

@@ -1,5 +1,5 @@
 export function checkCreatPost() {
-    const categories = ['music', 'footballe', 'art', 'sport', 'technology', 'recentyl', 'test']
+    const categories = ['lifestyle', 'art', 'education', 'business', 'entertainment', 'opinion']
     const title = document.getElementById('creatPostTitle').value.trim()
     const content = document.getElementById('creatPostContent').value.trim()
     var categoriesChecked = document.querySelectorAll("#creatPostCategories input:checked")

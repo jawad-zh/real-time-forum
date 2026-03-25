@@ -1,9 +1,11 @@
 import {getPost} from "/frontend/services/getPost.js"
 import {TimeAgo} from "/frontend/services/timeAgo.js"
+import {LoginRegister} from '/frontend/views/start.js';
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
+
 export async function loadPosts(Category,flag){
-    console.log('flage',flag);
+    let middle = document.getElementById('middle')
      if (flag === 'home'){
-        let middle = document.getElementById('middle')
     let  oldPosts = middle.children
     if (oldPosts){
       middle.innerHTML = ""
@@ -12,9 +14,14 @@ export async function loadPosts(Category,flag){
      let data = await getPost(Category,flag)
     
     if (data){
+         if (data.statue === 'Unauthorized'){
+                    LoginRegister()
+                    return
+                }
     for (let i = 0; i < data.length; i++) {
         let liked = ''
         let saved = ''
+        let imageDisplay = data[i].ImageURL && data[i].ImageURL.trim() !== '' ? '' : 'hide'
         if (data[i].Isliked === 1) {
             liked = 'liked'
         }
@@ -33,17 +40,16 @@ export async function loadPosts(Category,flag){
                             <img src="${Profile}" alt="">
                         </div>
                         <div id="NameTitlePost">
+                        <div id="titleTime">
                             <p id="name">${data[i].Nickname}</p>
-                            <div id="titleTime">
-                                <p id="PostTitle">${data[i].Title}</p>
-                                <p id="time">${createdAt}</p>
+                            <p id="time">${createdAt}</p>
                             </div>
-
+                                <p id="PostTitle">${htmlXSS(data[i].Title)}</p>
                         </div>
 
                     </div>
-                    <div id="contentPost">${data[i].Content}</div>
-                        <div id="postImageCountainer" >
+                    <div id="contentPost">${htmlXSS(data[i].Content)}</div>
+                        <div id="postImageCountainer" class="${imageDisplay}">
                             <div id="postImage">
                         <img src="${data[i].ImageURL}" alt="">
                     </div>
@@ -84,5 +90,5 @@ export async function loadPosts(Category,flag){
             save.classList.add('saved')
         }
     }
+    }   
     }
-}

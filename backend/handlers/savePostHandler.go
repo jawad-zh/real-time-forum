@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"golang/backend/middleware"
 	"golang/backend/services"
 )
 
@@ -27,14 +28,19 @@ func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(&saveHandlerResponse)
 		return
 	}
-	err, message := services.SavePostService(r, postID.ID)
+	user, ok := middleware.GetUserFromContext(r)
+	if !ok {
+		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+		return
+	}
+	err, message,statueCode := services.SavePostService(user.UserID, postID.ID)
 	if err != nil {
 		saveHandlerResponse.Message = message
 		saveHandlerResponse.Statue = "failed"
-		json.NewEncoder(w).Encode(&saveHandlerResponse)
+		services.Api(w,saveHandlerResponse,statueCode)
 		return
 	}
 	saveHandlerResponse.Message = message
 	saveHandlerResponse.Statue = "success"
-	json.NewEncoder(w).Encode(&saveHandlerResponse)
+	services.Api(w,saveHandlerResponse,statueCode)
 }

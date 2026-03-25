@@ -2,28 +2,21 @@ package services
 
 import (
 	"errors"
-	"fmt"
-	"net/http"
-
+	"golang/backend/middleware"
 	"golang/backend/repos"
+	"net/http"
 )
 
-func CommentCheck(r *http.Request , PostID int, commentContent string) (error, string) {
-	err, session := repos.CheckSession(r)
-	if err != nil {
-		fmt.Println("nos session")
-		return errors.New("no session") , "your session expired"
-	}
-
+func CommentCheck(user middleware.MiddlewareInfoFormat, PostID int, commentContent string) (error, string,int) {
 	if len(commentContent) == 0 {
-		return errors.New("the comment can't be empty"), ""
+		return errors.New("the comment can't be empty"), "",http.StatusBadGateway
 	} else if len(commentContent) >= 1000 {
-		return errors.New("The comment to large ( More than 1000 )"), ""
+		return errors.New("The comment to large ( More than 1000 )"), "",http.StatusBadRequest
 	}
-	err, message := repos.CreatComment(session.UserID, PostID, commentContent)
+	err, message ,statueCode:= repos.CreatComment(user.UserID, PostID, commentContent)
 	if err != nil {
-		return err, message
+		return err, message,statueCode
 	}
 
-	return nil, ""
+	return nil, "" , http.StatusOK
 }

@@ -12,22 +12,16 @@ import (
 	"golang/backend/repos"
 )
 
-func EditProfile(r *http.Request) (error , string){
+func EditProfile(r *http.Request,UserID int) (error , string , int){
 	err := r.ParseMultipartForm(10 << 20)
 	if err != nil {
 		fmt.Println("large size")
-		return errors.New("larg image size") , "image too large"
+		return errors.New("larg image size") , "image too large",http.StatusBadRequest
 	}
-
-	err, session := repos.CheckSession(r)
-	if err != nil {
-		return errors.New("no session") , "your session is expired"
-	}
-
 	err = os.MkdirAll("frontend/uploads", os.ModePerm)
 	if err != nil {
-		fmt.Println("failed to create uploads folder: %v", err)
-		return err , " edit profile failed try later "
+		fmt.Println("failed to create uploads folder: ", err)
+		return err , " edit profile failed try later ",http.StatusBadRequest
 	}
 
 	file, handler, err := r.FormFile("image")
@@ -41,22 +35,22 @@ func EditProfile(r *http.Request) (error , string){
 		dst, err := os.Create(imagePath)
 		if err != nil {
 			fmt.Println("os Error:", err)
-			return err , "edit profile failed try later"
+			return err , "edit profile failed try later" , http.StatusBadRequest
 		}
 		defer dst.Close()
 
 		io.Copy(dst, file)
 
 		ImageURL := imagePath
-		err = repos.EditProfile(ImageURL, session)
+		err,statueCode := repos.EditProfile(ImageURL, UserID)
 		if err != nil {
-			return err , "edit profile failed try later"
+			return err , "edit profile failed try later",statueCode
 		}
 
-		return nil , "success"
+		return nil , "success",http.StatusOK
 
 	} else {
 		fmt.Println("somthing wrong")
-		return err , "edit profile failed try later"
+		return err , "edit profile failed try later",http.StatusInternalServerError
 	}
 }

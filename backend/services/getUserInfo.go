@@ -2,7 +2,6 @@ package services
 
 import (
 	"fmt"
-	"net/http"
 
 	"golang/backend/repos"
 )
@@ -19,13 +18,13 @@ type getUserInfoHandlerFormat struct {
 	Gender    string `json:"Gender"`
 }
 
-func GetUserInfo(r *http.Request) (error, *getUserInfoHandlerFormat) {
+func GetUserInfo(UserID int) (error, *getUserInfoHandlerFormat,int) {
 	var getUserInfoResponse getUserInfoHandlerFormat
 
-	err, data := repos.GetUserInfo(r)
+	err, data,statueCode := repos.GetUserInfo(UserID)
 	if err != nil {
 		fmt.Println("Get user info error", err)
-		return err, nil
+		return err, nil,statueCode
 	}
 	getUserInfoResponse.Statue = "success"
 	getUserInfoResponse.Nickname = data.Nickname
@@ -36,5 +35,5 @@ func GetUserInfo(r *http.Request) (error, *getUserInfoHandlerFormat) {
 	getUserInfoResponse.ImageURL = data.ProfileURL
 	getUserInfoResponse.UserID = data.UserID
 	getUserInfoResponse.Gender = data.Gender
-	return nil, &getUserInfoResponse
+	return nil, &getUserInfoResponse,statueCode
 }

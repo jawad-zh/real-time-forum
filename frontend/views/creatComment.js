@@ -1,5 +1,8 @@
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
 
-export function creatComment(PostID) {
+export function creatComment(PostID,data) {
+    console.log('datas from creatComment',data);
+    
     var post = document.querySelector(`.PostsCountainer[data--post-i-d="${PostID}"]`)
     var input = post.querySelector("input").value.trim()
     post.querySelector('input').value = ""
@@ -18,7 +21,7 @@ export function creatComment(PostID) {
                                    <img src="${Profile}" alt="">
                                </div>
                                <div class="CommentContent" >
-                                   <p>${input}
+                                   <p>${htmlXSS(input)}
                                    </p>
                                </div>
                            

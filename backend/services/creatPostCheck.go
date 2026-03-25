@@ -2,21 +2,20 @@ package services
 
 import (
 	"database/sql"
-	"errors"
 	"fmt"
 	"io"
-	"net/http"
 	"os"
 	"path/filepath"
 	"time"
-
+	"net/http"
 	"golang/backend/models"
 	"golang/backend/repos"
+	"golang/backend/middleware"
 )
 
 type CreatPostResponseFormat struct {
 	Message    string         `json:"message"`
-	Status     string         `json:"status"`
+	Statue    string         `json:"statue"`
 	PostID     int64          `json:"PostID"`
 	Nickname   string         `json:"Nickname"`
 	ImageURL   string         `json:"imageURL"`
@@ -24,23 +23,19 @@ type CreatPostResponseFormat struct {
 	ProfileURL sql.NullString `json:"ProfileURL"`
 }
 
-func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
+func CreatPostCheck(r *http.Request,user middleware.MiddlewareInfoFormat) (error, string, *CreatPostResponseFormat,int) {
 	var post models.PostInformation
 	var CreatPostResponse CreatPostResponseFormat
 	err := r.ParseMultipartForm(10 << 20)
 	if err != nil {
 		fmt.Println("large size")
-		return err, "large image size", nil
+		return err, "large image size", nil ,http.StatusBadRequest
 	}
 
-	err, session := repos.CheckSession(r)
-	if err != nil {
-		return errors.New("no session"), "your session is expired", nil
-	}
 	err = os.MkdirAll("frontend/uploads", os.ModePerm)
 	if err != nil {
-		fmt.Println("failed to create uploads folder: %v", err)
-		return err, "Creat Post failed try later", nil
+		fmt.Println("failed to create uploads folder: ", err)
+		return err, "Creat Post failed try later", nil,http.StatusInternalServerError
 	}
 
 	title := r.FormValue("title")
@@ -57,47 +52,49 @@ func CreatPostCheck(r *http.Request) (error, string, *CreatPostResponseFormat) {
 		dst, err := os.Create(imagePath)
 		if err != nil {
 			fmt.Println("os Error:", err)
-			return err, "Creat Post failed try later", nil
+			return err, "Creat Post failed try later", nil ,http.StatusInternalServerError
 		}
 		defer dst.Close()
-
+		// need to search
 		io.Copy(dst, file)
+		//--------------
 		post.Title = title
 		post.Content = content
 		post.Categories = categories
 		post.ImageURL = imagePath
-		err, data := repos.CreatPost(&post, session)
+		// here
+		err, data,statueCode := repos.CreatPost(&post, user.UserID)
 		if err == nil {
 			CreatPostResponse.Message = ""
-			CreatPostResponse.Status = "success"
+			CreatPostResponse.Statue = "success"
 			CreatPostResponse.PostID = data.PostID
 			CreatPostResponse.Nickname = data.Nickname
 			CreatPostResponse.CreatedAt = data.CreatedAt
 			CreatPostResponse.ImageURL = data.ImageURL
 			CreatPostResponse.ProfileURL = data.ProfileURL
-			return nil, "", &CreatPostResponse
+			return nil, "", &CreatPostResponse , http.StatusOK
 
 		}
-		return err, "created Post failed try later", nil
+		return err, "created Post failed try later", nil, statueCode
 	} else if err.Error() == "http: no such file" {
 
 		post.Title = title
 		post.Content = content
 		post.Categories = categories
-		err, data := repos.CreatPost(&post, session)
+		err, data,statueCode := repos.CreatPost(&post, user.UserID)
 		if err == nil {
 			CreatPostResponse.Message = ""
-			CreatPostResponse.Status = "success"
+			CreatPostResponse.Statue = "success"
 			CreatPostResponse.PostID = data.PostID
 			CreatPostResponse.Nickname = data.Nickname
 			CreatPostResponse.CreatedAt = data.CreatedAt
 			CreatPostResponse.ImageURL = data.ImageURL
 			CreatPostResponse.ProfileURL = data.ProfileURL
-			return nil, "", &CreatPostResponse
+			return nil, "", &CreatPostResponse,http.StatusOK
 		}
-		return err, "created Post failed try later", nil
+		return err, "created Post failed try later", nil,statueCode
 	} else {
 		fmt.Println("somthing wrong")
-		return err, "creatPost failed try later please", nil
+		return err, "creatPost failed try later please", nil,http.StatusInternalServerError
 	}
 }

@@ -1,6 +1,7 @@
 export async function LikeBackend(idString) {
     var id = Number(idString)
-
+    console.log('id from likeBackend',id);
+    
     var postID = {
         'PostID': id
     }
@@ -11,6 +12,10 @@ export async function LikeBackend(idString) {
         },
         body: JSON.stringify(postID)
     })
-    var data = await res.json()
+    if(res){
+        var data = await res.json()
+        console.log('sii',data);
+        
+    }
     return data
 }

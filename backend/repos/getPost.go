@@ -10,8 +10,8 @@ import (
 	"golang/backend/models"
 )
 
-func GetPosts(category string, r *http.Request ,session *models.Session ,offset int) (*[]models.Posts, error) {
-	
+func GetPosts(category string, r *http.Request, UserID int, offset int) (*[]models.Posts, error,int) {
+	fmt.Println("offset-----------------------", offset)
 
 	var rows *sql.Rows
 	var err error
@@ -20,127 +20,141 @@ func GetPosts(category string, r *http.Request ,session *models.Session ,offset 
 	case "all":
 		rows, err = db.DataBase.Query(`
 			SELECT
-				Posts.PostID,
-				Posts.Title,
-				Posts.Content,
-				Posts.CreatedAt,
-				Posts.ImageURL,
-				Users.Nickname,
-				Users.ProfileURL,
-				Categories.CategoryName,
-				CASE WHEN PostLike.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsLiked,
-				CASE WHEN PostSave.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsSaved
-			FROM Posts
-			INNER JOIN Users ON Posts.UserID = Users.UserID
-			INNER JOIN PostCategories ON Posts.PostID = PostCategories.PostID
-			INNER JOIN Categories ON PostCategories.Category = Categories.CategoryID
-			LEFT JOIN PostLike ON PostLike.PostID = Posts.PostID AND PostLike.UserID = ?
-			LEFT JOIN PostSave ON PostSave.PostID = Posts.PostID AND PostSave.UserID = ?
-			ORDER BY Posts.PostID DESC
-			LIMIT 10 OFFSET ?
-		`, session.UserID, session.UserID,offset)
+				p.PostID,
+				p.Title,
+				p.Content,
+				p.CreatedAt,
+				p.ImageURL,
+				u.Nickname,
+				u.ProfileURL,
+				c.CategoryName,
+				CASE WHEN pl.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsLiked,
+				CASE WHEN ps.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsSaved
+			FROM (
+				SELECT DISTINCT Posts.PostID
+				FROM Posts
+				ORDER BY Posts.PostID DESC
+				LIMIT 10 OFFSET ?
+			) AS sub
+			INNER JOIN Posts p ON p.PostID = sub.PostID
+			INNER JOIN Users u ON p.UserID = u.UserID
+			INNER JOIN PostCategories pc ON p.PostID = pc.PostID
+			INNER JOIN Categories c ON pc.Category = c.CategoryID
+			LEFT JOIN PostLike pl ON pl.PostID = p.PostID AND pl.UserID = ?
+			LEFT JOIN PostSave ps ON ps.PostID = p.PostID AND ps.UserID = ?
+			ORDER BY p.PostID DESC
+		`, offset, UserID, UserID)
 
 	case "like":
 		rows, err = db.DataBase.Query(`
 			SELECT
-				Posts.PostID,
-				Posts.Title,
-				Posts.Content,
-				Posts.CreatedAt,
-				Posts.ImageURL,
-				Users.Nickname,
-				Users.ProfileURL,
-				Categories.CategoryName
-			FROM Posts
-			INNER JOIN Users ON Posts.UserID = Users.UserID
-			INNER JOIN PostCategories ON Posts.PostID = PostCategories.PostID
-			INNER JOIN Categories ON PostCategories.Category = Categories.CategoryID
-			WHERE Posts.PostID IN (
-				SELECT PostID FROM PostLike WHERE UserID = ?
-			)
-			ORDER BY Posts.PostID DESC
-			LIMIT 10 OFFSET ?
-		`, session.UserID,offset)
+				p.PostID,
+				p.Title,
+				p.Content,
+				p.CreatedAt,
+				p.ImageURL,
+				u.Nickname,
+				u.ProfileURL,
+				c.CategoryName
+			FROM (
+				SELECT DISTINCT PostID
+				FROM PostLike
+				WHERE UserID = ?
+				ORDER BY PostID DESC
+				LIMIT 10 OFFSET ?
+			) AS sub
+			INNER JOIN Posts p ON p.PostID = sub.PostID
+			INNER JOIN Users u ON p.UserID = u.UserID
+			INNER JOIN PostCategories pc ON p.PostID = pc.PostID
+			INNER JOIN Categories c ON pc.Category = c.CategoryID
+			ORDER BY p.PostID DESC
+		`, UserID, offset)
 
 	case "save":
 		rows, err = db.DataBase.Query(`
 			SELECT
-				Posts.PostID,
-				Posts.Title,
-				Posts.Content,
-				Posts.CreatedAt,
-				Posts.ImageURL,
-				Users.Nickname,
-				Users.ProfileURL,
-				Categories.CategoryName
-			FROM Posts
-			INNER JOIN Users ON Posts.UserID = Users.UserID
-			INNER JOIN PostCategories ON Posts.PostID = PostCategories.PostID
-			INNER JOIN Categories ON PostCategories.Category = Categories.CategoryID
-			WHERE Posts.PostID IN (
-				SELECT PostID FROM PostSave WHERE UserID = ?
-			)
-			ORDER BY Posts.PostID DESC
-			LIMIT 10 OFFSET ?
-		`, session.UserID,offset)
+				p.PostID,
+				p.Title,
+				p.Content,
+				p.CreatedAt,
+				p.ImageURL,
+				u.Nickname,
+				u.ProfileURL,
+				c.CategoryName
+			FROM (
+				SELECT DISTINCT PostID
+				FROM PostSave
+				WHERE UserID = ?
+				ORDER BY PostID DESC
+				LIMIT 10 OFFSET ?
+			) AS sub
+			INNER JOIN Posts p ON p.PostID = sub.PostID
+			INNER JOIN Users u ON p.UserID = u.UserID
+			INNER JOIN PostCategories pc ON p.PostID = pc.PostID
+			INNER JOIN Categories c ON pc.Category = c.CategoryID
+			ORDER BY p.PostID DESC
+		`, UserID, offset)
 
 	default:
 		rows, err = db.DataBase.Query(`
 			SELECT
-				Posts.PostID,
-				Posts.Title,
-				Posts.Content,
-				Posts.CreatedAt,
-				Posts.ImageURL,
-				Users.Nickname,
-				Users.ProfileURL,
-				Categories.CategoryName,
-				CASE WHEN PostLike.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsLiked,
-				CASE WHEN PostSave.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsSaved
-			FROM Posts
-			INNER JOIN Users ON Posts.UserID = Users.UserID
-			INNER JOIN PostCategories ON Posts.PostID = PostCategories.PostID
-			INNER JOIN Categories ON PostCategories.Category = Categories.CategoryID
-			LEFT JOIN PostLike ON PostLike.PostID = Posts.PostID AND PostLike.UserID = ?
-			LEFT JOIN PostSave ON PostSave.PostID = Posts.PostID AND PostSave.UserID = ?
-			WHERE Posts.PostID IN (
-				SELECT PC.PostID
+				p.PostID,
+				p.Title,
+				p.Content,
+				p.CreatedAt,
+				p.ImageURL,
+				u.Nickname,
+				u.ProfileURL,
+				c.CategoryName,
+				CASE WHEN pl.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsLiked,
+				CASE WHEN ps.UserID IS NOT NULL THEN 1 ELSE 0 END AS IsSaved
+			FROM (
+				SELECT DISTINCT PC.PostID
 				FROM PostCategories PC
 				INNER JOIN Categories C ON PC.Category = C.CategoryID
 				WHERE C.CategoryName = ?
-			)
-			ORDER BY Posts.PostID DESC
-			LIMIT 10 OFFSET ?
-		`, session.UserID, session.UserID, category,offset)
+				ORDER BY PC.PostID DESC
+				LIMIT 10 OFFSET ?
+			) AS sub
+			INNER JOIN Posts p ON p.PostID = sub.PostID
+			INNER JOIN Users u ON p.UserID = u.UserID
+			INNER JOIN PostCategories pc ON p.PostID = pc.PostID
+			INNER JOIN Categories c ON pc.Category = c.CategoryID
+			LEFT JOIN PostLike pl ON pl.PostID = p.PostID AND pl.UserID = ?
+			LEFT JOIN PostSave ps ON ps.PostID = p.PostID AND ps.UserID = ?
+			ORDER BY p.PostID DESC
+		`, category, offset, UserID, UserID)
 	}
 
+	
+	if rows == nil {
+		return nil, fmt.Errorf("query returned nil rows"),http.StatusOK
+	}
 	if err != nil {
 		log.Println("DB query error:", err)
-		return nil, err
-	}
-	if rows == nil {
-		return nil, fmt.Errorf("query returned nil rows")
+		return nil, err,http.StatusInternalServerError
 	}
 	defer rows.Close()
 
+	// Deduplicate posts and merge categories
 	postsMap := make(map[int]*models.Posts)
 	var order []int
 
 	for rows.Next() {
 		var postID int
-		var title, content, createdAt, nickname, categoryName ,imageURL string
+		var title, content, createdAt, nickname, categoryName, imageURL string
 		var ProfileURL sql.NullString
 		var isLiked, isSaved int
 
 		switch category {
 		case "like", "save":
-			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname,&ProfileURL ,&categoryName); err != nil {
+			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname, &ProfileURL, &categoryName); err != nil {
 				log.Println("Scan error:", err)
 				continue
 			}
 			isLiked, isSaved = 0, 0
 		default:
-			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname,&ProfileURL ,&categoryName, &isLiked, &isSaved); err != nil {
+			if err := rows.Scan(&postID, &title, &content, &createdAt, &imageURL, &nickname, &ProfileURL, &categoryName, &isLiked, &isSaved); err != nil {
 				log.Println("Scan error:", err)
 				continue
 			}
@@ -151,8 +165,8 @@ func GetPosts(category string, r *http.Request ,session *models.Session ,offset 
 				PostID:     postID,
 				Title:      title,
 				Content:    content,
-				ImageURL: imageURL,
-				CreatedAt: createdAt,
+				ImageURL:   imageURL,
+				CreatedAt:  createdAt,
 				Nickname:   nickname,
 				ProfileURL: ProfileURL,
 				Categories: []string{},
@@ -161,17 +175,18 @@ func GetPosts(category string, r *http.Request ,session *models.Session ,offset 
 			}
 			order = append(order, postID)
 		}
-
 		postsMap[postID].Categories = append(postsMap[postID].Categories, categoryName)
 	}
 
 	if err := rows.Err(); err != nil {
-		log.Println("Rows iteration error:", err)
+		return nil , err , http.StatusInternalServerError
 	}
 
 	var posts []models.Posts
 	for _, id := range order {
 		posts = append(posts, *postsMap[id])
 	}
-	return &posts, nil
+
+	fmt.Println("this is the length of the posts", len(posts))
+	return &posts, nil , http.StatusOK
 }

@@ -8,6 +8,10 @@ export async function sendMessagBackend() {
         receiverID: Number(receiverID),
         senderID: Number(senderID),
     }
+    console.log('siiiiiiiiiiiiiii');
+    
+        const input = document.getElementById('MessageContentValue')
+        input.value = ''
     let res = await fetch("/sendMessage", {
         method: "POST",
         headers: {
@@ -15,6 +19,7 @@ export async function sendMessagBackend() {
         },
         body: JSON.stringify(message)
     })
-    document.getElementById('MessageContentValue').value = ''
-
+    const data = await res.json()    
+    return data
+   
 }

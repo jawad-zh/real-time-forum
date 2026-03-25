@@ -3,7 +3,7 @@ import {ExportedUsers , UserInfo} from "/frontend/views/home.js"
 export async function loadUsers() {
       let users = await getAllUser()
         
-        if (users.statue==='success'){
+        if (users.statue==='success'){            
             const messagesSection = document.getElementById('rightSide')        
             for (let user of users.Data){
                 ExportedUsers.push(user)
@@ -18,7 +18,9 @@ export async function loadUsers() {
                 messageCountainer.innerHTML = `
                         
                           <div id="messageProfile" >
+                          <div id="imgmsg" >
                               <img src="${user.ProfileURL}" alt="">
+                              </div>
                                <div id="onlineState" ></div>
                           </div>
                           <div id="messageName" >

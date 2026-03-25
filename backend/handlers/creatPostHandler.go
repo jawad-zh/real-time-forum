@@ -1,14 +1,19 @@
 package handlers
 
 import (
-	"encoding/json"
-	"net/http"
-
+	"fmt"
+	"golang/backend/middleware"
 	"golang/backend/services"
+	"net/http"
 )
 
 func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
-	_, _, data := services.CreatPostCheck(r)
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	user, ok := middleware.GetUserFromContext(r)
+	if !ok {
+		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+		return
+	}
+	_, _, data, statueCode := services.CreatPostCheck(r, user)
+
+	services.Api(w, data, statueCode)
 }

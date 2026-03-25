@@ -1,6 +1,6 @@
 import {updateMessageState} from "/frontend/services/updateMessageState.js"
-import { messageScrolling } from "../services/scrolling.js";
 import {addMessageOffset} from "/frontend/services/getMessages.js"
+import {htmlXSS} from '/frontend/services/htmlXSS.js';
 export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {   
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
@@ -9,7 +9,7 @@ export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {
             <div id="ImageMessage" ></div>
             <div id="MessageAndTime" >
                 <div id="MessageContent" >
-                ${MessageContent}
+                ${htmlXSS(MessageContent)}
                 </div>
                 <div id="MessageTime" ></div>
             </div>
@@ -24,15 +24,28 @@ export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {
             messagesSection.prepend(messageToApp)
         }
             updateMessageState(ReceiverID)
-            updateMessageState(SenderID)        
+            updateMessageState(SenderID)     
+            rangeUser(SenderID)   
     } else {
         const allUsers = document.querySelectorAll('.messageCountainer')
         for (let user of allUsers) {
             if (Number(user.dataset.id) === SenderID) {
+                rangeUser(SenderID)
                 user.classList.add('new')
             }
         }
     }
     addMessageOffset()
-    
+}
+function rangeUser(id){
+    const container = document.getElementById('rightSide')
+    const title = document.getElementById('messagesTitle')
+    const allUsers = document.querySelectorAll('.messageCountainer')
+     for (let user of allUsers) {
+            if (Number(user.dataset.id) === id) {
+                container.removeChild(user)
+                container.removeChild(title)
+                container.prepend(title,user)
+            }
+        }
 }

@@ -1,18 +1,15 @@
- package services
+package services
 
 import (
-	"fmt"
 	"golang/backend/repos"
 	"golang/backend/wbs"
-	"net/http"
 )
 
-func UpdateMessageStateServie(r *http.Request, ReceiverID int) {
-	err, session := repos.CheckSession(r)
-	if err != nil {
-		fmt.Println("no session", err)
-		return
+func UpdateMessageStateServie(UserID int, ReceiverID int) (error,int){
+	err,statueCode:=repos.UpdateMessageStateRepos(UserID, ReceiverID)
+	if err != nil{
+		return err , statueCode
 	}
-	repos.UpdateMessageStateRepos(session.UserID, ReceiverID)
-	wbs.GlobalManager.UpdateMessageState(session.UserID, ReceiverID)
+	wbs.GlobalManager.UpdateMessageState(UserID, ReceiverID)
+	return nil,statueCode
 }

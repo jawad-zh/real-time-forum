@@ -6,7 +6,7 @@ export async function loginCheck(e) {
     const password = (document.getElementById('passwordInput').value).trim()
     let emailOrNickname = emailOrNicknameInput.match(/@/) ? 'email' : 'nickname'
     const nicknameSpeacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
-    // const emailRegex = /.+@[a-zA-z]+\.[a-zA-Z]+/
+    // const emailRegex = /^[^\s@]+@[A-Za-z]+\.[A-Za-z]+$/
     const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}.-_]/
     if (emailOrNickname === '') {
         setAlert('error', '✖', 'email or nickname is required');
@@ -19,7 +19,9 @@ export async function loginCheck(e) {
     if (emailOrNicknameInput.match(/@/)) {
         // need to handl
         // if (!emailOrNickname.match(emailRegex)){
-        //     checkLoginResponse('invalid email format !')
+        //     console.log('this',!emailOrNickname.match(emailRegex));
+            
+        //     setAlert('error', '✖','invalid email format !')
         //     return
         // }
     } else {
@@ -32,22 +34,22 @@ export async function loginCheck(e) {
         }
     }
     if (password.length <= 7) {
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 1');
         return
     } else if (!password.match(/[a-z]/)) {
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 2');
         return
     } else if (!password.match(/[A-Z]/)) {
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 3');
         return
 
     } else if (!password.match(/\d/)) {
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 4');
         return
 
     } else if (!password.match(speacialCharacterRegex)) {
         //need to handl
-        setAlert('error', '✖', 'invalid email or password');
+        setAlert('error', '✖', 'invalid email or password 5');
         return
 
     }
@@ -66,6 +68,8 @@ export async function loginCheck(e) {
     var data = await res.json()
     if (data.status === 'success') {
          setAlert('success', '✔', 'Login successfully!');
+         console.log('datauser',data);
+         
     } else {
         setAlert('error', '✖', data.message);
     }

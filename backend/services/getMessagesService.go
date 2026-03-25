@@ -1,21 +1,14 @@
 package services
 
 import (
-	"fmt"
 	"golang/backend/models"
 	"golang/backend/repos"
-	"net/http"
 )
 
-func GetMessages(r *http.Request , receiverID int,offset int) (error,*[]models.PrivateMessage){
-	err,session:= repos.CheckSession(r)
-	if err != nil{
-		fmt.Println("Get messages session Error",err)
-		return err ,nil
+func GetMessages(UserID int, receiverID int, offset int) (error, *[]models.PrivateMessage ,int ) {
+	err, data,statueCode := repos.GetMessagesRepos(receiverID, UserID, offset)
+	if err != nil {
+		return err, nil,statueCode
 	}
-	err,data:=repos.GetMessagesRepos(receiverID,session.UserID,offset)
-	if err != nil{
-		return err ,nil
-	}
-	return nil ,data
+	return nil, data , statueCode
 }

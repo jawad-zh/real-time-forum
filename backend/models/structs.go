@@ -19,12 +19,14 @@ type Users struct {
 	Saves int `json:"Saves"`
 	ProfileURL string `json:"ProfileURL"`
 	IsRead     sql.NullBool `json:"IsRead"`
+	LastMessageTime sql.NullString `json:"LastMessageTime"`
 
 }
 type Session struct {
 	UserID    int `json:"UserID"`
 	Token     string `json:"Token"`
 	ExpiresAt time.Time `json:"ExpiresAt"`
+	UserNickname string
 }
 
 // need to add image
@@ -58,6 +60,7 @@ type Comments struct {
 	CreatedAt string `json:"CreatedAt"`
 	UserProfile sql.NullString `json:"UserProfile"`
 	UserGender string `json:"Gender"`
+	UserNickname string `json:"Nickname"`
 }
 type CommentInteractions struct {
 	UserId     int `json:"UserId"`

@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"golang/backend/db"
 	"golang/backend/models"
+	"net/http"
 )
 
-func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.PrivateMessage){
+func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.PrivateMessage,int){
 	
 	var messages []models.PrivateMessage
 	rows, err := db.DataBase.Query(`
-    SELECT SenderId, Content 
+    SELECT SenderId, Content ,CreatedAt
     FROM PrivateMessages 
     WHERE 
 	(ReceiverId = ? AND SenderId = ?)
@@ -21,17 +22,17 @@ func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.
 	`, receiverID, senderID, senderID, receiverID,offset)
 	if err != nil{
 		fmt.Println("Select messages err:",err)
-		return err ,nil
+		return err ,nil,http.StatusInternalServerError
 	}
 	for rows.Next(){
 		var message models.PrivateMessage
-		err:=rows.Scan(&message.SenderID,&message.Content)
+		err:=rows.Scan(&message.SenderID,&message.Content,&message.CreatAt)
 		if err != nil{
 			fmt.Println("Scan messages Error:",err)
-			return err , nil
+			return err , nil,http.StatusInternalServerError
 		}
 		messages = append(messages, message)
 		
 	}
-	return nil , &messages
+	return nil , &messages ,http.StatusOK
 }
