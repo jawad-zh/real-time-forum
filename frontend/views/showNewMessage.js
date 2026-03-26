@@ -2,11 +2,17 @@ import {updateMessageState} from "/frontend/services/updateMessageState.js"
 import {addMessageOffset} from "/frontend/services/getMessages.js"
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
 import {formatTime} from '/frontend/services/timeAgo.js';
-export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {   
+export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {  
+    console.log('type of the RecieverId',typeof(ReceiverID));
+     console.log('messageContent',MessageContent);
+     
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
     const messageTime = formatTime(new Date().toISOString())
-    if (messageContainerCheck) {
+    
+    if (messageContainerCheck &&( Number(messageContainerCheck.dataset.id) === SenderID || Number(messageContainerCheck.dataset.id) === ReceiverID )  ) {
+        console.log('the message senddddddddddddddddddddddd-----------------');
+        
         const messageTamplate = `
             <div id="ImageMessage" ></div>
             <div id="MessageAndTime" >
