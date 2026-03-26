@@ -36,7 +36,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 			HttpOnly: true,
 			MaxAge:   86400,
 		})
-
+		
 		loginResponse.Message = message
 		loginResponse.Status = "success"
 		loginResponse.Data = data

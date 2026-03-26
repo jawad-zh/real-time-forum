@@ -38,11 +38,11 @@ func GetMessagesHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	offsetNum, err := strconv.Atoi(offset)
-	if err != nil {
-		fmt.Println("Atoi Error:", err)
-		services.Api(w, "", http.StatusInternalServerError)
-		return
-	}
+	// if err != nil {
+	// 	fmt.Println("Atoi Error---------:", err)
+	// 	services.Api(w, "", http.StatusInternalServerError)
+	// 	return
+	// }
 
 	err, data, statueCode := services.GetMessages(user.UserID, receiverID, offsetNum)
 	if err != nil {
