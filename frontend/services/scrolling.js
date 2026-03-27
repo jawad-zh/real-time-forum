@@ -21,11 +21,27 @@ export function scrollTracking() {
         }
     }
 }
-export function messageScrolling(container, receiverID,Nickname) {
-    container.addEventListener('scroll', async () => {
-        if (container.scrollTop <= -(container.scrollHeight - container.clientHeight - 1))  {
-             await loadMessages(receiverID, 'scroll',Nickname);
-            
+function throttle(fn, delay) {
+    let timeout = null;
+    return function (...args) {
+        if (timeout) return;
+
+        timeout = setTimeout(() => {
+            timeout = null;
+        }, delay);
+
+        return fn.apply(this, args);
+    };
+}
+
+export function messageScrolling(container, receiverID) {
+    const throttledLoadMessages = throttle(async () => {
+        await loadMessages(receiverID, 'scroll');
+    }, 1000);
+
+    container.addEventListener('scroll', () => {
+        if (container.scrollTop <= -(container.scrollHeight - container.clientHeight - 1)) {
+            throttledLoadMessages();
         }
     });
 }

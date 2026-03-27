@@ -4,6 +4,8 @@ import {formatTime}  from "/frontend/services/timeAgo.js"
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
 
 export async function loadMessages(UserID,flag,Nickname){
+    console.log('06549480333333333333333333333333333333333333');
+    
     var messages = await getMessages(UserID,flag)        
     const messageCountainer = document.getElementById('messagesSection')
     let userNamemsg = ''
