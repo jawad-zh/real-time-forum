@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"golang/backend/middleware"
 	"golang/backend/models"
 	"golang/backend/services"
 	"golang/backend/wbs"
@@ -28,6 +29,13 @@ func SendMessageHandler(w http.ResponseWriter, r *http.Request) {
 		services.Api(w,"",http.StatusInternalServerError)
 		return
 	}
+	user, ok := middleware.GetUserFromContext(r)
+	if !ok {
+		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+		services.Api(w, "", http.StatusUnauthorized)
+		return
+	}
+	fmt.Println("userrrrrr.32214566",user)
 	err,statueCode := services.SendeMessageService(&message)
 	if err != nil {
 		SendMessageRespons.Statue = "failed"
@@ -35,7 +43,7 @@ func SendMessageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// need to return something
-	wbs.GlobalManager.SendMessage(message.SenderID,message.ReceiverID,message.Content)
+	wbs.GlobalManager.SendMessage(message.SenderID,message.ReceiverID,message.Content,user.Nickname)
 	SendMessageRespons.Statue = "success"
 	services.Api(w,SendMessageRespons,statueCode)
 

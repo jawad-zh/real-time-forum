@@ -1,12 +1,12 @@
 import {getAllUser} from "/frontend/services/getAllUsers.js"
 import {ExportedUsers , UserInfo} from "/frontend/views/home.js"
 export async function loadUsers(flag) {
-      let users = await getAllUser()
-        console.log('users infoooo::===============>',users);
-        
+      let users = await getAllUser()        
         if (users.statue==='success'){       
             const messagesSection = document.getElementById('rightSide')        
-            if (flag === 'reload'){messagesSection.innerHTML='<p id="messagesTitle">Recent messages</p>'}     
+            if (flag === 'reload'){messagesSection.innerHTML='<p id="messagesTitle">Recent messages</p>'}    
+            if (!users.Data)return
+             
             for (let user of users.Data){
                 ExportedUsers.push(user)
                 if (user.Nickname === UserInfo.Nickname){

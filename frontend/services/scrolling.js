@@ -21,10 +21,10 @@ export function scrollTracking() {
         }
     }
 }
-export function messageScrolling(container, receiverID) {
+export function messageScrolling(container, receiverID,Nickname) {
     container.addEventListener('scroll', async () => {
         if (container.scrollTop <= -(container.scrollHeight - container.clientHeight - 1))  {
-             await loadMessages(receiverID, 'scroll');
+             await loadMessages(receiverID, 'scroll',Nickname);
             
         }
     });

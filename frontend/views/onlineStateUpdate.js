@@ -1,7 +1,7 @@
 import { getUserInfo } from "/frontend/services/getUserInfo.js"
- import{loadUsers} from "/frontend/views/loadUsers.js"
-export async function onlineStateUpdate(connectedUser, otherconnectedClient, messageSection,nickname) {
-    const UserInfo = await getUserInfo()    
+import { loadUsers } from "/frontend/views/loadUsers.js"
+export async function onlineStateUpdate(connectedUser, otherconnectedClient, messageSection, nickname) {
+    const UserInfo = await getUserInfo()
     if (connectedUser == UserInfo.UserID) {
         if (otherconnectedClient) {
             var allUsers = messageSection.querySelectorAll('.messageCountainer')
@@ -10,11 +10,9 @@ export async function onlineStateUpdate(connectedUser, otherconnectedClient, mes
                     user.classList.add('onlineUser')
                 }
             }
-        } else {
-
         }
 
-    } else {
+    } else {        
         var allUsers = messageSection.querySelectorAll('.messageCountainer')
         let found = false
         for (let user of allUsers) {
@@ -23,46 +21,20 @@ export async function onlineStateUpdate(connectedUser, otherconnectedClient, mes
                 user.classList.add('onlineUser')
             }
         }
-        if (!found){
-            // need to get the login user 
-            //  let messageCountainer = document.createElement('div')
-        //         messageCountainer.setAttribute('id','messageCountainer')
-        //         messageCountainer.dataset.id = `${connectedUser}`
-        //         messageCountainer.classList.add('messageCountainer')
-        //         messageCountainer.innerHTML = `
-                        
-        //                   <div id="messageProfile" >
-        //                       <img src="" alt="">
-        //                        <div id="onlineState" ></div>
-        //                   </div>
-        //                   <div id="messageName" >
-        //                       ${nickname}
-        //                   </div>
-        //                   <div id="notificationAndTime" >
-        //                       <p></p>
-        //                       <div class="messageNotification" ></div>
-        //                   </div>
-        //   `
-        //    messageSection.append(messageCountainer)
-        const messageSection = await loadUsers('reload')
-          const messageContainer = messageSection.querySelectorAll(".messageCountainer")
-          for (let message of messageContainer){
-            for(let onlineUser of otherconnectedClient){
-                console.log('onlinUser:',onlineUser,'message data ',message.dataset.id);
-                
-                if (Number(message.dataset.id) === onlineUser || Number(message.dataset.id) ==connectedUser){
-                    console.log('this is happen 3miii');
-                    
-                    message.classList.add('onlineUser')
+        if (!found) {
+            const messageSection = await loadUsers('reload')
+            const messageContainer = messageSection.querySelectorAll(".messageCountainer")
+            for (let message of messageContainer) {
+                for (let onlineUser of otherconnectedClient) {
+                    if (Number(message.dataset.id) === onlineUser || Number(message.dataset.id) == connectedUser) {
+                        message.classList.add('onlineUser')
+                    }
                 }
             }
-          }
-        
-        
         }
         let allConversations = document.querySelectorAll('.imageSectionCountainer')
-        for (let conv of allConversations){
-            if (Number(conv.dataset.id) == (Number(connectedUser))){
+        for (let conv of allConversations) {
+            if (Number(conv.dataset.id) == (Number(connectedUser))) {
                 conv.querySelector('#SubName').innerHTML = 'online'
             }
         }

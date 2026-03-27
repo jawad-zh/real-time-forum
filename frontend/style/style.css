@@ -1335,6 +1335,7 @@ body {
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;
+    gap: 20px;
 }
 
 .sender {
@@ -1363,7 +1364,6 @@ body {
     background-color: var(--card);
     color: var(--primryText);
     min-height: 50px;
-    /* min-width: 40px; */
     min-width: calc(50% - 40px);
     border-radius: 10px 10px 10px 0px;
     padding: 10px;
@@ -1391,12 +1391,14 @@ body {
     color: var(--darckBackground);
     padding: 10px;
     min-height: 50px;
-    /* min-width: 40px; */
     min-width: calc(50% - 40px);
     border-radius: 10px 10px 0px 10px;
     margin-right: 10px;
     word-break: break-word;
     margin: 10px
+}
+#messagCountainer{
+    margin-bottom: 15px;
 }
 
 .new .messageNotification {
@@ -1564,4 +1566,8 @@ body {
 .error-button:hover {
     background-color: #ffcccc;
     color: #800000;
+}
+.UserNameMessages{
+    margin-bottom: 10px;
+    font-weight: bolder;
 }
