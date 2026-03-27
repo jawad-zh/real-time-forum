@@ -26,3 +26,6 @@ console.log('offset:',Postoffset,'Category:',Category,'flag:',flag);
     }
     return data
 }
+export function addPostOffset (){
+    Postoffset +=1
+}
