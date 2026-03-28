@@ -18,6 +18,7 @@ func CreatAccount(user *models.Users) (bool, string) {
 		}	
 	passwordBcrypt, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
+		
 		fmt.Println("bcrypt error", err)
 		return false, "hash"
 	}
