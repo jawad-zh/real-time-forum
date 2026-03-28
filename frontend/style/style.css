@@ -1240,7 +1240,7 @@ body {
     left: 50%;
     height: 400px;
     width: 300px;
-    background-color: white;
+    background-color: var(--darckBackground);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1570,4 +1570,89 @@ body {
 .UserNameMessages{
     margin-bottom: 10px;
     font-weight: bolder;
+}
+#responsive{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    display: none;
+    
+}
+#messages,#options{
+    height: 100%;
+    width: 100px;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 10px;
+}
+#options{
+    justify-content: flex-end;
+}
+#messages i ,#options i {
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--seconderText) ;
+}
+@media (max-width: 880px) {
+
+   #rightSide{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+   }
+   #letSide{
+    display: none;
+   }
+   #profile{
+    display: none;
+   }
+   #icones{
+    display: none;
+    flex-direction: column;
+    /* background-color: #0c63e4; */
+    height: 100vh;
+    width: 100%;
+    cursor: pointer;
+    z-index: 10000;
+
+   }
+   #logo{
+    display: none;
+   }
+   #middle{
+    width: 100%;
+   }
+   #responsive{
+    display: flex;
+   }
+   #rightSide.responsive{
+    display: flex;
+   }
+   #icones.responsive{
+    display: flex;
+   }
+   #middle.responsive{
+    display: none;
+   }
+   #imageSectionCountainer{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    left: 50%;
+transform: translateX(-50%);
+   }
+   #iconesAndCategories{
+    display: flex;
+    flex-direction: column;
+   }
+   #navBar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+   }
 }

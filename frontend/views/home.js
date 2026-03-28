@@ -21,6 +21,10 @@ export async function setHomePage(Category) {
     document.body.innerHTML = `
     <div id="appCountainer">
         <div id="navBar">
+        <div id="responsive">
+        <div id="messages" ><i class="fa-brands fa-facebook-messenger"></i></div>
+        <div id="options" ><i class="fa-solid fa-bars"></i></div>
+        </div>
             <div id="logo">
                 <img src="frontend/state/images/logo.png" alt="">
             </div>
