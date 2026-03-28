@@ -11,15 +11,11 @@ import (
 )
 
 func CreatAccount(user *models.Users) (bool, string) {
-	fmt.Println("-----------------------Profile", user.ProfileURL)
-	fmt.Println("-----------------------Gender", user.Gender)
 	if user.Gender == "male" {
 		user.ProfileURL = "/frontend/state/images/icones/defaultMenIcone.jpg"
 		}else{
 			user.ProfileURL = "/frontend/state/images/icones/defaultWomenIcone.png"
-		}
-		fmt.Println("ussssssser register", user)
-	
+		}	
 	passwordBcrypt, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
 		fmt.Println("bcrypt error", err)

@@ -11,9 +11,7 @@ import (
 
 func GetPosts(r *http.Request,UserID int) (error, *[]models.Posts,int) {
 	category := r.URL.Query().Get("category")
-	fmt.Println("category:::",category)
 	offset, err := strconv.Atoi(r.URL.Query().Get("postoffset"))
-	fmt.Println("offset",offset)
 	if err != nil {
 		fmt.Println("getPost atoi error", err)
 		return err ,nil,http.StatusInternalServerError

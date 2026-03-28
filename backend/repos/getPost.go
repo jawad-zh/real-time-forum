@@ -11,11 +11,8 @@ import (
 )
 
 func GetPosts(category string, r *http.Request, UserID int, offset int) (*[]models.Posts, error,int) {
-	fmt.Println("offset-----------------------", offset)
-
 	var rows *sql.Rows
 	var err error
-
 	switch category {
 	case "all":
 		rows, err = db.DataBase.Query(`

@@ -23,7 +23,7 @@ type CreateCommentResponse struct {
 func CreatCommentHandler(w http.ResponseWriter, r *http.Request) {
 	// Only allow POST requests
 	if r.Method != http.MethodPost {
-		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		services.Api(w, "", http.StatusMethodNotAllowed)
 		return
 	}
 

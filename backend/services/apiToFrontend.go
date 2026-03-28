@@ -7,13 +7,11 @@ import (
 
 // Api sends a JSON response with the given status code.
 func Api(w http.ResponseWriter, data any, statusCode int) {
-	// Set headers BEFORE writing status
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
 
 	// Encode the response
 	if err := json.NewEncoder(w).Encode(data); err != nil {
-		// fallback in case encoding fails
 		http.Error(w, `{"status":"failed","message":"internal server error"}`, http.StatusInternalServerError)
 	}
 }

@@ -16,6 +16,10 @@ type registerResponsFormat struct {
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	var user models.Users
 	var registerRespons registerResponsFormat
+		if r.Method != http.MethodPost {
+		services.Api(w, "", http.StatusMethodNotAllowed)
+		return
+	}
 	json.NewDecoder(r.Body).Decode(&user)
 	ok, message ,statueCode:= services.RegisterChecker(&user)
 	if !ok {
