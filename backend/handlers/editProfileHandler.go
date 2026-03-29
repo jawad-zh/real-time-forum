@@ -2,9 +2,10 @@ package handlers
 
 import (
 	"fmt"
+	"net/http"
+
 	"golang/backend/middleware"
 	"golang/backend/services"
-	"net/http"
 )
 
 type EditProfileHandlerResponsFormat struct {
@@ -13,12 +14,19 @@ type EditProfileHandlerResponsFormat struct {
 }
 
 func EditProfileHandler(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method != http.MethodPost {
+		services.Api(w, "", http.StatusMethodNotAllowed)
+		return
+	}
+
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
 		services.Api(w, "", http.StatusUnauthorized)
 		return
 	}
+
 	var editProfileRespons EditProfileHandlerResponsFormat
 	err, message, statueCode := services.EditProfile(r, user.UserID)
 	if err != nil {
@@ -26,6 +34,7 @@ func EditProfileHandler(w http.ResponseWriter, r *http.Request) {
 		editProfileRespons.Message = message
 		services.Api(w, editProfileRespons, statueCode)
 	}
+	
 	editProfileRespons.Statue = "success"
 	editProfileRespons.Message = message
 	services.Api(w, editProfileRespons, http.StatusOK)
