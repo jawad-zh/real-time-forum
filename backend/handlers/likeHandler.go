@@ -20,6 +20,10 @@ type PostIDFormat struct {
 func LikeHandler(w http.ResponseWriter, r *http.Request) {
 	var postID PostIDFormat
 	var likeHandlerResponse likeHandlerResponseFormat
+		if r.Method != http.MethodPost {
+		services.Api(w, "", http.StatusMethodNotAllowed)
+		return
+	}
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
 		likeHandlerResponse.Message = "sever error"
