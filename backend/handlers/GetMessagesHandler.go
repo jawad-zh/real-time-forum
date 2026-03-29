@@ -21,6 +21,7 @@ func GetMessagesHandler(w http.ResponseWriter, r *http.Request) {
 		services.Api(w, "", http.StatusMethodNotAllowed)
 		return
 	}
+
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
