@@ -1,17 +1,28 @@
 package services
 
 import (
+	"errors"
+	"net/http"
+
 	"golang/backend/models"
 	"golang/backend/repos"
-	"net/http"
 )
 
-func SendeMessageService(messageInfo *models.PrivateMessage) (error,int) {
+func SendeMessageService(messageInfo *models.PrivateMessage, userId int) (error, int) {
 	// need to check
-	err := repos.InserMessages(messageInfo)
+	var err error
+	if messageInfo.ReceiverID == userId {
+		return errors.New("single conversation"), http.StatusBadRequest
+	}
+	err = repos.CheckUserExist(messageInfo.ReceiverID)
 	if err != nil {
-		return err,http.StatusInternalServerError
+		return err, http.StatusBadRequest
 	}
 
-	return nil,http.StatusOK
+	err = repos.InserMessages(messageInfo, userId)
+	if err != nil {
+		return err, http.StatusInternalServerError
+	}
+
+	return nil, http.StatusOK
 }
