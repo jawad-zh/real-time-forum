@@ -9,11 +9,11 @@ import (
 	"golang/backend/services"
 )
 
-
 type GetAllUsersFormat struct {
 	Statue string `json:"statue"`
 	Data   *[]models.Users
 }
+
 func GetAllUsersHandler(w http.ResponseWriter, r *http.Request) {
 	var res GetAllUsersFormat
 	if r.Method != http.MethodGet {
@@ -39,7 +39,7 @@ func GetAllUsersHandler(w http.ResponseWriter, r *http.Request) {
 		services.Api(w, res, statueCode)
 		return
 	}
-	
+
 	res.Statue = "success"
 	res.Data = data
 	services.Api(w, res, http.StatusOK)
