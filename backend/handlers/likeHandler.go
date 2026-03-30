@@ -21,7 +21,7 @@ func LikeHandler(w http.ResponseWriter, r *http.Request) {
 	var postID PostIDFormat
 	var likeHandlerResponse likeHandlerResponseFormat
 		if r.Method != http.MethodPost {
-		services.Api(w, "", http.StatusMethodNotAllowed)
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
 	user, ok := middleware.GetUserFromContext(r)
