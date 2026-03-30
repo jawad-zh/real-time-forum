@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func (m *Manager) AddConnection( client *Client) {
+func (m *Manager) AddConnection(client *Client) {
 	m.Lock()
 	defer m.Unlock()
 	m.Clients[client.UserID] = append(m.Clients[client.UserID], client)
