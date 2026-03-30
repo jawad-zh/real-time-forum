@@ -73,6 +73,7 @@ type PrivateMessage struct {
 	Content    string `json:"messageContent"`
 	CreatAt    string `json:"CreatAt"`
 	IsRead     bool   `json:"IsRead"`
+	Nickname string `json:"Nickname"`
 }
 
 type Login struct {
