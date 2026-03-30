@@ -33,12 +33,7 @@ export async function showMessageCountainer(UserID,online) {
             </div>
         </div>
         <div id="messagesSection" >
-        <div id="typingIndicator" style="display:none">
-        <p>typing</p>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-</div>
+       
         </div>
         <div id="inputMessagesSection" >
             <div id="MessageContentInput" >

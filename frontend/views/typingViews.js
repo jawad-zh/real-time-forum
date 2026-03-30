@@ -1,14 +1,27 @@
 export function typingViews(data){
     console.log('data from typing',data);
-    const currentChatUserID = document.getElementById('imageSectionCountainer')?document.getElementById('imageSectionCountainer').dataset.id:''
+    const messagesSection = document.getElementById('messagesSection')
+    const currentChatUserID = messagesSection?document.getElementById('imageSectionCountainer').dataset.id:''
     console.log('-------------------------------------',currentChatUserID);
-    const typingDiv = document.getElementById('typingIndicator')
+    const typingDiv = `
+     <div id="typingIndicator" >
+        <p>typing</p>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+    `
     if (currentChatUserID){
          if(data.from == currentChatUserID) {
         if(data.action === "TypingStart") {
-            typingDiv.style.display = "block"  
+            const container = document.createElement('div')
+        container.setAttribute('id','typingIndicator')
+        container.innerHTML = typingDiv
+            messagesSection.prepend(container)   
+          
         } else if(data.action === "TypingStop") {
-            typingDiv.style.display = "none"   
+        const test =   document.getElementById('typingIndicator')
+            if (test)test.remove()
         }
     }
     }

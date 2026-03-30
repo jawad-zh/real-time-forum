@@ -3,9 +3,6 @@ import {addMessageOffset} from "/frontend/services/getMessages.js"
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
 import {formatTime} from '/frontend/services/timeAgo.js';
 export function showNewMessage(flag, SenderID, ReceiverID, data) {  
-    console.log('type of the RecieverId',typeof(ReceiverID));
-     console.log('data from show NewMessage===========================================',data);
-     
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
     const messageTime = formatTime(new Date().toISOString())
@@ -32,6 +29,8 @@ export function showNewMessage(flag, SenderID, ReceiverID, data) {
         const messagesSection = document.getElementById('messagesSection')
         if (messagesSection) {
             messagesSection.prepend(messageToApp)
+            const typingEdicator =document.getElementById('typingIndicator') 
+            if (typingEdicator) typingEdicator.remove()
         }
             updateMessageState(ReceiverID)
             updateMessageState(SenderID)     

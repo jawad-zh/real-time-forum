@@ -16,9 +16,7 @@ export   function StartWebsocketConection(messageSection){
         let data =  JSON.parse(event.data)          
         switch (data.ContentType){
           
-          case "NewMessage" : 
-          console.log('the data============================================>',data);
-                     
+          case "NewMessage" :                      
           if (data.SenderID === UserInfo.UserID){
             showNewMessage("from-me","",data.ReceiverID,data.Load)
           }else{
