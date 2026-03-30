@@ -3,8 +3,8 @@ package wbs
 import "fmt"
 
 type infoFormat struct {
-	LogeddUserID       int   `json:"logeddUserID"`
-	OtherLoggedClients []int `json:"otherLoggedClients"`
+	LogeddUserID       int    `json:"logeddUserID"`
+	OtherLoggedClients []int  `json:"otherLoggedClients"`
 	LogeddUserNickname string `json:"logeddUserNickname"`
 }
 
@@ -17,7 +17,7 @@ func (m *Manager) BrodcastConnection(client *Client) {
 	info.LogeddUserNickname = client.UserNickname
 	Event.ContentType = "onlineState"
 	for key := range m.Clients {
-		fmt.Println("key",key,"otherID",client.UserID)
+		fmt.Println("key", key, "otherID", client.UserID)
 		if key != client.UserID {
 			info.OtherLoggedClients = append(info.OtherLoggedClients, key)
 		}
