@@ -30,7 +30,10 @@ GROUP BY
     u.FirstName,
     u.LastName,
     u.ProfileURL
-ORDER BY LastMessageTime DESC;
+ORDER BY 
+    LastMessageTime IS NULL,
+    LastMessageTime DESC,
+    LOWER(u.Nickname) ASC;
 `, id, id)
 	if err != nil {
 		fmt.Println("Select all users error:", err)
