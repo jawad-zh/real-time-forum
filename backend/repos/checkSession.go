@@ -24,7 +24,7 @@ func CheckSession(r *http.Request)(error,*models.Session,int) {
 `, cookie.Value)
 	err = row.Scan(&session.UserID,&session.UserNickname,&session.ExpiresAt)
 	if err == sql.ErrNoRows{
-		return err ,nil,http.StatusInternalServerError
+		return err ,nil,http.StatusUnauthorized
 	}
 	if time.Now().After(session.ExpiresAt){
 		return err ,nil,http.StatusUnauthorized
