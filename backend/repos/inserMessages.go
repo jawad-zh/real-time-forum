@@ -6,11 +6,11 @@ import (
 	"golang/backend/models"
 )
 
-func InserMessages(messagInfo *models.PrivateMessage)error{
+func InserMessages(messagInfo *models.PrivateMessage,senderID int)error{
 	_,err:= db.DataBase.Exec(`
 	INSERT INTO PrivateMessages (SenderId,ReceiverId,Content)
 	VALUES (?,?,?)
-	`,messagInfo.SenderID,messagInfo.ReceiverID,messagInfo.Content)
+	`,senderID,messagInfo.ReceiverID,messagInfo.Content)
 	if err != nil{
 		fmt.Println("Isert Data Error:",err)
 		return err
