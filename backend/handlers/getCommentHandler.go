@@ -10,7 +10,7 @@ func GetCommentHandler(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodGet {
 		fmt.Println("method not allowed")
-		services.Api(w, "", http.StatusMethodNotAllowed)
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
 	
