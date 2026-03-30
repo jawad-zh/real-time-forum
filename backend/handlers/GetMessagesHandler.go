@@ -18,14 +18,14 @@ func GetMessagesHandler(w http.ResponseWriter, r *http.Request) {
 	var GetMessagesRepons GetMessagesHandlerResponsFormat
 	if r.Method != http.MethodGet {
 		fmt.Println("method not allowed")
-		services.Api(w, "", http.StatusMethodNotAllowed)
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
 
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
-		services.Api(w, "", http.StatusUnauthorized)
+		services.Api(w, nil, http.StatusUnauthorized)
 		return
 	}
 
@@ -35,13 +35,13 @@ func GetMessagesHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		fmt.Println("Atoi Error:", err)
-		services.Api(w, "", http.StatusInternalServerError)
+		services.Api(w, nil, http.StatusInternalServerError)
 		return
 	}
 	offsetNum, err := strconv.Atoi(offset)
 	if err != nil {
 		fmt.Println("Atoi Error:", err)
-		services.Api(w, "", http.StatusInternalServerError)
+		services.Api(w, nil, http.StatusInternalServerError)
 		return
 	}
 
