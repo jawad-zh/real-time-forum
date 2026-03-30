@@ -34,7 +34,7 @@ func EditProfileHandler(w http.ResponseWriter, r *http.Request) {
 		editProfileRespons.Message = message
 		services.Api(w, editProfileRespons, statueCode)
 	}
-	
+
 	editProfileRespons.Statue = "success"
 	editProfileRespons.Message = message
 	services.Api(w, editProfileRespons, http.StatusOK)
