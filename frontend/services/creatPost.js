@@ -26,7 +26,7 @@ export async function creatPost(e) {
     }
     postInformation.append('image', imageFile)
 
-    const res = await fetch("http://localhost:8080/creatPost", {
+    const res = await fetch("/creatPost", {
         method: "POST",
         body: postInformation
     })

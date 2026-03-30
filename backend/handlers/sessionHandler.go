@@ -12,8 +12,12 @@ type sessionCheckResponseFormat struct {
 }
 
 func SessionHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		services.Api(w, nil, http.StatusMethodNotAllowed)
+		return
+	}
 	var sessionCheckResponse sessionCheckResponseFormat
-	err, _,statueCode := repos.CheckSession(r)
+	err, _, statueCode := repos.CheckSession(r)
 	if err != nil {
 		sessionCheckResponse.Status = "unsuccess"
 		services.Api(w, "", statueCode)

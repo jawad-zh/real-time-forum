@@ -16,17 +16,17 @@ func UpdateMessageStateHandler(w http.ResponseWriter, r *http.Request) {
 	var id SenderID
 	if r.Method != http.MethodPost {
 		fmt.Println("method not allowed")
-		services.Api(w,"",http.StatusMethodNotAllowed)
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
-		services.Api(w,"",http.StatusUnauthorized)
+		services.Api(w, nil, http.StatusUnauthorized)
 		return
 	}
 	json.NewDecoder(r.Body).Decode(&id)
-	_,statueCode:=services.UpdateMessageStateServie(user.UserID, id.UserID)
-	services.Api(w,"",statueCode)
+	_, statueCode := services.UpdateMessageStateServie(user.UserID, id.UserID)
+	services.Api(w, "", statueCode)
 
 }

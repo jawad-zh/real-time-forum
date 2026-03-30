@@ -57,8 +57,8 @@ export async function loginCheck(e) {
         NicknameOrEmailInput: emailOrNicknameInput,
         EmailOrNickname: emailOrNickname,
         Password: password
-    }
-    var res = await fetch("http://localhost:8080/login", {
+    }    
+    var res = await fetch("/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

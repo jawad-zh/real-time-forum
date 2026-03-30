@@ -58,9 +58,11 @@ export async function showMessageCountainer(UserID,online) {
         imageSectionCountainer.dataset.id = UserID
         imageSectionCountainer.innerHTML = section
         document.body.append(imageSectionCountainer)
-    loadMessages(UserID)
+    loadMessages(UserID,'',RecieverUser.Nickname)
     const messagesSection = imageSectionCountainer.querySelector('#messagesSection')
-    messageScrolling(messagesSection,RecieverUser.UserID)
+    messageScrolling(messagesSection,RecieverUser.UserID,RecieverUser.Nickname)
+
+    //typing
     document.getElementById('MessageContentValue').addEventListener('keydown',async (e)=>{
          if (e.key === "Enter") {
         e.preventDefault(); 

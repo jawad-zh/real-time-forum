@@ -7,6 +7,7 @@ import { setAlert } from "/frontend/components/alert.js"
 import { active } from "/frontend/views/active.js"
 import { LoginRegister } from '/frontend/views/start.js';
 import { renderPost } from '/frontend/views/randerPost.js';
+import {addPostOffset} from '/frontend/services/getPost.js'
 export async function CreatePostController(e) {
     const el = e.target.closest('[id]')
     const id = el.id
@@ -21,7 +22,8 @@ export async function CreatePostController(e) {
         const message = checkCreatPost()
         if (message === 'success') {
             let {data,RenderPostData} = await creatPost(e)            
-            if (data.statue === 'success') {                
+            if (data.statue === 'success') {  
+                addPostOffset()              
                 renderPost(data,RenderPostData)
                 active('homePageIcone')
             }

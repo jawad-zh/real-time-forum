@@ -7,9 +7,7 @@ export async function sendMessagBackend() {
         messageContent: messageValue,
         receiverID: Number(receiverID),
         senderID: Number(senderID),
-    }
-    console.log('siiiiiiiiiiiiiii');
-    
+    }    
         const input = document.getElementById('MessageContentValue')
         input.value = ''
     let res = await fetch("/sendMessage", {

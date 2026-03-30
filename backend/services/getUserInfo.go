@@ -18,13 +18,13 @@ type getUserInfoHandlerFormat struct {
 	Gender    string `json:"Gender"`
 }
 
-func GetUserInfo(UserID int) (error, *getUserInfoHandlerFormat,int) {
+func GetUserInfo(UserID int) (error, *getUserInfoHandlerFormat, int) {
 	var getUserInfoResponse getUserInfoHandlerFormat
 
-	err, data,statueCode := repos.GetUserInfo(UserID)
+	err, data, statueCode := repos.GetUserInfo(UserID)
 	if err != nil {
 		fmt.Println("Get user info error", err)
-		return err, nil,statueCode
+		return err, nil, statueCode
 	}
 	getUserInfoResponse.Statue = "success"
 	getUserInfoResponse.Nickname = data.Nickname
@@ -35,5 +35,5 @@ func GetUserInfo(UserID int) (error, *getUserInfoHandlerFormat,int) {
 	getUserInfoResponse.ImageURL = data.ProfileURL
 	getUserInfoResponse.UserID = data.UserID
 	getUserInfoResponse.Gender = data.Gender
-	return nil, &getUserInfoResponse,statueCode
+	return nil, &getUserInfoResponse, statueCode
 }

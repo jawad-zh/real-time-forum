@@ -1,5 +1,5 @@
 export async function logout() {
-     var res = await fetch("http://localhost:8080/logout", {
+     var res = await fetch("/logout", {
           method: "POST",
           headers: {
                "Content-Type": "application/json"

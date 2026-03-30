@@ -10,13 +10,13 @@ import (
 
 func GetPostsHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		services.Api(w, "", http.StatusMethodNotAllowed)
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
-		services.Api(w, "", http.StatusUnauthorized)
+		services.Api(w, nil, http.StatusUnauthorized)
 		return
 	}
 	_, posts, statueCode := services.GetPosts(r, user.UserID)

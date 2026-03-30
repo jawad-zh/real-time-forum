@@ -3,7 +3,7 @@ package wbs
 import "fmt"
 
 type InfoFormatDec struct {
-	OfflineUserID int   `json:"UserID"`
+	OfflineUserID int `json:"UserID"`
 }
 
 func (m *Manager) Desconnection(UserID int) {
@@ -14,9 +14,9 @@ func (m *Manager) Desconnection(UserID int) {
 	Event.ContentType = "offlineState"
 	info.OfflineUserID = UserID
 	for _, client := range m.Clients[UserID] {
-		err:=client.Conn.Close()
-		if err!= nil{
-			fmt.Println("heeeeeeeeeeeeere the error:",err)
+		err := client.Conn.Close()
+		if err != nil {
+			fmt.Println("heeeeeeeeeeeeere the error:", err)
 			return
 		}
 	}
@@ -25,12 +25,12 @@ func (m *Manager) Desconnection(UserID int) {
 	Event.Load = info
 	for _, clients := range m.Clients {
 		for _, client := range clients {
-			err:=client.Conn.WriteJSON(Event)
-			if err!= nil{
-				fmt.Println("Error deconnect",err)
+			err := client.Conn.WriteJSON(Event)
+			if err != nil {
+				fmt.Println("Error deconnect", err)
 				return
 			}
-			
+
 		}
 	}
 

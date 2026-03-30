@@ -13,7 +13,11 @@ type logoutResponseFormat struct {
 }
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {
-	var logoutRespons loginResponseFormat
+	if r.Method != http.MethodPost {
+		services.Api(w, nil, http.StatusMethodNotAllowed)
+		return
+	}
+	var logoutRespons logoutResponseFormat
 	err, deletedUserID, statueCode := services.LogoutService(r)
 	if err != nil {
 		logoutRespons.Message = "logout failed try later"
@@ -22,7 +26,7 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	cookie := &http.Cookie{
-		Name:     "session",
+		Name:     "session_id",
 		Value:    "",
 		Path:     "/",
 		MaxAge:   -1,

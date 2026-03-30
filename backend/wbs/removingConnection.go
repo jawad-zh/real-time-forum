@@ -23,7 +23,7 @@ func (m *Manager) RemoveConnection(client *Client) {
 			for _, clients := range m.Clients {
 				for _, client := range clients {
 					err := client.Conn.WriteJSON(Event)
-					if err != nil{
+					if err != nil {
 
 						fmt.Println("the removvvvvvving error here:", err)
 						return

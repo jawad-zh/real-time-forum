@@ -2,22 +2,22 @@ import {updateMessageState} from "/frontend/services/updateMessageState.js"
 import {addMessageOffset} from "/frontend/services/getMessages.js"
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
 import {formatTime} from '/frontend/services/timeAgo.js';
-export function showNewMessage(flag, SenderID, ReceiverID, MessageContent) {  
+export function showNewMessage(flag, SenderID, ReceiverID, data) {  
     console.log('type of the RecieverId',typeof(ReceiverID));
-     console.log('messageContent',MessageContent);
+     console.log('data from show NewMessage===========================================',data);
      
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
     const messageTime = formatTime(new Date().toISOString())
-    
-    if (messageContainerCheck &&( Number(messageContainerCheck.dataset.id) === SenderID || Number(messageContainerCheck.dataset.id) === ReceiverID )  ) {
-        console.log('the message senddddddddddddddddddddddd-----------------');
-        
+    let Name = flag === 'from-me' ? '' : data.Name
+    if (messageContainerCheck &&( Number(messageContainerCheck.dataset.id) === SenderID || Number(messageContainerCheck.dataset.id) === ReceiverID )  ) {        
         const messageTamplate = `
-            <div id="ImageMessage" ></div>
             <div id="MessageAndTime" >
+            <div class="UserNameMessages" >
+            ${Name}
+            </div>
                 <div id="MessageContent" >
-                ${htmlXSS(MessageContent)}
+                ${htmlXSS(data.Message)}
                 </div>
                 <div id="MessageTime" >
                 ${messageTime}

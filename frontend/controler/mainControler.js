@@ -6,6 +6,7 @@ import { LikeSaveController } from '/frontend/controler/likeSaveControler.js'
 import { messageController } from '/frontend/controler/messageControler.js'
 import { profileController } from '/frontend/controler/profileControler.js'
 import {router} from '/frontend/router/router.js';
+import {responsive} from "/frontend/views/responsive.js"
 async function mainController() {
      router()
     // Attach single delegated click listener
@@ -40,6 +41,8 @@ async function mainController() {
         }else if(id=== 'lightDarkmoded'){
             document.getElementById('homePageCountainer').classList.toggle('light')
             document.body.classList.toggle('light')
+        }else if (id === 'messages' || id === 'options'){
+            responsive(id)
         }
     })
 }

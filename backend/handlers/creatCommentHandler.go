@@ -23,7 +23,7 @@ type CreateCommentResponse struct {
 func CreatCommentHandler(w http.ResponseWriter, r *http.Request) {
 	// Only allow POST requests
 	if r.Method != http.MethodPost {
-		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -68,7 +68,7 @@ func CreatCommentHandler(w http.ResponseWriter, r *http.Request) {
 	// Success: send back created comment info
 	res.Status = "success"
 	res.Message = "comment created successfully"
-	res.Data = commentInfo 
+	res.Data = commentInfo
 
-	services.Api(w, res, http.StatusOK)
+	services.Api(w, res, http.StatusCreated)
 }

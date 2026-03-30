@@ -20,27 +20,31 @@ type SaveHandlerResponseFormat struct {
 func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 	var postID SaveJsonFormat
 	var saveHandlerResponse SaveHandlerResponseFormat
+	if r.Method != http.MethodPost {
+		services.Api(w, nil, http.StatusMethodNotAllowed)
+		return
+	}
 	err := json.NewDecoder(r.Body).Decode(&postID)
 	if err != nil {
 		fmt.Println("Error:", err)
 		saveHandlerResponse.Message = "save post failed try later"
 		saveHandlerResponse.Statue = "failed"
-		json.NewEncoder(w).Encode(&saveHandlerResponse)
+		services.Api(w, saveHandlerResponse, http.StatusBadRequest)
 		return
 	}
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
-		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+		services.Api(w, nil, http.StatusUnauthorized)
 		return
 	}
-	err, message,statueCode := services.SavePostService(user.UserID, postID.ID)
+	err, message, statueCode := services.SavePostService(user.UserID, postID.ID)
 	if err != nil {
 		saveHandlerResponse.Message = message
 		saveHandlerResponse.Statue = "failed"
-		services.Api(w,saveHandlerResponse,statueCode)
+		services.Api(w, saveHandlerResponse, statueCode)
 		return
 	}
 	saveHandlerResponse.Message = message
 	saveHandlerResponse.Statue = "success"
-	services.Api(w,saveHandlerResponse,statueCode)
+	services.Api(w, saveHandlerResponse, statueCode)
 }

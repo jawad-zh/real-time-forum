@@ -10,12 +10,9 @@ import (
 	"golang/backend/models"
 )
 
-func GetPosts(category string, r *http.Request, UserID int, offset int) (*[]models.Posts, error,int) {
-	fmt.Println("offset-----------------------", offset)
-
+func GetPosts(category string, r *http.Request, UserID int, offset int) (*[]models.Posts, error, int) {
 	var rows *sql.Rows
 	var err error
-
 	switch category {
 	case "all":
 		rows, err = db.DataBase.Query(`
@@ -126,13 +123,12 @@ func GetPosts(category string, r *http.Request, UserID int, offset int) (*[]mode
 		`, category, offset, UserID, UserID)
 	}
 
-	
 	if rows == nil {
-		return nil, fmt.Errorf("query returned nil rows"),http.StatusOK
+		return nil, fmt.Errorf("query returned nil rows"), http.StatusOK
 	}
 	if err != nil {
 		log.Println("DB query error:", err)
-		return nil, err,http.StatusInternalServerError
+		return nil, err, http.StatusInternalServerError
 	}
 	defer rows.Close()
 
@@ -179,7 +175,7 @@ func GetPosts(category string, r *http.Request, UserID int, offset int) (*[]mode
 	}
 
 	if err := rows.Err(); err != nil {
-		return nil , err , http.StatusInternalServerError
+		return nil, err, http.StatusInternalServerError
 	}
 
 	var posts []models.Posts
@@ -188,5 +184,5 @@ func GetPosts(category string, r *http.Request, UserID int, offset int) (*[]mode
 	}
 
 	fmt.Println("this is the length of the posts", len(posts))
-	return &posts, nil , http.StatusOK
+	return &posts, nil, http.StatusOK
 }

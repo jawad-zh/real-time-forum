@@ -5,7 +5,7 @@ export async function LikeBackend(idString) {
     var postID = {
         'PostID': id
     }
-    var res = await fetch("http://localhost:8080/like", {
+    var res = await fetch("/like", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

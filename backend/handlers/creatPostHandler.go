@@ -2,17 +2,25 @@ package handlers
 
 import (
 	"fmt"
+	"net/http"
+
 	"golang/backend/middleware"
 	"golang/backend/services"
-	"net/http"
 )
 
 func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
-	user, ok := middleware.GetUserFromContext(r)
-	if !ok {
-		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+	if r.Method != http.MethodPost {
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
+
+	user, ok := middleware.GetUserFromContext(r)
+	if !ok {
+		fmt.Println("middleware: user not found for creat post")
+		services.Api(w, nil, http.StatusUnauthorized)
+		return
+	}
+
 	_, _, data, statueCode := services.CreatPostCheck(r, user)
 
 	services.Api(w, data, statueCode)

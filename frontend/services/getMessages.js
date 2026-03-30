@@ -13,7 +13,7 @@ export async function getMessages(reiverId,flag) {
         }
     })
     var data = await res.json()    
-    if (data && data.length !== 0) {
+    if (data.Messages && data.Messages.length !== 0) {
         messagesoffset += data.Messages.length        
     }    
     return data
