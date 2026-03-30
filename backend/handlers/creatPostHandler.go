@@ -19,7 +19,7 @@ func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
 		return
 	}
-	
+
 	_, _, data, statueCode := services.CreatPostCheck(r, user)
 
 	services.Api(w, data, statueCode)
