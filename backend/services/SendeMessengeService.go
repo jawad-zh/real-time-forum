@@ -3,6 +3,7 @@ package services
 import (
 	"errors"
 	"net/http"
+	"strings"
 
 	"golang/backend/models"
 	"golang/backend/repos"
@@ -18,7 +19,12 @@ func SendeMessageService(messageInfo *models.PrivateMessage, userId int) (error,
 	if err != nil {
 		return err, http.StatusBadRequest
 	}
-
+	if strings.TrimSpace(messageInfo.Content) == "" {
+		return errors.New("empty message"), http.StatusBadRequest
+	}else if len(messageInfo.Content) > 1000 {
+		return errors.New("message too long"), http.StatusBadRequest
+	}
+	
 	err = repos.InserMessages(messageInfo, userId)
 	if err != nil {
 		return err, http.StatusInternalServerError
