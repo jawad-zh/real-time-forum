@@ -1,22 +1,25 @@
 package repos
 
-import "golang/backend/db"
+import (
+	"database/sql"
+	"fmt"
+	"golang/backend/db"
+)
 
 func CheckExist(PostID int) error {
-	_,err:= db.DataBase.Exec(`
-	SELECT * FROM Posts WHERE PostID = ?
-	`,PostID)
-	if err != nil{
-		return err
+	var id int
+	err := db.DataBase.QueryRow(`SELECT PostID FROM Posts WHERE PostID = ?`, PostID).Scan(&id)
+	if err == sql.ErrNoRows {
+		return fmt.Errorf("post not found")
 	}
-	return nil
+	return err
 }
-func CheckUserExist(UserID int) error{
-	_,err:= db.DataBase.Exec(`
-	SELECT * FROM Users WHERE UserID = ?
-	`,UserID)
-	if err != nil{
-		return err
+
+func CheckUserExist(UserID int) error {
+	var id int
+	err := db.DataBase.QueryRow(`SELECT UserID FROM Users WHERE UserID = ?`, UserID).Scan(&id)
+	if err == sql.ErrNoRows {
+		return fmt.Errorf("user not found")
 	}
-	return nil
+	return err
 }
