@@ -21,7 +21,7 @@ func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 	var postID SaveJsonFormat
 	var saveHandlerResponse SaveHandlerResponseFormat
 		if r.Method != http.MethodPost {
-		services.Api(w, "", http.StatusMethodNotAllowed)
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
 	err := json.NewDecoder(r.Body).Decode(&postID)
