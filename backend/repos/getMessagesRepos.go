@@ -7,8 +7,8 @@ import (
 	"net/http"
 )
 
-func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.PrivateMessage,int){
-	
+func GetMessagesRepos(receiverID int, senderID int, offset int) (error, *[]models.PrivateMessage, int) {
+
 	var messages []models.PrivateMessage
 	rows, err := db.DataBase.Query(`
     SELECT SenderId, Content ,CreatedAt
@@ -19,20 +19,20 @@ func GetMessagesRepos(receiverID int , senderID int,offset int)(error,*[]models.
 	(ReceiverId = ? AND SenderId = ?)
 	ORDER BY MessageID DESC
 	LIMIT 10 OFFSET ?
-	`, receiverID, senderID, senderID, receiverID,offset)
-	if err != nil{
-		fmt.Println("Select messages err:",err)
-		return err ,nil,http.StatusInternalServerError
+	`, receiverID, senderID, senderID, receiverID, offset)
+	if err != nil {
+		fmt.Println("Select messages err:", err)
+		return err, nil, http.StatusInternalServerError
 	}
-	for rows.Next(){
+	for rows.Next() {
 		var message models.PrivateMessage
-		err:=rows.Scan(&message.SenderID,&message.Content,&message.CreatAt)
-		if err != nil{
-			fmt.Println("Scan messages Error:",err)
-			return err , nil,http.StatusInternalServerError
+		err := rows.Scan(&message.SenderID, &message.Content, &message.CreatAt)
+		if err != nil {
+			fmt.Println("Scan messages Error:", err)
+			return err, nil, http.StatusInternalServerError
 		}
 		messages = append(messages, message)
-		
+
 	}
-		return nil , &messages ,http.StatusOK
+	return nil, &messages, http.StatusOK
 }
