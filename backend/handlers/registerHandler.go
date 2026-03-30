@@ -17,7 +17,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	var user models.Users
 	var registerRespons registerResponsFormat
 		if r.Method != http.MethodPost {
-		services.Api(w, "", http.StatusMethodNotAllowed)
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
 	json.NewDecoder(r.Body).Decode(&user)
@@ -32,5 +32,4 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	registerRespons.Message = message
 	registerRespons.Status = "success"
 	services.Api(w,registerRespons,statueCode)
-	// fmt.Println(user,creatMessage)
 }
