@@ -19,7 +19,7 @@ func GetAllUsersHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		fmt.Println("method not allowed")
 		res.Statue = "failed"
-		services.Api(w, res, http.StatusUnauthorized)
+		services.Api(w, res, http.StatusMethodNotAllowed)
 		return
 	}
 

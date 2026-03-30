@@ -29,12 +29,12 @@ func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error:", err)
 		saveHandlerResponse.Message = "save post failed try later"
 		saveHandlerResponse.Statue = "failed"
-		json.NewEncoder(w).Encode(&saveHandlerResponse)
+		services.Api(w, saveHandlerResponse, http.StatusBadRequest)
 		return
 	}
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
-		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+		services.Api(w, nil, http.StatusUnauthorized)
 		return
 	}
 	err, message, statueCode := services.SavePostService(user.UserID, postID.ID)

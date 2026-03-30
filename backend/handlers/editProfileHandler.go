@@ -14,7 +14,6 @@ type EditProfileHandlerResponsFormat struct {
 }
 
 func EditProfileHandler(w http.ResponseWriter, r *http.Request) {
-
 	if r.Method != http.MethodPost {
 		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
@@ -33,6 +32,7 @@ func EditProfileHandler(w http.ResponseWriter, r *http.Request) {
 		editProfileRespons.Statue = "failed"
 		editProfileRespons.Message = message
 		services.Api(w, editProfileRespons, statueCode)
+		return
 	}
 
 	editProfileRespons.Statue = "success"

@@ -2,11 +2,12 @@ package handlers
 
 import (
 	"fmt"
+	"net/http"
+	"strconv"
+
 	"golang/backend/middleware"
 	"golang/backend/models"
 	"golang/backend/services"
-	"net/http"
-	"strconv"
 )
 
 type GetMessagesHandlerResponsFormat struct {
@@ -32,7 +33,6 @@ func GetMessagesHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("receiverID")
 	offset := r.URL.Query().Get("offset")
 	receiverID, err := strconv.Atoi(id)
-
 	if err != nil {
 		fmt.Println("Atoi Error:", err)
 		services.Api(w, nil, http.StatusInternalServerError)
@@ -49,9 +49,9 @@ func GetMessagesHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		GetMessagesRepons.Statue = "failed"
 		services.Api(w, GetMessagesRepons, statueCode)
+		return
 	}
 	GetMessagesRepons.Statue = "success"
 	GetMessagesRepons.Messages = data
 	services.Api(w, GetMessagesRepons, statueCode)
-
 }

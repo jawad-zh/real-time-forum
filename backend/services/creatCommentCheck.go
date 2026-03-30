@@ -13,7 +13,7 @@ func CommentCheck(user middleware.MiddlewareInfoFormat, PostID int, commentConte
 		return err, "", http.StatusBadRequest
 	}
 	if len(commentContent) == 0 {
-		return errors.New("the comment can't be empty"), "", http.StatusBadGateway
+		return errors.New("the comment can't be empty"), "", http.StatusBadRequest
 	} else if len(commentContent) >= 1000 {
 		return errors.New("The comment to large ( More than 1000 )"), "", http.StatusBadRequest
 	}

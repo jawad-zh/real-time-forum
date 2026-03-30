@@ -16,7 +16,8 @@ func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
-		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
+		fmt.Println("middleware: user not found for creat post")
+		services.Api(w, nil, http.StatusUnauthorized)
 		return
 	}
 

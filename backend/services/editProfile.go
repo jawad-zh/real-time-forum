@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"golang/backend/repos"
@@ -15,7 +16,10 @@ import (
 func EditProfile(r *http.Request, UserID int) (error, string, int) {
 	err := repos.CheckUserExist(UserID)
 	if err != nil {
-		return err, "", http.StatusBadGateway
+		if strings.Contains(err.Error(), "not found") {
+			return err, "", http.StatusNotFound
+		}
+		return err, "", http.StatusInternalServerError
 	}
 
 	err = r.ParseMultipartForm(10 << 20)

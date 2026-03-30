@@ -20,16 +20,17 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "frontend/index.html")
 	} else if r.Method != http.MethodPost {
 		services.Api(w, nil, http.StatusMethodNotAllowed)
+		return
 	}
 	var loginUser *models.Login
 	var loginResponse loginResponseFormat
 	json.NewDecoder(r.Body).Decode(&loginUser)
-	fmt.Println("this is the user:", loginUser)
 	ok, message, data, statue := services.LoginChecker(loginUser)
 	if ok {
 		err, sessionID := services.CreatSession(data)
 		if err != nil {
 			fmt.Println("Error", err)
+			services.Api(w, nil, http.StatusInternalServerError)
 			return
 		}
 		http.SetCookie(w, &http.Cookie{
