@@ -13,7 +13,12 @@ import (
 )
 
 func EditProfile(r *http.Request,UserID int) (error , string , int){
-	err := r.ParseMultipartForm(10 << 20)
+	err:=repos.CheckUserExist(UserID)
+	if err != nil{
+		return err,"",http.StatusBadGateway
+	}
+	
+	err = r.ParseMultipartForm(10 << 20)
 	if err != nil {
 		fmt.Println("large size")
 		return errors.New("larg image size") , "image too large",http.StatusBadRequest
