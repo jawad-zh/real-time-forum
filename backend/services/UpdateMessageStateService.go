@@ -5,11 +5,11 @@ import (
 	"golang/backend/wbs"
 )
 
-func UpdateMessageStateServie(UserID int, ReceiverID int) (error,int){
-	err,statueCode:=repos.UpdateMessageStateRepos(UserID, ReceiverID)
-	if err != nil{
-		return err , statueCode
+func UpdateMessageStateServie(UserID int, ReceiverID int) (error, int) {
+	err, statueCode := repos.UpdateMessageStateRepos(UserID, ReceiverID)
+	if err != nil {
+		return err, statueCode
 	}
 	wbs.GlobalManager.UpdateMessageState(UserID, ReceiverID)
-	return nil,statueCode
+	return nil, statueCode
 }
