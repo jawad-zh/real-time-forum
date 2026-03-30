@@ -3,8 +3,8 @@ package wbs
 import "fmt"
 
 type updateTypingFormat struct {
-	From int `json:"from"`
-	To   int `json:"to"`
+	From   int    `json:"from"`
+	To     int    `json:"to"`
 	Action string `json:"action"`
 }
 
