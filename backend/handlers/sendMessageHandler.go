@@ -19,24 +19,23 @@ func SendMessageHandler(w http.ResponseWriter, r *http.Request) {
 	var SendMessageRespons SendMessageResponseFormat
 	if r.Method != http.MethodPost {
 		fmt.Println("method not allowe")
-		services.Api(w,"",http.StatusMethodNotAllowed)
+		services.Api(w,nil,http.StatusMethodNotAllowed)
 		return
 	}
 	var message models.PrivateMessage
 	err := json.NewDecoder(r.Body).Decode(&message)
 	if err != nil {
 		fmt.Println("Decod err:", err)
-		services.Api(w,"",http.StatusInternalServerError)
+		services.Api(w,nil,http.StatusInternalServerError)
 		return
 	}
 	user, ok := middleware.GetUserFromContext(r)
 	if !ok {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
-		services.Api(w, "", http.StatusUnauthorized)
+		services.Api(w, nil, http.StatusUnauthorized)
 		return
 	}
-	fmt.Println("userrrrrr.32214566",user)
-	err,statueCode := services.SendeMessageService(&message)
+	err,statueCode := services.SendeMessageService(&message,user.UserID)
 	if err != nil {
 		SendMessageRespons.Statue = "failed"
 		services.Api(w,SendMessageRespons,statueCode)
