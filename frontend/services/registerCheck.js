@@ -1,14 +1,13 @@
 import {setAlert} from "/frontend/components/alert.js"
 export async function registerCheck(e) {
      e.preventDefault()
-     const nickname = (document.getElementById('nicknameInput').value).trim()
-     const ageInput = document.getElementById('ageInput').value.trim()
-     const genderInput = document.getElementById('genderInput').value.trim()
-     const firstNameInput = document.getElementById('firstNameInpu').value.trim()
-     const lastNameInput = document.getElementById('lastNameInput').value.trim()
-     const email = document.getElementById('emailInput').value.trim()
-     const password = document.getElementById('RegisterpasswordInput').value.trim()
-     console.log('heere is the password from registercheck',password);
+     let nickname = (document.getElementById('nicknameInput').value).trim()
+     let ageInput = document.getElementById('ageInput').value.trim()
+     let genderInput = document.getElementById('genderInput').value.trim()
+     let firstNameInput = document.getElementById('firstNameInpu').value.trim()
+     let lastNameInput = document.getElementById('lastNameInput').value.trim()
+     let email = document.getElementById('emailInput').value.trim()
+     let password = document.getElementById('RegisterpasswordInput').value.trim()
      
      const nicknameSpeacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',="/;:{}]/
      const speacialCharacterRegex = /[!|@#$%^&*()+\\?>\[ \]<',=";:{}.\/\-_]/
@@ -37,8 +36,7 @@ export async function registerCheck(e) {
           return false
 
      } else if (firstNameInput.match(speacialCharacterRegex) ) {
-          // need to modfy regex
-          setAlert('error', '✖', 'speacial character or numbers in first Name not allowed heerrree---------');
+          setAlert('error', '✖', 'speacial character or numbers in first Name not allowed heerrree');
           return false
      }
      if (lastNameInput.length <= 2) {
@@ -117,10 +115,15 @@ export async function registerCheck(e) {
           body: JSON.stringify(Users)
      })
      var data = await res.json()
-     if (data.status === 'success') {
-          setAlert('success', '✔', 'Register Successful');
-     } else {
-           setAlert('error', '✖', data.message);
-     }
+   if (data.status === 'success'){
+     console.log('it issssssssssssss');
+     
+     document.getElementById('nicknameInput').value   = ''
+      document.getElementById('ageInput').value  = ''
+      document.getElementById('firstNameInpu').value  = ''
+      document.getElementById('lastNameInput').value  = ''
+      document.getElementById('emailInput').value  = ''
+      document.getElementById('RegisterpasswordInput').value = ''
+   }
      return data
 }
