@@ -4,8 +4,8 @@ import { StartWebsocketConection } from '/frontend/websocket/startConection.js'
 import {errorPage} from '/frontend/components/errorPage.js';
 export async function router(){    
     const path = window.location.pathname
-    const res = await fetch("http://localhost:8080/sessionCheck", {
-        method: "POST",
+    const res = await fetch("/sessionCheck", {
+        method: "Get",
         headers: { "Content-Type": "application/json" }
     })
     const data = await res.json()

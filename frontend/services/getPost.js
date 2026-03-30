@@ -10,7 +10,7 @@ console.log('offset:',Postoffset,'Category:',Category,'flag:',flag);
         lastCategory = Category
     }
     const res = await fetch(
-        `http://localhost:8080/getPosts?category=${Category}&postoffset=${Postoffset}`,
+        `/getPosts?category=${Category}&postoffset=${Postoffset}`,
         {
             method: "GET",
             headers: {

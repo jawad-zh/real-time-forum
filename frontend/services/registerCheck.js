@@ -109,7 +109,7 @@ export async function registerCheck(e) {
      }
 
 
-     var res = await fetch("http://localhost:8080/register", {
+     var res = await fetch("/register", {
           method: "POST",
           headers: {
                "Content-Type": "application/json"
