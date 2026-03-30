@@ -14,10 +14,10 @@ type creatPostRes struct {
 	PostID     int64
 	CreatedAt  string
 	ProfileURL sql.NullString
-	ImageURL string
+	ImageURL   string
 }
 
-func CreatPost(postInfo *models.PostInformation, UserID int) (error, *creatPostRes,int) {
+func CreatPost(postInfo *models.PostInformation, UserID int) (error, *creatPostRes, int) {
 	var Post creatPostRes
 	result, err := db.DataBase.Exec(`
 	INSERT INTO Posts (UserID,Title,Content,ImageURL)
@@ -25,12 +25,12 @@ func CreatPost(postInfo *models.PostInformation, UserID int) (error, *creatPostR
 	`, UserID, postInfo.Title, postInfo.Content, postInfo.ImageURL)
 	if err != nil {
 		fmt.Println("insert Post Error", err)
-		return err, nil , http.StatusInternalServerError
+		return err, nil, http.StatusInternalServerError
 	}
 	LastPostId, err := result.LastInsertId()
 	if err != nil {
 		fmt.Println("last Id error", err)
-		return err, nil,http.StatusInternalServerError
+		return err, nil, http.StatusInternalServerError
 	}
 	for _, cat := range postInfo.Categories {
 		_, err = db.DataBase.Exec(`
@@ -39,7 +39,7 @@ func CreatPost(postInfo *models.PostInformation, UserID int) (error, *creatPostR
 		`, LastPostId, cat)
 		if err != nil {
 			fmt.Println("Error:", err)
-			return err, nil,http.StatusInternalServerError
+			return err, nil, http.StatusInternalServerError
 		}
 	}
 	err = db.DataBase.QueryRow(`
@@ -52,11 +52,11 @@ FROM Posts
 JOIN Users 
     ON Users.UserID = ?
 WHERE Posts.PostID = ?;
- `, UserID, LastPostId).Scan(&Post.Nickname, &Post.ProfileURL, &Post.CreatedAt,&Post.ImageURL)
- if err != nil{
-	fmt.Println("Scan Error:",err)
- }
+ `, UserID, LastPostId).Scan(&Post.Nickname, &Post.ProfileURL, &Post.CreatedAt, &Post.ImageURL)
+	if err != nil {
+		fmt.Println("Scan Error:", err)
+	}
 	Post.PostID = LastPostId
 
-	return nil, &Post,http.StatusOK
+	return nil, &Post, http.StatusOK
 }
