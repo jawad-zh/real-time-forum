@@ -68,7 +68,7 @@ func CreatCommentHandler(w http.ResponseWriter, r *http.Request) {
 	// Success: send back created comment info
 	res.Status = "success"
 	res.Message = "comment created successfully"
-	res.Data = commentInfo 
+	res.Data = commentInfo
 
 	services.Api(w, res, http.StatusOK)
 }
