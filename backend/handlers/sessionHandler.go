@@ -16,7 +16,7 @@ func SessionHandler(w http.ResponseWriter, r *http.Request) {
 	err, _,statueCode := repos.CheckSession(r)
 	if err != nil {
 		sessionCheckResponse.Status = "unsuccess"
-		services.Api(w, "", statueCode)
+		services.Api(w, nil, statueCode)
 		return
 	}
 	sessionCheckResponse.Status = "success"
