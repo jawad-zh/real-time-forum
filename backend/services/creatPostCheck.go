@@ -3,19 +3,19 @@ package services
 import (
 	"database/sql"
 	"fmt"
+	"golang/backend/middleware"
+	"golang/backend/models"
+	"golang/backend/repos"
 	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"time"
-	"net/http"
-	"golang/backend/models"
-	"golang/backend/repos"
-	"golang/backend/middleware"
 )
 
 type CreatPostResponseFormat struct {
 	Message    string         `json:"message"`
-	Statue    string         `json:"statue"`
+	Statue     string         `json:"statue"`
 	PostID     int64          `json:"PostID"`
 	Nickname   string         `json:"Nickname"`
 	ImageURL   string         `json:"imageURL"`
@@ -23,19 +23,19 @@ type CreatPostResponseFormat struct {
 	ProfileURL sql.NullString `json:"ProfileURL"`
 }
 
-func CreatPostCheck(r *http.Request,user middleware.MiddlewareInfoFormat) (error, string, *CreatPostResponseFormat,int) {
+func CreatPostCheck(r *http.Request, user middleware.MiddlewareInfoFormat) (error, string, *CreatPostResponseFormat, int) {
 	var post models.PostInformation
 	var CreatPostResponse CreatPostResponseFormat
 	err := r.ParseMultipartForm(10 << 20)
 	if err != nil {
 		fmt.Println("large size")
-		return err, "large image size", nil ,http.StatusBadRequest
+		return err, "large image size", nil, http.StatusBadRequest
 	}
 
 	err = os.MkdirAll("frontend/uploads", os.ModePerm)
 	if err != nil {
 		fmt.Println("failed to create uploads folder: ", err)
-		return err, "Creat Post failed try later", nil,http.StatusInternalServerError
+		return err, "Creat Post failed try later", nil, http.StatusInternalServerError
 	}
 
 	title := r.FormValue("title")
@@ -52,7 +52,7 @@ func CreatPostCheck(r *http.Request,user middleware.MiddlewareInfoFormat) (error
 		dst, err := os.Create(imagePath)
 		if err != nil {
 			fmt.Println("os Error:", err)
-			return err, "Creat Post failed try later", nil ,http.StatusInternalServerError
+			return err, "Creat Post failed try later", nil, http.StatusInternalServerError
 		}
 		defer dst.Close()
 		// need to search
@@ -63,7 +63,7 @@ func CreatPostCheck(r *http.Request,user middleware.MiddlewareInfoFormat) (error
 		post.Categories = categories
 		post.ImageURL = imagePath
 		// here
-		err, data,statueCode := repos.CreatPost(&post, user.UserID)
+		err, data, statueCode := repos.CreatPost(&post, user.UserID)
 		if err == nil {
 			CreatPostResponse.Message = ""
 			CreatPostResponse.Statue = "success"
@@ -72,7 +72,7 @@ func CreatPostCheck(r *http.Request,user middleware.MiddlewareInfoFormat) (error
 			CreatPostResponse.CreatedAt = data.CreatedAt
 			CreatPostResponse.ImageURL = data.ImageURL
 			CreatPostResponse.ProfileURL = data.ProfileURL
-			return nil, "", &CreatPostResponse , http.StatusOK
+			return nil, "", &CreatPostResponse, http.StatusOK
 
 		}
 		return err, "created Post failed try later", nil, statueCode
@@ -81,7 +81,7 @@ func CreatPostCheck(r *http.Request,user middleware.MiddlewareInfoFormat) (error
 		post.Title = title
 		post.Content = content
 		post.Categories = categories
-		err, data,statueCode := repos.CreatPost(&post, user.UserID)
+		err, data, statueCode := repos.CreatPost(&post, user.UserID)
 		if err == nil {
 			CreatPostResponse.Message = ""
 			CreatPostResponse.Statue = "success"
@@ -90,11 +90,11 @@ func CreatPostCheck(r *http.Request,user middleware.MiddlewareInfoFormat) (error
 			CreatPostResponse.CreatedAt = data.CreatedAt
 			CreatPostResponse.ImageURL = data.ImageURL
 			CreatPostResponse.ProfileURL = data.ProfileURL
-			return nil, "", &CreatPostResponse,http.StatusOK
+			return nil, "", &CreatPostResponse, http.StatusOK
 		}
-		return err, "created Post failed try later", nil,statueCode
+		return err, "created Post failed try later", nil, statueCode
 	} else {
 		fmt.Println("somthing wrong")
-		return err, "creatPost failed try later please", nil,http.StatusInternalServerError
+		return err, "creatPost failed try later please", nil, http.StatusInternalServerError
 	}
 }
