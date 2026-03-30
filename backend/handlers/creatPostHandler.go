@@ -10,7 +10,7 @@ import (
 
 func CreatPostHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		services.Api(w, "", http.StatusMethodNotAllowed)
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
 
