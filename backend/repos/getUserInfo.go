@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func GetUserInfo(UserID int) (error, *models.Users,int) {
+func GetUserInfo(UserID int) (error, *models.Users, int) {
 	var user models.Users
 	err := db.DataBase.QueryRow(`
 	SELECT 
@@ -25,7 +25,7 @@ WHERE UserID = ?;
 	`, UserID).Scan(&user.UserID, &user.Nickname, &user.FirstName, &user.LastName, &user.ProfileURL, &user.Gender, &user.Likes, &user.Saves)
 	if err != nil {
 		fmt.Println("Selct UserInfo error:", err)
-		return err, nil,http.StatusInternalServerError
+		return err, nil, http.StatusInternalServerError
 	}
 	return nil, &user, http.StatusOK
 }
