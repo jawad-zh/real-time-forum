@@ -24,7 +24,7 @@ func RegisterChecker(user *models.Users) (bool, string, int) {
 	}
 	// need to handle
 	if !NumbersRegex.MatchString(userAgeString) {
-		return false, "Age Accepte Numbers only (backend)-----------------", http.StatusBadRequest
+		return false, "Age Accepte Numbers only (backend)", http.StatusBadRequest
 	}
 	if speacialCharacterRegex.MatchString(user.FirstName) {
 		fmt.Println("here")

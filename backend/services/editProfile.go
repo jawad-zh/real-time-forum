@@ -25,20 +25,40 @@ func EditProfile(r *http.Request, UserID int) (error, string, int) {
 	err = r.ParseMultipartForm(10 << 20)
 	if err != nil {
 		fmt.Println("large size")
-		return errors.New("larg image size"), "image too large", http.StatusBadRequest
+		return errors.New("large image size"), "image too large", http.StatusBadRequest
 	}
+
 	err = os.MkdirAll("frontend/uploads", os.ModePerm)
 	if err != nil {
 		fmt.Println("failed to create uploads folder: ", err)
-		return err, " edit profile failed try later ", http.StatusBadRequest
+		return err, "edit profile failed try later", http.StatusBadRequest
 	}
 
 	file, handler, err := r.FormFile("image")
 	var imagePath string
+
 	if err == nil {
 		defer file.Close()
 
-		filename := fmt.Sprintf("%d%s", time.Now().UnixNano(), filepath.Ext(handler.Filename))
+		if !IsImageExtension(handler.Filename) {
+			return errors.New("invalid file extension"), "only image files are allowed", http.StatusBadRequest
+		}
+
+		const maxSize = 5 << 20
+		if handler.Size > maxSize {
+			return errors.New("file too large"), "image must be less than 5MB", http.StatusBadRequest
+		}
+
+		isImage, err := IsImageContent(file)
+		if err != nil {
+			return err, "failed to read file", http.StatusInternalServerError
+		}
+		if !isImage {
+			return errors.New("invalid content"), "file is not an image", http.StatusBadRequest
+		}
+
+		ext := strings.ToLower(filepath.Ext(handler.Filename))
+		filename := fmt.Sprintf("%d%s", time.Now().UnixNano(), ext)
 		imagePath = "frontend/uploads/" + filename
 
 		dst, err := os.Create(imagePath)
@@ -48,7 +68,10 @@ func EditProfile(r *http.Request, UserID int) (error, string, int) {
 		}
 		defer dst.Close()
 
-		io.Copy(dst, file)
+		_, err = io.Copy(dst, file)
+		if err != nil {
+			return err, "failed to save image", http.StatusInternalServerError
+		}
 
 		ImageURL := imagePath
 		err, statueCode := repos.EditProfile(ImageURL, UserID)
@@ -59,7 +82,7 @@ func EditProfile(r *http.Request, UserID int) (error, string, int) {
 		return nil, "success", http.StatusOK
 
 	} else {
-		fmt.Println("somthing wrong")
+		fmt.Println("something wrong")
 		return err, "edit profile failed try later", http.StatusInternalServerError
 	}
 }
