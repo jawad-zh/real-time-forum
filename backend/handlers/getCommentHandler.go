@@ -13,9 +13,9 @@ func GetCommentHandler(w http.ResponseWriter, r *http.Request) {
 		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
-	
+
 	_, data, statueCode := services.GetComment(r)
-	
-	services.Api(w,data,statueCode)
+
+	services.Api(w, data, statueCode)
 
 }
