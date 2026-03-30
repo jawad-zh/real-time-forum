@@ -18,11 +18,13 @@ type loginResponseFormat struct {
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		http.ServeFile(w, r, "frontend/index.html")
+	}else{
+		services.Api(w,nil,http.StatusMethodNotAllowed)
 	}
 	var loginUser *models.Login
 	var loginResponse loginResponseFormat
 	json.NewDecoder(r.Body).Decode(&loginUser)
-	ok, message, data := services.LoginChecker(loginUser)
+	ok, message, data ,statue:= services.LoginChecker(loginUser)
 	if ok {
 		err, sessionID := services.CreatSession(data)
 		if err != nil {
@@ -44,6 +46,5 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		loginResponse.Message = message
 		loginResponse.Status = "failed"
 	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(loginResponse)
+	services.Api(w,loginResponse,statue)
 }
