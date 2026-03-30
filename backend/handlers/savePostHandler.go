@@ -20,7 +20,7 @@ type SaveHandlerResponseFormat struct {
 func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 	var postID SaveJsonFormat
 	var saveHandlerResponse SaveHandlerResponseFormat
-		if r.Method != http.MethodPost {
+	if r.Method != http.MethodPost {
 		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
@@ -37,14 +37,14 @@ func SavePostHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(" middlewar Get comment info error from creatcommentHandler")
 		return
 	}
-	err, message,statueCode := services.SavePostService(user.UserID, postID.ID)
+	err, message, statueCode := services.SavePostService(user.UserID, postID.ID)
 	if err != nil {
 		saveHandlerResponse.Message = message
 		saveHandlerResponse.Statue = "failed"
-		services.Api(w,saveHandlerResponse,statueCode)
+		services.Api(w, saveHandlerResponse, statueCode)
 		return
 	}
 	saveHandlerResponse.Message = message
 	saveHandlerResponse.Statue = "success"
-	services.Api(w,saveHandlerResponse,statueCode)
+	services.Api(w, saveHandlerResponse, statueCode)
 }
