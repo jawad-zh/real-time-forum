@@ -10,21 +10,22 @@ import (
 )
 
 type loginResponseFormat struct {
-	Message string `json:"message"`
-	Status  string `json:"status"`
-	Data *models.Users `json:"userInfo"`
+	Message string        `json:"message"`
+	Status  string        `json:"status"`
+	Data    *models.Users `json:"userInfo"`
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		http.ServeFile(w, r, "frontend/index.html")
-	}else{
-		services.Api(w,nil,http.StatusMethodNotAllowed)
+	} else if r.Method != http.MethodPost {
+		services.Api(w, nil, http.StatusMethodNotAllowed)
 	}
 	var loginUser *models.Login
 	var loginResponse loginResponseFormat
 	json.NewDecoder(r.Body).Decode(&loginUser)
-	ok, message, data ,statue:= services.LoginChecker(loginUser)
+	fmt.Println("this is the user:", loginUser)
+	ok, message, data, statue := services.LoginChecker(loginUser)
 	if ok {
 		err, sessionID := services.CreatSession(data)
 		if err != nil {
@@ -38,7 +39,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 			HttpOnly: true,
 			MaxAge:   86400,
 		})
-		
+
 		loginResponse.Message = message
 		loginResponse.Status = "success"
 		loginResponse.Data = data
@@ -46,5 +47,5 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		loginResponse.Message = message
 		loginResponse.Status = "failed"
 	}
-	services.Api(w,loginResponse,statue)
+	services.Api(w, loginResponse, statue)
 }
