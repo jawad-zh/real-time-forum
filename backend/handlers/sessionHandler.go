@@ -19,8 +19,10 @@ func SessionHandler(w http.ResponseWriter, r *http.Request) {
 	var sessionCheckResponse sessionCheckResponseFormat
 	err, _, statueCode := repos.CheckSession(r)
 	if err != nil {
-		sessionCheckResponse.Status = "unsuccess"
-		services.Api(w, "", statueCode)
+		if statueCode == http.StatusUnauthorized {
+			sessionCheckResponse.Status = "Unauthorized"
+		}
+		services.Api(w, sessionCheckResponse, statueCode)
 		return
 	}
 	sessionCheckResponse.Status = "success"
