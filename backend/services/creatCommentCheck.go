@@ -8,6 +8,10 @@ import (
 )
 
 func CommentCheck(user middleware.MiddlewareInfoFormat, PostID int, commentContent string) (error, string,int) {
+	err:=repos.CheckExist(PostID)
+	if err != nil{
+		return err,"",http.StatusBadRequest
+	}
 	if len(commentContent) == 0 {
 		return errors.New("the comment can't be empty"), "",http.StatusBadGateway
 	} else if len(commentContent) >= 1000 {
