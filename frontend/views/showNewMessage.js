@@ -6,12 +6,12 @@ export function showNewMessage(flag, SenderID, ReceiverID, data) {
     var className = flag === 'from-me' ? 'receiver' : 'sender';
     const messageContainerCheck = document.getElementById('imageSectionCountainer')
     const messageTime = formatTime(new Date().toISOString())
-    let Name = flag === 'from-me' ? '' : data.Name
+
     if (messageContainerCheck &&( Number(messageContainerCheck.dataset.id) === SenderID || Number(messageContainerCheck.dataset.id) === ReceiverID )  ) {        
         const messageTamplate = `
             <div id="MessageAndTime" >
             <div class="UserNameMessages" >
-            ${Name}
+            ${data.Name}
             </div>
                 <div id="MessageContent" >
                 ${htmlXSS(data.Message)}
@@ -34,7 +34,7 @@ export function showNewMessage(flag, SenderID, ReceiverID, data) {
         }
             updateMessageState(ReceiverID)
             updateMessageState(SenderID)     
-            rangeUser(SenderID)   
+            rangeUser(SenderID,ReceiverID)   
     } else {
         const allUsers = document.querySelectorAll('.messageCountainer')
         for (let user of allUsers) {
@@ -46,12 +46,12 @@ export function showNewMessage(flag, SenderID, ReceiverID, data) {
     }
     addMessageOffset()
 }
-function rangeUser(id){
+function rangeUser(SenderID,ReceiverID){
     const container = document.getElementById('rightSide')
     const title = document.getElementById('messagesTitle')
     const allUsers = document.querySelectorAll('.messageCountainer')
      for (let user of allUsers) {
-            if (Number(user.dataset.id) === id) {
+            if (Number(user.dataset.id) === SenderID || Number(user.dataset.id) === ReceiverID) {
                 container.removeChild(user)
                 container.removeChild(title)
                 container.prepend(title,user)

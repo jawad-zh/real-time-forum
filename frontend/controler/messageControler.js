@@ -8,11 +8,11 @@ import {LoginRegister} from '/frontend/views/start.js';
 
 export async function messageController(e) {
     const el = e.target.closest('[id]')
-    // if (!el) return
+    if (!el) return
     const id = el.id
     const messageEl = el.closest("#messageCountainer")
 
-    // if (!messageEl) return
+    if (!messageEl) return
 
     if (id === 'messageCountainer' || id === 'messageName') {
         const online = messageEl.classList.contains('onlineUser')

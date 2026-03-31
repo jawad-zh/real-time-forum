@@ -9,7 +9,7 @@ export async function router(){
         headers: { "Content-Type": "application/json" }
     })
     const data = await res.json()
-    console.log('my path issssssss:',path,'and my statue is ',data.status);
+    console.log('my path issssssss:',path,'and my data is ',data);
 
     if (data.status === 'success' && (path === "/" || path==="/login"|| path==="/register"|| path==='/authontication') ) {
          history.replaceState({}, "", "/")

@@ -20,7 +20,6 @@ console.log('offset:',Postoffset,'Category:',Category,'flag:',flag);
     )
     const data = await res.json()    
     if (data && data.length !== 0) {
-        
         Postoffset += data.length
         
     }

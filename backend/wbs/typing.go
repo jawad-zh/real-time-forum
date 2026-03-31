@@ -1,7 +1,5 @@
 package wbs
 
-import "fmt"
-
 type updateTypingFormat struct {
 	From   int    `json:"from"`
 	To     int    `json:"to"`
@@ -9,7 +7,6 @@ type updateTypingFormat struct {
 }
 
 func (m *Manager) Typing(msg wsMessage) {
-	fmt.Println("hello from typing")
 	m.Lock()
 	defer m.Unlock()
 	var event Events
@@ -22,5 +19,4 @@ func (m *Manager) Typing(msg wsMessage) {
 	for _, client := range m.Clients[msg.To] {
 		client.Conn.WriteJSON(event)
 	}
-
 }

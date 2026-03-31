@@ -10,9 +10,8 @@ export async function loadMessages(UserID,flag,Nickname){
     console.log('thos is the messages data',messages);
       
     const messageCountainer = document.getElementById('messagesSection')
-    let userNamemsg = ''
     if (messageCountainer) {
-        if (messages) {
+        if (messages.Messages) {
             for (let message of messages.Messages) {
                 const messageToApp = document.createElement('div')
                 messageToApp.setAttribute('id', 'messagCountainer')

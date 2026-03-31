@@ -13,12 +13,14 @@ export async function onlineStateUpdate(connectedUser, otherconnectedClient, mes
         }
 
     } else {        
-        var allUsers = messageSection.querySelectorAll('.messageCountainer')
         let found = false
-        for (let user of allUsers) {
-            if (Number(user.dataset.id) == Number(connectedUser)) {
-                found = true
-                user.classList.add('onlineUser')
+        if (messageSection){
+            var allUsers = messageSection.querySelectorAll('.messageCountainer')
+            for (let user of allUsers) {
+                if (Number(user.dataset.id) == Number(connectedUser)) {
+                    found = true
+                    user.classList.add('onlineUser')
+                }
             }
         }
         if (!found) {

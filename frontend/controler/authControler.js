@@ -15,9 +15,7 @@ export async function authController(e) {
           if (data.status === 'success') {
           setAlert('success', '✔', 'Register Successful');
           setTimeout(()=> {const login = document.getElementById('login') ; if(login)login.click()})
-     } else {
-           setAlert('error', '✖', data.message);
-     }
+     } 
     } else if (id === 'loginButton') {
         const data = await loginCheck(e)
         if (data){

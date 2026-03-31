@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"golang/backend/db"
@@ -57,6 +56,7 @@ func main() {
 	//
 	err = http.ListenAndServe(":8081", mux)
 	if err != nil {
-		log.Fatal("sever Error :", err)
+		fmt.Println("sever Error :", err)
+		return
 	}
 }
