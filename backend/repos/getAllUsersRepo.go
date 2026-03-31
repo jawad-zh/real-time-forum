@@ -17,24 +17,33 @@ SELECT
     u.FirstName,
     u.LastName,
     u.ProfileURL,
-    COALESCE(MIN(pm.IsRead), true) AS IsRead,
+    COALESCE(MIN(CASE 
+        WHEN pm.ReceiverID = ? THEN pm.IsRead 
+        ELSE TRUE 
+    END), TRUE) AS IsRead,
     MAX(pm.CreatedAt) AS LastMessageTime
 FROM Users u
 LEFT JOIN PrivateMessages pm 
-    ON pm.SenderID = u.UserID 
-    AND pm.ReceiverID = ?
+    ON (
+        (pm.SenderID = u.UserID AND pm.ReceiverID = ?)
+        OR
+        (pm.SenderID = ? AND pm.ReceiverID = u.UserID)
+    )
+
 WHERE u.UserID != ?
+
 GROUP BY 
     u.UserID,
     u.Nickname,
     u.FirstName,
     u.LastName,
     u.ProfileURL
+
 ORDER BY 
     LastMessageTime IS NULL,
     LastMessageTime DESC,
     LOWER(u.Nickname) ASC;
-`, id, id)
+`, id, id, id, id)
 	if err != nil {
 		fmt.Println("Select all users error:", err)
 		return err, nil, http.StatusInternalServerError
