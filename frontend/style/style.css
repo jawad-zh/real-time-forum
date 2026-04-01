@@ -695,6 +695,7 @@ i {
     display: flex;
     justify-content: flex-end;
     font-size: 11px;
+    margin-top: 8px;
 }
 
 #backgroundLeft {
@@ -1335,8 +1336,8 @@ body {
     width: 100%;
     overflow: auto;
     display: flex;
-    flex-direction: column-reverse;
-    gap: 20px;
+    flex-direction: column-reverse; 
+    gap: 30px;
 }
 
 .sender {
@@ -1369,9 +1370,8 @@ body {
     min-height: 50px;
     min-width: calc(50% - 40px);
     border-radius: 10px 10px 10px 0px;
-    padding: 10px;
+    padding: 5px 10px;
     word-break: break-word;
-    margin: 10px
 }
 
 .receiver {
@@ -1392,13 +1392,12 @@ body {
 .receiver #MessageAndTime {
     background-color: var(--primry);
     color: var(--darckBackground);
-    padding: 10px;
+    padding: 5px 10px;
     min-height: 50px;
     min-width: calc(50% - 40px);
     border-radius: 10px 10px 0px 10px;
     margin-right: 10px;
     word-break: break-word;
-    margin: 10px
 }
 #messagCountainer{
     margin-bottom: 15px;
