@@ -19,6 +19,9 @@ export async function registerCheck(e) {
      if (nickname.length <= 2) {
           setAlert('error', '✖', 'nickname need to be more than two character');
           return false
+     }else if(nickname.length >=30){
+          setAlert('error', '✖', 'nickname can not  be more than 30 character');
+          return false
      } else if (nickname.match(nicknameSpeacialCharacterRegex)) {
           setAlert('error', '✖', 'nickname speacial character allowed is - _ and .', 'red');
           return false
@@ -35,7 +38,10 @@ export async function registerCheck(e) {
           setAlert('error', '✖', 'first Name need to be more than two character');
           return false
 
-     } else if (firstNameInput.match(speacialCharacterRegex) ) {
+     } else if(firstNameInput.length >=30){
+          setAlert('error', '✖', 'firstNameInput can not  be more than 30 character');
+          return false
+     }else if (firstNameInput.match(speacialCharacterRegex) ) {
           setAlert('error', '✖', 'speacial character or numbers in first Name not allowed heerrree');
           return false
      }
@@ -43,6 +49,9 @@ export async function registerCheck(e) {
           setAlert('error', '✖', 'last Name need to be more than two character');
           return false
 
+     }else if(lastNameInput.length >=30){
+          setAlert('error', '✖', 'lastNameInput can not  be more than 30 character');
+          return false
      } else if (lastNameInput.match(speacialCharacterRegex) || lastNameInput.match(/\d/)) {
           // need to modfy regex
           setAlert('error', '✖', 'speacial character or numbers in first Name not allowed');
@@ -50,6 +59,9 @@ export async function registerCheck(e) {
      }
      if (password.length <= 7) {
           setAlert('error', '✖', 'password need to be 8 character as minimum');
+          return false
+     }else if (password.length > 70){
+          setAlert('error', '✖', 'password can not be more than 70 character');
           return false
      } else if (!password.match(/[a-z]/)) {
           setAlert('error', '✖', 'should be one lowerCase character in password');
