@@ -16,7 +16,9 @@ type registerResponsFormat struct {
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	var user models.Users
 	var registerRespons registerResponsFormat
-	if r.Method != http.MethodPost {
+		if r.Method == http.MethodGet {
+		http.ServeFile(w, r, "frontend/index.html")
+	} else if r.Method != http.MethodPost {
 		services.Api(w, nil, http.StatusMethodNotAllowed)
 		return
 	}
