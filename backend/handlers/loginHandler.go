@@ -7,6 +7,7 @@ import (
 
 	"golang/backend/models"
 	"golang/backend/services"
+	"golang/backend/wbs"
 )
 
 type loginResponseFormat struct {
@@ -27,6 +28,9 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewDecoder(r.Body).Decode(&loginUser)
 	ok, message, data, statue := services.LoginChecker(loginUser)
 	if ok {
+		if wbs.GlobalManager.CheckUserOnline(data.UserID){
+			wbs.GlobalManager.Desconnection(data.UserID)
+		}
 		err, sessionID := services.CreatSession(data)
 		if err != nil {
 			fmt.Println("Error", err)

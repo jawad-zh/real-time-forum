@@ -10,7 +10,7 @@ type SendMessage struct {
 func (m *Manager) SendMessage(SenderID int, ReceiverID int, MessageContent string, userNickname string) {
 	m.Lock()
 	defer m.Unlock()
-	var messageData SendMessage
+	var messageData SendMessage 
 	var Event Events
 	Event.ContentType = "NewMessage"
 	Event.SenderID = SenderID
