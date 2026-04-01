@@ -19,6 +19,8 @@ func RegisterChecker(user *models.Users) (bool, string, int) {
 	var userAgeString = strconv.Itoa(user.Age)
 	if len(user.Nickname) <= 2 {
 		return false, "Nickname should be more the two character (backend)", http.StatusBadRequest
+	}else if len(user.Nickname) > 30 {
+		return false, "Nickname can not be more the 30 character (backend)", http.StatusBadRequest
 	} else if nicknameRegex.MatchString(user.Nickname) {
 		return false, "Nickname speacial character allowed is - _ and . (backend) ", http.StatusBadRequest
 	}
@@ -36,16 +38,22 @@ func RegisterChecker(user *models.Users) (bool, string, int) {
 	}
 	if len(user.FirstName) <= 2 {
 		return false, "First Name should be more than two character (backend) ", http.StatusBadRequest
-	} else if speacialCharacterRegex.MatchString(user.FirstName) || (NumbersRegex.MatchString(user.FirstName)) {
+	}else if len(user.FirstName) > 30 {
+		return false, "Frist Name can not be more the 30 character (backend)", http.StatusBadRequest
+	}  else if speacialCharacterRegex.MatchString(user.FirstName) || (NumbersRegex.MatchString(user.FirstName)) {
 		return false, "Speacial Character or Numbers Not Allowed In First Name heerre", http.StatusBadRequest
 	}
 	if len(user.LastName) <= 2 {
-		return false, "First Name should be more than two character (backend) ", http.StatusBadRequest
-	} else if speacialCharacterRegex.MatchString(user.LastName) || NumbersRegex.MatchString(user.LastName) {
+		return false, "Last Name should be more than two character (backend) ", http.StatusBadRequest
+	}else if len(user.LastName) > 30 {
+		return false, "Last Name Name can not be more the 30 character (backend)", http.StatusBadRequest
+	}  else if speacialCharacterRegex.MatchString(user.LastName) || NumbersRegex.MatchString(user.LastName) {
 		return false, "Speacial Character or Numbers Not Allowed In First Name (backend)", http.StatusBadRequest
 	}
 	if len(user.Password) <= 7 {
 		return false, "Password Sould Be More Than 8 Charachter (backend)", http.StatusBadRequest
+	}else if len(user.Password) > 70{
+		return false, "Password can not  Be More Than 70 Charachter (backend)", http.StatusBadRequest
 	} else if !lowerCaseRegex.MatchString(user.Password) {
 		return false, "Password Should Countain Lower Case Character (backend) ", http.StatusBadRequest
 	} else if !upperCaseRegex.MatchString(user.Password) {
