@@ -41,7 +41,8 @@ async function mainController() {
         }else if(id=== 'lightDarkmoded'){
             document.getElementById('homePageCountainer').classList.toggle('light')
             document.body.classList.toggle('light')
-        }else if (id === 'messages' || id === 'options'){
+        }
+         if (id === 'messages' || id === 'options' || filterIds.includes(id)){
             responsive(id)
         }
     })
