@@ -1,5 +1,5 @@
-import {getComments} from "/frontend/services/getComments.js"
-import {getUserInfo} from "/frontend/services/getUserInfo.js"
+import {getComments} from "/frontend/services/api/getComments.js"
+import {getUserInfo} from "/frontend/services/api/getUserInfo.js"
 import {TimeAgo}  from "/frontend/services/timeAgo.js"
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
 export async function showComment(postID){

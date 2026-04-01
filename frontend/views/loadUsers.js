@@ -1,4 +1,4 @@
-import {getAllUser} from "/frontend/services/getAllUsers.js"
+import {getAllUser} from "/frontend/services/api/getAllUsers.js"
 import {ExportedUsers , UserInfo} from "/frontend/views/home.js"
 export async function loadUsers(flag) {
       let users = await getAllUser()        

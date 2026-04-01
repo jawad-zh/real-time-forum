@@ -1,6 +1,6 @@
 import { registerCheck } from "/frontend/services/registerCheck.js"
 import { loginCheck } from "/frontend/services/loginCheck.js"
-import { logout } from "/frontend/services/logout.js"
+import { logout } from "/frontend/services/api/logout.js"
 import { LoginRegister } from "/frontend/views/start.js";
 import { setHomePage } from "/frontend/views/home.js"
 import { StartWebsocketConection } from '/frontend/websocket/startConection.js'

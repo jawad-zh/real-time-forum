@@ -1,5 +1,5 @@
 import {updateMessageState} from "/frontend/services/updateMessageState.js"
-import {addMessageOffset} from "/frontend/services/getMessages.js"
+import {addMessageOffset} from "/frontend/services/api/getMessages.js"
 import {htmlXSS} from '/frontend/services/htmlXSS.js';
 import {formatTime} from '/frontend/services/timeAgo.js';
 export function showNewMessage(flag, SenderID, ReceiverID, data) {  

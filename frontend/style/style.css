@@ -1307,12 +1307,13 @@ body {
     align-items: center;
     padding: 10px;
     justify-content: space-between;
+    width: 100%;
 
 }
 
 #inputMessagesSection input {
     height: 40px;
-    width: 130%;
+    width: 100%;
     border: none;
     padding: 8px;
     background-color: var(--darckBackground);
@@ -1354,10 +1355,12 @@ body {
 
 #sendMessageIcone {
     color: var(--primry);
+    z-index: 100;
 }
 
 #MessageContentValue {
     color: var(--primryText);
+    width: 100%;
 }
 
 .sender #MessageAndTime {
@@ -1597,6 +1600,9 @@ body {
     cursor: pointer;
     color: var(--seconderText) ;
 }
+#MessageContentInput{
+    width: 100%;
+}
 @media (max-width: 880px) {
 
    #rightSide{
@@ -1661,4 +1667,22 @@ transform: translateX(-50%);
     width: 200px;
     z-index: 1000;
    }
+   #cancelButton{
+    width: 80%;
+   }
+   #MessageContentValue{
+    width: 100%;
+    overflow-wrap: break-word;
+
+   }
+   #MessageContentInput{
+    width: 100%;
+        overflow-wrap: break-word;
+
+   }
+   #inputMessagesSection{
+    overflow-wrap: break-word;
+width: 100%;
+   }
+
 }

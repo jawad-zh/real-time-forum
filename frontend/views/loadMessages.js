@@ -1,4 +1,4 @@
-import { getMessages } from '/frontend/services/getMessages.js';
+import { getMessages } from '/frontend/services/api/getMessages.js';
 import { UserInfo } from "./home.js";
 import {formatTime}  from "/frontend/services/timeAgo.js"
 import {htmlXSS} from '/frontend/services/htmlXSS.js';

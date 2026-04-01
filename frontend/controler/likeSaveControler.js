@@ -1,7 +1,7 @@
 // /frontend/controler/likeSaveController.js
 import { LikeFrontend } from "/frontend/views/like.js"
-import { LikeBackend } from "/frontend/services/likePost.js"
-import { savePostsBackend } from "../services/savePostBackend.js"
+import { LikeBackend } from "/frontend/services/api/likePost.js"
+import { savePostsBackend } from "../services/api/savePostBackend.js"
 import { savePostFront } from "../views/save.js"
 import { setAlert } from "/frontend/components/alert.js"
 import {LoginRegister} from '/frontend/views/start.js';

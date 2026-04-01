@@ -4,8 +4,8 @@ export function setCreatPost() {
   creatPostCountainer.innerHTML = `
             <div id="creatPost">
                 <div id="inputs">
-                    <input placeholder="title" id="creatPostTitle" type="text">
-                    <input  placeholder="content" id="creatPostContent" type="text">
+                    <input placeholder="title" id="creatPostTitle" type="text" maxlength="1000" >
+                    <input  placeholder="content" id="creatPostContent" type="text"  maxlength="1000">
                 </div>
                 <div id="creatPostIcones" > 
                     <div id="imageIconeCountainer" >

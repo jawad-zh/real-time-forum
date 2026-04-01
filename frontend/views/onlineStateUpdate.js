@@ -1,4 +1,4 @@
-import { getUserInfo } from "/frontend/services/getUserInfo.js"
+import { getUserInfo } from "/frontend/services/api/getUserInfo.js"
 import { loadUsers } from "/frontend/views/loadUsers.js"
 export async function onlineStateUpdate(connectedUser, otherconnectedClient, messageSection, nickname) {
     const UserInfo = await getUserInfo()

@@ -1,4 +1,4 @@
-import { getUserInfo } from "/frontend/services/getUserInfo.js"
+import { getUserInfo } from "/frontend/services/api/getUserInfo.js"
 import{loadPosts} from "/frontend/views/loadPosts.js"
 import { loadUsers } from "./loadUsers.js"
 import { scrollTracking } from "../services/scrolling.js"

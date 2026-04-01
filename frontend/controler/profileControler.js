@@ -1,7 +1,7 @@
 // /frontend/controler/profileController.js
 import { setImageProfilePage } from "/frontend/views/setImageProfilePage.js"
 import { imageViewer } from "/frontend/views/imageviewer.js"
-import { addImageBackend } from "/frontend/services/addImageBackend.js"
+import { addImageBackend } from "/frontend/services/api/addImageBackend.js"
 import { addImage } from "../views/addImage.js"
 import { setAlert } from "/frontend/components/alert.js"
 import {LoginRegister} from '/frontend/views/start.js';

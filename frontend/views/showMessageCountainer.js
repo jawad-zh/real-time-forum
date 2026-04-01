@@ -37,7 +37,7 @@ export async function showMessageCountainer(UserID,online) {
         </div>
         <div id="inputMessagesSection" >
             <div id="MessageContentInput" >
-                <input id="MessageContentValue"  placeholder="send message" type="text">
+                <input id="MessageContentValue"  placeholder="send message" type="text" maxlength="200">
             </div>
             <div id="sendMessageIconeCountainer" >
                 <i id="sendMessageIcone" class="fa-regular fa-paper-plane"></i>
